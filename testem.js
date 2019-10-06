@@ -2,23 +2,23 @@ module.exports = {
   test_page: 'tests/index.html?hidepassed',
   disable_watching: true,
   launch_in_ci: [
-    'Chrome'
+    'Chromium'
   ],
   launch_in_dev: [
-    'Chrome'
+    'Chromium'
   ],
   browser_args: {
-    Chrome: {
+    Chromium: {
       ci: [
-        // --no-sandbox is needed when running Chrome inside a container
-        process.env.CI ? '--no-sandbox' : null,
         '--headless',
-        '--disable-dev-shm-usage',
-        '--disable-software-rasterizer',
+        '--no-sandbox',
         '--mute-audio',
-        '--remote-debugging-port=0',
-        '--window-size=1440,900'
-      ].filter(Boolean)
+        '--disable-gpu',
+        '--window-size=1440,900',
+        '--disable-dev-shm-usage',
+        '--remote-debugging-port=9222',
+        '--remote-debugging-address=0.0.0.0'
+      ]
     }
   }
 };
