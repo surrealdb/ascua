@@ -4,17 +4,20 @@
 
 root = true
 
-
 [*]
-end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = true
+end_of_line = LF
+indent_size = 4
+indent_style = tab
 insert_final_newline = true
-indent_style = space
-indent_size = 2
+trim_trailing_whitespace = true
 
 [*.hbs]
 insert_final_newline = false
 
-[*.{diff,md}]
+[*.{yml,json}]
+indent_size = 2
+indent_style = space
+
+[*.{md,diff}]
 trim_trailing_whitespace = false
