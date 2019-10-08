@@ -1,0 +1,51 @@
+# Copyright © 2016 Abcum Ltd
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+default:
+	@echo "Choose a Makefile target:"
+	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print "  - " $$1}}' | sort
+
+.PHONY: clean
+clean:
+	@echo "Clean..."
+	find packages -maxdepth 1 -type f -name '.bowerrc' -delete
+	find packages -maxdepth 1 -type f -name '.editorconfig' -delete
+	find packages -maxdepth 1 -type f -name '.ember-cli' -delete
+	find packages -maxdepth 1 -type f -name '.ember-cli.js' -delete
+	find packages -maxdepth 1 -type f -name '.eslintignore' -delete
+	find packages -maxdepth 1 -type f -name '.eslintrc.js' -delete
+	find packages -maxdepth 1 -type f -name '.gitignore' -delete
+	find packages -maxdepth 1 -type f -name '.gitkeep' -delete
+	find packages -maxdepth 1 -type f -name '.template-lintrc.js' -delete
+	find packages -maxdepth 1 -type f -name '.travis.yml' -delete
+	find packages -maxdepth 1 -type f -name '.watchmanconfig' -delete
+	find packages -maxdepth 1 -type f -name 'bower.json' -delete
+	find packages -maxdepth 1 -type f -name 'ember-cli-build.js' -delete
+	find packages -maxdepth 1 -type f -name 'jsconfig.json' -delete
+	find packages -maxdepth 1 -type f -name 'package-lock.json' -delete
+	find packages -maxdepth 1 -type f -name 'README.md' -delete
+	find packages -maxdepth 1 -type f -name 'testem.js' -delete
+	find packages -maxdepth 1 -type f -name 'yarn.lock' -delete
+	find packages -maxdepth 1 -type d -name '.git' -exec rm -rf "{}" \;
+	find packages -maxdepth 1 -type d -name 'config' -exec rm -rf "{}" \;
+	find packages -maxdepth 1 -type d -name 'dist' -exec rm -rf "{}" \;
+	find packages -maxdepth 1 -type d -name 'tests' -exec rm -rf "{}" \;
+	find packages -maxdepth 1 -type d -name 'tmp' -exec rm -rf "{}" \;
+	lerna clean --yes
+
+.PHONY: setup
+setup:
+	@echo "Setup..."
+	lerna bootstrap
+
