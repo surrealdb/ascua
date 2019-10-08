@@ -1,0 +1,17 @@
+<app-droppable
+	{{style width=this.width height=this.height}}
+	waiting={{this.waiting}}
+	loading={{this.loading}}
+	dropping={{this.dropping}}
+	{{on "drop" this.didDrop}}
+	{{on "click" this.didClick}}
+	{{on "dragover" this.didDragOver}}
+	{{on "dragenter" this.didDragEnter}}
+	{{on "dragleave" this.didDragLeave}}
+>
+
+	<input type="file" tabindex="-1" multiple="true" {{on "change" this.didInput}} />
+
+	{{yield this}}
+
+</app-droppable>

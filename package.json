@@ -59,6 +59,7 @@
     "@abcum/ember-core": "file:packages/ember-core",
     "@abcum/ember-decorators": "file:packages/ember-decorators",
     "@abcum/ember-dropdown": "file:packages/ember-dropdown",
+    "@abcum/ember-droppable": "file:packages/ember-droppable",
     "@abcum/ember-editable": "file:packages/ember-editable",
     "@abcum/ember-electron": "file:packages/ember-electron",
     "@abcum/ember-fetch": "file:packages/ember-fetch",
