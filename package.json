@@ -81,6 +81,7 @@
     "@abcum/ember-moment.js": "file:packages/ember-moment.js",
     "@abcum/ember-scrollup": "file:packages/ember-scrollup",
     "@abcum/ember-select": "file:packages/ember-select",
+    "@abcum/ember-sheet.js": "file:packages/ember-sheet.js",
     "@abcum/ember-social": "file:packages/ember-social",
     "@abcum/ember-storage": "file:packages/ember-storage",
     "@abcum/ember-tooltip": "file:packages/ember-tooltip",
