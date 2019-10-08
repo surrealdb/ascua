@@ -1,1 +1,1 @@
-export { default } from '@abcum/ember-moment/helpers/utc';
+export { default } from '@abcum/ember-moment.js/helpers/utc';
