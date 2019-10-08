@@ -32,7 +32,7 @@
 	};
 
 	moment.fn.prevWorkday = function() {
-		while (true) {
+		for (;;) {
 			if (this.subtract(1, 'day').isWorkday()) {
 				break;
 			}
@@ -41,7 +41,7 @@
 	};
 
 	moment.fn.nextWorkday = function() {
-		while (true) {
+		for (;;) {
 			if (this.add(1, 'day').isWorkday()) {
 				break;
 			}

@@ -1,6 +1,6 @@
 (function() {
 
-	/* globals define, codemirror */
+	/* globals define, CodeMirror */
 
 	function generateModule(name, values) {
 		define(name, [], function() {

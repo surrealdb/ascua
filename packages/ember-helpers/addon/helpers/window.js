@@ -1,4 +1,3 @@
-/* global window */
 import { helper } from '@ember/component/helper';
 
 export function func() {

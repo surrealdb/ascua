@@ -1,3 +1,4 @@
+/* global Electron */
 import Component from '@glimmer/component';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';

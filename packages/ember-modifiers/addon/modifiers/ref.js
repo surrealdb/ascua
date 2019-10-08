@@ -22,7 +22,7 @@ export default setModifierManager(
 
 		},
 
-		updateModifier(state, args) {
+		updateModifier(state) {
 
 			set(state.context, state.property, state.element);
 

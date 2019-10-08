@@ -46,7 +46,7 @@ if (ENABLED == true) {
 	// Reload worker
 	// --------------------------------------------------
 
-	self.addEventListener('message', e => {
+	self.addEventListener('message', (e) => {
 		if (e.data === 'skipWaiting') {
 			self.skipWaiting();
 			self.clients.claim();
@@ -57,7 +57,7 @@ if (ENABLED == true) {
 	// Install worker
 	// --------------------------------------------------
 
-	self.addEventListener('install', e => {
+	self.addEventListener('install', (e) => {
 		e.waitUntil(
 			caches.open(`ember-xenon-${VERSION}`).then(cache => {
 				return cache.add(INDEX);
@@ -65,7 +65,7 @@ if (ENABLED == true) {
 		);
 	});
 
-	self.addEventListener('install', e => {
+	self.addEventListener('install', (e) => {
 		e.waitUntil(
 			caches.open(`ember-xenon-${VERSION}`).then(cache => {
 				return cache.addAll(ASSETS);
@@ -77,7 +77,7 @@ if (ENABLED == true) {
 	// Activate worker
 	// --------------------------------------------------
 
-	self.addEventListener('activate', e => {
+	self.addEventListener('activate', () => {
 		caches.keys().then(names => {
 			names.forEach(name => {
 				if (name.indexOf('ember-xenon') === 0) {
@@ -93,7 +93,7 @@ if (ENABLED == true) {
 	// Fetch html cache
 	// --------------------------------------------------
 
-	self.addEventListener('fetch', e => {
+	self.addEventListener('fetch', (e) => {
 
 		let req = e.request;
 
@@ -114,7 +114,7 @@ if (ENABLED == true) {
 		// Respond with the html file from the cache
 		e.respondWith(
 			caches.open(`ember-xenon-${VERSION}`).then(cache => {
-				return cache.match(INDEX).then(res => res).catch(err => {
+				return cache.match(INDEX).then(res => res).catch( () => {
 					return fetch(req).then(res => res);
 				});
 			})
@@ -126,7 +126,7 @@ if (ENABLED == true) {
 	// Fetch file cache
 	// --------------------------------------------------
 
-	self.addEventListener('fetch', e => {
+	self.addEventListener('fetch', (e) => {
 
 		let req = e.request;
 

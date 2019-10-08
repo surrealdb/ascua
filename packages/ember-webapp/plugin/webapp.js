@@ -122,7 +122,9 @@ module.exports = class Webapp extends Plugin {
 
 		try {
 			fs.mkdirSync(f, { recursive: true });
-		} catch (e) { }
+		} catch (e) {
+			// Ignore
+		}
 
 		return Sharp(i).resize(size, size).toFile(o);
 

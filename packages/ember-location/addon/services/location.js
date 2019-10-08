@@ -52,7 +52,7 @@ export default class extends Service {
 
 			if (this.watchid) return resolve(this.current);
 
-			if (features.geolocation() === false) return reject("Geolocation not supported");
+			if (enabled() === false) return reject("Geolocation not supported");
 
 			this.watchid = window.navigator.geolocation.watchPosition(
 				(result) => {

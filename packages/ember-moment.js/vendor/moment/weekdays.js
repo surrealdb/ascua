@@ -19,7 +19,7 @@
 	};
 
 	moment.fn.prevWeekday = function() {
-		while (true) {
+		for (;;) {
 			if (this.subtract(1, 'day').isWeekday()) {
 				break;
 			}
@@ -28,7 +28,7 @@
 	};
 
 	moment.fn.nextWeekday = function() {
-		while (true) {
+		for (;;) {
 			if (this.add(1, 'day').isWeekday()) {
 				break;
 			}

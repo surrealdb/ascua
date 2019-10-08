@@ -1,3 +1,5 @@
+/* globals window */
+
 if (typeof process !== 'undefined') {
 
 	(window => {

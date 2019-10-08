@@ -1,13 +1,8 @@
-import EmberObject from '@ember/object';
-import { assert, debug } from '@ember/debug';
+import { assert } from '@ember/debug';
 
 export default class extends Object {
 
 	name = 'base';
-
-	constructor() {
-		debug(`Initializing ${this.toString()}`);
-	}
 
 	toString() {
 		return `metric:${this.name}`;

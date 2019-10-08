@@ -29,7 +29,10 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js',
-        'server/**/*.js'
+        'server/**/*.js',
+        'packages/**/plugin/*.js',
+        'packages/**/vendor/*.js',
+        'packages/**/index.js',
       ],
       excludedFiles: [
         'app/**',

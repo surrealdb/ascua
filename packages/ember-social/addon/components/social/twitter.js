@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 
 export default class extends Component {
 
-	@computed('args.url', 'args.via', 'args.tags', 'args.text')
+	@computed('args.{url,via,tags,text}')
 	get href() {
 		let url = this.args.url || '';
 		let via = this.args.via || '';

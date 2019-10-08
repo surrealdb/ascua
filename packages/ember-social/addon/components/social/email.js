@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 
 export default class extends Component {
 
-	@computed('args.to', 'args.subject', 'args.message')
+	@computed('args.{to,subject,message}')
 	get href() {
 		let to = this.args.to || '';
 		let subject = this.args.subject || '';

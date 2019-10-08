@@ -55,7 +55,9 @@ module.exports = class Images extends Plugin {
 
 		try {
 			fs.mkdirSync(f, { recursive: true });
-		} catch (e) { }
+		} catch (e) {
+			// Ignore
+		}
 
 		switch (e) {
 		case '.jpeg':
