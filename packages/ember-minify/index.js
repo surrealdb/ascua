@@ -29,6 +29,14 @@ module.exports = {
 
 		this.opts = Object.assign({}, defaults, this.opts);
 
+		// Ensure JS is minified
+		app.options.minifyJS = app.options.minifyJS || {};
+		app.options.minifyJS.enabled = this.app.env === 'production';
+
+		// Ensure CSS is minified
+		app.options.minifyCSS = app.options.minifyCSS || {};
+		app.options.minifyCSS.enabled = this.app.env === 'production';
+
 	},
 
 	postprocessTree(type, tree) {
