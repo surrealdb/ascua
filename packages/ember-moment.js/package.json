@@ -1,7 +1,7 @@
 {
-  "name": "@abcum/ember-moment",
+  "name": "@abcum/ember-moment.js",
   "version": "0.0.0",
-  "description": "Small description for ember-moment goes here",
+  "description": "Small description for ember-moment.js goes here",
   "keywords": [
     "ember-addon"
   ],

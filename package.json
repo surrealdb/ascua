@@ -77,7 +77,7 @@
     "@abcum/ember-minify": "file:packages/ember-minify",
     "@abcum/ember-modal": "file:packages/ember-modal",
     "@abcum/ember-modifiers": "file:packages/ember-modifiers",
-    "@abcum/ember-moment": "file:packages/ember-moment",
+    "@abcum/ember-moment.js": "file:packages/ember-moment.js",
     "@abcum/ember-scrollup": "file:packages/ember-scrollup",
     "@abcum/ember-select": "file:packages/ember-select",
     "@abcum/ember-social": "file:packages/ember-social",
