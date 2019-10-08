@@ -23,3 +23,15 @@
 /.node_modules.ember-try/
 /bower.json.ember-try
 /package.json.ember-try
+
+# packages compiled output
+/packages/*/dist/
+/packages/*/tmp/
+
+# packages dependencies
+/packages/*/bower_components/
+/packages/*/node_modules/
+
+# packages npm files
+/packages/*/package-lock.json
+/packages/*/npm-debug.log*
