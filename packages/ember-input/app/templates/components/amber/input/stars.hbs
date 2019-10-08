@@ -1,6 +1,6 @@
-<app-input-stars>
+<app-input-stars {{did-insert this.didInsert}} {{did-update this.didUpdate @value}}>
 	{{#each this.stars as |star|}}
-		<div role="button" selected={{if (gte this.value star) "true" "false"}} {{on "click" (fn this.toggle star)}}>
+		<div role="button" selected={{if star.select "true" "false"}} {{on "click" (fn this.toggled star.number)}}>
 			<svg version="1.1" x="0px" y="0px" viewBox="0 0 18 17" enable-background="new 0 0 18 17" xml:space="preserve">
 				<polygon fill={{this.color}} stroke={{this.color}} stroke-miterlimit="10" points="9,1.349 10.674,6.5 16.09,6.5 11.708,10.036 13.382,15.364 9,12.268 4.618,15.496 6.292,10.014 1.91,6.5 7.326,6.5 "/>
 				<g></g><g></g><g></g><g></g><g></g><g></g>

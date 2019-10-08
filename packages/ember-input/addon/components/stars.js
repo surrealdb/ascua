@@ -5,7 +5,7 @@ import { action } from '@ember/object';
 
 export default class extends Component {
 
-	@tracked value = this.args.value;
+	@tracked value = undefined;
 
 	@computed('args.min')
 	get min() {
@@ -27,16 +27,24 @@ export default class extends Component {
 		return this.args.disabled || false;
 	}
 
-	@computed('min', 'max')
+	@computed('min', 'max', 'value')
 	get stars() {
 		let b = this.min;
 		let e = this.max;
 		return Array.apply(null, Array(e-b+1)).map( (_, n) => {
-			return n + b;
+			return { number: b+n, select: (b+n <= this.value) }
 		});
 	}
 
-	@action toggle(value) {
+	@action didInsert() {
+		this.value = this.args.value;
+	}
+
+	@action didUpdate() {
+		this.value = this.args.value;
+	}
+
+	@action toggled(value) {
 
 		if (this.disabled) return;
 

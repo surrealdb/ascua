@@ -41,7 +41,7 @@ export default class extends Component {
 
 		this.editor = new CodeMirror(element, this.opts);
 
-		this.editor.setValue(this.args.value || '');
+		this.editor.setValue(this.args.value + '');
 
 		this.editor.on('change', (i) => {
 			if (this.args.onChange) {
@@ -51,10 +51,10 @@ export default class extends Component {
 
 	}
 
-	@action didUpdate(element) {
+	@action didUpdate() {
 
 		if (this.editor.getValue() !== this.args.value) {
-			this.editor.setValue(this.args.value || '');
+			this.editor.setValue(this.args.value + '');
 		}
 
 		Object.keys(this.opts).forEach(k => {

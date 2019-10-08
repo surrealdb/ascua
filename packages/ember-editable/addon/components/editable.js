@@ -1,12 +1,23 @@
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+import { inject } from '@ember/service';
 import { action } from '@ember/object';
+import { htmlSafe } from '@ember/template';
 
 export default class extends Component {
 
-	@computed('args.value')
-	get value() {
-		return this.args.value || '';
+	@inject('-document') document;
+
+	@tracked value = undefined;
+
+	@action didInsert() {
+		this.value = htmlSafe(this.args.value);
+	}
+
+	@action didUpdate(element) {
+		if (element !== document.activeElement) {
+			this.value = htmlSafe(this.args.value);
+		}
 	}
 
 	@action changed(event) {

@@ -1,13 +1,26 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { inject } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class extends Component {
 
+	@inject('-document') document;
+
+	@tracked value = undefined;
+
 	@action didInsert(element) {
 		this.element = element;
+		this.value = this.args.value;
 	}
 
-	@action didInput(event) {
+	@action didUpdate(element) {
+		if (element !== document.activeElement) {
+			this.value = this.args.value;
+		}
+	}
+
+	@action didInput() {
 		if (this.args.onChange) {
 			this.args.onChange(this.element.value);
 		}
@@ -19,12 +32,12 @@ export default class extends Component {
 		return (this.element.value.split('\n').length < this.args.limit);
 	}
 
-	@action didPress(event) {
+	@action didPress() {
 		setTimeout( () => {
 			this.element.style.height = 'auto';
 			this.element.style.overflow = 'hidden';
 			this.element.style.height = `${this.element.scrollHeight}px`;
-		})
+		});
 	}
 
 }
