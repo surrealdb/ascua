@@ -1,0 +1,26 @@
+app-input-stars {
+	display:inline-block;
+}
+
+app-input-stars div {
+	float:left;
+	width:18px;
+	height:17px;
+	display:block;
+	margin-right:3px;
+}
+
+app-input-stars div:last-of-type {
+	margin-right:0;
+}
+
+app-input-stars div[selected="true"] {
+	opacity:1;
+}
+
+app-input-stars div[selected="false"] {
+	opacity:0.5;
+	polygon {
+		fill: none;
+	}
+}

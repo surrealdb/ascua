@@ -1,0 +1,7 @@
+<app-dropdown-option {{on "click" this.clicked}} {{did-insert this.didInsert}} {{will-destroy this.willDestroy}} disabled={{@disabled}} selected={{this.selected}} ...attributes>
+	{{#if hasBlock}}
+		{{~yield~}}
+	{{else}}
+		{{@label}}
+	{{/if}}
+</app-dropdown-option>

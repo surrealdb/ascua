@@ -1,0 +1,89 @@
+app-label {
+	color:#ffffff;
+	display:inline;
+	cursor:default;
+	overflow:hidden;
+	font-size:inherit;
+	line-height:inherit;
+	white-space:nowrap;
+	vertical-align:middle;
+	padding:2px 8px 2px 8px;
+	background-color:#BBBBBB;
+}
+
+app-label:empty {
+	display:none;
+}
+
+/**/
+
+app-label[curved] {
+	border-radius:10px;
+}
+
+app-label[curved]:before {
+	border-radius:10px 0 0 10px;
+}
+app-label[curved] close {
+	border-radius:0 10px 10px 0;
+}
+
+/**/
+
+app-label[key] {
+	padding-left:0;
+}
+
+app-label[key]:before {
+	color:#ffffff;
+	display:inline;
+	margin-right:8px;
+	font-size:inherit;
+	content:attr(key);
+	padding:2px 8px 2px 8px;
+	background-color:#333333;
+}
+
+/**/
+
+app-label[closeable] {
+	padding-right:0;
+}
+
+app-label[closeable] close {
+	color:#4a4a4a;
+	cursor:pointer;
+	display:inline;
+	margin-left:8px;
+	font-size:inherit;
+	padding:2px 8px 2px 8px;
+	background-color:#f5f5f5;
+}
+
+app-label[closeable] close:hover {
+	background-color:#efefef;
+}
+
+/**/
+
+app-label[type='white']				{ background-color: #ffffff; color: #666666; }
+app-label[type='pale']				{ background-color: #F0F0F0; color: #666666; }
+app-label[type='grey']				{ background-color: #E0E0E0; color: #000000; }
+
+app-label[type='azure']				{ background-color: #1c14ef; }
+app-label[type='black']				{ background-color: #444444; }
+app-label[type='blue']				{ background-color: #00BFFF; }
+app-label[type='chartreuse']		{ background-color: #70ff77; }
+app-label[type='green']				{ background-color: #03C759; }
+app-label[type='light']				{ background-color: #CCCCCC; }
+app-label[type='lime']				{ background-color: #77ef15; }
+app-label[type='magenta']			{ background-color: #FA0266; }
+app-label[type='orange']			{ background-color: #ffba0c; }
+app-label[type='pink']				{ background-color: #ffc6fa; }
+app-label[type='purple']			{ background-color: #601b75; }
+app-label[type='red']				{ background-color: #ff463d; }
+app-label[type='royal']				{ background-color: #427af4; }
+app-label[type='seafoam']			{ background-color: #42f49e; }
+app-label[type='strawberry']		{ background-color: #ff5656; }
+app-label[type='turquoise']			{ background-color: #42f4df; }
+app-label[type='yellow']			{ background-color: #f4eb41; }

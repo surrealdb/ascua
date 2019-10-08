@@ -1,0 +1,56 @@
+.cm-s-abcum {
+  width: 100%;
+  height: 100%;
+  cursor: text;
+  font-size: 14px;
+  line-height: 20px;
+  background-color: #242930;
+  color: rgba(233, 237, 237, 1);
+  font-family: Menlo, monospace;
+}
+.cm-s-abcum .CodeMirror-lines {
+  padding: 6px 0;
+}
+.cm-s-abcum .CodeMirror pre {
+  padding: 0 4px;
+}
+.cm-s-abcum .CodeMirror-gutters {
+  border: none;
+  background: #242930;
+  color: rgb(83,127,126);
+}
+.cm-s-abcum .CodeMirror-linenumber {
+  min-width: 30px;
+  padding: 0 15px 0 5px;
+}
+.cm-s-abcum .CodeMirror-guttermarker, .cm-s-abcum .CodeMirror-guttermarker-subtle, .cm-s-abcum .CodeMirror-linenumber { color: rgb(83,127,126); }
+.cm-s-abcum .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
+.cm-s-abcum div.CodeMirror-selected { background: rgba(255, 255, 255, 0.15); }
+.cm-s-abcum.CodeMirror-focused div.CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }
+.cm-s-abcum .CodeMirror-line::selection, .cm-s-abcum .CodeMirror-line > span::selection, .cm-s-abcum .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }
+.cm-s-abcum .CodeMirror-line::-moz-selection, .cm-s-abcum .CodeMirror-line > span::-moz-selection, .cm-s-abcum .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }
+
+.cm-s-abcum .CodeMirror-activeline-background { background: rgba(0, 0, 0, 0); }
+.cm-s-abcum .cm-keyword { color: rgba(199, 146, 234, 1); }
+.cm-s-abcum .cm-operator { color: rgba(233, 237, 237, 1); }
+.cm-s-abcum .cm-variable-2 { color: #80CBC4; }
+.cm-s-abcum .cm-variable-3 { color: #82B1FF; }
+.cm-s-abcum .cm-builtin { color: #DECB6B; }
+.cm-s-abcum .cm-atom { color: #F77669; }
+.cm-s-abcum .cm-number { color: #F77669; }
+.cm-s-abcum .cm-def { color: rgba(233, 237, 237, 1); }
+.cm-s-abcum .cm-string { color: #C3E88D; }
+.cm-s-abcum .cm-string-2 { color: #80CBC4; }
+.cm-s-abcum .cm-comment { color: #546E7A; }
+.cm-s-abcum .cm-variable { color: #82B1FF; }
+.cm-s-abcum .cm-tag { color: #80CBC4; }
+.cm-s-abcum .cm-meta { color: #80CBC4; }
+.cm-s-abcum .cm-attribute { color: #FFCB6B; }
+.cm-s-abcum .cm-property { color: #80CBAE; }
+.cm-s-abcum .cm-qualifier { color: #DECB6B; }
+.cm-s-abcum .cm-variable-3 { color: #DECB6B; }
+.cm-s-abcum .cm-tag { color: rgba(255, 83, 112, 1); }
+.cm-s-abcum .cm-error {
+  color: rgba(255, 255, 255, 1.0);
+  background-color: #EC5F67;
+}

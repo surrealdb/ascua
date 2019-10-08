@@ -1,0 +1,17 @@
+{
+  "name": "@abcum/ember-modal",
+  "version": "0.0.0",
+  "description": "Small description for ember-modal goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "dependencies": {
+    "@abcum/ember-keyboard": "file:../ember-keyboard",
+    "@abcum/ember-modifiers": "file:../ember-modifiers",
+    "ember-cli-babel": "^7.11.1",
+    "ember-cli-htmlbars": "^4.0.0"
+  }
+}

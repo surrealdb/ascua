@@ -1,0 +1,20 @@
+<app-iframe {{style width=this.width height=this.height}} {{did-insert this.didInsert}} interactive={{@interactive}}>
+
+	<iframe
+		src={{this.src}}
+		frameborder="0"
+		sandbox="allow-same-origin allow-scripts"
+		...attributes
+		{{style
+			width=this.perct
+			height=this.perct
+			transform=this.trans
+			oTransform=this.trans
+			msTransform=this.trans
+			mozTransform=this.trans
+			khtmlTransform=this.trans
+			webkitTransform=this.trans
+		}}
+	/>
+
+</app-iframe>

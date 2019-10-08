@@ -1,0 +1,15 @@
+{
+  "name": "@abcum/ember-update",
+  "version": "0.0.0",
+  "description": "Small description for ember-update goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "dependencies": {
+    "ember-cli-babel": "^7.11.1",
+    "ember-cli-htmlbars": "^4.0.0"
+  }
+}

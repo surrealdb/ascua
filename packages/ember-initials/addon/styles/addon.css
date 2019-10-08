@@ -1,0 +1,15 @@
+app-initials {
+	display:inline-block;
+	background-size:cover;
+}
+
+app-initials[circular] {
+	border-radius:100%;
+	svg { border-radius:100%; }
+}
+
+app-initials svg text {
+	font-size:55px;
+	font-weight:100;
+	font-family:Helvetica Neue Light, Arial, sans-serif;
+}

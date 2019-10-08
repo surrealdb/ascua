@@ -1,0 +1,26 @@
+'use strict';
+
+const Filter = require('broccoli-filter');
+const minify = require('html-minifier').minify;
+
+module.exports = class Minify extends Filter {
+
+	constructor(inputNode, conf, opts) {
+
+		super(inputNode, {
+			extensions: ['html'],
+			targetExtension: 'html',
+		});
+
+		this.conf = conf;
+		this.opts = opts;
+
+	}
+
+	processString(string, path) {
+
+		return minify(string, this.opts);
+
+	}
+
+};

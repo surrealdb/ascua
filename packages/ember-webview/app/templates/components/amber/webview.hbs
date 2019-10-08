@@ -1,0 +1,20 @@
+<app-webview {{style width=this.width height=this.height}} {{did-insert this.didInsert}} interactive={{@interactive}}>
+
+	<webview
+		src={{this.src}}
+		partition={{this.partition}}
+		webpreferences="plugins=false, webgl=false, webaudio=false, scrollBounce=true"
+		...attributes
+		{{style
+			width=this.perct
+			height=this.perct
+			transform=this.trans
+			oTransform=this.trans
+			msTransform=this.trans
+			mozTransform=this.trans
+			khtmlTransform=this.trans
+			webkitTransform=this.trans
+		}}
+	/>
+
+</app-webview>

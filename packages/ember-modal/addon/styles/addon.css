@@ -1,0 +1,16 @@
+app-modal-cover {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	display:block;
+	position:fixed;
+	overflow:scroll;
+	z-index:2147483645;
+	background-color:rgba(0,0,0,0.5);
+}
+
+app-modal-front {
+	display:block;
+	position:relative;
+}

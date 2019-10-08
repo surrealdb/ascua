@@ -1,0 +1,8 @@
+app-gravatar {
+	display:inline-block;
+	background-size:cover;
+}
+
+app-gravatar[circular] {
+	border-radius:100%;
+}
