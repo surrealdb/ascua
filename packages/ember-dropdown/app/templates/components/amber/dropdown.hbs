@@ -1,6 +1,6 @@
-<app-dropdown {{did-insert this.didInsert}} ...attributes>
+{{on-press "escape" this.close}}
 
-	{{on-press "escape" this.close}}
+<app-dropdown {{did-insert this.didInsert}} ...attributes>
 
 	<label {{on "click" this.open}}>
 		{{this.label}}

@@ -9,6 +9,8 @@ export default class extends Component {
 
 	@inject('-document') document;
 
+	@tracked enabled = false;
+
 	@tracked visible = false;
 
 	@computed('args.side')
@@ -36,8 +38,6 @@ export default class extends Component {
 
 		this.closeHandler = this.close.bind(this);
 
-		this.didClickHandler = this.click.bind(this);
-
 	}
 
 	@action didInsert(element) {
@@ -56,7 +56,7 @@ export default class extends Component {
 		this.hide.split(' ').forEach(e => {
 			switch (e) {
 			case 'click':
-				return document.addEventListener('mousedown', this.didClickHandler);
+				return document.addEventListener('mousedown', this.closeHandler);
 			case 'hover':
 				return this.target.addEventListener('mouseleave', this.closeHandler);
 			}
@@ -80,7 +80,7 @@ export default class extends Component {
 		this.hide.split(' ').forEach(e => {
 			switch (e) {
 			case 'click':
-				return document.removeEventListener('mousedown', this.didClickHandler);
+				return document.removeEventListener('mousedown', this.closeHandler);
 			case 'hover':
 				return this.target.removeEventListener('mouseleave', this.closeHandler);
 			}
@@ -89,27 +89,16 @@ export default class extends Component {
 	}
 
 	@action open() {
-		this.style();
-		this.visible = true;
+		this.enabled = true;
+		setTimeout( () => {
+			this.style();
+			this.visible = true;
+		});
 	}
 
 	@action close() {
-		this.style();
 		this.visible = false;
-	}
-
-	@action click(e) {
-
-		let i = document.getElementById(this.uniq);
-
-		if (i === null) return;
-
-		if (i === e.target) return;
-
-		if (i.contains(e.target)) return;
-
-		this.close();
-
+		this.enabled = false;
 	}
 
 	@action style() {
