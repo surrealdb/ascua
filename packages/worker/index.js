@@ -19,7 +19,7 @@ module.exports = {
 
 		this.conf = this.project.config(this.app.env);
 
-		this.opts = this.project.config(this.app.env).update;
+		this.opts = this.project.config(this.app.env).worker;
 
 		this.opts = Object.assign({}, defaults, this.opts);
 
@@ -34,13 +34,15 @@ module.exports = {
 
 		if (type !== 'all') return tree;
 
-		let pub = this.treeFor('public');
+		let pub = this.treeFor('vendor');
 
 		let out = new Plugin([tree], this.conf, this.opts);
 
-		out = new Rollup(new Merger([pub, out]), {
+		let mrg = new Merger([pub, out], { overwrite: true });
+
+		out = new Rollup(mrg, {
 			rollup: {
-				input: 'sw.js',
+				input: 'sw.mod.js',
 				output: {
 					name: 'sw',
 					file: 'sw.js',
@@ -52,12 +54,6 @@ module.exports = {
 		out = this.app.env === 'production' ? uglify(out) : out;
 
 		return new Merger([tree, out], { overwrite: true });
-
-	},
-
-	treeForPublic(tree) {
-
-		return tree;
 
 	},
 

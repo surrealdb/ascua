@@ -8,7 +8,7 @@ import { ENABLED, VERSION, PREPEND, INDEX, PATHS } from './config';
 // --------------------------------------------------
 // --------------------------------------------------
 
-if (ENABLED == false) {
+if (ENABLED === false) {
 
 	self.addEventListener('install', () => {
 		self.skipWaiting();
@@ -32,7 +32,7 @@ if (ENABLED == false) {
 // --------------------------------------------------
 // --------------------------------------------------
 
-if (ENABLED == true) {
+if (ENABLED === true) {
 
 	// --------------------------------------------------
 	// Prepend assets
