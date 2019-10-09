@@ -6,12 +6,6 @@ module.exports = {
 
 	normalizeEntityName() {},
 
-	locals(options) {
-		return {
-			name: options.project.name(),
-		};
-	},
-
 	afterInstall() {
 		return this.addPackagesToProject([
 			{ name: 'ember-cli-fastboot', target: '2.2.1' },

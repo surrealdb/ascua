@@ -6,11 +6,5 @@ module.exports = {
 
 	normalizeEntityName() {},
 
-	locals(options) {
-		return {
-			name: options.project.name(),
-		};
-	},
-
 };
 
