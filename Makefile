@@ -50,3 +50,7 @@ setup:
 	@echo "Setup..."
 	lerna bootstrap
 
+.PHONY: serve
+serve:
+	@echo "Serve..."
+	FASTBOOT_DISABLED=true ember serve
