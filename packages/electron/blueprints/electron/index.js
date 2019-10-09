@@ -2,7 +2,7 @@
 
 module.exports = {
 
-	description: 'Generates a configuration for the ember-electron addon.',
+	description: 'Generates a configuration for the @ascua/electron addon.',
 
 	normalizeEntityName() {},
 

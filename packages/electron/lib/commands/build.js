@@ -58,7 +58,7 @@ module.exports = Command.extend({
 				config: {
 					asar: true,
 					directories: {
-						output: "tmp/electron",
+						output: "build",
 					},
 					extraMetadata: {
 						main: "electron/main.js",

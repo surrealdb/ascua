@@ -4,9 +4,9 @@ const { app, BrowserWindow } = require('electron');
 
 const location = process.env.EMBER_ELECTRON_LOCATION || 'ember://app';
 
-require('./src/emberapp')();
-require('./src/mainmenu')();
-require('./src/savefile')();
+require('@ascua/electron/src/emberapp')();
+require('@ascua/electron/src/mainmenu')();
+require('@ascua/electron/src/savefile')();
 
 app.once('ready', () => {
 	loadapp(false);
