@@ -52,10 +52,4 @@ module.exports = {
 
 	},
 
-	treeForPublic(tree) {
-
-		return tree;
-
-	},
-
 };
