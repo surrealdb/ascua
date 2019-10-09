@@ -42,6 +42,7 @@ clean:
 	find packages -maxdepth 2 -type d -name 'dist' -exec rm -rf "{}" \;
 	find packages -maxdepth 2 -type d -name 'tests' -exec rm -rf "{}" \;
 	find packages -maxdepth 2 -type d -name 'tmp' -exec rm -rf "{}" \;
+	rm -rf node_modules
 	lerna clean --yes
 
 .PHONY: setup
