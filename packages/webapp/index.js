@@ -3,6 +3,7 @@
 const Plugin = require('./plugin/webapp');
 const Header = require('./plugin/header');
 const Merger = require('broccoli-merge-trees');
+const Funnel = require('broccoli-funnel');
 
 const defaults = {
 	background: '#ffffff',
@@ -45,9 +46,9 @@ module.exports = {
 
 		if (this.app.env !== 'production') return tree;
 
-		let out = new Plugin(tree, this.conf, this.opts);
+		let out = new Plugin([tree], this.conf, this.opts);
 
-		return new Merger([tree, out], { overwrite: false });
+		return new Merger([out, tree], { overwrite: true });
 
 	},
 
@@ -58,6 +59,12 @@ module.exports = {
 		if (this.app.env !== 'production') return;
 
 		return Header(this.conf, this.opts);
+
+	},
+
+	treeForPublic(tree) {
+
+		return tree;
 
 	},
 

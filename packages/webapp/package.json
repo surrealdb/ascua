@@ -13,5 +13,12 @@
     "ember-cli-htmlbars": "^4.0.0",
     "sharp": "^0.23.1",
     "xmlbuilder": "^13.0.2"
-  }
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua",
+    "before": [
+      "broccoli-asset-rev"
+    ]
+  },
+  "homepage": "https://abcum.github.io/ascua"
 }
