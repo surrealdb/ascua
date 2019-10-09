@@ -8,11 +8,7 @@ export default class extends Component {
 
 	@inject('-document') document;
 
-	@tracked value = undefined;
-
-	@action didInsert() {
-		this.value = htmlSafe(this.args.value);
-	}
+	@tracked value = htmlSafe(this.args.value);
 
 	@action didUpdate(element) {
 		if (element !== document.activeElement) {

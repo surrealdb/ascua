@@ -24,6 +24,8 @@ export default class extends Helper {
 
 	willDestroy() {
 
+		if (typeof FastBoot !== 'undefined') return;
+
 		this.document.removeEventListener('keydown', this.call);
 
 		super.willDestroy();

@@ -7,11 +7,10 @@ export default class extends Component {
 
 	@inject('-document') document;
 
-	@tracked value = undefined;
+	@tracked value = this.args.value;
 
 	@action didInsert(element) {
 		this.element = element;
-		this.value = this.args.value;
 	}
 
 	@action didUpdate(element) {

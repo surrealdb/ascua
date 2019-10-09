@@ -42,6 +42,8 @@ export default class extends Component {
 
 	@action didInsert(element) {
 
+		if (typeof FastBoot !== 'undefined') return;
+
 		this.target = element.parentNode;
 
 		this.show.split(' ').forEach(e => {
@@ -65,6 +67,8 @@ export default class extends Component {
 	}
 
 	@action willDestroy(element) {
+
+		if (typeof FastBoot !== 'undefined') return;
 
 		this.target = element.parentNode;
 

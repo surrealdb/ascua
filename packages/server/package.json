@@ -1,0 +1,12 @@
+{
+  "name": "@ascua/server",
+  "version": "0.0.0",
+  "description": "Small description for @ascua/server goes here",
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fastboot": "^2.0.3"
+  }
+}
