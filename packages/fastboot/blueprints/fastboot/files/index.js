@@ -1,3 +1,5 @@
-exports.main = require('@ascua/server')();
+exports.main = require('@ascua/server');
 
-exports.main.listen(3000);
+if (process.env.SERVE) {
+	exports.main.listen(process.env.SERVE);
+}

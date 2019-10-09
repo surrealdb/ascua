@@ -58,12 +58,4 @@ srv.use( (req, res, next) => {
 
 });
 
-module.exports = (config) => {
-
-	srv.locals.config = config || {};
-
-	console.log(srv.locals);
-
-	return srv;
-
-};
+module.exports = srv;
