@@ -59,7 +59,7 @@ if (ENABLED == true) {
 
 	self.addEventListener('install', (e) => {
 		e.waitUntil(
-			caches.open(`ember-xenon-${VERSION}`).then(cache => {
+			caches.open(`ascua-${VERSION}`).then(cache => {
 				return cache.add(INDEX);
 			})
 		);
@@ -67,7 +67,7 @@ if (ENABLED == true) {
 
 	self.addEventListener('install', (e) => {
 		e.waitUntil(
-			caches.open(`ember-xenon-${VERSION}`).then(cache => {
+			caches.open(`ascua-${VERSION}`).then(cache => {
 				return cache.addAll(ASSETS);
 			})
 		);
@@ -113,7 +113,7 @@ if (ENABLED == true) {
 
 		// Respond with the html file from the cache
 		e.respondWith(
-			caches.open(`ember-xenon-${VERSION}`).then(cache => {
+			caches.open(`ascua-${VERSION}`).then(cache => {
 				return cache.match(INDEX).then(res => res).catch( () => {
 					return fetch(req).then(res => res);
 				});
@@ -138,7 +138,7 @@ if (ENABLED == true) {
 
 		// Respond with the asset file from the cache
 		e.respondWith(
-			caches.open(`ember-xenon-${VERSION}`).then(cache => {
+			caches.open(`ascua-${VERSION}`).then(cache => {
 				return cache.match(req).then(res => {
 					return res || fetch(req).then(res => {
 						cache.put(req, res.clone());
