@@ -1,6 +1,6 @@
 import Helper from '@ember/component/helper';
 import { inject } from '@ember/service';
-import { observe } from '@abcum/ember-decorators';
+import { observe } from '@ascua/decorators';
 import Moment from 'moment';
 
 export default class extends Helper {
