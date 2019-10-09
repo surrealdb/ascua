@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'amber',
+    modulePrefix: 'ascua',
     environment,
     rootURL: '/',
     locationType: 'auto',

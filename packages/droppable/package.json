@@ -1,0 +1,16 @@
+{
+  "name": "@ascua/droppable",
+  "version": "0.0.0",
+  "description": "Small description for @ascua/droppable goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "dependencies": {
+    "@ascua/modifiers": "file:../modifiers",
+    "ember-cli-babel": "^7.11.1",
+    "ember-cli-htmlbars": "^4.0.0"
+  }
+}

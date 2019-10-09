@@ -19,29 +19,29 @@ default:
 .PHONY: clean
 clean:
 	@echo "Clean..."
-	find packages -maxdepth 1 -type f -name '.bowerrc' -delete
-	find packages -maxdepth 1 -type f -name '.editorconfig' -delete
-	find packages -maxdepth 1 -type f -name '.ember-cli' -delete
-	find packages -maxdepth 1 -type f -name '.ember-cli.js' -delete
-	find packages -maxdepth 1 -type f -name '.eslintignore' -delete
-	find packages -maxdepth 1 -type f -name '.eslintrc.js' -delete
-	find packages -maxdepth 1 -type f -name '.gitignore' -delete
-	find packages -maxdepth 1 -type f -name '.gitkeep' -delete
-	find packages -maxdepth 1 -type f -name '.template-lintrc.js' -delete
-	find packages -maxdepth 1 -type f -name '.travis.yml' -delete
-	find packages -maxdepth 1 -type f -name '.watchmanconfig' -delete
-	find packages -maxdepth 1 -type f -name 'bower.json' -delete
-	find packages -maxdepth 1 -type f -name 'ember-cli-build.js' -delete
-	find packages -maxdepth 1 -type f -name 'jsconfig.json' -delete
-	find packages -maxdepth 1 -type f -name 'package-lock.json' -delete
-	find packages -maxdepth 1 -type f -name 'README.md' -delete
-	find packages -maxdepth 1 -type f -name 'testem.js' -delete
-	find packages -maxdepth 1 -type f -name 'yarn.lock' -delete
-	find packages -maxdepth 1 -type d -name '.git' -exec rm -rf "{}" \;
-	find packages -maxdepth 1 -type d -name 'config' -exec rm -rf "{}" \;
-	find packages -maxdepth 1 -type d -name 'dist' -exec rm -rf "{}" \;
-	find packages -maxdepth 1 -type d -name 'tests' -exec rm -rf "{}" \;
-	find packages -maxdepth 1 -type d -name 'tmp' -exec rm -rf "{}" \;
+	find packages -maxdepth 2 -type f -name '.bowerrc' -delete
+	find packages -maxdepth 2 -type f -name '.editorconfig' -delete
+	find packages -maxdepth 2 -type f -name '.ember-cli' -delete
+	find packages -maxdepth 2 -type f -name '.ember-cli.js' -delete
+	find packages -maxdepth 2 -type f -name '.eslintignore' -delete
+	find packages -maxdepth 2 -type f -name '.eslintrc.js' -delete
+	find packages -maxdepth 2 -type f -name '.gitignore' -delete
+	find packages -maxdepth 2 -type f -name '.gitkeep' -delete
+	find packages -maxdepth 2 -type f -name '.template-lintrc.js' -delete
+	find packages -maxdepth 2 -type f -name '.travis.yml' -delete
+	find packages -maxdepth 2 -type f -name '.watchmanconfig' -delete
+	find packages -maxdepth 2 -type f -name 'bower.json' -delete
+	find packages -maxdepth 2 -type f -name 'ember-cli-build.js' -delete
+	find packages -maxdepth 2 -type f -name 'jsconfig.json' -delete
+	find packages -maxdepth 2 -type f -name 'package-lock.json' -delete
+	find packages -maxdepth 2 -type f -name 'README.md' -delete
+	find packages -maxdepth 2 -type f -name 'testem.js' -delete
+	find packages -maxdepth 2 -type f -name 'yarn.lock' -delete
+	find packages -maxdepth 2 -type d -name '.git' -exec rm -rf "{}" \;
+	find packages -maxdepth 2 -type d -name 'config' -exec rm -rf "{}" \;
+	find packages -maxdepth 2 -type d -name 'dist' -exec rm -rf "{}" \;
+	find packages -maxdepth 2 -type d -name 'tests' -exec rm -rf "{}" \;
+	find packages -maxdepth 2 -type d -name 'tmp' -exec rm -rf "{}" \;
 	lerna clean --yes
 
 .PHONY: setup

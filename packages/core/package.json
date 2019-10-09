@@ -1,0 +1,15 @@
+{
+  "name": "@ascua/core",
+  "version": "0.0.0",
+  "description": "Small description for @ascua/core goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "dependencies": {
+    "ember-cli-babel": "^7.11.1",
+    "ember-cli-htmlbars": "^4.0.0"
+  }
+}

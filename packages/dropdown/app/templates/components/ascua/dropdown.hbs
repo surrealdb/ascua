@@ -1,0 +1,25 @@
+{{on-press "escape" this.close}}
+
+<app-dropdown {{did-insert this.didInsert}} ...attributes>
+
+	<label {{on "click" this.open}}>
+		{{this.label}}
+		<svg xmlns="http://www.w3.org/2000/svg" width="300px" height="250px" viewBox="0 0 300 250">
+			<polygon transform="translate(150.500000, 125.500000) scale(1, -1) translate(-150.500000, -125.500000)" points="150.5 84 259 167 42 167"></polygon>
+		</svg>
+	</label>
+
+	<app-dropdown-cover visible={{this.visible}} role="button" {{on "click" this.close}} />
+
+	<app-dropdown-front visible={{this.visible}}>
+
+		{{yield (hash
+			group=(component "ascua/dropdown/group")
+			option=(component "ascua/dropdown/option"
+				dropdown=this
+			)
+		)}}
+
+	</app-dropdown-front>
+
+</app-dropdown>

@@ -1,0 +1,17 @@
+{
+  "name": "@ascua/dropdown",
+  "version": "0.0.0",
+  "description": "Small description for @ascua/dropdown goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "dependencies": {
+    "@ascua/keyboard": "file:../keyboard",
+    "@ascua/modifiers": "file:../modifiers",
+    "ember-cli-babel": "^7.11.1",
+    "ember-cli-htmlbars": "^4.0.0"
+  }
+}

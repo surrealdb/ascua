@@ -1,0 +1,6 @@
+<select {{on "change" this.changed}} {{did-insert this.didInsert}} ...attributes>
+	{{yield (hash
+		group=(component "ascua/select/group")
+		option=(component "ascua/select/option")
+	)}}
+</select>
