@@ -9,7 +9,7 @@ module.exports = class Version extends Plugin {
 	constructor(inputNodes, conf, opts) {
 
 		super(inputNodes, {
-			name: 'Version',
+			name: 'Update',
 		});
 
 		this.conf = conf;
