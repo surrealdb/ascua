@@ -31,7 +31,7 @@ export default class extends Component {
 	get stars() {
 		let b = parseInt(this.min);
 		let e = parseInt(this.max);
-		return Array.apply(null, Array(e-b+1)).map( (_, n) => {
+		return Array(e-b+1).fill().map( (_, n) => {
 			return { number: b+n, select: (b+n <= this.value) }
 		});
 	}
