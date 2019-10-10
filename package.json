@@ -81,6 +81,7 @@
     "@ascua/modal": "file:packages/modal",
     "@ascua/modifiers": "file:packages/modifiers",
     "@ascua/moment.js": "file:packages/moment.js",
+    "@ascua/routing": "file:packages/routing",
     "@ascua/scrollup": "file:packages/scrollup",
     "@ascua/select": "file:packages/select",
     "@ascua/sheet.js": "file:packages/sheet.js",

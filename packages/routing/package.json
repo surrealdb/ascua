@@ -1,0 +1,19 @@
+{
+  "name": "@ascua/routing",
+  "version": "0.0.0",
+  "description": "Small description for @ascua/routing goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "dependencies": {
+    "ember-cli-babel": "^7.11.1",
+    "ember-cli-htmlbars": "^4.0.0"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua"
+  },
+  "homepage": "https://abcum.github.io/ascua"
+}
