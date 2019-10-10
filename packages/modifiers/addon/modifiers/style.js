@@ -1,7 +1,9 @@
-import { setModifierManager } from '@ember/modifier';
+import { setModifierManager, capabilities } from '@ember/modifier';
 
 export default setModifierManager(
 	() => ({
+
+		capabilities: capabilities ? capabilities('3.13') : undefined,
 
 		createModifier() {
 			return { element: null };
