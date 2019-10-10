@@ -3,7 +3,6 @@
 const Plugin = require('./plugin/webapp');
 const Header = require('./plugin/header');
 const Merger = require('broccoli-merge-trees');
-const Funnel = require('broccoli-funnel');
 
 const defaults = {
 	background: '#ffffff',

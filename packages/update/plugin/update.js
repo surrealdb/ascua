@@ -1,6 +1,6 @@
 'use strict';
 
-const Plugin = require('broccoli-plugin');
+const Plugin = require('broccoli-caching-writer');
 const fs = require('fs');
 const path = require('path');
 

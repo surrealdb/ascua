@@ -8,6 +8,7 @@ module.exports = {
 
 	afterInstall() {
 		return this.addPackagesToProject([
+			{ name: '@ascua/server' },
 			{ name: 'ember-cli-fastboot', target: '2.2.1' },
 		]);
 	},

@@ -1,6 +1,6 @@
 'use strict';
 
-const Plugin = require('broccoli-plugin');
+const Plugin = require('broccoli-caching-writer');
 const Sharp = require('sharp');
 const RSVP = require('rsvp');
 const glob = require('glob');

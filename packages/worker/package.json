@@ -9,8 +9,13 @@
   "license": "MIT",
   "author": "",
   "dependencies": {
+    "broccoli-caching-writer": "^3.0.3",
+    "broccoli-merge-trees": "^3.0.2",
+    "broccoli-rollup": "^4.1.1",
+    "broccoli-uglify-sourcemap": "^3.1.1",
     "ember-cli-babel": "^7.11.1",
-    "ember-cli-htmlbars": "^4.0.0"
+    "ember-cli-htmlbars": "^4.0.0",
+    "glob": "^7.1.4"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
