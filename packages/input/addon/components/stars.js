@@ -29,8 +29,8 @@ export default class extends Component {
 
 	@computed('min', 'max', 'value')
 	get stars() {
-		let b = this.min;
-		let e = this.max;
+		let b = parseInt(this.min);
+		let e = parseInt(this.max);
 		return Array.apply(null, Array(e-b+1)).map( (_, n) => {
 			return { number: b+n, select: (b+n <= this.value) }
 		});
