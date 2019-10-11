@@ -10,9 +10,9 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included.apply(this, arguments);
+		this._super.included(...arguments);
 
-		this.opts = this.project.config(this.app.env).codemirror || {};
+		this.opts = this.project.config(app.env).codemirror || {};
 
 		app.import('node_modules/codemirror/lib/codemirror.js', fastboot);
 		app.import('node_modules/codemirror/lib/codemirror.css');

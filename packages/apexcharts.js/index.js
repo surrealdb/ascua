@@ -10,7 +10,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included.apply(this, arguments);
+		this._super.included(...arguments);
 
 		app.import('node_modules/apexcharts/dist/apexcharts.min.js', fastboot);
 

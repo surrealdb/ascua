@@ -24,11 +24,11 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included.apply(this, arguments);
+		this._super.included(...arguments);
 
-		this.conf = this.project.config(this.app.env);
+		this.conf = this.project.config(app.env);
 
-		this.opts = this.project.config(this.app.env).webapp;
+		this.opts = this.project.config(app.env).webapp;
 
 		this.opts = Object.assign({}, defaults, this.opts);
 

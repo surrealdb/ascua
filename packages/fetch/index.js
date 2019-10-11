@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included.apply(this, arguments);
+		this._super.included(...arguments);
 
 		// Import fetch polyfill
 		app.import('node_modules/whatwg-fetch/dist/fetch.umd.js');

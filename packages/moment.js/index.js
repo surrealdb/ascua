@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included.apply(this, arguments);
+		this._super.included(...arguments);
 
 		app.import('node_modules/moment/moment.js');
 
@@ -19,7 +19,7 @@ module.exports = {
 			exports: { moment: ['default'] }
 		});
 
-		this.opts = this.project.config(this.app.env).moment || {};
+		this.opts = this.project.config(app.env).moment || {};
 
 		if (this.opts.locales) {
 			[].concat(this.opts.locales).forEach(l => {

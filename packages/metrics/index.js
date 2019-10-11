@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included.apply(this, arguments);
+		this._super.included(...arguments);
 
 		// Import Autotrack analytics library
 		app.import('node_modules/autotrack/autotrack.js', {

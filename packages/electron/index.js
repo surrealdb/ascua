@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included.apply(this, arguments);
+		this._super.included(...arguments);
 
 		// Get the project rootURL
 		this.base = this.project.config(this.app.env).rootURL;
