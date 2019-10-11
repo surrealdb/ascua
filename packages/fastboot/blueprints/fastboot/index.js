@@ -6,9 +6,13 @@ module.exports = {
 
 	normalizeEntityName() {},
 
-	afterInstall() {
+	async afterInstall() {
+
+		await this.taskFor('npm-install').run({
+			save: true, packages: ['@ascua/server']
+		});
+
 		return this.addPackagesToProject([
-			{ name: '@ascua/server' },
 			{ name: 'ember-cli-fastboot', target: '2.2.1' },
 		]);
 	},
