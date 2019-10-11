@@ -14,10 +14,8 @@ export default setModifierManager(
 		},
 
 		updateModifier({ element }, args) {
-			if (args.positional.length > 0) {
-				let [fn, ...rest] = args.positional;
-				fn(element, rest, args.named);
-			}
+			let [fn, ...rest] = args.positional;
+			fn(element, rest, args.named);
 		},
 
 		destroyModifier() {},
