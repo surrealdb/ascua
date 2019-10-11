@@ -1,6 +1,6 @@
 import Helper from '@ember/component/helper';
 import { inject } from '@ember/service';
-import { observe } from '@ascua/xenon/decorators';
+import { observe } from '@ascua/decorators';
 
 export default class extends Helper {
 
