@@ -143,7 +143,7 @@ export default class extends Component {
 				obj.index = i;
 				obj.model = [].concat(this.args.model).objectAt(i, true);
 			});
-		}, 500);
+		}, 100);
 
 	}
 
