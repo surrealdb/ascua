@@ -5,9 +5,15 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
   "dependencies": {
     "broccoli-caching-writer": "^3.0.3",
     "broccoli-merge-trees": "^3.0.2",

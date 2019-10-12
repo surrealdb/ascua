@@ -2,9 +2,15 @@
   "name": "@ascua/server",
   "version": "0.0.0",
   "description": "Small description for @ascua/server goes here",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "fastboot": "^2.0.3"
