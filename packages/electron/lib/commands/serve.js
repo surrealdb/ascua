@@ -12,6 +12,8 @@ module.exports = Command.extend({
 
 	run(opts) {
 
+		process.env.FASTBOOT_DISABLED = true;
+
 		process.env.EMBER_CLI_ELECTRON = true;
 
 		process.env.EMBER_ELECTRON_LOCATION = `http://localhost:${opts.port}`;
