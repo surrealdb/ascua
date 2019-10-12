@@ -124,8 +124,6 @@ export default class extends Component {
 		// Array of ids for rows to be loaded
 		let ids = Array(sub).fill().map( (v, k) => k + this.bix );
 
-		this.done = true;
-
 		// Change placeholder content
 		ids.forEach(i => {
 			let pos = i % sub;
