@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
+import { htmlSafe } from '@ember/template';
 
 export default class extends Component {
 
@@ -99,7 +100,7 @@ export default class extends Component {
 			return o.args.label ? o.args.label : o.element.innerHTML;
 		});
 
-		return label.join(', ') || this.args.default;
+		return htmlSafe(label.join(', ') || this.args.default);
 
 	}
 
