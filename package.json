@@ -66,6 +66,7 @@
     "@ascua/fastboot": "file:packages/fastboot",
     "@ascua/fetch": "file:packages/fetch",
     "@ascua/gravatar": "file:packages/gravatar",
+    "@ascua/gridlist": "file:packages/gridlist",
     "@ascua/helpers": "file:packages/helpers",
     "@ascua/iframe": "file:packages/iframe",
     "@ascua/images": "file:packages/images",

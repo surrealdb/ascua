@@ -1,0 +1,30 @@
+app-gridlist {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+}
+
+app-gridlist-view {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	overflow:scroll;
+	position:absolute;
+	will-change:scroll-position;
+}
+
+app-gridlist-area {
+	width:100%;
+	display:block;
+	position:relative;
+	will-change:width,height;
+}
+
+app-gridlist-item {
+	display:block;
+	position:absolute;
+	will-change:top,left,width,height;
+}

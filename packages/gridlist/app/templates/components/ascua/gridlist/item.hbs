@@ -1,0 +1,20 @@
+<app-gridlist-item
+	list={{eq "l" @conf.k}}
+	grid={{eq "g" @conf.k}}
+	selected={{this.selected}}
+	{{did-insert this.didInsert}}
+	{{did-update this.didUpdate
+		@total
+		@conf.e.w
+		@conf.v.c
+		@conf.i.w
+		@conf.i.h
+		@item.index
+	}}
+	{{on "click" this.didClick}}
+	{{on "dblclick" this.dblClick}}
+	{{on "contextmenu" this.ctxClick}}
+	...attributes
+>
+	{{~yield @item.model~}}
+</app-gridlist-item>
