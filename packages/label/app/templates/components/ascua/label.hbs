@@ -1,11 +1,11 @@
-<app-label key={{@key}} type={{@type}} curved={{@curved}} closeable={{if @close true}} ...attributes>
+<app-label key={{@key}} type={{@type}} curved={{@curved}} closeable={{if @onClose true}} ...attributes>
 
 	{{~@text~}}
 
 	{{~yield~}}
 
-	{{~#if @close~}}
-		<close role="button" onclick={{action @close}}>✕</close>
+	{{~#if @onClose~}}
+		<close role="button" {{on "click" @onClose}}>✕</close>
 	{{~/if~}}
 
 </app-label>
