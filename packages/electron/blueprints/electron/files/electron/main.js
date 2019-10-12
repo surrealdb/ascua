@@ -53,6 +53,7 @@ const loadapp = (show) => {
 			images: true,
 			plugins: true,
 			affinity: 'app',
+			webviewTag: true,
 			webSecurity: true,
 			sharedWorker: true,
 			nodeIntegration: true,
