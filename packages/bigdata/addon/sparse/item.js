@@ -1,10 +1,7 @@
 import ObjectProxy from '@ember/object/proxy';
 import { task } from 'ember-concurrency';
-import { Promise } from 'rsvp';
 
 export default ObjectProxy.extend({
-
-	loaded: false,
 
 	reject: null,
 
@@ -14,30 +11,21 @@ export default ObjectProxy.extend({
 
 	reset() {
 
-		this.get('fetcher').cancelAll();
+		this.fetcher.cancelAll();
 
-		this.setProperties({
-			loaded: false,
-			content: null,
-		});
+		this.set('content', null);
 
 	},
 
 	fetcher: task(function* () {
 
-		this.setProperties({
-			loaded: false,
-			content: null,
-		});
+		this.set('content', null);
 
 		let content = yield new Promise((res, rej) => {
 			this.resolve = res; this.reject = rej;
 		});
 
-		this.setProperties({
-			loaded: true,
-			content: content,
-		});
+		this.set('content', content);
 
 	}).restartable(),
 
