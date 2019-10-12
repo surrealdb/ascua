@@ -10,7 +10,7 @@ function setup(state, owner, element, callback, debounce) {
 
 function clear(state, owner, element, callback) {
 	clearTimeout(state.timeout);
-	owner.lookup('service:resize').clear(element, fn);
+	owner.lookup('service:resize').clear(element, callback);
 }
 
 export default setModifierManager(
