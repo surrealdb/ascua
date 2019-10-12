@@ -6,6 +6,8 @@ import { htmlSafe } from '@ember/template';
 
 export default class extends Component {
 
+	@tracked values = [];
+
 	@tracked options = [];
 
 	@tracked visible = false;
@@ -34,16 +36,15 @@ export default class extends Component {
 
 	@action changed(option) {
 
-		this.close();
-
 		let value = option.args.value;
 
+		if (!this.args.multiple) this.close();
+
 		if (this.args.multiple) {
-			let items = this.items;
-			if ( items.includes(value) ) {
-				value = items.removeObject(value);
+			if ( this.values.includes(value) ) {
+				value = this.values.removeObject(value);
 			} else {
-				value = items.addObject(value);
+				value = this.values.addObject(value);
 			}
 		}
 
