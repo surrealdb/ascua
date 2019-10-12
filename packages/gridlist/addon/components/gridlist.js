@@ -129,7 +129,7 @@ export default class extends Component {
 			let pos = i % sub;
 			let obj = this.items.objectAt(pos);
 			obj.index = i;
-			obj.model = [].concat(this.args.model).objectAt(i, false);
+			obj.model = this.args.model.objectAt(i, false);
 		});
 
 		// Cancel all remote fetches
@@ -141,7 +141,7 @@ export default class extends Component {
 				let pos = i % sub;
 				let obj = this.items.objectAt(pos);
 				obj.index = i;
-				obj.model = [].concat(this.args.model).objectAt(i, true);
+				obj.model = this.args.model.objectAt(i, true);
 			});
 		}, 100);
 
