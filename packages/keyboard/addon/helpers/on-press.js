@@ -58,7 +58,7 @@ export default class extends Helper {
 
 		event.preventDefault();
 
-		return this.func();
+		return this.func(event);
 
 	}
 
