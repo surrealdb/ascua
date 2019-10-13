@@ -1,0 +1,42 @@
+<h1>Gravatar</h1>
+
+<p>The <code>Ascua::Gravatar</code> component enables adding gravatar images to an Ember app.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-gravatar-install.bash">
+	ember install @ascua/gravatar
+</Example>
+
+<h2>Basic image</h2>
+
+<p>To add a gravatar image, specify the email address of the profile. This value will be hashed using md5 to generate the gravatar url.</p>
+
+<Example @name="demo-elements-gravatar-basic.hbs">
+	<Ascua::Gravatar @email="info@abcum.com" />
+</Example>
+
+<h2>Sized image</h2>
+
+<p>To change the size of the avatar image, specify the <code>size</code> attribute. The default size is <code>80px</code>.</p>
+
+<Example @name="demo-elements-gravatar-large.hbs">
+	<Ascua::Gravatar @size="40" @email="info@abcum.com" />
+</Example>
+
+<h2>Circular image</h2>
+
+<p>If you want the image to be circular, specify the <code>circular</code> attribute as true.</p>
+
+<Example @name="demo-elements-gravatar-circular.hbs">
+	<Ascua::Gravatar @size="40" @email="info@abcum.com" @circular=true />
+</Example>
+
+<h2>Fallback image</h2>
+
+<p>If no gravatar image is available with the specified email address, then a fallback avatar image will be used.</p>
+
+<Example @name="demo-elements-gravatar-fallback.hbs">
+	<Ascua::Gravatar @gender="m" @email="doesnotexist@abcum.com" />
+	<Ascua::Gravatar @gender="f" @email="doesnotexist@abcum.com" />
+</Example>

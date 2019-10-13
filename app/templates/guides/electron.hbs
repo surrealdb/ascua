@@ -1,0 +1,71 @@
+<h1>Electron</h1>
+
+<p>Electron application development and packaging is provided in the <code>@ascua/electron</code> package. The package will install the necessary dependencies, and will create an <code>electron/main.js</code> file for the electron window code.</p>
+
+<Example @name="demo-guides-building-install-electron.bash">
+	ember install @ascua/electron
+</Example>
+
+<h2>Development</h2>
+
+<p>To begin developing your Ember app as an Electron app, run the following command in your Ember app directory to begin development. To configure the electron app startup process, edit the <code>electron/main.js</code> file.</p>
+
+<Example @name="demo-guides-electron-serve.bash">
+	ember electron:serve
+</Example>
+
+<h2>Deployment</h2>
+
+<p>When you are ready to deploy, ensure that you have correctly entered the necessary build information in your application's <code>package.json</code> file. Then run the following command in your Ember app directory to begin the ember app build and deploy process.</p>
+
+<Example @name="demo-guides-electron-build.bash">
+	ember electron:build
+</Example>
+
+<h2>Enabling spellcheck</h2>
+
+<p>To ensure that spellchecking works correctly in Electron, when editing the contents of <code>input</code> and <code>textarea</code> elements, ensure that the `spellchecker` package is installed and up-to-date.</p>
+
+<Example @name="demo-guides-electron-spellcheck.bash">
+	npm install --save spellchecker
+</Example>
+
+<h2>Rebuild dependencies</h2>
+
+<p>Run the following command in your application's working directory, to ensure that all dependencies are rebuilt for the current platform.</p>
+
+<Example @name="demo-guides-electron-dependencies.bash">
+	electron-builder install-app-deps
+</Example>
+
+<p>Alternatively, run this command after every npm package install, by placing it in your <code>package.json</code> file.</p>
+
+<Example @name="demo-guides-electron-dependencies.json">
+{
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps"
+  }
+}
+</Example>
+
+<h2>Example build configuration</h2>
+
+<p>To configure the application build and deployment specify a <code>build</code> section in your <code>package.json</code> file.</p>
+
+<Example @name="demo-guides-electron-config.json">
+{
+  "build": {
+    "appId": "com.abcum.app",
+    "copyright": "Copyright © 2019 Abcum Ltd.",
+    "fileAssociations": [],
+    "productName": "Abcum",
+    "protocols": [],
+    "publish": {
+      "provider": "s3",
+      "bucket": "desktop.abcum.com",
+      "path": "/",
+      "acl": null
+    }
+  }
+}
+</Example>

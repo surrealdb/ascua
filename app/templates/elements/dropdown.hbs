@@ -1,0 +1,107 @@
+<h1>Dropdown</h1>
+
+<p>The <code>Ascua::Dropdown</code> component adds functionality for adding custom dropdown menus, by building the menu options instead of passing in data objects. Menus can support custom styling, multi-select, and custom inner html.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-dropdown-install.bash">
+	ember install @ascua/dropdown
+</Example>
+
+<h2>Basic menu</h2>
+
+<p>Create a basic dropdown menu. Use the special <code>.option</code> component, which takes a <code>value</code> and <code>label</code> properties, to define menu items.</p>
+
+<Example @name="demo-elements-dropdown-basic.hbs">
+	Author type:
+	<Ascua::Dropdown @value={{this.type}} @onSelect={{fn (mut this.type)}} as |dropdown|>
+		<dropdown.option @label="Not known" />
+		<dropdown.option @value="author" @label="Author" />
+		<dropdown.option @value="reviewer" @label="Reviewer" />
+		<dropdown.option @value="collaborator" @label="Collaborator" />
+	</Ascua::Dropdown>
+</Example>
+
+<h2>Grouped menu</h2>
+
+<p>Create a more advanced dropdown menu with grouped options. Each group is defined using the special <code>.group</code> component, which takes a <code>label</code> property.</p>
+
+<Example @name="demo-elements-dropdown-grouped.hbs">
+	User permissions:
+	<Ascua::Dropdown @value={{this.perm}} @onSelect={{fn (mut this.perm)}} as |dropdown|>
+		<dropdown.option @label="No permissions" />
+		<dropdown.group @label="Reading">
+			<dropdown.option @value="view" @label="Can view posts" />
+			<dropdown.option @value="comment" @label="Can view and comment on posts" />
+		</dropdown.group>
+		<dropdown.group @label="Writing">
+			<dropdown.option @value="write" @label="Can write posts" />
+			<dropdown.option @value="alter" @label="Can write and alter other's posts" />
+			<dropdown.option @value="full" @label="Can write, alter, and delete posts" />
+		</dropdown.group>
+	</Ascua::Dropdown>
+</Example>
+
+<h2>Multiple options</h2>
+
+<p>To enable a multi-select dropdown menu, set the <code>multiple</code> attribute to <code>true</code>, and set the default text for the menu, using the <code>default</code> attribute.</p>
+
+<Example @name="demo-elements-dropdown-multiple.hbs">
+	User permissions:
+	<Ascua::Dropdown @value={{this.perms}} @onSelect={{fn (mut this.perms)}} @multiple=true @default="No permissions" as |dropdown|>
+		<dropdown.group @label="Reading">
+			<dropdown.option @value="view" @label="Can view posts" />
+			<dropdown.option @value="comment" @label="Can comment on posts" />
+		</dropdown.group>
+		<dropdown.group @label="Writing">
+			<dropdown.option @value="write" @label="Can write posts" />
+			<dropdown.option @value="alter" @label="Can alter posts" />
+			<dropdown.option @value="full" @label="Can delete posts" />
+		</dropdown.group>
+	</Ascua::Dropdown>
+</Example>
+
+<h2>Custom styled options</h2>
+
+<p>To use custom html or styling for a specific input option, use a block helper.</p>
+
+<Example @name="demo-elements-dropdown-custom.hbs">
+	User permissions:
+	<Ascua::Dropdown @value={{this.perm}} @onSelect={{fn (mut this.perm)}} as |dropdown|>
+		<dropdown.option @label="No permissions" />
+		<dropdown.group @label="Reading">
+			<dropdown.option @value="view" @label="Can view posts" />
+			<dropdown.option @value="comment" @label="Can view and comment on posts" />
+		</dropdown.group>
+		<dropdown.group @label="Writing">
+			<dropdown.option @value="write" @label="Can write posts" />
+			<dropdown.option @value="alter" @label="Can write and alter other's posts" />
+			<dropdown.option @value="full">
+				<span style="color:red;">Can write, alter, and delete posts</span>
+			</dropdown.option>
+		</dropdown.group>
+	</Ascua::Dropdown>
+</Example>
+
+
+
+
+
+
+
+{{!-- To style the modal background and the modal window itself, follow the css styling code below.
+
+```scss
+input-popup > label {
+	// Styles for the display text
+}
+input-popup > input-popup-front {
+	// Styles for the popup menu
+}
+input-popup > input-popup-front input-popup-option {
+	// Styles for a popup menu option
+}
+input-popup > input-popup-front input-popup-group > label {
+	// Styles for a popup menu group
+}
+``` --}}

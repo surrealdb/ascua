@@ -1,0 +1,82 @@
+<h1>Metrics</h1>
+
+<p>The <code>metrics</code> service adds functionality for tracking app usage analytics using external analytics service providers. The built-in analytics providers include Google Analytics, Facebook Pixel, Mixpanel, Heap Analytics, and Intercom.</p>
+
+<p>Integration is configured using the <LinkTo @route="config"><code>metrics</code></LinkTo> configuration options. Page views are tracked automatically across all providers, meaning no custom page tracking code is required.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-metrics-install.bash">
+	ember install @ascua/metrics
+</Example>
+
+<h2>Identifying a user</h2>
+
+<p>When a user has logged in to your app, or if a user's session data is already known, then you can use the <code>identify()</code> method to identify a user with the different analytics service providers.</p>
+
+<p>The first argument is the <code>id</code> of the user, and the second argument is any attributable <code>data</code> for the user.</p>
+
+<Example @name="demo-services-metrics-identify.js">
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+import { action } from '@ember/object';
+
+export default class extends Component {
+
+	@inject metrics;
+
+	@action login() {
+		this.metrics.identify('user:1074018', {
+			email: 'info@abcum.com',
+		});
+	}
+
+}
+</Example>
+
+<h2>Tracking a custom event</h2>
+
+<p>To track custom events, such as payments, subscriptions, searches, or adding items to a cart, then you can use the <code>trackEvent()</code> method to track an event, and the data for that event.</p>
+
+<p>The first argument is the <code>name</code> of the event, and the second argument is any attributable <code>data</code> for the event.</p>
+
+<Example @name="demo-services-metrics-event.js">
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+import { action } from '@ember/object';
+
+export default class extends Component {
+
+	@inject metrics;
+
+	@action click() {
+		this.metrics.trackEvent('Purchase', {
+			Currency: 'GBP',
+			Amount: 30,
+		});
+	}
+
+}
+</Example>
+
+<h2>Clearing user session indentifier</h2>
+
+<p>To clear any identifying information for the current session, use the <code>clear()</code> method. This is useful when a user has logged out of the application.</p>
+
+<p>This method takes no arguments.</p>
+
+<Example @name="demo-services-metrics-clear.js">
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+import { action } from '@ember/object';
+
+export default class extends Component {
+
+	@inject metrics;
+
+	@action logout() {
+		this.metrics.clear();
+	}
+
+}
+</Example>

@@ -1,0 +1,53 @@
+<h1>Storage</h1>
+
+<p>The <code>storage</code> service adds functionality for retrieving and manipulating localStorage key-value items from routes, controllers, templates, and components, enabling bound values and computed properties, whilst persisting data across page reloads.</p>
+
+<p>The service will attempt to use <code>localStorage</code> if it is supported in the browser, and if the browser feature has not been disabled. If it fails, it will fall back to using an in-memory object to store any data. This makes it safe to use across all environments.</p>
+
+<p>The service binds itself to all changes to the <code>localStorage</code> data. This results in data bindings working across browser tabs.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-storage-install.bash">
+	ember install @ascua/storage
+</Example>
+
+<h2>Setting a key</h2>
+
+<p>Set the value for the <code>localStorage['name']</code> key.</p>
+
+<Example @name="demo-services-storage-set.hbs">
+	Name: <Input @placeholder="World" @value={{this.storage.name}} />
+</Example>
+
+<h2>Getting a key</h2>
+
+<p>Get the value for the <code>localStorage['name']</code> key.</p>
+
+<Example @name="demo-services-storage-get.hbs">
+	Hello {{this.storage.name}}
+</Example>
+
+<h2>Using from a component</h2>
+
+<p>Using the <code>storage</code> service to get <code>localStorage['email']</code> inside a controller.</p>
+
+<Example @name="demo-services-storage-component.js">
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+import { action } from '@ember/object';
+
+export default class extends Component {
+
+	@inject facebook;
+
+	@inject storage;
+
+	@action login() {
+		this.facebook.login(
+			this.storage.email
+		);
+	}
+
+}
+</Example>

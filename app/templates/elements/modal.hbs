@@ -1,0 +1,25 @@
+<h1>Modal</h1>
+
+<p>The <code>Ascua::Modal</code> component enables adding modal windows over the top of a web page.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-modal-install.bash">
+	ember install @ascua/modal
+</Example>
+
+<h2>When hovering</h2>
+
+<Example @name="demo-modal-toggle.hbs">
+
+	<button {{on "click" (fn (mut show) true)}}>
+		Display a modal
+	</button>
+
+	{{#if show}}
+		<Ascua::Modal @close={{fn (mut show) false}} class="custom">
+			This is a custom modal window
+		</Ascua::Modal>
+	{{/if}}
+
+</Example>

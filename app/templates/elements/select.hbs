@@ -1,0 +1,62 @@
+<h1>Select</h1>
+
+<p>The <code>Ascua::Select</code> component adds functionality for adding html5 select inputs, by building the menu options instead of passing in data objects.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-select-install.bash">
+	ember install @ascua/select
+</Example>
+
+<h2>Basic menu</h2>
+
+<p>Create a basic select menu. Use the special <code>.option</code> component, which takes a <code>value</code> and <code>label</code> properties, to define menu items.</p>
+
+<Example @name="demo-elements-select-basic.hbs">
+	Author type:
+	<Ascua::Select @value={{this.type}} @onSelect={{fn (mut this.type)}} as |select|>
+		<select.option @label="Not known" />
+		<select.option @value="author" @label="Author" />
+		<select.option @value="reviewer" @label="Reviewer" />
+		<select.option @value="collaborator" @label="Collaborator" />
+	</Ascua::Select>
+</Example>
+
+<h2>Grouped menu</h2>
+
+<p>Create a more advanced select menu with grouped options. Each group is defined using the special <code>.group</code> component, which takes a <code>label</code> property.</p>
+
+<Example @name="demo-elements-select-grouped.hbs">
+	User permissions:
+	<Ascua::Select @value={{this.perm}} @onSelect={{fn (mut this.perm)}} as |select|>
+		<select.option @label="No permissions" />
+		<select.group @label="Reading">
+			<select.option @value="view" @label="Can view posts" />
+			<select.option @value="comment" @label="Can view and comment on posts" />
+		</select.group>
+		<select.group @label="Writing">
+			<select.option @value="write" @label="Can write posts" />
+			<select.option @value="alter" @label="Can write and alter other's posts" />
+			<select.option @value="full" @label="Can write, alter, and delete posts" />
+		</select.group>
+	</Ascua::Select>
+</Example>
+
+<h2>Multiple options</h2>
+
+<p>To enable a multi-select select menu, set the <code>multiple</code> attribute to <code>true</code>.</p>
+
+<Example @name="demo-elements-select-multiple.hbs">
+	User permissions:<br>
+	<Ascua::Select @value={{this.perms}} @onSelect={{fn (mut this.perms)}} @multiple=true as |select|>
+		<select.group @label="Reading">
+			<select.option @value="view" @label="Can view posts" />
+			<select.option @value="comment" @label="Can view and comment on posts" />
+		</select.group>
+		<select.group @label="Writing">
+			<select.option @value="write" @label="Can write posts" />
+			<select.option @value="alter" @label="Can write and alter other's posts" />
+			<select.option @value="full" @label="Can write, alter, and delete posts" />
+		</select.group>
+	</Ascua::Select>
+</Example>

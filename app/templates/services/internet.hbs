@@ -1,0 +1,53 @@
+<h1>Internet</h1>
+
+<p>The <code>internet</code> service enables responding to changes to the browser's internet connection status.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-internet-install.bash">
+	ember install @ascua/internet
+</Example>
+
+<h2>Get the status</h2>
+
+<Example @name="demo-services-internet-check.hbs">
+	{{this.internet.status}}
+</Example>
+
+<h2>Check if online</h2>
+
+<Example @name="demo-services-internet-online.hbs">
+	{{if this.internet.online "We are online" "We are offline"}}
+</Example>
+
+<h2>Check if offline</h2>
+
+<Example @name="demo-services-internet-offline.hbs">
+	{{if this.internet.offline "We are offline" "We are online"}}
+</Example>
+
+<h2>Using from a component</h2>
+
+<p>Using the <code>internet</code> service to get the internet status inside a component.</p>
+
+<Example @name="demo-services-internet-component.js">
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { inject } from '@ember/service';
+
+export default class extends Component {
+
+	@inject internet;
+
+	@computed('internet.status')
+	get status() {
+		switch (this.internet.status) {
+		case true:
+			return 'Internet is online';
+		case false:
+			return 'Internet is offline';
+		}
+	}
+
+}
+</Example>

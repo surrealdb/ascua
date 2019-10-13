@@ -1,0 +1,89 @@
+<h1>Social</h1>
+
+<p>The <code>Ascua::Social</code>components enable the creation of social share links on a number of social platforms, and chat platforms.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-social-install.bash">
+	ember install @ascua/social
+</Example>
+
+<h2>Email</h2>
+
+<p>The <code>Ascua::Social::Email</code> component composes an email, with a subject and a body.</p>
+
+<Example @name="demo-elements-social-email.hbs">
+	<Ascua::Social::Email @to="info@abcum.com" @subject="Test subject" @body="Some url to share!">
+		Share by email
+	</Ascua::Social::Email>
+</Example>
+
+<h2>Facebook</h2>
+
+<p>The <code>Ascua::Social::Facebook</code> opens up a Facebook popup window.</p>
+
+<Example @name="demo-elements-social-facebook.hbs">
+	<Ascua::Social::Facebook @url="https://abcum.com">
+		Share on Facebook
+	</Ascua::Social::Facebook>
+</Example>
+
+<h2>LinkedIn</h2>
+
+<p>The <code>Ascua::Social::Linkedin</code> opens up a LinkedIn popup window.</p>
+
+<Example @name="demo-elements-social-linkedin.hbs">
+	<Ascua::Social::Linkedin @url="https://abcum.com">
+		Share on LinkedIn
+	</Ascua::Social::Linkedin>
+</Example>
+
+<h2>Messenger</h2>
+
+<p>The <code>Ascua::Social::Messenger</code> shares a message on Facebook Messenger if it is installed.</p>
+
+<Example @name="demo-elements-social-messenger.hbs">
+	<Ascua::Social::Messenger @url="https://abcum.com">
+		Share on Messenger
+	</Ascua::Social::Messenger>
+</Example>
+
+<h2>Pinterest</h2>
+
+<p>The <code>Ascua::Social::Pinterest</code> opens up a Pinterest popup window.</p>
+
+<Example @name="demo-elements-social-pinterest.hbs">
+	<Ascua::Social::Pinterest @media="Software" @url="https://abcum.com" @description="Abcum Website">
+		Share on Pinterest
+	</Ascua::Social::Pinterest>
+</Example>
+
+<h2>Telegram</h2>
+
+<p>The <code>Ascua::Social::Telegram</code> shares a message on Telegram if it is installed.</p>
+
+<Example @name="demo-elements-social-telegram.hbs">
+	<Ascua::Social::Telegram @url="https://abcum.com" @text="Abcum Website">
+		Share on Telegram
+	</Ascua::Social::Telegram>
+</Example>
+
+<h2>Twitter</h2>
+
+<p>The <code>Ascua::Social::Twitter</code> opens up a Twitter popup window.</p>
+
+<Example @name="demo-elements-social-twitter.hbs">
+	<Ascua::Social::Twitter @url="https://abcum.com" @text="Abcum Website" @via="abcum" @hashtags="software">
+		Share on Twitter
+	</Ascua::Social::Twitter>
+</Example>
+
+<h2>Whatsapp</h2>
+
+<p>The <code>Ascua::Social::Whatsapp</code> shares a message on WhatsApp if it is installed.</p>
+
+<Example @name="demo-elements-social-whatsapp.hbs">
+	<Ascua::Social::Whatsapp @url="https://abcum.com" @text="Abcum Website">
+		Share on Whatsapp
+	</Ascua::Social::Whatsapp>
+</Example>

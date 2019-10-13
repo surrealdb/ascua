@@ -1,0 +1,31 @@
+<h1>Link</h1>
+
+<p>The <code>Ascua::Link</code> component enables adding links for opening external pages, or downloading files. It works seamlessly in both the browser, and in an Electron application, meaning that only one type of link would need to be created regardless of which environment the application is being used.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-link-install.bash">
+	ember install @ascua/electron
+</Example>
+
+<h2>Basic link</h2>
+
+<p>To open a link in another tab (in the browser), or in a new browser window (in Electron), then simply add an <code>Ascua::Link</code> element with the <code>url</code> attribute of the file or page to open.</p>
+
+<Example @name="demo-elements-link.hbs">
+	<Ascua::Link @url={{root-url "/img/logo.png"}}>
+		<img src={{root-url "/img/logo.png"}} />
+	</Ascua::Link>
+</Example>
+
+<h2>Download link</h2>
+
+<p>To download a file (in the browser), or directly inside the application (in Electron), then simply add an <code>Ascua::Link</code> element with the <code>url</code> attribute of the file or page to download, and specify the <code>download</code> attribute. For the browser the filename will be changed to the value of the download attribute when it is downloaded.</p>
+
+<p>If downloading a file which is not on the same origin, the download attribute will not work when being used in a web browser. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes" target="_blank">this page</a> for further information.</p>
+
+<Example @name="demo-elements-link-download.hbs">
+	<Ascua::Link @url={{root-url "/img/logo.png"}} @download="abcum">
+		<img src={{root-url "/img/logo.png"}} />
+	</Ascua::Link>
+</Example>

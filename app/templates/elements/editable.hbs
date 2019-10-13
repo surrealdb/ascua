@@ -1,0 +1,29 @@
+<h1>Editable</h1>
+
+<p>The <code>Ascua::Editable</code> component enables <Ascua::Editable @value="inline" /> editing of a contenteditable div, for use as an input area. When the value is edited, it is possible to extract either the text content, or the html content of the element. When requesting the text content, all additional markup (e.g. bold, italics, strikethrough, line-breaks) is removed from the returned value, leaving only the text content of the editable element. When requesting the html content, all additional markup (e.g. bold, italics, strikethrough, line-breaks) is returned along with the returned value, resulting in the properly formatted html content of the editable element.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-editable-install.bash">
+	ember install @ascua/editable
+</Example>
+
+<h2>Getting the text content</h2>
+
+<Example @name="demo-elements-editable-text.hbs">
+	<Ascua::Editable @value={{this.text}} @onChangeText={{fn (mut this.text)}} />
+</Example>
+
+<Example @name="demo-elements-editable-text-view.hbs">
+	{{this.text}}
+</Example>
+
+<h2>Getting the html content</h2>
+
+<Example @name="demo-elements-editable-html.hbs">
+	<Ascua::Editable @value={{this.html}} @onChangeHtml={{fn (mut this.html)}} />
+</Example>
+
+<Example @name="demo-elements-editable-html-view.hbs">
+	{{this.html}}
+</Example>

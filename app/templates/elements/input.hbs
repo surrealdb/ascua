@@ -1,0 +1,25 @@
+<h1>Input</h1>
+
+<p>The <code>Ascua::Input</code> components can be used for creating input boxes and text areas.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-input-install.bash">
+	ember install @ascua/input
+</Example>
+
+<h2>Area</h2>
+
+<p>The <code>Ascua::Input::Area</code> component augments the Ember <code>textarea</code> element and enables autosizing, and line limits.</p>
+
+<Example @name="demo-elements-input-area.hbs">
+	<Ascua::Input::Area @rows=5 @limit=10 @auto=true />
+</Example>
+
+<h2>Star</h2>
+
+<p>The <code>Ascua::Input::Stars</code> component enables creating a star rating selector.</p>
+
+<Example @name="demo-elements-input-stars.hbs">
+	<Ascua::Input::Stars @value=4 @min=1 @max=10 />
+</Example>

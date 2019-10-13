@@ -1,0 +1,17 @@
+<example>
+
+	{{#let (get-code-snippet @name unindent=true) as |snippet|}}
+
+		<output>
+			{{~#if (eq "handlebars" snippet.language)~}}
+				{{~yield}}
+			{{~/if~}}
+		</output>
+
+		<CodeBlock @language={{snippet.language}}>
+			{{~snippet.source~}}
+		</CodeBlock>
+
+	{{/let}}
+
+</example>

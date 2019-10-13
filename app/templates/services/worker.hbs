@@ -1,0 +1,60 @@
+<h1>Worker</h1>
+
+<p>The <code>worker</code> service adds functionality for checking whether there are any application updates to the single-page Ember application.</p>
+
+<p>It does this by creating and publishing a <code>sw.js</code> service worker file at the base of the domain, which enables progressive web app caching and versioning. If the contents of this file have changed while the application is running, then an <code>updatefound</code> event will be triggered.</p>
+
+<p>It is also possible to set the service to trigger an application update automatically, when a new version is found. It does this by reloading all assets in the cache, and forcing the service worker to update on all pages.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-worker-install.bash">
+	ember install @ascua/worker
+</Example>
+
+<h2>Update available?</h2>
+
+<Example @name="demo-services-worker-show.hbs">
+	{{this.worker.updatefound}}
+</Example>
+
+<h2>Check for an worker</h2>
+
+<Example @name="demo-services-worker-check.hbs">
+	<button {{on "click" this.worker.check}}>
+		Check for an update
+	</button>
+</Example>
+
+<h2>Update the application</h2>
+
+<Example @name="demo-services-worker-reset.hbs">
+	<button {{on "click" this.worker.reset}}>
+		Install the update
+	</button>
+</Example>
+
+<h2>Using from a component</h2>
+
+<p>Listening to the <code>worker</code> service to detect when an update is available.</p>
+
+<Example @name="demo-services-update-component.js">
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+
+export default class extends Component {
+
+	@inject worker;
+
+	constructor() {
+
+		super(...arguments);
+
+		this.worker.on('updatefound', () => {
+			/* Do something when we have an update */
+		});
+
+	}
+
+}
+</Example>

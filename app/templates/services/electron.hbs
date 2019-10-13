@@ -1,0 +1,66 @@
+<h1>Electron</h1>
+
+<p>The <code>electron</code> service adds functionality for checking whether there are any application updates to the Electron application.</p>
+
+<p>It does this by checking for any new version releases which are greater than the currently running version. If there is a newer distributed application bundle available, then an <code>updatefound</code> event will be triggered.</p>
+
+<p>It is also possible to set the service to trigger an application update automatically, when a new version is found. It does this by downloading the new release, quitting the application, and re-opening it again once installed.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-electron-install.bash">
+	ember install @ascua/electron
+</Example>
+
+<h2>Check if running in Electron</h2>
+
+<Example @name="demo-services-electron-enabled.hbs">
+	{{if (is-electron) "We are in Electron" "We are in the browser"}}
+</Example>
+
+<h2>Update available?</h2>
+
+<Example @name="demo-services-electron-show.hbs">
+	{{this.electron.updatefound}}
+</Example>
+
+<h2>Check for an update</h2>
+
+<Example @name="demo-services-electron-check.hbs">
+	<button {{on "click" this.electron.check}}>
+		Check for an update
+	</button>
+</Example>
+
+<h2>Update the application</h2>
+
+<Example @name="demo-services-electron-reset.hbs">
+	<button {{on "click" this.electron.reset}}>
+		Install the update
+	</button>
+</Example>
+
+<h2>Using from a component</h2>
+
+<p>Listening to the <code>electron</code> service to detect when an update is available.</p>
+
+<Example @name="demo-services-electron-component.js">
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+
+export default class extends Component {
+
+	@inject electron;
+
+	constructor() {
+
+		super(...arguments);
+
+		this.electron.on('updatefound', () => {
+			/* Do something when we have an update */
+		});
+
+	}
+
+}
+</Example>

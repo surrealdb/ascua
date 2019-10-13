@@ -1,0 +1,88 @@
+<h1>Tooltip</h1>
+
+<p> The <code>Ascua::Tooltip</code> component enables adding tooltips inline or attached to html elements. Tooltip elements can be made to appear either when hovering over an item, or when clicking on an item. Tooltips are able to be hidden when the item is no longer being hovered over, or when the user clicks on another part of the page. In addition pressing the escape key can hide a tooltip.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-tooltip-install.bash">
+	ember install @ascua/tooltip
+</Example>
+
+<h2>When hovering</h2>
+
+<Example @name="demo-elements-tooltip-hover.hbs">
+	<span>
+		Hover over me!
+		<Ascua::Tooltip @side="ne" @show="hover" @hide="hover">
+			Here is some more information.
+		</Ascua::Tooltip>
+	</span>
+</Example>
+
+<h2>When clicking</h2>
+
+<Example @name="demo-elements-tooltip-click.hbs">
+	<span>
+		Click on me!
+		<Ascua::Tooltip @side="ne" @show="click" @hide="click">
+			Here is some more information.
+		</Ascua::Tooltip>
+	</span>
+</Example>
+
+<h2>Hide on escape</h2>
+
+<Example @name="demo-elements-tooltip-escape.hbs">
+	<span>
+		Click on me!
+		<Ascua::Tooltip @side="ne" @show="click" @hide="click escape">
+			Here is some more information.
+		</Ascua::Tooltip>
+	</span>
+</Example>
+
+<h2>Custom class</h2>
+
+<Example @name="demo-elements-tooltip-class.hbs">
+	<span>
+		Hover over me!
+		<Ascua::Tooltip @side="ne" @show="hover" @hide="hover" class="custom">
+			Here is some more information.
+		</Ascua::Tooltip>
+	</span>
+</Example>
+
+<h2>Attach to element</h2>
+
+<Example @name="demo-elements-tooltip-target.hbs">
+	<span id="clicker">Hover over me</span>
+	<Ascua::Tooltip @side="ne" @show="hover" @hide="hover" @target={{$ "#clicker"}}>
+		Here is some more information.
+	</Ascua::Tooltip>
+</Example>
+
+<h2>Tooltip direction</h2>
+
+<Example @name="demo-elements-tooltip-direction.hbs">
+
+	<span class="fl-r">
+		<Ascua::Select @value={{this.side}} @onSelect={{fn (mut this.side)}} as |input|>
+			<input.option @value="n" @label="Top" />
+			<input.option @value="nw" @label="Top left" />
+			<input.option @value="ne" @label="Top right" />
+			<input.option @value="w" @label="Left" />
+			<input.option @value="e" @label="Right" />
+			<input.option @value="s" @label="Bottom" />
+			<input.option @value="sw" @label="Bottom left" />
+			<input.option @value="se" @label="Bottom right" />
+		</Ascua::Select>
+	</span>
+
+	<span>
+		Hover over me!
+		<Ascua::Tooltip @side={{this.side}} @show="hover" @hide="hover escape">
+			Here is some more information.
+		</Ascua::Tooltip>
+	</span>
+
+</Example>

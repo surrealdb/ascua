@@ -1,0 +1,41 @@
+<h1>Gravatar</h1>
+
+<p>The <code>Ascua::Initials</code> component enables adding user initials icons to an Ember app.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-initials-install.bash">
+	ember install @ascua/initials
+</Example>
+
+<h2>Basic image</h2>
+
+<p>To add an initials icon, specify the name of the user profile. The initials will be generated automatically from the name.</p>
+
+<Example @name="demo-elements-initials-basic.hbs">
+	<Ascua::Initials @name="Joe Bloggs" />
+</Example>
+
+<h2>Sized image</h2>
+
+<p>To change the size of the initials icon, specify the <code>size</code> attribute. The default size is <code>80px</code>.</p>
+
+<Example @name="demo-elements-initials-large.hbs">
+	<Ascua::Initials @size="40" @name="Tom Smith" />
+</Example>
+
+<h2>Circular image</h2>
+
+<p>If you want the image to be circular, specify the <code>circular</code> attribute as true.</p>
+
+<Example @name="demo-elements-initials-circular.hbs">
+	<Ascua::Initials @size="40" @name="Simon Langer" @circular=true />
+</Example>
+
+<h2>Fallback image</h2>
+
+<p>If the initials can't be determined as no initials were specified, then a fallback initials icon will be used.</p>
+
+<Example @name="demo-elements-initials-fallback.hbs">
+	<Ascua::Initials @name="" />
+</Example>

@@ -1,0 +1,44 @@
+<h1>Clock</h1>
+
+<p>The clock service adds functionality for displaying the current time according to the system clock, and can be used in computed properties to update time sensitive properties.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-clock-install.bash">
+	ember install @ascua/clock
+</Example>
+
+<h2>Date properties</h2>
+
+<Example @name="demo-services-clock-date.hbs">
+	{{clock.year}}y {{clock.month}}m {{clock.day}}d
+</Example>
+
+<h2>Time properties</h2>
+
+<Example @name="demo-services-clock-time.hbs">
+	{{clock.hour}}h {{clock.minute}}m {{clock.second}}s
+</Example>
+
+<h2>Using from a component</h2>
+
+<p>Listening to the <code>clock</code> service to update computed properties.</p>
+
+<Example @name="demo-services-clock-controller.js">
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+import { computed } from '@ember/object';
+
+export default class extends Component {
+
+	@inject clock;
+
+	@inject store;
+
+	@computed('clock.minute')
+	get posts() {
+		return this.store.findAll('post');
+	}
+
+}
+</Example>

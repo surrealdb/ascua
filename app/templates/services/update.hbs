@@ -1,0 +1,60 @@
+<h1>Update</h1>
+
+<p>The <code>update</code> service adds functionality for checking whether there are any application updates to the single-page Ember application.</p>
+
+<p>It does this by creating and publishing a <code>version.txt</code> file at the base of the domain, which contains the application build time. If the contents of this file have changed while the application is running, then an <code>updatefound</code> event will be triggered.</p>
+
+<p>It is also possible to set the service to trigger an application update automatically, when a new update is found. It does this by reloading the page.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-update-install.bash">
+	ember install @ascua/update
+</Example>
+
+<h2>Update available?</h2>
+
+<Example @name="demo-services-update-show.hbs">
+	{{this.update.updatefound}}
+</Example>
+
+<h2>Check for an update</h2>
+
+<Example @name="demo-services-update-check.hbs">
+	<button {{on "click" this.update.check}}>
+		Check for an update
+	</button>
+</Example>
+
+<h2>Update the application</h2>
+
+<Example @name="demo-services-update-reset.hbs">
+	<button {{on "click" this.update.reset}}>
+		Install the update
+	</button>
+</Example>
+
+<h2>Using from a component</h2>
+
+<p>Listening to the <code>update</code> service to detect when an update is available.</p>
+
+<Example @name="demo-services-update-component.js">
+import Component from '@ember/component';
+import { inject } from '@ember/service';
+
+export default class extends Component {
+
+	@inject update;
+
+	constructor() {
+
+		super(...arguments);
+
+		this.update.on('updatefound', () => {
+			/* Do something when we have an update */
+		});
+
+	}
+
+}
+</Example>

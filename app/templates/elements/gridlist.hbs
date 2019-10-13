@@ -1,0 +1,93 @@
+<h1>Gridlist</h1>
+
+<p>The <code>Ascua::Gridlist</code> components adds functionality for working with lists and grids, enabling efficient incremental rendering of large numbers of items in list or grid format, with single click or double click support, and multi-selection support, whilst at the same time re-rendering when the viewport is resized. Each list or grid will display only the necessary number of items to fill the desired layout, rendering other items as and when they are scrolled into view.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-gridlist-install.bash">
+	ember install @ascua/gridlist
+</Example>
+
+<h2>List view</h2>
+
+<p>To create a list view, specify the <code>rowHeight</code> attribute. The <code>model</code> attribute defines the item content for the full list.</p>
+
+<Example @name="demo-elements-gridlist-list.hbs">
+	<div class="pos-r min-h-400">
+		<Ascua::Gridlist @model={{this.items}} @rowHeight=80 as |model|>
+			<div class="l">List item</div>
+			<div class="r">{{model.id}}</div>
+		</Ascua::Gridlist>
+	</div>
+</Example>
+
+<h2>Grid view</h2>
+
+<p>To create a grid view, specify both the <code>rowHeight</code> attribute, and the <code>colWidth</code> attribute. The <code>model</code> attribute defines the item content for the full list.</p>
+
+<Example @name="demo-elements-gridlist-grid.hbs">
+	<div class="pos-r min-h-400">
+		<Ascua::Gridlist @model={{this.items}} @colWidth=140 @rowHeight=140 as |model|>
+			<div class="l">Grid item</div>
+			<div class="r">{{model.id}}</div>
+		</Ascua::Gridlist>
+	</div>
+</Example>
+
+<h2>Delayed loading</h2>
+
+<p>When loading large amounts of data from a remote API server, you can use a <code>sparse</code> array. The sparse array will fetch content only when it is needed by the user interface. This works well with the <code>Ascua::Gridlist</code> component for efficient incremental loading of big-data.</p>
+
+<Example @name="demo-elements-gridlist-delayed.hbs">
+	<div class="pos-r min-h-400">
+		<Ascua::Gridlist @model={{this.bigdata}} @rowHeight=80 as |model|>
+			<div class="l">
+				{{#if model}}
+					List item
+				{{else}}
+					Loading...
+				{{/if}}
+			</div>
+			<div class="r">{{model.id}}</div>
+		</Ascua::Gridlist>
+	</div>
+</Example>
+
+<p>The first argument to the <code>sparse</code> array computed function is a number which defines how many items should be fetched in a single query.</p>
+
+<p>The final argument is the function which will fetch the data from the remote server. This function is passed two arguments: the first argument is a range with a <code>start</code> number and a <code>limit</code> number; the second argument is an object containing the observed query properties.</p>
+
+
+<Example @name="demo-elements-gridlist-delayed-sparse-constructor.js">
+import Component from '@ember/component';
+import Sparse from '@ascua/bigdata/sparse';
+
+export default class extends Component {
+
+	bigdata = new Sparse(10, async (range) => {
+		return { total: 1000, data: new Array(range.limit).fill().map( (v, k) => {
+			return { id: range.start + k + 1 };
+		})};
+	});
+
+}
+</Example>
+
+<p>If ....... Subsequent arguments can be used for defining filter options and search options for the query. These properties will be observed, and when changed they will be submitted to the remote query function.</p>
+
+<Example @name="demo-elements-gridlist-delayed-sparse-decorator.js">
+import Component from '@ember/component';
+import { sparse } from '@ascua/bigdata';
+
+export default class extends Component {
+
+	search = '';
+
+	@sparse(10, 'search', async (range) => {
+		return { total: 1000, data: new Array(range.limit).fill().map( (v, k) => {
+			return { id: range.start + k + 1 };
+		})};
+	}) bigdata;
+
+}
+</Example>

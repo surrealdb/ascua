@@ -1,0 +1,75 @@
+<h1>Label</h1>
+
+<p>The <code>Ascua::Label</code> component enables adding badges, labels, and tags to an Ember application.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-label-install.bash">
+	ember install @ascua/label
+</Example>
+
+<h2>Basic badge</h2>
+
+<Example @name="docs-demo-elements-label.hbs">
+	<Ascua::Label @text="Badge label" />
+</Example>
+
+<h2>Badge colours</h2>
+
+<p>All tags can be given a colour with the <code>type</code> attribute.</p>
+
+<Example @name="docs-demo-elements-label-basic.hbs">
+	<Ascua::Label @type="green" @text="Coloured label" />
+</Example>
+
+<h2>Tagged badges</h2>
+
+<p>To give the badge a key specify the <code>key</code> attribute.</p>
+
+<Example @name="docs-demo-elements-label-tagged.hbs">
+	<Ascua::Label @type="lime" @key="status" @text="Keyed label" />
+</Example>
+
+<h2>Curved corners</h2>
+
+<p>To display the label with curved borders, set the <code>curved</code> attribute to true.</p>
+
+<Example @name="docs-demo-elements-label-curved.hbs">
+	<Ascua::Label @type="orange" key="status" @text="Curved label" curved=true />
+</Example>
+
+<h2>Badge removal</h2>
+
+<p>To display a close button, in order to run a callback when a label is remove, pass a <code>onClose</code> action.</p>
+
+<Example @name="docs-demo-elements-label-closeable.hbs">
+	<Ascua::Label @type="red" @text="Closeable label" @onClose={{console}} />
+</Example>
+
+<h2>Different colours</h2>
+
+<p>Tags are available in a number of different colours, each of which is visible below.</p>
+
+<Example @name="docs-demo-elements-label-colours.hbs">
+	<Ascua::Label @type="white" @text="white" />
+	<Ascua::Label @type="pale" @text="pale" />
+	<Ascua::Label @type="grey" @text="grey" />
+	<Ascua::Label @type="light" @text="light" />
+	<Ascua::Label @type="dark" @text="dark" />
+	<Ascua::Label @type="black" @text="black" />
+	<Ascua::Label @type="chartreuse" @text="chartreuse" />
+	<Ascua::Label @type="green" @text="green" />
+	<Ascua::Label @type="seafoam" @text="seafoam" />
+	<Ascua::Label @type="lime" @text="lime" />
+	<Ascua::Label @type="azure" @text="azure" />
+	<Ascua::Label @type="blue" @text="blue" />
+	<Ascua::Label @type="royal" @text="royal" />
+	<Ascua::Label @type="turquoise" @text="turquoise" />
+	<Ascua::Label @type="yellow" @text="yellow" />
+	<Ascua::Label @type="orange" @text="orange" />
+	<Ascua::Label @type="red" @text="red" />
+	<Ascua::Label @type="strawberry" @text="strawberry" />
+	<Ascua::Label @type="pink" @text="pink" />
+	<Ascua::Label @type="magenta" @text="magenta" />
+	<Ascua::Label @type="purple" @text="purple" />
+</Example>

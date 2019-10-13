@@ -1,0 +1,88 @@
+<h1>Popup</h1>
+
+<p> The <code>Ascua::Popup</code> component enables adding popups inline or attached to html elements. Popup elements can be made to appear either when hovering over an item, or when clicking on an item. Popups are able to be hidden when the item is no longer being hovered over, or when the user clicks on another part of the page. In addition pressing the escape key can hide a popup.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-popup-install.bash">
+	ember install @ascua/popup
+</Example>
+
+<h2>When hovering</h2>
+
+<Example @name="demo-elements-popup-hover.hbs">
+	<span>
+		Hover over me!
+		<Ascua::Popup @side="ne" @show="hover" @hide="hover">
+			Here is some more information.
+		</Ascua::Popup>
+	</span>
+</Example>
+
+<h2>When clicking</h2>
+
+<Example @name="demo-elements-popup-click.hbs">
+	<span>
+		Click on me!
+		<Ascua::Popup @side="ne" @show="click" @hide="click">
+			Here is some more information.
+		</Ascua::Popup>
+	</span>
+</Example>
+
+<h2>Hide on escape</h2>
+
+<Example @name="demo-elements-popup-escape.hbs">
+	<span>
+		Click on me!
+		<Ascua::Popup @side="ne" @show="click" @hide="click escape">
+			Here is some more information.
+		</Ascua::Popup>
+	</span>
+</Example>
+
+<h2>Custom class</h2>
+
+<Example @name="demo-elements-popup-class.hbs">
+	<span>
+		Hover over me!
+		<Ascua::Popup @side="ne" @show="hover" @hide="hover" class="custom">
+			Here is some more information.
+		</Ascua::Popup>
+	</span>
+</Example>
+
+<h2>Attach to element</h2>
+
+<Example @name="demo-elements-popup-target.hbs">
+	<span id="clicker">Hover over me</span>
+	<Ascua::Popup @side="ne" @show="hover" @hide="hover" @target={{$ "#clicker"}}>
+		Here is some more information.
+	</Ascua::Popup>
+</Example>
+
+<h2>Popup direction</h2>
+
+<Example @name="demo-elements-popup-direction.hbs">
+
+	<span class="fl-r">
+		<Ascua::Select @value={{this.side}} @onSelect={{fn (mut this.side)}} as |input|>
+			<input.option @value="n" @label="Top" />
+			<input.option @value="nw" @label="Top left" />
+			<input.option @value="ne" @label="Top right" />
+			<input.option @value="w" @label="Left" />
+			<input.option @value="e" @label="Right" />
+			<input.option @value="s" @label="Bottom" />
+			<input.option @value="sw" @label="Bottom left" />
+			<input.option @value="se" @label="Bottom right" />
+		</Ascua::Select>
+	</span>
+
+	<span>
+		Hover over me!
+		<Ascua::Popup @side={{this.side}} @show="hover" @hide="hover escape">
+			Here is some more information.
+		</Ascua::Popup>
+	</span>
+
+</Example>
