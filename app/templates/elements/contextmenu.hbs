@@ -7,3 +7,23 @@
 		Right click me ...
 	</RightClick>
 </Example>
+
+<Example @name="demo-elements-contextmenu.hbs">
+
+	{{#if (is-electron)}}
+		<Ascua::Contextmenu::Item @role="cut" />
+		<Ascua::Contextmenu::Item @role="copy" />
+		<Ascua::Contextmenu::Item @role="paste" />
+		<Ascua::Contextmenu::Item @role="selectall" />
+		<Ascua::Contextmenu::Item @type="separator" />
+	{{/if}}
+
+	<Ascua::Contextmenu::Item @click={{history-back}} @label="Back" />
+	<Ascua::Contextmenu::Item @click={{history-forward}} @label="Forward" />
+	<Ascua::Contextmenu::Item @click={{reload}} @label="Reload Page" @role="reload" />
+
+	<Ascua::Contextmenu::Item @type="separator" />
+
+	<Ascua::Contextmenu::Item @label="© Abcum Ltd" @enabled=false />
+
+</Example>
