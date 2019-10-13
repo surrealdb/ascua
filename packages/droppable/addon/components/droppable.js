@@ -21,6 +21,10 @@ export default class extends Component {
 		return this.args.height || '100%';
 	}
 
+	@action didStop(event) {
+		event.stopPropagation();
+	}
+
 	@action didClick(event) {
 		event.target.querySelectorAll('input')[0].click();
 	}

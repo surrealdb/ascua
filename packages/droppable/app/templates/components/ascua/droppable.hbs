@@ -10,7 +10,13 @@
 	{{on "dragleave" this.didDragLeave}}
 >
 
-	<input type="file" tabindex="-1" multiple="true" {{on "change" this.didInput}}>
+	<input
+		type="file"
+		tabindex="-1"
+		multiple="true"
+		{{on "click" this.didStop}}
+		{{on "change" this.didInput}}
+	/>
 
 	{{yield this}}
 
