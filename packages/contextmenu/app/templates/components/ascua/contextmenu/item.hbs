@@ -1,0 +1,14 @@
+<context-menu-item
+	type={{this.type}}
+	enabled={{this.enabled}}
+	visible={{this.visible}}
+	checked={{this.checked}}
+	{{on "click" this.didClick}}
+	{{on "mouseup" this.didMouse}}
+	{{did-insert this.didInsert}}
+	{{will-destroy this.willDestroy}}
+>
+
+	{{@label}}
+
+</context-menu-item>

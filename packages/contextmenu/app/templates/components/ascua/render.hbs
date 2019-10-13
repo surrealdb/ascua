@@ -1,0 +1,15 @@
+{{! template-lint-disable no-outlet-outside-routes }}
+
+<context-menu
+	visible={{this.visible}}
+	enabled={{this.contextmenu.enabled}}
+	{{did-update
+		this.didRender
+		this.contextmenu.x
+		this.contextmenu.y
+	}}
+>
+
+	{{outlet "contextmenu"}}
+
+</context-menu>

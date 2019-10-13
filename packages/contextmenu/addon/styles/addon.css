@@ -1,0 +1,207 @@
+right-click {
+	display:block;
+}
+
+right-click:after {
+	clear:both;
+	content:"";
+	display:table;
+}
+
+context-menu {
+	width:auto;
+	height:auto;
+	display:none;
+	position:fixed;
+	z-index:2147483647;
+	border-radius: 5px;
+	border-style:solid;
+	padding:5px 0 5px 0;
+	border-color:#cccccc;
+	font-family:var(--system-fonts);
+	background-color:rgba(255, 255, 255, 0.95);
+	-webkit-backdrop-filter:blur(40px);
+	backdrop-filter:blur(40px);
+	-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+	-ms-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+	-o-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+}
+
+context-menu:empty {
+	display:none;
+}
+
+context-menu[enabled] {
+	display:block;
+	border-width:1px;
+}
+
+body[macos-theme='dark'] context-menu {
+	border-color:#000000;
+	background:rgba(46, 46, 46, 0.95);
+}
+
+body[macos-theme='light'] context-menu {
+	border-color:#cccccc;
+	background:rgba(255, 255, 255, 0.95);
+}
+
+@media (prefers-color-scheme: dark) {
+	context-menu {
+		border-color:#000000;
+		background:rgba(46, 46, 46, 0.95);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	context-menu {
+		border-color:#cccccc;
+		background:rgba(255, 255, 255, 0.95);
+	}
+}
+
+context-menu-item[type='separator'] {
+	width:100%;
+	display:none;
+	cursor:default;
+	margin:5px 0 5px 0;
+	pointer-events:none;
+	border-bottom:2px solid #e6e6e6;
+}
+
+context-menu-item[type='separator'][visible] {
+	display:block;
+}
+
+body[macos-theme='dark'] context-menu-item[type='separator'] {
+	border-bottom:2px solid #444444;
+}
+
+body[macos-theme='light'] context-menu-item[type='separator'] {
+	border-bottom:2px solid #e6e6e6;
+}
+
+@media (prefers-color-scheme: dark) {
+	context-menu-item[type='separator'] {
+		border-bottom:2px solid #444444;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	context-menu-item[type='separator'] {
+		border-bottom:2px solid #e6e6e6;
+	}
+}
+
+context-menu-item[type='normal'],
+context-menu-item[type='checkbox'],
+context-menu-item[type='radio'] {
+	margin:0;
+	padding:0;
+	display:none;
+	color:#bebebe;
+	font-size:14px;
+	overflow:hidden;
+	line-height:18px;
+	white-space:nowrap;
+	text-decoration:none;
+	text-overflow:ellipsis;
+	padding:2px 30px 2px 25px;
+	background-repeat:no-repeat;
+	background-position:5px 2px;
+}
+
+context-menu-item[visible] {
+	display:block;
+}
+
+body[macos-theme='dark'] context-menu-item {
+	color:#4f4f4f;
+}
+
+body[macos-theme='light'] context-menu-item {
+	color:#bebebe;
+}
+
+@media (prefers-color-scheme: dark) {
+	context-menu-item {
+		color:#4f4f4f;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	context-menu-item {
+		color:#bebebe;
+	}
+}
+
+context-menu-item[checked] {
+	background-size:15px auto;
+	background-repeat:no-repeat;
+	background-position:6px 5px;
+	background-image:var(--background-checkmark-d);
+}
+
+body[macos-theme='dark'] context-menu-item[checked] {
+	background-image:var(--background-checkmark-l);
+}
+
+body[macos-theme='light'] context-menu-item[checked] {
+	background-image:var(--background-checkmark-d);
+}
+
+@media (prefers-color-scheme: dark) {
+	context-menu-item[checked] {
+		background-image:var(--background-checkmark-l);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	context-menu-item[checked] {
+		background-image:var(--background-checkmark-d);
+	}
+}
+
+context-menu-item[enabled] {
+	color:#434343;
+}
+
+body[macos-theme='dark'] context-menu-item[enabled] {
+	color:#ffffff;
+}
+
+body[macos-theme='light'] context-menu-item[enabled] {
+	color:#434343;
+}
+
+@media (prefers-color-scheme: dark) {
+	context-menu-item[enabled] {
+		color:#ffffff;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	context-menu-item[enabled] {
+		color:#434343;
+	}
+}
+
+context-menu-item[enabled]:hover {
+	color:#ffffff;
+	cursor:pointer;
+	background-color:var(--default-highlight, #187aee);
+}
+
+@media (prefers-color-scheme: dark) {
+	context-menu-item[enabled]:hover {
+		color:#ffffff;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	context-menu-item[enabled]:hover {
+		color:#ffffff;
+	}
+}
