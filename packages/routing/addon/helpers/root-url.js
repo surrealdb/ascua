@@ -1,9 +1,12 @@
 import Helper from '@ember/component/helper';
 import { inject } from '@ember/service';
 
-export default Helper.extend({
+export default class extends Helper {
+
+	@inject router;
 
 	compute([path]) {
-		return `${this.env.rootURL}/${path}`.replace(/\/\/+/g, '/');
-	},
-});
+		return `${this.router.rootURL}/${path}`.replace(/\/\/+/g, '/');
+	}
+
+}
