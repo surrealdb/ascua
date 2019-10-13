@@ -15,12 +15,19 @@ app-input-stars div:last-of-type {
 }
 
 app-input-stars div[selected="true"] {
-	opacity:1;
+	opacity:1.0;
 }
 
 app-input-stars div[selected="false"] {
-	opacity:0.5;
-	polygon {
-		fill: none;
-	}
+	opacity:0.8;
+}
+
+app-input-stars div[selected="true"] polygon {
+	fill:var(--link-color, #444);
+	stroke:var(--link-color, #444);
+}
+
+app-input-stars div[selected="false"] polygon {
+	fill:none;
+	stroke:var(--link-color, #444);
 }

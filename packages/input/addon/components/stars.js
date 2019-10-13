@@ -17,11 +17,6 @@ export default class extends Component {
 		return this.args.max || 5;
 	}
 
-	@computed('args.color')
-	get color() {
-		return this.args.color || '#444';
-	}
-
 	@computed('args.disabled')
 	get disabled() {
 		return this.args.disabled || false;
