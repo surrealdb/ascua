@@ -1,11 +1,9 @@
 import Helper from '@ember/component/helper';
+import { inject } from '@ember/service';
 
 export default class extends Helper {
 
-	elem = undefined;
-	name = undefined;
-	func = undefined;
-	opts = undefined;
+	@inject('-document') document;
 
 	compute([elem, name, func], opts) {
 
@@ -13,6 +11,12 @@ export default class extends Helper {
 		this.name = name;
 		this.func = func;
 		this.opts = opts;
+
+		if (typeof this.elem === "string") {
+			this.func = this.name;
+			this.name = this.elem;
+			this.elem = this.document;
+		}
 
 		this.elem.removeEventListener(this.name, this.func, this.opts);
 

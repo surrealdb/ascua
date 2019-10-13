@@ -70,6 +70,7 @@
     "@ascua/droppable": "file:packages/droppable",
     "@ascua/editable": "file:packages/editable",
     "@ascua/electron": "file:packages/electron",
+    "@ascua/events": "file:packages/events",
     "@ascua/fastboot": "file:packages/fastboot",
     "@ascua/fetch": "file:packages/fetch",
     "@ascua/gravatar": "file:packages/gravatar",
