@@ -1,0 +1,25 @@
+{
+  "name": "@ascua/dom",
+  "version": "0.0.0",
+  "description": "Small description for @ascua/dom goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
+  "dependencies": {
+    "ember-cli-babel": "^7.11.1",
+    "ember-cli-htmlbars": "^4.0.0"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua"
+  },
+  "homepage": "https://abcum.github.io/ascua"
+}
