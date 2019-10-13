@@ -43,12 +43,12 @@ clean:
 	find packages -maxdepth 2 -type d -name 'tests' -exec rm -rf "{}" \;
 	find packages -maxdepth 2 -type d -name 'tmp' -exec rm -rf "{}" \;
 	rm -rf node_modules
-	lerna clean --yes
+	npx lerna clean --yes
 
 .PHONY: setup
 setup:
 	@echo "Setup..."
-	lerna bootstrap
+	npx lerna bootstrap
 
 .PHONY: serve
 serve:
