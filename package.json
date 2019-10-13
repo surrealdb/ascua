@@ -76,6 +76,7 @@
     "@ascua/gridlist": "file:packages/gridlist",
     "@ascua/helpers": "file:packages/helpers",
     "@ascua/iframe": "file:packages/iframe",
+    "@ascua/image": "file:packages/image",
     "@ascua/images": "file:packages/images",
     "@ascua/initials": "file:packages/initials",
     "@ascua/input": "file:packages/input",
@@ -100,6 +101,7 @@
     "@ascua/tooltip": "file:packages/tooltip",
     "@ascua/transform": "file:packages/transform",
     "@ascua/update": "file:packages/update",
+    "@ascua/viewport": "file:packages/viewport",
     "@ascua/webapp": "file:packages/webapp",
     "@ascua/webview": "file:packages/webview",
     "@ascua/worker": "file:packages/worker"

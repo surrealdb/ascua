@@ -1,0 +1,16 @@
+<app-image
+	lqip={{@lqip}}
+	visible={{this.visible}}
+	{{style width=@width height=@height}}
+	{{did-enter-viewport this.didEnterViewport}}
+>
+
+	{{#if @lqip}}
+		<img alt={{@alt}} src={{@lqip}} />
+	{{/if}}
+
+	{{#if this.visible}}
+		<img alt={{@alt}} src={{@src}} sizes={{@sizes}} srcset={{@srcset}} />
+	{{/if}}
+
+</app-image>
