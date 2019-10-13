@@ -70,8 +70,6 @@ export default class extends Component {
 
 		if (typeof FastBoot !== 'undefined') return;
 
-		this.target = this.args.target || element.parentNode;
-
 		this.show.split(' ').forEach(e => {
 			switch (e) {
 			case 'click':
