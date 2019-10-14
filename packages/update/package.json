@@ -1,6 +1,6 @@
 {
   "name": "@ascua/update",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.2-alpha.0",
   "description": "Small description for @ascua/update goes here",
   "keywords": [
     "ember-addon"
