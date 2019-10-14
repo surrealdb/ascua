@@ -1,37 +1,3 @@
-{{!--
-
-<Ascua::Input::Area @value={{this.value}} @onChange={{fn (mut this.value)}} />
-<br>
-<Ascua::Input::Stars @value={{this.value}} @min=3 @max=17 @onChange={{fn (mut this.value)}} />
-
-<br>
-
-<Ascua::Droppable @width=300 @height=200 @onOpen={{console "File uploaded"}} />
-
-<Ascua::Codemirror @value={{this.value}} @opts=(hash theme="abcum" tabSize=8) @onChange={{fn (mut this.value)}} />
-
-<Ascua::Chart @type="bar" @data={{normal.data}} @opts={{normal.opts}} />
-
-<Ascua::Apexchart @width=500 @height=50 @data={{temp.data}} @opts={{temp.opts}} />
-
---}}
-
-{{!-- <button {{on "click" this.setup}}>Setup</button>
-
-<button {{on "click" this.click}}>Click</button>
-
-<br>
-
-Length: {{this.test.length}}
-
-<br><br>
-
-{{#each this.test as |t|}}
-	- {{t}} {{this.test.timestamp}}<br>
-{{/each}}
-
-<br><br> --}}
-
 <Ascua::Render />
 
 <section class="head">
