@@ -1,0 +1,15 @@
+@include keyframes(rotateInDownLeft) {
+
+	0% {
+		opacity: 0;
+		@include transform-origin( left bottom );
+		@include transform( rotate3d(0, 0, 1, -45deg) );
+	}
+
+	100% {
+		opacity: 1;
+		@include transform-origin( left bottom );
+		@include transform( none );
+	}
+
+}

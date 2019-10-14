@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+@mixin transition($values...) {
+	@if length($values) > 0 {
+		@include prefix(transition, $values);
+	} @else {
+		@include prefix(transition, all 0.15s ease-out 0s);
+	}
+}
+
+@mixin transition-delay($values...) {
+	@include prefix(transition-delay, $values);
+}
+
+@mixin transition-property($values...) {
+	@include prefix(transition-delay, $values);
+}
+
+@mixin transition-timing-function($values...) {
+	@include prefix(transition-timing-function, $values);
+}

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+$retina:				"only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpx), only screen and (min-resolution: 2dppx)";
+
+$portrait:				"(orientation:portrait)";
+$landscape:				"(orientation:landscape)";
+
+$ipad: 					"only screen and (min-device-width: 768px) and (max-device-width: 1024px)";
+$ipad-mini:				"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 1)";
+$ipad-retina:			"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-device-pixel-ratio: 2)";
+$ipad-pro:				"only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-device-pixel-ratio: 3)";
+
+$iphone: 				"only screen and (min-device-width: 320px) and (max-device-width: 812px)";
+$iphone3: 				"only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio : 1)";
+$iphone4: 				"only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio : 1)";
+$iphone5: 				"only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio : 2)";
+$iphone5s: 				"only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio : 2)";
+$iphone6: 				"only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio : 2)";
+$iphone6-plus:			"only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio : 3)";
+$iphone6s: 				"only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio : 2)";
+$iphone6s-plus:			"only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio : 3)";
+$iphone7: 				"only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio : 2)";
+$iphone7-plus:			"only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio : 3)";
+$iphone8: 				"only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-device-pixel-ratio : 2)";
+$iphone8-plus:			"only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-device-pixel-ratio : 3)";
+$iphoneX: 				"only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio : 3)";
+
+$apple-watch-38mm:		"only screen (min-device-width: 272px) and (max-device-width: 340px)";
+$apple-watch-42mm:		"only screen (min-device-width: 312px) and (max-device-width: 390px)";
+
+$macbook-air-11:		"only screen and (min-height: 566px) and (max-height: 696px) and (min-device-height: 1366px) and (max-device-height: 768px)";
+$macbook-air-13:		"only screen and (min-height: 698px) and (max-height: 828px) and (min-device-height: 1440px) and (max-device-height: 900px)";
+$macbook-pro-13:		"only screen and (min-height: 598px) and (max-height: 728px) and (min-device-height: 1280px) and (max-device-height: 800px) and #{$retina}";
+$macbook-pro-15:		"only screen and (min-height: 698px) and (max-height: 828px) and (min-device-height: 1440px) and (max-device-height: 900px) and #{$retina}";
+
+$cinema-display-24:		"only screen and (min-device-width:1920px) and (min-device-height:1200px) and (max-device-width:1920px) and (max-device-height:1200px)";
+$cinema-display-27:		"only screen and (min-device-width:2560px) and (min-device-height:1440px) and (max-device-width:2560px) and (max-device-height:1440px)";

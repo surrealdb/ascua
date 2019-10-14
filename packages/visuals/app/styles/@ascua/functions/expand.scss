@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@function expand($input) {
+
+	@if length($input) == 1 {
+		@return nth($input, 1) nth($input, 1) nth($input, 1) nth($input, 1);
+	} @else if length($input) == 2 {
+		@return nth($input, 1) nth($input, 2) nth($input, 1) nth($input, 2);
+	} @else if length($input) == 3 {
+		@return nth($input, 1) nth($input, 2) nth($input, 3) nth($input, 2);
+	} @else {
+		@return $input;
+	}
+
+}

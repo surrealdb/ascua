@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+$prefixes: webkit, moz, ms, o, default;
+
+@mixin prefix($property, $args, $prefixed: $prefixes) {
+
+	@each $prefix in $prefixed {
+		@if contains($prefixes, $prefix) {
+			@if $prefix == default {
+				#{$property}: $args;
+			} @else {
+				$value: replace-val($args, transform, -#{$prefix}-transform);
+				-#{$prefix}-#{$property}: $value;
+			}
+		}
+	}
+
+
+
+}

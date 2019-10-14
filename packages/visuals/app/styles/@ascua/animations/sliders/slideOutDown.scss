@@ -1,0 +1,12 @@
+@include keyframes(slideOutDown) {
+
+	0% {
+		@include transform( translate3d(0, 0, 0) );
+	}
+
+	100% {
+		visibility: hidden;
+		@include transform( translate3d(0, 100%, 0) );
+	}
+
+}

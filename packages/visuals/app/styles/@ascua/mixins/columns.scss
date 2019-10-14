@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+@mixin columns($value: auto) {
+	@include prefix(columns, $value);
+}
+
+@mixin column-count($value: auto) {
+	@include prefix(column-count, $value);
+}
+
+@mixin column-gap($value: normal) {
+	@include prefix(column-gap, $value);
+}
+
+@mixin column-fill($value: auto) {
+	@include prefix(column-fill, $value);
+}
+
+@mixin column-rule($value) {
+	@include prefix(column-rule, $value);
+}
+
+@mixin column-rule-color($value) {
+	@include prefix(column-rule-color, $value);
+}
+
+@mixin column-rule-style($value: none) {
+	@include prefix(column-rule-style, $value);
+}
+
+@mixin column-rule-width($value: none) {
+	@include prefix(column-rule-width, $value);
+}
+
+@mixin column-span($value: none) {
+	@include prefix(column-span, $value);
+}
+
+@mixin column-width($value: auto) {
+	@include prefix(column-width, $value);
+}

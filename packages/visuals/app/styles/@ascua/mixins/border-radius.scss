@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+@mixin border-radius($values: null null null null) {
+
+	@if length($values) == 1 {
+
+		@include prefix(border-radius, $values);
+
+	} @else {
+
+		$values: expand($values);
+
+		$values: (
+			top-left:     nth($values, 1),
+			top-right:    nth($values, 2),
+			bottom-right: nth($values, 3),
+			bottom-left:   nth($values, 4),
+		);
+
+		@each $o, $v in $values {
+			@if $v != null {
+				@include prefix(border-#{$o}-radius, $v);
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,28 @@
+@include keyframes(flip) {
+
+	0% {
+		@include transform( perspective(400px) rotate3d(0, 1, 0, -360deg) );
+		@include animation-timing-function( ease-out );
+	}
+
+	40% {
+		@include transform( perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg) );
+		@include animation-timing-function( ease-out );
+	}
+
+	50% {
+		@include transform( perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg) );
+		@include animation-timing-function( ease-in );
+	}
+
+	80% {
+		@include transform( perspective(400px) scale3d(.95, .95, .95) );
+		@include animation-timing-function( ease-in );
+	}
+
+	100% {
+		@include transform( perspective(400px) );
+		@include animation-timing-function( ease-in );
+	}
+
+}

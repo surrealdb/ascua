@@ -1,0 +1,17 @@
+@include keyframes(bounceOut) {
+
+	20% {
+		@include transform( scale3d(.9, .9, .9) );
+	}
+
+	50%, 55% {
+		opacity: 1;
+		@include transform( scale3d(1.1, 1.1, 1.1) );
+	}
+
+	100% {
+		opacity: 0;
+		@include transform( scale3d(.3, .3, .3) );
+	}
+
+}

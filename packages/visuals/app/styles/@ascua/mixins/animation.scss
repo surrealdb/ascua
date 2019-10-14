@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+@mixin animation($animations...) {
+	@include prefix(animation, $animations);
+}
+
+@mixin animation-delay($values...) {
+	@include prefix(animation-delay, $values);
+}
+
+@mixin animation-direction($values...) {
+	@include prefix(animation-direction, $values);
+}
+
+@mixin animation-duration($values...) {
+	@include prefix(animation-duration, $values);
+}
+
+@mixin animation-fill-mode($values...) {
+	@include prefix(animation-fill-mode, $values);
+}
+
+@mixin animation-iteration-count($values...) {
+	@include prefix(animation-iteration-count, $values);
+}
+
+@mixin animation-name($values...) {
+	@include prefix(animation-name, $values);
+}
+
+@mixin animation-play-state($values...) {
+	@include prefix(animation-play-state, $values);
+}
+
+@mixin animation-timing-function($values...) {
+	@include prefix(animation-timing-function, $values);
+}

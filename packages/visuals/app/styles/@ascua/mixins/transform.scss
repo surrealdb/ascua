@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@mixin transform($value: none) {
+	@include prefix(transform, $value);
+}
+
+@mixin transform-origin($value: 50%) {
+	@include prefix(transform-origin, $value);
+}
+
+@mixin transform-style($value: flat) {
+	@include prefix(transform-style, $value);
+}

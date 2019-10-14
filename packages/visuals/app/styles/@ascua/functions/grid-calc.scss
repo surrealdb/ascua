@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+@function grid-calc($n, $cwidth: $column, $gwidth: $gutter) {
+	@return $n * $cwidth + ($n - 1) * $gwidth;
+}

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+@mixin border-colour($values: null null null null) {
+
+	$values: expand($values);
+
+	$values: (
+		top:    nth($values, 1),
+		right:  nth($values, 2),
+		bottom: nth($values, 3),
+		left:   nth($values, 4),
+	);
+
+	@each $o, $v in $values {
+		@if $v != null {
+			border-#{$o}-color: $v;
+		}
+	}
+
+}

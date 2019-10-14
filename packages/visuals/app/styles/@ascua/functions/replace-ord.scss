@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@function replace-ord($ord) {
+	$ord: $ord + "";
+	$ord: str-replace($ord, "st", "");
+	$ord: str-replace($ord, "nd", "");
+	$ord: str-replace($ord, "rd", "");
+	$ord: str-replace($ord, "th", "");
+	@return $ord;
+}

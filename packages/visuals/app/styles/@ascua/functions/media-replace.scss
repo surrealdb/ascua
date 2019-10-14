@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+@function media-replace($string) {
+
+	// ----------------------------------------------------------------------
+
+	$string: str-replace($string, "ipad-retina", $ipad-retina);
+	$string: str-replace($string, "ipad-mini", $ipad-mini);
+	$string: str-replace($string, "ipad-pro", $ipad-pro);
+	$string: str-replace($string, "ipad", $ipad);
+
+	// ----------------------------------------------------------------------
+
+	$string: str-replace($string, "iphone7-plus", $iphone7-plus);
+	$string: str-replace($string, "iphone7", $iphone7);
+	$string: str-replace($string, "iphone6s-plus", $iphone6s-plus);
+	$string: str-replace($string, "iphone6s", $iphone6s);
+	$string: str-replace($string, "iphone6-plus", $iphone6-plus);
+	$string: str-replace($string, "iphone6", $iphone6);
+	$string: str-replace($string, "iphone5s", $iphone5s);
+	$string: str-replace($string, "iphone5", $iphone5);
+	$string: str-replace($string, "iphone4", $iphone4);
+	$string: str-replace($string, "iphone3", $iphone3);
+	$string: str-replace($string, "iphone", $iphone);
+
+	// ----------------------------------------------------------------------
+
+	$string: str-replace($string, "apple-watch-38mm", $apple-watch-38mm);
+	$string: str-replace($string, "apple-watch-42mm", $apple-watch-42mm);
+
+	// ----------------------------------------------------------------------
+
+	$string: str-replace($string, "macbook-air-11", $macbook-air-11);
+	$string: str-replace($string, "macbook-air-13", $macbook-air-13);
+	$string: str-replace($string, "macbook-pro-13", $macbook-pro-13);
+	$string: str-replace($string, "macbook-pro-15", $macbook-pro-15);
+
+	// ----------------------------------------------------------------------
+
+	$string: str-replace($string, "cinema-display-24", $cinema-display-24);
+	$string: str-replace($string, "cinema-display-27", $cinema-display-27);
+
+	// ----------------------------------------------------------------------
+
+	@if not str-index($string, " ") and not str-index($string, ":") {
+
+		$string: str-replace($string, "landscape", "#{$landscape}");
+		$string: str-replace($string, "portrait", "#{$portrait}");
+
+	}
+
+	// ----------------------------------------------------------------------
+
+	@if not str-index($string, " ") and not str-index($string, ":") {
+
+		@if str-index($string, "min-width-") {
+			$nstr: str-replace($string, "min-width-", "min-width:");
+			$string: "(#{$nstr}px)";
+		}
+
+		@if str-index($string, "max-width-") {
+			$nstr: str-replace($string, "max-width-", "max-width:");
+			$string: "(#{$nstr}px)";
+		}
+
+		@if str-index($string, "min-height-") {
+			$nstr: str-replace($string, "min-height-", "min-height:");
+			$string: "(#{$nstr}px)";
+		}
+
+		@if str-index($string, "max-height-") {
+			$nstr: str-replace($string, "max-height-", "max-height:");
+			$string: "(#{$nstr}px)";
+		}
+
+	}
+
+	// ----------------------------------------------------------------------
+
+	@return $string;
+
+}

@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+@mixin text-decoration($values...) {
+	@include prefix(text-decoration, $values);
+}
+
+@mixin text-decoration-color($values...) {
+	@include prefix(text-decoration-color, $values);
+}
+
+@mixin text-decoration-line($values...) {
+	@include prefix(text-decoration-line, $values);
+}
+
+@mixin text-decoration-style($values...) {
+	@include prefix(text-decoration-style, $values);
+}

@@ -1,0 +1,13 @@
+@include keyframes(fadeInUp) {
+
+	0% {
+		opacity: 0;
+		@include transform( translate3d(0, 100%, 0) );
+	}
+
+	100% {
+		opacity: 1;
+		@include transform( none );
+	}
+
+}

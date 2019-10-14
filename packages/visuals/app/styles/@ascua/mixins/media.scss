@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+@mixin media($args...) {
+
+	$query: ();
+
+	@each $bits in $args {
+
+		$item: $bits;
+
+		@if type-of($bits) == list {
+			$item: "";
+			@each $part in $bits {
+				$part: media-replace($part);
+				@if $item == "" {
+					$item: $part;
+				} @else {
+					$item: "#{$item} and #{$part}";
+				}
+			}
+		} @else {
+			$item: media-replace($item);
+		}
+
+		$query: append($query, $item, comma);
+
+	}
+
+	@media #{$query} {
+		@content;
+	}
+
+}

@@ -1,0 +1,17 @@
+@include keyframes(bounceOutUp) {
+
+	20% {
+		@include transform( translate3d(0, -10px, 0) );
+	}
+
+	40%, 45% {
+		opacity: 1;
+		@include transform( translate3d(0, 20px, 0) );
+	}
+
+	100% {
+		opacity: 0;
+		@include transform( translate3d(0, -2000px, 0) );
+	}
+
+}

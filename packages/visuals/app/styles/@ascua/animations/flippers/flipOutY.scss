@@ -1,0 +1,17 @@
+@include keyframes(flipOutY) {
+
+	0% {
+		@include transform( perspective(400px) );
+	}
+
+	30% {
+		opacity: 1;
+		@include transform( perspective(400px) rotate3d(0, 1, 0, -15deg) );
+	}
+
+	100% {
+		opacity: 0;
+		@include transform( perspective(400px) rotate3d(0, 1, 0, 90deg) );
+	}
+
+}

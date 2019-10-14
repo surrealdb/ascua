@@ -117,6 +117,7 @@
     "@ascua/transform": "file:packages/transform",
     "@ascua/update": "file:packages/update",
     "@ascua/viewport": "file:packages/viewport",
+    "@ascua/visuals": "file:packages/visuals",
     "@ascua/webapp": "file:packages/webapp",
     "@ascua/webview": "file:packages/webview",
     "@ascua/worker": "file:packages/worker"

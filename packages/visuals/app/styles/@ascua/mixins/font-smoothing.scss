@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+@mixin font-smoothing($value: none) {
+	@include prefix(font-smoothing, $value, webkit);
+}

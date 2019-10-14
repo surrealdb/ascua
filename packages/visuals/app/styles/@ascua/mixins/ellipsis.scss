@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@mixin ellipsis($width: 100%) {
+	max-width: $width;
+	overflow: hidden;
+	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
+}

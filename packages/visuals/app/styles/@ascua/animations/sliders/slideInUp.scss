@@ -1,0 +1,12 @@
+@include keyframes(slideInUp) {
+
+	0% {
+		visibility: visible;
+		@include transform( translate3d(0, 100%, 0) );
+	}
+
+	100% {
+		@include transform( translate3d(0, 0, 0) );
+	}
+
+}

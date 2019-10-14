@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+@mixin position($position: relative, $offsets: null null null null) {
+
+	$offsets: expand($offsets);
+
+	$offsets: (
+		top:    nth($offsets, 1),
+		right:  nth($offsets, 2),
+		bottom: nth($offsets, 3),
+		left:   nth($offsets, 4),
+	);
+
+	position: $position;
+
+	@each $o, $v in $offsets {
+		@if is-length($v) {
+			#{$o}: $v;
+		}
+	}
+
+}

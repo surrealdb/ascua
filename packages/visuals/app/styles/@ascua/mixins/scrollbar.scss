@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+@mixin scrollbar($size: 6px, $color: rgb(15,15,15), $border: lighten($color, 7.5%)) {
+
+	&::-webkit-scrollbar {
+		width:$size;
+		height:$size;
+	}
+
+	&::-webkit-scrollbar-button:vertical:end:decrement {
+		display:none;
+	}
+
+	&::-webkit-scrollbar-button:vertical:end:increment {
+		display:none;
+	}
+
+	&::-webkit-scrollbar-button:horizontal:end:decrement {
+		display:none;
+	}
+
+	&::-webkit-scrollbar-button:horizontal:end:increment {
+		display:none;
+	}
+
+	&::-webkit-scrollbar-track-piece:vertical  {
+		border-left:1px solid $border;
+	}
+
+	&::-webkit-scrollbar-track-piece:horizontal  {
+		border-top:1px solid $border;
+	}
+
+	&::-webkit-scrollbar-thumb:vertical {
+		min-height:50px;
+		background-color:$color;
+	}
+
+	&::-webkit-scrollbar-thumb:horizontal {
+		min-width:50px;
+		background-color:$color;
+	}
+
+	&::-webkit-scrollbar-corner {
+		background-color:$color;
+	}
+
+}

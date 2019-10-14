@@ -1,0 +1,14 @@
+@include keyframes(rotateOut) {
+
+	0% {
+		opacity: 1;
+		@include transform-origin( center );
+	}
+
+	100% {
+		opacity: 0;
+		@include transform-origin( center );
+		@include transform( rotate3d(0, 0, 1, 200deg) );
+	}
+
+}

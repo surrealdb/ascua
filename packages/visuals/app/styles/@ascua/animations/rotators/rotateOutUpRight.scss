@@ -1,0 +1,14 @@
+@include keyframes(rotateOutUpRight) {
+
+	0% {
+		opacity: 1;
+		@include transform-origin( right bottom );
+	}
+
+	100% {
+		opacity: 0;
+		@include transform-origin( right bottom );
+		@include transform( rotate3d(0, 0, 1, 90deg) );
+	}
+
+}

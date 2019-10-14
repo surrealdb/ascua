@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+@mixin user-drag($value: none) {
+	@include prefix(user-drag, $value);
+}

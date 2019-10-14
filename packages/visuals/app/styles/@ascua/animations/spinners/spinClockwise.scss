@@ -1,0 +1,11 @@
+@include keyframes(spinClockwise) {
+
+	0% {
+		@include transform( rotate(0deg) );
+	}
+
+	100% {
+		@include transform( rotate(359deg) );
+	}
+
+}

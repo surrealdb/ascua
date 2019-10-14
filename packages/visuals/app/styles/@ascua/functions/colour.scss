@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+@function color($color, $type: $default-shade) {
+	@return colour($color, $type);
+}
+
+@function colour($colour, $type: $default-shade) {
+
+	@if map-has-key($colours, $colour) {
+		$colour: map-get($colours, $colour);
+		@if map-has-key($colour, $type) {
+			@return map-get($colour, $type);
+		}
+	}
+
+	@warn "Unknown `#{$type}` in $colours. `#{$colour}`";
+
+	@return null;
+
+}

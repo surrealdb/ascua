@@ -1,0 +1,27 @@
+@include keyframes(flipInY) {
+
+	0% {
+		opacity: 0;
+		@include transform( perspective(400px) rotate3d(0, 1, 0, 90deg) );
+		@include animation-timing-function( ease-in );
+	}
+
+	40% {
+		@include transform( perspective(400px) rotate3d(0, 1, 0, -20deg) );
+		@include animation-timing-function( ease-in );
+	}
+
+	60% {
+		opacity: 1;
+		@include transform( perspective(400px) rotate3d(0, 1, 0, 10deg) );
+	}
+
+	80% {
+		@include transform( perspective(400px) rotate3d(0, 1, 0, -5deg) );
+	}
+
+	100% {
+		@include transform( perspective(400px) );
+	}
+
+}

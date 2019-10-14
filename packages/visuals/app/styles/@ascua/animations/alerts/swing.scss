@@ -1,0 +1,23 @@
+@include keyframes(swing) {
+
+	20% {
+		@include transform( rotate3d(0, 0, 1, 15deg) );
+	}
+
+	40% {
+		@include transform( rotate3d(0, 0, 1, -10deg) );
+	}
+
+	60% {
+		@include transform( rotate3d(0, 0, 1, 5deg) );
+	}
+
+	80% {
+		@include transform( rotate3d(0, 0, 1, -5deg) );
+	}
+
+	100% {
+		@include transform( rotate3d(0, 0, 1, 0deg) );
+	}
+
+}

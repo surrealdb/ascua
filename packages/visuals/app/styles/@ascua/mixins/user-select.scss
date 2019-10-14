@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+@mixin user-select($value: none) {
+	@include prefix(user-select, $value);
+}

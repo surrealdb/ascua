@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@mixin placeholder {
+
+	$browsers: ":-webkit-input" ":-moz" "-moz" "-ms-input";
+
+	@each $b in $browsers {
+		&:#{$b}-placeholder {
+			@content;
+		}
+	}
+
+}

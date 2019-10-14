@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+@function grid-size($count, $total) {
+	@return percentage( grid-calc($count) / grid-calc($total) );
+}

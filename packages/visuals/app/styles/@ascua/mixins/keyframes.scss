@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+@mixin keyframes($name) {
+
+	$original: $prefixes;
+
+	@at-root {
+
+		@if contains($original, webkit) {
+			$prefixes: webkit !global;
+			@-webkit-keyframes #{$name} {
+				@content;
+			}
+		}
+
+		@if contains($original, moz) {
+			$prefixes: moz !global;
+			@-moz-keyframes #{$name} {
+				@content;
+			}
+		}
+
+		@if contains($original, o) {
+			$prefixes: o !global;
+			@-o-keyframes #{$name} {
+				@content;
+			}
+		}
+
+		@if contains($original, default) {
+			$prefixes: default !global;
+			@keyframes #{$name} {
+				@content;
+			}
+		}
+
+	}
+
+	$prefixes: $original !global;
+
+}

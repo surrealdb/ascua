@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+@mixin backface-visibility($visibility: none) {
+	@include prefix(backface-visibility, $visibility, default webkit);
+}

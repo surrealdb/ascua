@@ -1,0 +1,15 @@
+@include keyframes(pulse) {
+
+	0% {
+		@include transform( scale3d(1, 1, 1) );
+	}
+
+	50% {
+		@include transform( scale3d(1.05, 1.05, 1.05) );
+	}
+
+	100% {
+		@include transform( scale3d(1, 1, 1) );
+	}
+
+}

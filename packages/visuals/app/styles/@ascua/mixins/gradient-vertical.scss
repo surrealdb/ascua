@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+@mixin gradient-vertical($beg: #555, $end: #333, $begStop: 0%, $endStop: 100%) {
+
+	background-color: $beg;
+
+	background-image: -webkit-linear-gradient(top, $beg $begStop, $end $endStop);
+	background-image: -khtml-linear-gradient(top, $beg $begStop, $end $endStop);
+	background-image: -moz-linear-gradient(top, $beg $begStop, $end $endStop);
+	background-image: -ms-linear-gradient(top, $beg $begStop, $end $endStop);
+	background-image: -o-linear-gradient(top, $beg $begStop, $end $endStop);
+	background-image: linear-gradient(top, $beg $begStop, $end $endStop);
+
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop($begStop, $beg), color-stop($endStop, $end));
+	background-image:  -khtml-gradient(linear, left top, left bottom, from($beg), to($end));
+
+}

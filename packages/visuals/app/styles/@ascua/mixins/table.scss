@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+@mixin table($width: 100%, $lines: 0px) {
+	display: table;
+	min-width: $width;
+	max-width: $width;
+	margin-left: auto;
+	margin-right: auto;
+	table-layout: fixed;
+	border-spacing: $lines;
+}
+
+@mixin table-row() {
+	display:table-row;
+}
+
+@mixin table-col($value: 1 of 2 for all) {
+
+	$num: nth($value, 1);
+	$all: nth($value, 3);
+	$nth: replace-ord(nth($value, 5));
+
+	@if is-number($nth) {
+		&:nth-of-type(#{$nth}) {
+			display:table-cell;
+			width:percentage($num / $all);
+		}
+	} @else {
+		display:table-cell;
+		width:percentage($num / $all);
+	}
+
+}
