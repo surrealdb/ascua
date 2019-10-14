@@ -28,6 +28,26 @@
 	{{/if}}
 </Example>
 
+<h2>history-back</h2>
+
+<p>Calls <code>window.history.back()</code> to reverse one position in the browser history.</p>
+
+<Example @name="demo-helpers-routing-history.hbs">
+	<button {{on "click" (history-back)}}>
+		&larr;
+	</button>
+</Example>
+
+<h2>history-forward</h2>
+
+<p>Calls <code>window.history.forward()</code> to advance one position in the browser history.</p>
+
+<Example @name="demo-helpers-routing-history.hbs">
+	<button {{on "click" (history-forward)}}>
+		&rarr;
+	</button>
+</Example>
+
 <h2>open</h2>
 
 <p>Calls <code>window.open()</code> enabling opening a new browser tab or window from an action on a component.</p>
@@ -35,6 +55,16 @@
 <Example @name="demo-helpers-routing-open.hbs">
 	<button {{on "click" (open "https://github.com/abcum/ascua" width=1200 height=600 center=true)}}>
 		Open a window
+	</button>
+</Example>
+
+<h2>reload</h2>
+
+<p>Calls <code>window.location.reload()</code> enabling reloading the page, or changing the url from an action on a component.</p>
+
+<Example @name="demo-helpers-routing-reload.hbs">
+	<button {{on "click" (reload)}}>
+		Reload
 	</button>
 </Example>
 
@@ -103,10 +133,10 @@
 
 <h2>transition-to</h2>
 
-<p>Allows the route to be changed from an action on a component, similar to `link-to`.</p>
+<p>Allows the route to be changed from an action on a component, similar to <code>LinkTo</code>.</p>
 
 <Example @name="demo-helpers-routing-transition-to.hbs">
-	<button {{on "click" (transition-to "helpers.events")}}>
+	<button {{on "click" (transition-to "index")}}>
 		Go to docs
 	</button>
 </Example>
