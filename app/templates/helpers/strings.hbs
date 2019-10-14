@@ -1,9 +1,105 @@
 <h1>String helpers</h1>
 
-<p>...</p>
+<p>The string helpers enable easy formatting of strings and text.</p>
 
 <h2>Install</h2>
 
 <Example @name="demo-services-strings-install.bash">
 	ember install @ascua/strings
+</Example>
+
+<h2>camelize</h2>
+
+<Example @name="demo-helpers-strings-camelize.hbs">
+	{{camelize "this Is some TEXT"}}
+</Example>
+
+<h2>capitalize</h2>
+
+<Example @name="demo-helpers-strings-capitalize.hbs">
+	{{capitalize "this Is some TEXT"}}
+</Example>
+
+<h2>classify</h2>
+
+<Example @name="demo-helpers-strings-classify.hbs">
+	{{classify "this Is some TEXT"}}
+</Example>
+
+<h2>countize</h2>
+
+<Example @name="demo-helpers-strings-countize.hbs">
+	From {{countize 1 "person" "people"}} to {{countize 3 "person" "people"}}
+</Example>
+
+<h2>dasherize</h2>
+
+<Example @name="demo-helpers-strings-dasherize.hbs">
+	{{dasherize "this Is some TEXT"}}
+</Example>
+
+<h2>lcwords</h2>
+
+<Example @name="demo-helpers-strings-lcwords.hbs">
+	{{lcwords "this Is some TEXT"}}
+</Example>
+
+<h2>lowercase</h2>
+
+<Example @name="demo-helpers-strings-lowercase.hbs">
+	{{lowercase "this Is some TEXT"}}
+</Example>
+
+<h2>replace</h2>
+
+<Example @name="demo-helpers-strings-replace.hbs">
+	{{replace "this Is some TEXT" "Is" "Was"}}
+</Example>
+
+<h2>sanitize</h2>
+
+<Example @name="demo-helpers-strings-sanitize.hbs">
+	{{sanitize "this Is some <a href='#'>TEXT</a>"}}
+</Example>
+
+<h2>slug</h2>
+
+<Example @name="demo-helpers-strings-slug.hbs">
+	{{slug "this Is some 'TEXT'"}}
+</Example>
+
+<h2>swapcase</h2>
+
+<Example @name="demo-helpers-strings-swapcase.hbs">
+	{{swapcase "this Is some TEXT"}}
+</Example>
+
+<h2>titleize</h2>
+
+<Example @name="demo-helpers-strings-titleize.hbs">
+	{{titleize "this Is some TEXT"}}
+</Example>
+
+<h2>truncate</h2>
+
+<Example @name="demo-helpers-strings-truncate.hbs">
+	{{truncate "this Is some TEXT" 10}}
+</Example>
+
+<h2>ucwords</h2>
+
+<Example @name="demo-helpers-strings-ucwords.hbs">
+	{{ucwords "this Is some TEXT"}}
+</Example>
+
+<h2>underscore</h2>
+
+<Example @name="demo-helpers-strings-underscore.hbs">
+	{{underscore "this Is some TEXT"}}
+</Example>
+
+<h2>uppercase</h2>
+
+<Example @name="demo-helpers-strings-uppercase.hbs">
+	{{uppercase "this Is some TEXT"}}
 </Example>

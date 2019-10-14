@@ -1,9 +1,145 @@
 <h1>Logic helpers</h1>
 
-<p>...</p>
+<p>The logic helpers enable logic operations in handlebars statements.</p>
 
 <h2>Install</h2>
 
 <Example @name="demo-services-logic-install.bash">
 	ember install @ascua/logic
+</Example>
+
+<h2>and</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a &amp;&amp; b &amp;&amp; ...)</code>.</p>
+
+<Example @name="demo-helpers-logic-and.hbs">
+	{{if (and true true) "Yes" "No"}}
+</Example>
+
+<h2>begs-with</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a.indexOf(b) === 0)</code>.</p>
+
+<Example @name="demo-helpers-logic-begs-with.hbs">
+	{{if (begs-with "hello" "h") "Yes" "No"}}
+</Example>
+
+<h2>ends-with</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a.indexOf(b, a.length - b.length) !== -1)</code>.</p>
+
+<Example @name="demo-helpers-logic-ends-with.hbs">
+	{{if (ends-with "hello" "o") "Yes" "No"}}
+</Example>
+
+<h2>eq</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a === b)</code>.</p>
+
+<Example @name="demo-helpers-logic-eq.hbs">
+	{{if (eq "hello" "hello") "Yes" "No"}}
+</Example>
+
+<h2>gt</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a > b)</code>.</p>
+
+<Example @name="demo-helpers-logic-gt.hbs">
+	{{if (gt 10 5) "Yes" "No"}}
+</Example>
+
+<h2>gte</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a >= b)</code>.</p>
+
+<Example @name="demo-helpers-logic-gte.hbs">
+	{{if (gte 10 5) "Yes" "No"}}
+</Example>
+
+<h2>inside</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a.indexOf(b) > -1)</code>.</p>
+
+<Example @name="demo-helpers-logic-inside.hbs">
+	{{if (inside "hello" "ello") "Yes" "No"}}
+</Example>
+
+<h2>is</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a === true &amp;&amp; ...)</code>.</p>
+
+<Example @name="demo-helpers-logic-is.hbs">
+	{{if (is true) "Yes" "No"}}
+</Example>
+
+<h2>isnt</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a !== true &amp;&amp; ...)</code>.</p>
+
+<Example @name="demo-helpers-logic-isnt.hbs">
+	{{if (isnt false) "Yes" "No"}}
+</Example>
+
+<h2>ix</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a !== true &amp;&amp; ...)</code>.</p>
+
+<Example @name="demo-helpers-logic-ix.hbs">
+	{{if (ix false) "Yes" "No"}}
+</Example>
+
+<h2>lt</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a &lt; b)</code>.</p>
+
+<Example @name="demo-helpers-logic-lt.hbs">
+	{{if (lt 5 10) "Yes" "No"}}
+</Example>
+
+<h2>lte</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a &lt;= b)</code>.</p>
+
+<Example @name="demo-helpers-logic-lte.hbs">
+	{{if (lte 5 10) "Yes" "No"}}
+</Example>
+
+<h2>ne</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a !== b)</code>.</p>
+
+<Example @name="demo-helpers-logic-ne.hbs">
+	{{if (ne "hello" "goodbye") "Yes" "No"}}
+</Example>
+
+<h2>not</h2>
+
+<p>Performs the Javascript equivalent of <code>if (!a &amp;&amp; !b &amp;&amp; ...)</code>.</p>
+
+<Example @name="demo-helpers-logic-not.hbs">
+	{{if (not false false) "Yes" "No"}}
+</Example>
+
+<h2>or</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a || b || ...)</code>.</p>
+
+<Example @name="demo-helpers-logic-or.hbs">
+	{{if (or true false) "Yes" "No"}}
+</Example>
+
+<h2>present</h2>
+
+<p>Performs the Javascript equivalent of <code>if (Ember.isPresent(a) &amp;&amp; ...)</code>.</p>
+
+<Example @name="demo-helpers-logic-present.hbs">
+	{{if (present "something") "Yes" "No"}}
+</Example>
+
+<h2>xor</h2>
+
+<p>Performs the Javascript equivalent of <code>if (a &amp;&amp; !b || !a &amp;&amp; b)</code>.</p>
+
+<Example @name="demo-helpers-logic-xor.hbs">
+	{{if (xor true false) "Yes" "No"}}
 </Example>

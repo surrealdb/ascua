@@ -1,9 +1,84 @@
 <h1>Format helpers</h1>
 
-<p>...</p>
+<p>The format helpers enable easy formatting of different units.</p>
 
 <h2>Install</h2>
 
 <Example @name="demo-services-format-install.bash">
 	ember install @ascua/format
+</Example>
+
+<h2>bytes</h2>
+
+<Example @name="demo-helpers-format-bytes.hbs">
+	{{bytes 134186}}
+</Example>
+
+<h2>country</h2>
+
+<Example @name="demo-helpers-format-country.hbs">
+	{{country "GBR"}}
+</Example>
+
+<h2>currency</h2>
+
+<Example @name="demo-helpers-format-currency.hbs">
+	{{currency "GBP"}}
+</Example>
+
+<h2>duration</h2>
+
+<Example @name="demo-helpers-format-duration.hbs">
+{{duration 1283719281}}
+</Example>
+
+<Example @name="demo-helpers-format-duration-exact.hbs">
+	{{duration 1283719281 exact=true}}
+</Example>
+
+<h2>json</h2>
+
+<Example @name="demo-helpers-format-json.hbs">
+	{{json (hash name="Sarah" title="CEO")}}
+</Example>
+
+<Example @name="demo-helpers-format-json-spaces.hbs">
+	{{json (hash name="Sarah" title="CEO") spaces=2}}
+</Example>
+
+<h2>linkify</h2>
+
+<Example @name="demo-helpers-format-linkify.hbs">
+	{{linkify "Click https://abcum.com"}}
+</Example>
+
+<h2>money</h2>
+
+<Example @name="demo-helpers-format-money.hbs">
+	{{money 10000 currency="GBP"}}
+</Example>
+
+<h2>nl2br</h2>
+
+<Example @name="demo-helpers-strings-nl2br.hbs">
+	{{nl2br "this is
+	some text"}}
+</Example>
+
+<h2>number</h2>
+
+<Example @name="demo-helpers-format-number.hbs">
+	{{number 134153 minimumFractionDigits=2}}
+</Example>
+
+<h2>percent</h2>
+
+<Example @name="demo-helpers-format-percent.hbs">
+	{{percent 0.3 minimumFractionDigits=2}}
+</Example>
+
+<h2>uuid</h2>
+
+<Example @name="demo-helpers-format-uuid.hbs">
+	{{uuid}}
 </Example>

@@ -1,9 +1,91 @@
 <h1>Promise helpers</h1>
 
-<p>...</p>
+<p>The promise helpers enable working with models and promises.</p>
 
 <h2>Install</h2>
 
 <Example @name="demo-services-promise-install.bash">
 	ember install @ascua/promise
+</Example>
+
+<h2>await</h2>
+
+<p>Waits for a promise to resolve, and passes the promise contents to the helper.</p>
+
+<p>If the value exists, but the promise has not yet been loaded, then the template will render anyway.</p>
+
+<Example @name="demo-helpers-promise-await.hbs">
+	{{#if (await model)}}
+		Finished waiting for the delay
+	{{else}}
+		Waiting
+	{{/if}}
+</Example>
+
+<h2>delay</h2>
+
+<p>Specifies a delay in milliseconds after which the promise is resolved.</p>
+
+<Example @name="demo-helpers-promise-delay.hbs">
+	{{#if (await (delay 2500))}}
+		Finished waiting for the delay
+	{{else}}
+		Waiting
+	{{/if}}
+</Example>
+
+<h2>is-fulfilled</h2>
+
+<p>Returns true when the promise is fulfilled.</p>
+
+<Example @name="demo-helpers-promise-fulfilled.hbs">
+	{{#if (is-fulfilled (delay 2500))}}
+		Yes it is fulfilled
+	{{else}}
+		Not fulfilled
+	{{/if}}
+</Example>
+
+<h2>is-pending</h2>
+
+<p>Returns true if the promise is pending.</p>
+
+<Example @name="demo-helpers-promise-pending.hbs">
+	{{#if (is-pending (delay 2500))}}
+		Yes it is pending
+	{{else}}
+		Not pending
+	{{/if}}
+</Example>
+
+<h2>is-rejected</h2>
+
+<p>Returns true when the promise is rejected.</p>
+
+<Example @name="demo-helpers-promise-rejected.hbs">
+	{{#if (is-rejected (delay 2500))}}
+		Yes it is rejected
+	{{else}}
+		Not rejected
+	{{/if}}
+</Example>
+
+<h2>rsvp-all</h2>
+
+<p>Returns a new promise which is fulfilled when all the given promises have been fulfilled, or rejected if any of them become rejected. The returned value is an array of fulfillment values for the passed in promises.</p>
+
+<Example @name="demo-helpers-promise-rsvp-all.hbs">
+	{{#if (await (rsvp-all model.tags model.comments))}}
+		Tags and comments are loading...
+	{{/if}}
+</Example>
+
+<h2>rsvp-hash</h2>
+
+<p>Returns a new promise which is fulfilled when all the given promises have been fulfilled, or rejected if any of them become rejected. The returned promise is fulfilled with a hash that has the same key names as the promises object argument.</p>
+
+<Example @name="demo-helpers-promise-rsvp-hash.hbs">
+	{{#with (await (rsvp-hash tags=model.tags comments=model.comments)) as |data|}}
+		There are {{data.tags.length}} tags and {{data.comments.length}} comments.
+	{{/with}}
 </Example>

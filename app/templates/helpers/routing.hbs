@@ -1,9 +1,112 @@
 <h1>Routing helpers</h1>
 
-<p>...</p>
+<p>The route helpers enable a selection of router methods.</p>
 
 <h2>Install</h2>
 
 <Example @name="demo-services-routing-install.bash">
 	ember install @ascua/routing
+</Example>
+
+<h2>is-active</h2>
+
+<p>Detects whether a specific route is active or not.</p>
+
+<Example @name="demo-helpers-routing-is-active.hbs">
+	{{#if (is-active "helpers.routing")}}
+		Route is active
+	{{/if}}
+</Example>
+
+<h2>is-route</h2>
+
+<p>Detects whether a specific route is active or not.</p>
+
+<Example @name="demo-helpers-routing-is-route.hbs">
+	{{#if (is-route "helpers.routing")}}
+		Route is active
+	{{/if}}
+</Example>
+
+<h2>open</h2>
+
+<p>Calls <code>window.open()</code> enabling opening a new browser tab or window from an action on a component.</p>
+
+<Example @name="demo-helpers-routing-open.hbs">
+	<button {{on "click" (open "https://github.com/abcum/ascua" width=1200 height=600 center=true)}}>
+		Open a window
+	</button>
+</Example>
+
+<h2>root-url</h2>
+
+<p>Enables relative URLs in an Ember.js application, relative to the application's rootURL.</p>
+
+<Example @name="demo-helpers-routing-root-url.hbs">
+	<img src={{root-url "/img/logo.png"}} />
+</Example>
+
+<h2>route-name</h2>
+
+<p>Retrieves the name of the current route name.</p>
+
+<Example @name="demo-helpers-routing-route-name.hbs">
+	{{route-name}}
+</Example>
+
+<h2>route-path</h2>
+
+<p>Retrieves the path of the current route.</p>
+
+<Example @name="demo-helpers-routing-route-path.hbs">
+	{{route-path}}
+</Example>
+
+<h2>route-query</h2>
+
+<p>Retrieves the params of the current route as an object.</p>
+
+<Example @name="demo-helpers-routing-route-query.hbs">
+	Query: {{get (route-query) "test"}}
+	<div class="fl-r">
+		{{#link-to (query-params test="one")}}Test one{{/link-to}}
+		|
+		{{#link-to (query-params test="two")}}Test two{{/link-to}}
+	</div>
+</Example>
+
+<h2>route-url</h2>
+
+<p>Retrieves the url of the current route.</p>
+
+<Example @name="demo-helpers-routing-route-url.hbs">
+	{{route-url}}
+	<div class="fl-r">
+		{{#link-to (query-params test="one")}}Test one{{/link-to}}
+		|
+		{{#link-to (query-params test="two")}}Test two{{/link-to}}
+	</div>
+</Example>
+
+<h2>route-vars</h2>
+
+<p>Retrieves the params of the current route.</p>
+
+<Example @name="demo-helpers-routing-route-vars.hbs">
+	{{route-vars}}
+	<div class="fl-r">
+		{{#link-to (query-params test="one")}}Test one{{/link-to}}
+		|
+		{{#link-to (query-params test="two")}}Test two{{/link-to}}
+	</div>
+</Example>
+
+<h2>transition-to</h2>
+
+<p>Allows the route to be changed from an action on a component, similar to `link-to`.</p>
+
+<Example @name="demo-helpers-routing-transition-to.hbs">
+	<button {{on "click" (transition-to "helpers.events")}}>
+		Go to docs
+	</button>
 </Example>

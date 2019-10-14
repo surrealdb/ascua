@@ -1,9 +1,174 @@
 <h1>DOM helpers</h1>
 
-<p>...</p>
+<p>The dom helpers enable a variety of simple dom manipulation.</p>
 
 <h2>Install</h2>
 
 <Example @name="demo-services-dom-install.bash">
 	ember install @ascua/dom
+</Example>
+
+<h2>$</h2>
+
+<p>Performs the Javascript equivalent of <code>document.querySelectorAll(...)</code>.</p>
+
+<Example @name="demo-helpers-dom-$-html.hbs" @hide=true>
+	<div id="my-id"></div>
+</Example>
+
+<Example @name="demo-helpers-dom-$.hbs" @hide=true>
+	{{#-in-element ($ "#my-id")}}
+		Display somewhere else
+	{{/-in-element}}
+</Example>
+
+<h2>document</h2>
+
+<p>Selects the <code>document</code> as a DOM element.</p>
+
+<Example @name="demo-helpers-dom-document.hbs" @hide=true>
+	{{on (document) "click" this.clicked}}
+</Example>
+
+<h2>document-body</h2>
+
+<p>Selects the document <code>body</code> as a DOM element.</p>
+
+<Example @name="demo-helpers-dom-document-body.hbs" @hide=true>
+	{{#-in-element (document-body)}}
+		This will go into the body
+	{{/-in-element}}
+</Example>
+
+<h2>document-head</h2>
+
+<p>Selects the document <code>head</code> as a DOM element.</p>
+
+<Example @name="demo-helpers-dom-document-head.hbs" @hide=true>
+	{{#-in-element (document-head)}}
+		<meta name="author" content="Abcum">
+	{{/-in-element}}
+</Example>
+
+<h2>focus</h2>
+
+<p>Focuses an html element.</p>
+
+<Example @name="demo-helpers-dom-focus.hbs">
+	<Input id="search" placeholder="Focus on me by pressing cmd+f" />
+	{{on-press "cmd+f" (focus "search")}}
+</Example>
+
+<h2>get-element-by-class</h2>
+
+<p>Performs the Javascript equivalent of <code>document.getElementsByClassName(...)</code>.</p>
+
+<Example @name="demo-helpers-dom-get-element-by-class-html.hbs" @hide=true>
+	<div class="my-class"></div>
+</Example>
+
+<Example @name="demo-helpers-dom-get-element-by-class.hbs" @hide=true>
+	{{#-in-element (get-element-by-class "my-class")}}
+		Display somewhere else
+	{{/-in-element}}
+</Example>
+
+<h2>get-element-by-id</h2>
+
+<p>Performs the Javascript equivalent of <code>document.getElementById(...)</code>.</p>
+
+<Example @name="demo-helpers-dom-get-element-by-id-html.hbs" @hide=true>
+	<div id="my-id"></div>
+</Example>
+
+<Example @name="demo-helpers-dom-get-element-by-id.hbs" @hide=true>
+	{{#-in-element (get-element-by-id "my-id")}}
+		Display somewhere else
+	{{/-in-element}}
+</Example>
+
+<h2>get-element-by-tag</h2>
+
+<p>Performs the Javascript equivalent of <code>document.getElementsByTagName(...)</code>.</p>
+
+<Example @name="demo-helpers-dom-get-element-by-tag-html.hbs" @hide=true>
+	<my-tag></my-tag>
+</Example>
+
+<Example @name="demo-helpers-dom-get-element-by-tag.hbs" @hide=true>
+	{{#-in-element (get-element-by-tag "my-tag")}}
+		Display somewhere else
+	{{/-in-element}}
+</Example>
+
+<h2>scroll-into-view</h2>
+
+<p>Scrolls a particular element into the visible area of the window.</p>
+
+<Example @name="demo-helpers-scrolling-scroll-into-view-default.hbs">
+	<button {{on "click" (scroll-into-view "#my-id")}}>
+		Click me
+	</button>
+</Example>
+
+<p>And specify whether the scrolling should be smooth.</p>
+
+<Example @name="demo-helpers-scrolling-scroll-into-view-smooth.hbs">
+	<button {{on "click" (scroll-into-view "#my-id" smooth=true)}}>
+		Click me
+	</button>
+</Example>
+
+<p>Or define the vertical alignment position.</p>
+
+<Example @name="demo-helpers-scrolling-scroll-into-view-block.hbs">
+	<button {{on "click" (scroll-into-view "#my-id" block="center")}}>
+		Click me
+	</button>
+</Example>
+
+<p>Or define the horizontal alignment position.</p>
+
+<Example @name="demo-helpers-scrolling-scroll-into-view-inline.hbs">
+	<button {{on "click" (scroll-into-view "#my-id" inline="nearest")}}>
+		Click me
+	</button>
+</Example>
+
+<Example @name="demo-helpers-scrolling-scroll-into-view-div.hbs">
+	<div id="my-id">An element</div>
+</Example>
+
+<h2>scroll-to</h2>
+
+<p>Scrolls to a particular set of coordinates on the page.</p>
+
+<Example @name="demo-helpers-scrolling-scroll-to-top.hbs">
+	<button {{on "click" (scroll-to top=520)}}>
+		Click me
+	</button>
+</Example>
+
+<p>And scroll horizontally aswell as vertically.</p>
+
+<Example @name="demo-helpers-scrolling-scroll-to-left.hbs">
+	<button {{on "click" (scroll-to top=520 left=100)}}>
+		Click me
+	</button>
+</Example>
+
+<p>And specify whether the scrolling should be smooth.</p>
+
+<Example @name="demo-helpers-scrolling-scroll-to-smooth.hbs">
+	<button {{on "click" (scroll-to top=520 left=100 smooth=true)}}>
+		Click me
+	</button>
+</Example>
+
+<h2>window</h2>
+
+<p>Selects the <code>window</code> as a DOM element.</p>
+
+<Example @name="demo-helpers-dom-window.hbs" @hide=true>
+	{{on (window) "click" this.clicked}}
 </Example>

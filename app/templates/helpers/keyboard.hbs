@@ -1,9 +1,32 @@
 <h1>Keyboard helpers</h1>
 
-<p>...</p>
+<p>The keyboard helpers enable events in response to key presses.</p>
 
 <h2>Install</h2>
 
 <Example @name="demo-services-keyboard-install.bash">
 	ember install @ascua/keyboard
+</Example>
+
+<h2>on-press</h2>
+
+<p>Bind an action to an event whenever a keyboard key is pressed.</p>
+
+<Example @name="demo-helpers-keyboard-hot-key.hbs">
+	Go ahead and press <strong>b</strong>.
+	{{on-press "b" (console "You pressed b")}}
+</Example>
+
+<p>Or when a series of keys is pressed together.</p>
+
+<Example @name="demo-helpers-keyboard-hot-key-cmd.hbs">
+	Go ahead and press <strong>command+b</strong>.
+	{{on-press "cmd+b" (console "You pressed command+b")}}
+</Example>
+
+<p>Or specify keys using special modifier names.</p>
+
+<Example @name="demo-helpers-keyboard-hot-key-cmd-backspace.hbs">
+	Go ahead and press <strong>command+backspace</strong>.
+	{{on-press "cmd+backspace" (console "You pressed command+backspace")}}
 </Example>

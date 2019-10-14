@@ -1,9 +1,53 @@
 <h1>Event helpers</h1>
 
-<p>...</p>
+<p>The events helpers enable listenting to and handling events.</p>
 
 <h2>Install</h2>
 
 <Example @name="demo-services-events-install.bash">
 	ember install @ascua/events
+</Example>
+
+<h2>on</h2>
+
+<p>Specify an event to listen to, along with a handler.</p>
+
+<Example @name="demo-services-events-on.hbs">
+	Click anywhere on the page
+	{{on "click" (console "Clicked the page")}}
+</Example>
+
+<p>To add the listener to a specific element, specify the element as the second argument.</p>
+
+<Example @name="demo-services-events-on-specific.hbs">
+	Target a specific DOM element
+	{{on (document) "click" (console "Clicked the page")}}
+</Example>
+
+<h2>prevent-default</h2>
+
+<p>Prevents propagation of the event using <code>event.preventDefault()</code>.</p>
+
+<Example @name="demo-services-events-prevent-default.hbs">
+	Prevent default event handling
+	{{on (document) "click" (prevent-default)}}
+</Example>
+
+<Example @name="demo-services-events-prevent-default-function.hbs">
+	Prevent default event handling after running an event.
+	{{on (document) "contextmenu" (prevent-default (console "Clicked before preventDefault"))}}
+</Example>
+
+<h2>stop-propagation</h2>
+
+<p>Prevents propagation of the event using <code>event.stopPropagation()</code>.</p>
+
+<Example @name="demo-services-events-stop-propagation.hbs">
+	Stop propagation of event
+	{{on (document) "click" (stop-propagation)}}
+</Example>
+
+<Example @name="demo-services-events-stop-propagation-function.hbs">
+	Stop propagation of event after running an event.
+	{{on (document) "contextmenu" (stop-propagation (console "Clicked before stopPropagation"))}}
 </Example>
