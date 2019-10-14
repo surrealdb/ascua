@@ -1,7 +1,7 @@
 {
   "name": "ascua",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "description": "A library for building advanced, optimised Ember.js apps",
   "repository": {
     "type": "git",
