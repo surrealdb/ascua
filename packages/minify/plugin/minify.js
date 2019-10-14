@@ -17,7 +17,7 @@ module.exports = class Minify extends Filter {
 
 	}
 
-	processString(string, path) {
+	processString(string) {
 
 		return minify(string, this.opts);
 

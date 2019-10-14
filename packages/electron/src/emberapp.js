@@ -21,7 +21,7 @@ module.exports = function() {
 			const FULL = join(BASE, FILE);
 
 			try {
-				stat = fs.statSync(FULL);
+				let stat = fs.statSync(FULL);
 				return stat.isFile() ? fn(FULL) : fn(INDX);
 			} catch (e) {
 				return fn(INDX);

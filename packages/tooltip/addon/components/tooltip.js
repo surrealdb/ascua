@@ -66,7 +66,7 @@ export default class extends Component {
 
 	}
 
-	@action willDestroy(element) {
+	@action willDestroy() {
 
 		if (typeof FastBoot !== 'undefined') return;
 

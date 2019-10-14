@@ -6,7 +6,7 @@ export default class extends Component {
 
 	@tracked visible = false;
 
-	@action didEnterViewport(element) {
+	@action didEnterViewport() {
 		this.visible = true;
 	}
 

@@ -1,6 +1,6 @@
 import Sparse from './sparse';
 import { assert } from '@ember/debug';
-export { addObserver } from '@ember/object/observers';
+import { addObserver } from '@ember/object/observers';
 
 export function sparse(limit, ...props) {
 

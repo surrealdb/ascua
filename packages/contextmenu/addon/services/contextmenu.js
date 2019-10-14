@@ -1,7 +1,6 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
-import { next } from '@ember/runloop';
 import Electron from 'electron';
 
 const text = [

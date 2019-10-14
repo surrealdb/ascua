@@ -1,6 +1,7 @@
 import { sort } from '@ember/object/computed';
 import { observer, get, defineProperty } from '@ember/object';
 import { typeOf, isEmpty } from '@ember/utils';
+import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import Helper from '@ember/component/helper';
 
@@ -49,7 +50,7 @@ export default Helper.extend({
 		} else if (confs.locale === false) {
 			defineProperty(this, 'content', sort('array', 'param'));
 		} else if (confs.locale === true) {
-			defineProperty(this, 'content', computed(...props, function() {
+			defineProperty(this, 'content', computed(param, function() {
 				return this.get('array').slice().sort(function(one, two) {
 
 					for (let i=0; i<param.length; i++) {

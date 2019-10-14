@@ -4,7 +4,7 @@ import elementResizeDetectorMaker from 'element-resize-detector';
 export default class extends Service {
 
 	constructor() {
-    	super(...arguments);
+		super(...arguments);
 		this.detector = elementResizeDetectorMaker({
 			strategy: "scroll"
 		});

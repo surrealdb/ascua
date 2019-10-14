@@ -22,7 +22,7 @@ srv.use(express.static('dist', {
 	lastModified: false,
 }));
 
-srv.use( (req, res, next) => {
+srv.use( (req, res) => {
 
 	let opts = {};
 	opts.request = req;
