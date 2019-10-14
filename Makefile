@@ -54,3 +54,13 @@ setup:
 serve:
 	@echo "Serve..."
 	FASTBOOT_DISABLED=true ember serve
+
+.PHONY: version
+version:
+	@echo "Version..."
+	npx lerna version --no-push --force-publish
+
+.PHONY: publish
+publish:
+	@echo "Publish..."
+	npx lerna publish from-package
