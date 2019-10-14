@@ -8,7 +8,7 @@
 	</RightClick>
 </Example>
 
-<Example @name="demo-elements-contextmenu.hbs" @hide=true>
+<Example @name="demo-elements-contextmenu.hbs" @hide={{true}}>
 
 	{{#if (is-electron)}}
 		<Ascua::Contextmenu::Item @role="cut" />
@@ -24,6 +24,6 @@
 
 	<Ascua::Contextmenu::Item @type="separator" />
 
-	<Ascua::Contextmenu::Item @label="© Abcum Ltd" @enabled=false />
+	<Ascua::Contextmenu::Item @label="© Abcum Ltd" @enabled={{false}} />
 
 </Example>

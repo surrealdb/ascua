@@ -13,30 +13,30 @@
 <p>The <code>find</code> method retrives the location from the browser using the HTML5 Geolocation API. It returns a <code>Promise</code>, which will reject if the HTML5 Geolocation API is not available, or if the current coordinates are not able to be found, and will resolve if the positioning was successful. In addition the current geolocation position is saved to the <code>current</code> property.</p>
 
 <Example @name="demo-services-location-find.js">
-import Component from '@ember/component';
-import { inject } from '@ember/service';
-import { action } from '@ember/object';
+	import Component from '@ember/component';
+	import { inject } from '@ember/service';
+	import { action } from '@ember/object';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject location;
+		@inject location;
 
-	@action async locate() {
-		let result = await this.location.find({ timeout: 5000 });
-		// Do something with the location result
+		@action async locate() {
+			let result = await this.location.find({ timeout: 5000 });
+			// Do something with the location result
+		}
+
 	}
-
-}
 </Example>
 
 <p>It accepts an <b>optional</b> object as the first argument which can be used to customise the query. If omitted it will default to the values listed here.</p>
 
 <Example @name="demo-services-location-find-opts.js">
-{
-	enableHighAccuracy: false,
-	timeout: Infinity,
-	maximumAge: 0
-}
+	{
+		enableHighAccuracy: false,
+		timeout: Infinity,
+		maximumAge: 0
+	}
 </Example>
 
 <h2>Watch the location</h2>
@@ -44,30 +44,30 @@ export default class extends Component {
 <p>The <code>watch</code> method continually retrieves and tracks the location from the browser using the HTML5 Geolocation API. It returns a <code>Promise</code>, which will reject if the HTML5 Geolocation API is not available, or if the current coordinates are not able to be found, and will resolve if the positioning was successful. In addition the current geolocation position is continually saved to the <code>current</code> property.</p>
 
 <Example @name="demo-services-location-watch.js">
-import Component from '@ember/component';
-import { inject } from '@ember/service';
-import { action } from '@ember/object';
+	import Component from '@ember/component';
+	import { inject } from '@ember/service';
+	import { action } from '@ember/object';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject location;
+		@inject location;
 
-	@action async locate() {
-		let result = await this.location.watch({ timeout: 5000 });
-		// Do something with the location result
+		@action async locate() {
+			let result = await this.location.watch({ timeout: 5000 });
+			// Do something with the location result
+		}
+
 	}
-
-}
 </Example>
 
 <p>It accepts an <b>optional</b> object as the first argument which can be used to customise the query. If omitted it will default to the values listed here.</p>
 
 <Example @name="demo-services-location-watch-opts.js">
-{
-	enableHighAccuracy: false,
-	timeout: Infinity,
-	maximumAge: 0
-}
+	{
+		enableHighAccuracy: false,
+		timeout: Infinity,
+		maximumAge: 0
+	}
 </Example>
 
 <h2>Stop all location monitoring</h2>
@@ -75,19 +75,19 @@ export default class extends Component {
 <p>The <code>clear</code> method can be used to stop and unregister the location monitoring handler which was created using <code>watch</code>.</p>
 
 <Example @name="demo-services-location-clear.js">
-import Component from '@ember/component';
-import { inject } from '@ember/service';
-import { action } from '@ember/object';
+	import Component from '@ember/component';
+	import { inject } from '@ember/service';
+	import { action } from '@ember/object';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject location;
+		@inject location;
 
-	@action stop() {
-		this.location.clear();
+		@action stop() {
+			this.location.clear();
+		}
+
 	}
-
-}
 </Example>
 
 <h2>Using from a component</h2>
@@ -95,38 +95,38 @@ export default class extends Component {
 <p>Listening to the <code>location</code> service to detect when the gelocation position changes.</p>
 
 <Example @name="demo-services-location-current.js">
-import Component from '@ember/component';
-import { computed } from '@ember/object';
-import { inject } from '@ember/service';
+	import Component from '@ember/component';
+	import { computed } from '@ember/object';
+	import { inject } from '@ember/service';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject location;
+		@inject location;
 
-	@computed('location.current.coords.{latitude,longitude}')
-	get position() {
-		return [
-			this.location.current.coords.latitude,
-			this.location.current.coords.longitude,
-		];
+		@computed('location.current.coords.{latitude,longitude}')
+		get position() {
+			return [
+				this.location.current.coords.latitude,
+				this.location.current.coords.longitude,
+			];
+		}
+
 	}
-
-}
 </Example>
 
 <p>The <code>current</code> property stores the latest positioning data which was retrieved using the HTML5 Geolocation API, an example of which is displayed here.</p>
 
 <Example @name="demo-services-location-object.js">
-{
-	coords: {
-		accuracy: 75,
-		altitude: null,
-		altitudeAccuracy: null,
-		heading: null,
-		latitude: 51.165,
-		longitude: 0.248,
-		speed: null
-	},
-	timestamp: 1470156731858
-}
+	{
+		coords: {
+			accuracy: 75,
+			altitude: null,
+			altitudeAccuracy: null,
+			heading: null,
+			latitude: 51.165,
+			longitude: 0.248,
+			speed: null
+		},
+		timestamp: 1470156731858
+	}
 </Example>

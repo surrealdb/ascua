@@ -48,7 +48,7 @@
 
 <Example @name="demo-elements-select-multiple.hbs">
 	User permissions:<br>
-	<Ascua::Select @value={{this.perms}} @onSelect={{fn (mut this.perms)}} @multiple=true as |select|>
+	<Ascua::Select @value={{this.perms}} @onSelect={{fn (mut this.perms)}} @multiple={{true}} as |select|>
 		<select.group @label="Reading">
 			<select.option @value="view" @label="Can view posts" />
 			<select.option @value="comment" @label="Can view and comment on posts" />

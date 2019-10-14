@@ -15,7 +15,7 @@
 <p>If the value exists, but the promise has not yet been loaded, then the template will render anyway.</p>
 
 <Example @name="demo-helpers-promise-await.hbs">
-	{{#if (await model)}}
+	{{#if (await this.model)}}
 		Finished waiting for the delay
 	{{else}}
 		Waiting
@@ -75,7 +75,7 @@
 <p>Returns a new promise which is fulfilled when all the given promises have been fulfilled, or rejected if any of them become rejected. The returned value is an array of fulfillment values for the passed in promises.</p>
 
 <Example @name="demo-helpers-promise-rsvp-all.hbs">
-	{{#if (await (rsvp-all model.tags model.comments))}}
+	{{#if (await (rsvp-all this.model.tags this.model.comments))}}
 		Tags and comments are loading...
 	{{/if}}
 </Example>
@@ -85,7 +85,7 @@
 <p>Returns a new promise which is fulfilled when all the given promises have been fulfilled, or rejected if any of them become rejected. The returned promise is fulfilled with a hash that has the same key names as the promises object argument.</p>
 
 <Example @name="demo-helpers-promise-rsvp-hash.hbs">
-	{{#with (await (rsvp-hash tags=model.tags comments=model.comments)) as |data|}}
+	{{#with (await (rsvp-hash tags=this.model.tags comments=this.model.comments)) as |data|}}
 		There are {{data.tags.length}} tags and {{data.comments.length}} comments.
 	{{/with}}
 </Example>

@@ -31,23 +31,23 @@
 <p>Using the <code>internet</code> service to get the internet status inside a component.</p>
 
 <Example @name="demo-services-internet-component.js">
-import Component from '@ember/component';
-import { computed } from '@ember/object';
-import { inject } from '@ember/service';
+	import Component from '@ember/component';
+	import { computed } from '@ember/object';
+	import { inject } from '@ember/service';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject internet;
+		@inject internet;
 
-	@computed('internet.status')
-	get status() {
-		switch (this.internet.status) {
-		case true:
-			return 'Internet is online';
-		case false:
-			return 'Internet is offline';
+		@computed('internet.status')
+		get status() {
+			switch (this.internet.status) {
+			case true:
+				return 'Internet is online';
+			case false:
+				return 'Internet is offline';
+			}
 		}
-	}
 
-}
+	}
 </Example>

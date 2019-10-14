@@ -11,13 +11,13 @@
 <h2>Date properties</h2>
 
 <Example @name="demo-services-clock-date.hbs">
-	{{clock.year}}y {{clock.month}}m {{clock.day}}d
+	{{this.clock.year}}y {{this.clock.month}}m {{this.clock.day}}d
 </Example>
 
 <h2>Time properties</h2>
 
 <Example @name="demo-services-clock-time.hbs">
-	{{clock.hour}}h {{clock.minute}}m {{clock.second}}s
+	{{this.clock.hour}}h {{this.clock.minute}}m {{this.clock.second}}s
 </Example>
 
 <h2>Using from a component</h2>
@@ -25,20 +25,20 @@
 <p>Listening to the <code>clock</code> service to update computed properties.</p>
 
 <Example @name="demo-services-clock-controller.js">
-import Component from '@ember/component';
-import { inject } from '@ember/service';
-import { computed } from '@ember/object';
+	import Component from '@ember/component';
+	import { inject } from '@ember/service';
+	import { computed } from '@ember/object';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject clock;
+		@inject clock;
 
-	@inject store;
+		@inject store;
 
-	@computed('clock.minute')
-	get posts() {
-		return this.store.findAll('post');
+		@computed('clock.minute')
+		get posts() {
+			return this.store.findAll('post');
+		}
+
 	}
-
-}
 </Example>

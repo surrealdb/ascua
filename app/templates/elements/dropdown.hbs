@@ -48,7 +48,7 @@
 
 <Example @name="demo-elements-dropdown-multiple.hbs">
 	User permissions:
-	<Ascua::Dropdown @value={{this.perms}} @onSelect={{fn (mut this.perms)}} @multiple=true @default="No permissions" as |dropdown|>
+	<Ascua::Dropdown @value={{this.perms}} @onSelect={{fn (mut this.perms)}} @multiple={{true}} @default="No permissions" as |dropdown|>
 		<dropdown.group @label="Reading">
 			<dropdown.option @value="view" @label="Can view posts" />
 			<dropdown.option @value="comment" @label="Can comment on posts" />
@@ -77,7 +77,7 @@
 			<dropdown.option @value="write" @label="Can write posts" />
 			<dropdown.option @value="alter" @label="Can write and alter other's posts" />
 			<dropdown.option @value="full">
-				<span style="color:red;">Can write, alter, and delete posts</span>
+				<span class="col-r">Can write, alter, and delete posts</span>
 			</dropdown.option>
 		</dropdown.group>
 	</Ascua::Dropdown>

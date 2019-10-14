@@ -21,7 +21,7 @@
 <p>To change the device width, with which the page is loaded, by specifying the <code>zoom</code> attribute.</p>
 
 <Example @name="demo-elements-webview-zoom.hbs">
-	<Ascua::Webview @src="https://images.guide" @zoom=1200 @width="300px" @height="400px" />
+	<Ascua::Webview @src="https://images.guide" @zoom="1200" @width="300px" @height="400px" />
 </Example>
 
 <h2>Interactive webview</h2>
@@ -29,5 +29,5 @@
 <p>To enable interactivity with the frame, you can specify the <code>interactive</code> attribute.</p>
 
 <Example @name="demo-elements-webview-remote.hbs">
-	<Ascua::Webview @src="https://images.guide" @zoom=480 @width="100%" @height="900px" @interactive=true />
+	<Ascua::Webview @src="https://images.guide" @zoom="480" @width="100%" @height="900px" @interactive={{true}} />
 </Example>

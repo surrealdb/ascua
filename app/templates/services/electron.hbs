@@ -45,22 +45,22 @@
 <p>Listening to the <code>electron</code> service to detect when an update is available.</p>
 
 <Example @name="demo-services-electron-component.js">
-import Component from '@ember/component';
-import { inject } from '@ember/service';
+	import Component from '@ember/component';
+	import { inject } from '@ember/service';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject electron;
+		@inject electron;
 
-	constructor() {
+		constructor() {
 
-		super(...arguments);
+			super(...arguments);
 
-		this.electron.on('updatefound', () => {
-			/* Do something when we have an update */
-		});
+			this.electron.on('updatefound', () => {
+				/* Do something when we have an update */
+			});
+
+		}
 
 	}
-
-}
 </Example>

@@ -41,11 +41,11 @@
 <p>Alternatively, run this command after every npm package install, by placing it in your <code>package.json</code> file.</p>
 
 <Example @name="demo-guides-electron-dependencies.json">
-{
-  "scripts": {
-    "postinstall": "electron-builder install-app-deps"
-  }
-}
+	{
+	  "scripts": {
+	    "postinstall": "electron-builder install-app-deps"
+	  }
+	}
 </Example>
 
 <h2>Example build configuration</h2>
@@ -53,19 +53,19 @@
 <p>To configure the application build and deployment specify a <code>build</code> section in your <code>package.json</code> file.</p>
 
 <Example @name="demo-guides-electron-config.json">
-{
-  "build": {
-    "appId": "com.abcum.app",
-    "copyright": "Copyright © 2019 Abcum Ltd.",
-    "fileAssociations": [],
-    "productName": "Abcum",
-    "protocols": [],
-    "publish": {
-      "provider": "s3",
-      "bucket": "desktop.abcum.com",
-      "path": "/",
-      "acl": null
-    }
-  }
-}
+	{
+	  "build": {
+	    "appId": "com.abcum.app",
+	    "copyright": "Copyright © 2019 Abcum Ltd.",
+	    "fileAssociations": [],
+	    "productName": "Abcum",
+	    "protocols": [],
+	    "publish": {
+	      "provider": "s3",
+	      "bucket": "desktop.abcum.com",
+	      "path": "/",
+	      "acl": null
+	    }
+	  }
+	}
 </Example>

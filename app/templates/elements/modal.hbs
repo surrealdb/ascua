@@ -12,12 +12,12 @@
 
 <Example @name="demo-modal-toggle.hbs">
 
-	<button {{on "click" (fn (mut show) true)}}>
+	<button {{on "click" (fn (mut this.show) true)}}>
 		Display a modal
 	</button>
 
-	{{#if show}}
-		<Ascua::Modal @close={{fn (mut show) false}} class="custom">
+	{{#if this.show}}
+		<Ascua::Modal @close={{fn (mut this.show) false}} class="custom">
 			This is a custom modal window
 		</Ascua::Modal>
 	{{/if}}

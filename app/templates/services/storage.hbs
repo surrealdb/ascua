@@ -33,21 +33,21 @@
 <p>Using the <code>storage</code> service to get <code>localStorage['email']</code> inside a controller.</p>
 
 <Example @name="demo-services-storage-component.js">
-import Component from '@ember/component';
-import { inject } from '@ember/service';
-import { action } from '@ember/object';
+	import Component from '@ember/component';
+	import { inject } from '@ember/service';
+	import { action } from '@ember/object';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject facebook;
+		@inject facebook;
 
-	@inject storage;
+		@inject storage;
 
-	@action login() {
-		this.facebook.login(
-			this.storage.email
-		);
+		@action login() {
+			this.facebook.login(
+				this.storage.email
+			);
+		}
+
 	}
-
-}
 </Example>

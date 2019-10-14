@@ -12,11 +12,11 @@
 
 <p>Performs the Javascript equivalent of <code>document.querySelectorAll(...)</code>.</p>
 
-<Example @name="demo-helpers-dom-$-html.hbs" @hide=true>
+<Example @name="demo-helpers-dom-$-html.hbs" @hide={{true}}>
 	<div id="my-id"></div>
 </Example>
 
-<Example @name="demo-helpers-dom-$.hbs" @hide=true>
+<Example @name="demo-helpers-dom-$.hbs" @hide={{true}}>
 	{{#-in-element ($ "#my-id")}}
 		Display somewhere else
 	{{/-in-element}}
@@ -26,7 +26,7 @@
 
 <p>Selects the <code>document</code> as a DOM element.</p>
 
-<Example @name="demo-helpers-dom-document.hbs" @hide=true>
+<Example @name="demo-helpers-dom-document.hbs" @hide={{true}}>
 	{{on (document) "click" this.clicked}}
 </Example>
 
@@ -34,7 +34,7 @@
 
 <p>Selects the document <code>body</code> as a DOM element.</p>
 
-<Example @name="demo-helpers-dom-document-body.hbs" @hide=true>
+<Example @name="demo-helpers-dom-document-body.hbs" @hide={{true}}>
 	{{#-in-element (document-body)}}
 		This will go into the body
 	{{/-in-element}}
@@ -44,7 +44,7 @@
 
 <p>Selects the document <code>head</code> as a DOM element.</p>
 
-<Example @name="demo-helpers-dom-document-head.hbs" @hide=true>
+<Example @name="demo-helpers-dom-document-head.hbs" @hide={{true}}>
 	{{#-in-element (document-head)}}
 		<meta name="author" content="Abcum">
 	{{/-in-element}}
@@ -63,11 +63,11 @@
 
 <p>Performs the Javascript equivalent of <code>document.getElementsByClassName(...)</code>.</p>
 
-<Example @name="demo-helpers-dom-get-element-by-class-html.hbs" @hide=true>
+<Example @name="demo-helpers-dom-get-element-by-class-html.hbs" @hide={{true}}>
 	<div class="my-class"></div>
 </Example>
 
-<Example @name="demo-helpers-dom-get-element-by-class.hbs" @hide=true>
+<Example @name="demo-helpers-dom-get-element-by-class.hbs" @hide={{true}}>
 	{{#-in-element (get-element-by-class "my-class")}}
 		Display somewhere else
 	{{/-in-element}}
@@ -77,11 +77,11 @@
 
 <p>Performs the Javascript equivalent of <code>document.getElementById(...)</code>.</p>
 
-<Example @name="demo-helpers-dom-get-element-by-id-html.hbs" @hide=true>
+<Example @name="demo-helpers-dom-get-element-by-id-html.hbs" @hide={{true}}>
 	<div id="my-id"></div>
 </Example>
 
-<Example @name="demo-helpers-dom-get-element-by-id.hbs" @hide=true>
+<Example @name="demo-helpers-dom-get-element-by-id.hbs" @hide={{true}}>
 	{{#-in-element (get-element-by-id "my-id")}}
 		Display somewhere else
 	{{/-in-element}}
@@ -91,11 +91,11 @@
 
 <p>Performs the Javascript equivalent of <code>document.getElementsByTagName(...)</code>.</p>
 
-<Example @name="demo-helpers-dom-get-element-by-tag-html.hbs" @hide=true>
+<Example @name="demo-helpers-dom-get-element-by-tag-html.hbs" @hide={{true}}>
 	<my-tag></my-tag>
 </Example>
 
-<Example @name="demo-helpers-dom-get-element-by-tag.hbs" @hide=true>
+<Example @name="demo-helpers-dom-get-element-by-tag.hbs" @hide={{true}}>
 	{{#-in-element (get-element-by-tag "my-tag")}}
 		Display somewhere else
 	{{/-in-element}}
@@ -169,6 +169,6 @@
 
 <p>Selects the <code>window</code> as a DOM element.</p>
 
-<Example @name="demo-helpers-dom-window.hbs" @hide=true>
+<Example @name="demo-helpers-dom-window.hbs" @hide={{true}}>
 	{{on (window) "click" this.clicked}}
 </Example>

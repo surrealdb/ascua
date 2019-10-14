@@ -4,7 +4,7 @@
 
 <h2>Install</h2>
 
-<Example @name="demo-services-arrays-install.bash" @hide=true>
+<Example @name="demo-services-arrays-install.bash" @hide={{true}}>
 	ember install @ascua/arrays
 </Example>
 
@@ -12,7 +12,7 @@
 
 <p>Checks whether the given property is <code>true</code> on any item in a given array.</p>
 
-<Example @name="demo-helpers-arrays-anyby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-anyby.hbs" @hide={{true}}>
 	{{#if (any-by "isAdult" people)}}
 		{{!-- At least one of people has isAdult === true --}}
 	{{/if}}
@@ -20,7 +20,7 @@
 
 <p>Or if given property is equal to the given value on any item in a given array.</p>
 
-<Example @name="demo-helpers-arrays-anyby-value.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-anyby-value.hbs" @hide={{true}}>
 	{{#if (any-by "isChild" false people)}}
 		{{!-- At least one of people has isChild === false --}}
 	{{/if}}
@@ -30,7 +30,7 @@
 
 <p>Appends each given array to the previous given arrays, resulting in a single flat array.</p>
 
-<Example @name="demo-helpers-arrays-append.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-append.hbs" @hide={{true}}>
 	{{#each (append user users) as |person|}}
 		{{!-- Flat array of user and users --}}
 	{{/each}}
@@ -40,7 +40,7 @@
 
 <p>Removes empty values from the given array.</p>
 
-<Example @name="demo-helpers-arrays-compact.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-compact.hbs" @hide={{true}}>
 	{{#each (compact people) as |person|}}
 		{{!-- All with no null or undefined items --}}
 	{{/each}}
@@ -50,7 +50,7 @@
 
 <p>Checks to see if an array is empty.</p>
 
-<Example @name="demo-helpers-arrays-empty.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-empty.hbs" @hide={{true}}>
 	{{#if (empty people)}}
 		No people exists...
 	{{/if}}
@@ -60,7 +60,7 @@
 
 <p>Checks whether the given property is <code>true</code> on every item in a given array.</p>
 
-<Example @name="demo-helpers-arrays-everyby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-everyby.hbs" @hide={{true}}>
 	{{#if (every-by "isAdult" people)}}
 		{{!-- All people have isAdult === true --}}
 	{{/if}}
@@ -68,7 +68,7 @@
 
 <p>Or if given property is equal to the given value on every item in a given array.</p>
 
-<Example @name="demo-helpers-arrays-everyby-value.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-everyby-value.hbs" @hide={{true}}>
 	{{#if (every-by "isChild" false people)}}
 		{{!-- All people have isChild === false --}}
 	{{/if}}
@@ -78,7 +78,7 @@
 
 <p>Returns the given array filtered by a callback.</p>
 
-<Example @name="demo-helpers-arrays-filter.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-filter.hbs" @hide={{true}}>
 	{{#each (filter (action "checkAdult") people) as |adult|}}
 		{{!-- All where checkAdult action is truthy --}}
 	{{/each}}
@@ -88,7 +88,7 @@
 
 <p>Returns the given array filtered by a property.</p>
 
-<Example @name="demo-helpers-arrays-filterby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-filterby.hbs" @hide={{true}}>
 	{{#each (filter-by "isAdult" people) as |adult|}}
 		{{!-- All where isAdult is truthy --}}
 	{{/each}}
@@ -96,7 +96,7 @@
 
 <p>Returns the given array filtered by a property.</p>
 
-<Example @name="demo-helpers-arrays-filterby-value.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-filterby-value.hbs" @hide={{true}}>
 	{{#each (filter-by "isChild" false people) as |adult|}}
 		{{!-- All where isChild is false --}}
 	{{/each}}
@@ -104,7 +104,7 @@
 
 <p>You can also pass an action as second argument.</p>
 
-<Example @name="demo-helpers-arrays-filterby-function.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-filterby-function.hbs" @hide={{true}}>
 	{{#each (filter-by (gt 18 (object-key "age")) people) as |adult|}}
 		{{!-- All where age is greater than 18 --}}
 	{{/each}}
@@ -114,7 +114,7 @@
 
 <p>Returns the first entry matching the given callback from the given array.</p>
 
-<Example @name="demo-helpers-arrays-find.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-find.hbs" @hide={{true}}>
 	{{#with (find (action "checkAdult") people) as |adult|}}
 		{{!-- The first item where isAdult is truthy. --}}
 	{{/with}}
@@ -124,7 +124,7 @@
 
 <p>Returns the first entry matching the given value from the given array.</p>
 
-<Example @name="demo-helpers-arrays-findby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-findby.hbs" @hide={{true}}>
 	{{#with (find-by "isAdult" people) as |adult|}}
 		{{!-- The first item where isAdult is truthy. --}}
 	{{/with}}
@@ -132,7 +132,7 @@
 
 <p>Returns the first entry matching the given value from the given array.</p>
 
-<Example @name="demo-helpers-arrays-findby-value.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-findby-value.hbs" @hide={{true}}>
 	{{#with (find-by "isChild" false people) as |adult|}}
 		{{!-- The first item where isChild is false. --}}
 	{{/with}}
@@ -140,7 +140,7 @@
 
 <p>You can also pass an action as second argument.</p>
 
-<Example @name="demo-helpers-arrays-findby-function.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-findby-function.hbs" @hide={{true}}>
 	{{#with (find-by (gt 18 (object-key "age")) people) as |adult|}}
 		{{!-- The first item where age is greater than 18 --}}
 	{{/with}}
@@ -150,7 +150,7 @@
 
 <p>Returns the first object of the given array.</p>
 
-<Example @name="demo-helpers-arrays-first.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-first.hbs" @hide={{true}}>
 	{{#with (first people) as |person|}}
 		{{!-- The first person --}}
 	{{/with}}
@@ -160,11 +160,11 @@
 
 <p>Returns a flattened array from the given array.</p>
 
-<Example @name="demo-helpers-arrays-flatten.js" @hide=true>
+<Example @name="demo-helpers-arrays-flatten.js" @hide={{true}}>
 	let array = [ [1], [2], [3] ];
 </Example>
 
-<Example @name="demo-helpers-arrays-flatten.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-flatten.hbs" @hide={{true}}>
 	{{#each (flatten array) as |step|}}
 		- Step {{step}} is ...
 	{{/each}}
@@ -174,7 +174,7 @@
 
 <p>Groups items in a given array by the given path.</p>
 
-<Example @name="demo-helpers-arrays-groupby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-groupby.hbs" @hide={{true}}>
 	{{#each-in (group-by "category" products) as |category products|}}
 		- {{category}}
 		{{#each products as |product|}}
@@ -187,7 +187,7 @@
 
 <p>Checks to see if an array includes an object.</p>
 
-<Example @name="demo-helpers-arrays-includes.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-includes.hbs" @hide={{true}}>
 	{{#if (includes selectedPerson people)}}
 		selectedPerson exists within people...
 	{{/if}}
@@ -195,7 +195,7 @@
 
 <p>Or if an array includes an array of objects.</p>
 
-<Example @name="demo-helpers-arrays-includes-multi.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-includes-multi.hbs" @hide={{true}}>
 	{{#if (includes selectedPeople people)}}
 		selectedPeople exist within people...
 	{{/if}}
@@ -205,7 +205,7 @@
 
 <p>Returns an array of unique items which are present in all given arrays.</p>
 
-<Example @name="demo-helpers-arrays-intersect.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-intersect.hbs" @hide={{true}}>
 	{{#each (intersect users admins) as |testers|}}
 		{{!-- All who are in both users and admins --}}
 	{{/each}}
@@ -215,13 +215,13 @@
 
 <p>Concatenates the given array with an optional separator.</p>
 
-<Example @name="demo-helpers-arrays-join.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-join.hbs" @hide={{true}}>
 	{{join (array "tag1" "tag2" "tag3")}} {{!-- "tag1 tag2 tag3" --}}
 </Example>
 
 <p>You can use an optional separator.</p>
 
-<Example @name="demo-helpers-arrays-join-separator.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-join-separator.hbs" @hide={{true}}>
 	{{join ", " (array "tag1" "tag2" "tag3")}} {{!-- "tag1, tag2, tag3" --}}
 </Example>
 
@@ -229,7 +229,7 @@
 
 <p>Returns the last object of the given array.</p>
 
-<Example @name="demo-helpers-arrays-last.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-last.hbs" @hide={{true}}>
 	{{#with (last people) as |person|}}
 		{{!-- The last person --}}
 	{{/with}}
@@ -239,7 +239,7 @@
 
 <p>Returns the given array mapped to the given callback.</p>
 
-<Example @name="demo-helpers-arrays-map.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-map.hbs" @hide={{true}}>
 	{{#each (map (action "getName") users) as |name|}}
 		{{name}}
 	{{/each}}
@@ -249,7 +249,7 @@
 
 <p>Returns the given array mapped to the given property.</p>
 
-<Example @name="demo-helpers-arrays-mapby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-mapby.hbs" @hide={{true}}>
 	{{#each (map-by "name" users) as |name|}}
 		{{name}}
 	{{/each}}
@@ -259,7 +259,7 @@
 
 <p>Returns the object at the given <code>index</code> of an array.</p>
 
-<Example @name="demo-helpers-arrays-objectat.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-objectat.hbs" @hide={{true}}>
 	{{#with (object-at 1 people) as |person|}}
 		{{!-- The 1st person --}}
 	{{/with}}
@@ -269,7 +269,7 @@
 
 <p>Returns the object at the given <code>indexes</code> of an array.</p>
 
-<Example @name="demo-helpers-arrays-objectsat.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-objectsat.hbs" @hide={{true}}>
 	{{#each (objects-at 1 3 5 people) as |person|}}
 		{{!-- The 1st, 3rd, 5th people --}}
 	{{/each}}
@@ -279,7 +279,7 @@
 
 <p>Returns the given array with the first <code>count</code> items omitted.</p>
 
-<Example @name="demo-helpers-arrays-omit.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-omit.hbs" @hide={{true}}>
 	{{#each (omit 3 people) as |person|}}
 		{{!-- All except the first 3 people --}}
 	{{/each}}
@@ -289,7 +289,7 @@
 
 <p>Prepends each given array to the previous given arrays, resulting in a single flat array.</p>
 
-<Example @name="demo-helpers-arrays-prepend.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-prepend.hbs" @hide={{true}}>
 	{{#each (prepend user users) as |person|}}
 		{{!-- Flat array of users and user --}}
 	{{/each}}
@@ -299,7 +299,7 @@
 
 <p>Creates an array whose contents is a range of numbers between min and max.</p>
 
-<Example @name="demo-helpers-arrays-range.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-range.hbs" @hide={{true}}>
 	{{#each (range 10 20) as |step|}}
 		...
 	{{/each}}
@@ -309,7 +309,7 @@
 
 <p>Returns the given array filtered by a callback.</p>
 
-<Example @name="demo-helpers-arrays-reject.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-reject.hbs" @hide={{true}}>
 	{{#each (reject (action "checkAdult") people) as |child|}}
 		{{!-- All except where checkAdult action is truthy --}}
 	{{/each}}
@@ -319,7 +319,7 @@
 
 <p>Returns the given array omitting those matching the property.</p>
 
-<Example @name="demo-helpers-arrays-rejectby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-rejectby.hbs" @hide={{true}}>
 	{{#each (reject-by "isAdult" people) as |child|}}
 		{{!-- All except where isAdult is truthy --}}
 	{{/each}}
@@ -327,7 +327,7 @@
 
 <p>Returns the given array omitting those matching the property.</p>
 
-<Example @name="demo-helpers-arrays-rejectby-value.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-rejectby-value.hbs" @hide={{true}}>
 	{{#each (reject-by "isChild" false people) as |child|}}
 		{{!-- All except where isChild is false --}}
 	{{/each}}
@@ -335,7 +335,7 @@
 
 <p>You can also pass an action as second argument.</p>
 
-<Example @name="demo-helpers-arrays-rejectby-function.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-rejectby-function.hbs" @hide={{true}}>
 	{{#each (reject-by (gt 18 (object-key "age")) people) as |child|}}
 		{{!-- All except where age is greater than 18 --}}
 	{{/each}}
@@ -345,7 +345,7 @@
 
 <p>Rearranges the array in reverse order.</p>
 
-<Example @name="demo-helpers-arrays-reverse.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-reverse.hbs" @hide={{true}}>
 	{{#each (reverse users) as |user|}}
 		{{!-- All in reverse order --}}
 	{{/each}}
@@ -355,7 +355,7 @@
 
 <p>Returns a slice of the given array.</p>
 
-<Example @name="demo-helpers-arrays-slice.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-slice.hbs" @hide={{true}}>
 	{{#each (slice 0 5 people) as |person|}}
 		{{!-- Only the first 5 people --}}
 	{{/each}}
@@ -365,11 +365,11 @@
 
 <p>Returns the given array where the given properties contain the given value.</p>
 
-<Example @name="demo-helpers-arrays-searchby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-searchby.hbs" @hide={{true}}>
 	{{input type="text" value=search}}
 </Example>
 
-<Example @name="demo-helpers-arrays-searchby-multi.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-searchby-multi.hbs" @hide={{true}}>
 	{{#each (search-by "firstname" "lastname" search people) as |person|}}
 		{{!-- All where firstname or lastname contains search --}}
 	{{/each}}
@@ -377,15 +377,15 @@
 
 <p>You can also use an array containing the properties to search.</p>
 
-<Example @name="demo-helpers-arrays-searchby-array-input.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-searchby-array-input.hbs" @hide={{true}}>
 	{{input type="text" value=search}}
 </Example>
 
-<Example @name="demo-helpers-arrays-searchby-array-option.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-searchby-array-option.hbs" @hide={{true}}>
 	{input-select value=fields options=(array "firstname" "lastname")}}
 </Example>
 
-<Example @name="demo-helpers-arrays-searchby-array-display.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-searchby-array-display.hbs" @hide={{true}}>
 	{{#each (search-by fields search people) as |person|}}
 		{{!-- All where firstname or lastname contains search --}}
 	{{/each}}
@@ -395,7 +395,7 @@
 
 <p>Returns the given array sorted by the defined properties.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
 	{{#each (sort-by "age" people) as |person|}}
 		{{!-- All people sorted by age ascending --}}
 	{{/each}}
@@ -403,7 +403,7 @@
 
 <p>You can also pass an action as second argument.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
 	{{#each (sort-by (action "mySortAction") people) as |person|}}
 		{{!-- All people sorted by the custom sorting action --}}
 	{{/each}}
@@ -411,7 +411,7 @@
 
 <p>Returns the given array sorted using a specific locale comparator.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
 	{{#each (sort-by "name" people locale=true) as |person|}}
 		{{!-- All people sorted by name ascending --}}
 	{{/each}}
@@ -419,7 +419,7 @@
 
 <p>You can also pass <code>asc</code> or <code>desc</code> suffixes to specify sort ordering.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
 	{{#each (sort-by "name:desc" people locale=true) as |person|}}
 		{{!-- All people sorted by name descending --}}
 	{{/each}}
@@ -427,7 +427,7 @@
 
 <p>Or you can specify that numeric collation should be used when sorting.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
 	{{#each (sort-by "age" people locale=true numeric=true) as |person|}}
 		{{!-- All people sorted by age with numbers sorting correctly --}}
 	{{/each}}
@@ -435,7 +435,7 @@
 
 <p>Or you can specify that punctuation should be ignored when sorting.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
 	{{#each (sort-by "name" people locale=true ignorePunctuation=false) as |person|}}
 		{{!-- All people sorted by name with punctuation ignored --}}
 	{{/each}}
@@ -443,7 +443,7 @@
 
 <p>Or you can specify which case should sort first. Possible values are <code>lower</code>, <code>upper</code>, or <code>false</code> (default).</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
 	{{#each (sort-by "name" people locale=true caseFirst="upper") as |person|}}
 		{{!-- All people sorted by name with upper case ordered first --}}
 	{{/each}}
@@ -451,7 +451,7 @@
 
 <p>Or you can specify the sensitivity of the locale sort algorithm. Possible values are <code>case</code>, <code>accent</code>, <code>variant</code>, or <code>base</code> (default).</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
 	{{#each (sort-by "name" people locale=true sensitivity="case") as |person|}}
 		{{!-- All people sorted by name with specifc sensitivity case ordering --}}
 	{{/each}}
@@ -461,7 +461,7 @@
 
 <p>Splits a string/strings on a character and returns an array.</p>
 
-<Example @name="demo-helpers-arrays-split.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-split.hbs" @hide={{true}}>
 	{{#each (split "/" "app/styles/sub/main.js") as |directory|}}
 		{{!-- Array of directories without / character --}}
 	{{/each}}
@@ -471,7 +471,7 @@
 
 <p>Returns the given array with the first <code>count</code> items only.</p>
 
-<Example @name="demo-helpers-arrays-take.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-take.hbs" @hide={{true}}>
 	{{#each (take 3 people) as |person|}}
 		{{!-- Only the first 3 people --}}
 	{{/each}}
@@ -481,7 +481,7 @@
 
 <p>Returns an array of unique items from all of the given arrays.</p>
 
-<Example @name="demo-helpers-arrays-union.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-union.hbs" @hide={{true}}>
 	{{#each (union users admins) as |person|}}
 		{{!-- Unique users and admins --}}
 	{{/each}}
@@ -491,7 +491,7 @@
 
 <p>Returns an array of unique items from all of the given arrays.</p>
 
-<Example @name="demo-helpers-arrays-uniq.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-uniq.hbs" @hide={{true}}>
 	{{#each (uniq users admins) as |person|}}
 		{{!-- Unique users and admins --}}
 	{{/each}}
@@ -501,7 +501,7 @@
 
 <p>Returns an array of unique items, compared using the given property, from the given array.</p>
 
-<Example @name="demo-helpers-arrays-uniqby.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-uniqby.hbs" @hide={{true}}>
 	{{#each (uniq-by "email" users) as |person|}}
 		{{!-- Unique users by email --}}
 	{{/each}}
@@ -511,7 +511,7 @@
 
 <p>Splits a string/strings on whitespace or turns multiple words into an array.</p>
 
-<Example @name="demo-helpers-arrays-w.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-w.hbs" @hide={{true}}>
 	{{#each (w "First Second" "Third") as |step|}}
 		- Step {{step}} is ...
 	{{/each}}
@@ -521,7 +521,7 @@
 
 <p>Returns the given array without the given item or items.</p>
 
-<Example @name="demo-helpers-arrays-without.hbs" @hide=true>
+<Example @name="demo-helpers-arrays-without.hbs" @hide={{true}}>
 	{{#each (without selectedusers users) as |user|}}
 		{{!-- All users who are not in selectedusers --}}
 	{{/each}}

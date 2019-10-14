@@ -39,22 +39,22 @@
 <p>Listening to the <code>update</code> service to detect when an update is available.</p>
 
 <Example @name="demo-services-update-component.js">
-import Component from '@ember/component';
-import { inject } from '@ember/service';
+	import Component from '@ember/component';
+	import { inject } from '@ember/service';
 
-export default class extends Component {
+	export default class extends Component {
 
-	@inject update;
+		@inject update;
 
-	constructor() {
+		constructor() {
 
-		super(...arguments);
+			super(...arguments);
 
-		this.update.on('updatefound', () => {
-			/* Do something when we have an update */
-		});
+			this.update.on('updatefound', () => {
+				/* Do something when we have an update */
+			});
+
+		}
 
 	}
-
-}
 </Example>
