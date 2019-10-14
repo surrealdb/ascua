@@ -1,18 +1,19 @@
 import Helper from '@ember/component/helper';
 import { inject } from '@ember/service';
+import parse from '../utils/parse';
 import keys from '../utils/keys';
 
 export default class extends Helper {
 
 	@inject('-document') document;
 
-	compute([char, func], opts) {
-
-		this.char = char;
-		this.func = func;
-		this.opts = opts;
+	compute([keys, func]) {
 
 		if (typeof FastBoot !== 'undefined') return;
+
+		this.func = func;
+
+		this.opts = parse(keys);
 
 		this.call = this.handle.bind(this);
 
@@ -34,23 +35,23 @@ export default class extends Helper {
 
 	handle(event) {
 
-		if (event.altKey && !this.opts.alt) {
+		if (this.opts.alt && !event.altKey) {
 			return true;
 		}
 
-		if (event.ctrlKey && !this.opts.ctrl) {
+		if (this.opts.ctrl && !event.ctrlKey) {
 			return true;
 		}
 
-		if (event.metaKey && !this.opts.meta) {
+		if (this.opts.meta && !event.metaKey) {
 			return true;
 		}
 
-		if (event.shiftKey && !this.opts.shift) {
+		if (this.opts.shift && !event.shiftKey) {
 			return true;
 		}
 
-		if (keys[this.char] !== event.which) {
+		if (keys[this.opts.char] !== event.which) {
 			return true;
 		}
 
