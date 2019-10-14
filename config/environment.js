@@ -1,52 +1,50 @@
 'use strict';
 
 module.exports = function(environment) {
-  let ENV = {
-    modulePrefix: 'ascua',
-    environment,
-    rootURL: '/',
-    locationType: 'auto',
-    EmberENV: {
-      FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. EMBER_MODULE_UNIFICATION: true
-        EMBER_METAL_TRACKED_PROPERTIES: true
-      },
-      EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
-    },
 
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-    }
-  };
+	let ENV = {
 
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-  }
+		environment,
+		rootURL: '/',
+		locationType: 'auto',
+		modulePrefix: 'ascua',
 
-  if (environment === 'test') {
-    // Testem prefers this...
-    ENV.locationType = 'none';
+		APP: {
+			BINDINGS: false,
+			LOG_RESOLVER: false,
+			LOG_TRANSITIONS: false,
+			LOG_VIEW_LOOKUPS: false,
+			LOG_ACTIVE_GENERATION: false,
+			LOG_TRANSITIONS_INTERNAL: false,
+			RAISE_ON_DEPRECATION: false,
+			LOG_STACKTRACE_ON_DEPRECATION: false,
+		},
 
-    // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
+		EmberENV: {
+			EXTEND_PROTOTYPES: {
+				Date: false,
+			},
+			FEATURES: {
+				EMBER_METAL_TRACKED_PROPERTIES: true,
+			},
+		},
 
-    ENV.APP.rootElement = '#ember-testing';
-    ENV.APP.autoboot = false;
-  }
+	};
 
-  if (environment === 'production') {
-    // here you can enable a production-specific feature
-  }
+	if (environment === 'test') {
+		ENV.APP.autoboot = false;
+		ENV.locationType = 'none';
+		ENV.APP.rootElement = '#ember-testing';
+	}
 
-  return ENV;
+	if (environment === 'development') {
+		ENV.rootURL = '/';
+	}
+
+	if (environment === 'production') {
+		ENV.rootURL = '/ascua/';
+	}
+
+	return ENV;
+
 };
