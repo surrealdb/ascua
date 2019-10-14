@@ -4,7 +4,19 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    snippetRegexes: {
+      begin: /<Example\s@name=\"(\S+)\">/,
+      end: /<\/Example>/,
+    },
+    snippetSearchPaths: ['app'],
+    includeFileExtensionInSnippetNames: false,
+    'ember-prism': {
+      'components': [
+        'css', 'scss', 'bash',
+        'typescript', 'javascript', 'json',
+        'handlebars', 'markup-templating',
+      ],
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
