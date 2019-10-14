@@ -1,3 +1,103 @@
 <h1>Styling</h1>
 
-<p>...</p>
+<p>Define the necessary variables in your app stylesheet.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-visuals-install.bash">
+	ember install @ascua/visuals
+</Example>
+
+<h2>Mixins</h2>
+
+<p>To use the SASS mixins and helper functions, import the library into your app stylesheet.</p>
+
+<Example @name="demo-styling-install.scss">
+	@include "@ascua/visuals";
+</Example>
+
+<h2>Grids</h2>
+
+<p>Build a flexible css grid layout with manual row breaks.</p>
+
+<Example @name="demo-styling-grids.scss">
+	grid-line {
+		padding:30px;
+		@include grid-line;
+	}
+
+	grid-item {
+		height:100px;
+		padding:30px;
+		border:1px solid #00bfff;
+		background-color:#ff0000;
+		@include grid-item(1 of 4 break every 4);
+	}
+</Example>
+
+<h2>Tables</h2>
+
+<p>Build a flexible css grid layout with automatic row breaks.</p>
+
+<Example @name="demo-styling-tables.scss">
+	sheet {
+		background-color:#000000;
+		@include table(100%, 1px); /* Table is 100% wide with 1px borders */
+	}
+
+	sheet-row {
+		@include table-row;
+		background-color:#ffffff;
+	}
+
+	sheet-col {
+		padding:10px;
+		@include table-col(6 of 12 for 1st); // The 1st column is 50% wide
+		@include table-col(3 of 12 for 2nd); // The 2nd column is 25% wide
+		@include table-col(3 of 12 for 3rd); // The 3rd column is 25% wide
+	}
+</Example>
+
+<h2>Media queries</h2>
+
+<p>Implement a simple responsive layout based on the user device.</p>
+
+<Example @name="demo-styling-grids.scss">
+	grid-item {
+
+		height:100px;
+		padding:30px;
+		border:1px solid #00bfff;
+		background-color:#ff0000;
+
+		@include grid-item(1 of 5 break every 5);
+
+		@include media(ipad landscape) {
+			@include grid-item(1 of 4 break every 4);
+		}
+
+		@include media(iphone4, iphone5) {
+			@include grid-item(1 of 2 break every 2);
+		}
+
+		@include media(iphone6, iphone7, ipad portrait) {
+			@include grid-item(1 of 3 break every 3);
+		}
+
+	}
+</Example>
+
+<h2>Animations</h2>
+
+<p>Add a css animation to an element.</p>
+
+<Example @name="demo-styling-animations.scss">
+	@import "@ascua/visuals/animations/alerts/bounce";
+
+	.simple-bouncer {
+		@include animation(bounce 3s linear 2s infinite);
+	}
+	.special-bouncer {
+		@include animation(bounce 3s $ease-in-out-circ 2s infinite);
+	}
+</Example>
