@@ -29,5 +29,8 @@
       "broccoli-asset-rev"
     ]
   },
-  "homepage": "https://abcum.github.io/ascua"
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
 }

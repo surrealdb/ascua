@@ -26,5 +26,8 @@
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
   },
-  "homepage": "https://abcum.github.io/ascua"
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
 }

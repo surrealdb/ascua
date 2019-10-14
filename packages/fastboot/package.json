@@ -23,5 +23,8 @@
     "demoURL": "https://abcum.github.io/ascua",
     "defaultBlueprint": "fastboot"
   },
-  "homepage": "https://abcum.github.io/ascua"
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
 }
