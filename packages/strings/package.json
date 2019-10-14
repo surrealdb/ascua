@@ -1,6 +1,6 @@
 {
   "name": "@ascua/strings",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "Small description for @ascua/strings goes here",
   "keywords": [
     "ember-addon"
