@@ -1,9 +1,12 @@
 import { assert } from '@ember/debug';
 import { addListener } from '@ember/object/events';
 
-export default function (...params) {
+export default function (...events) {
 
-	assert('The on decorator requires parameters', params.length > 0);
+	assert(
+		'The @off decorator requires event names to be specified',
+		events.length > 0 && events.every(v => typeof v === "string")
+	);
 
 	return function(target, key, desc) {
 
@@ -12,7 +15,7 @@ export default function (...params) {
 			desc && typeof desc.value === 'function',
 		);
 
-		for (let event of params) {
+		for (let event of events) {
 			addListener(target, event, null, key);
 		}
 
