@@ -17,7 +17,7 @@
 	</button>
 
 	{{#if this.show}}
-		<Ascua::Modal @close={{fn (mut this.show) false}} class="custom">
+		<Ascua::Modal @onClose={{fn (mut this.show) false}} class="custom">
 			This is a custom modal window
 		</Ascua::Modal>
 	{{/if}}
