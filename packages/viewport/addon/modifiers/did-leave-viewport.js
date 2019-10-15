@@ -35,7 +35,7 @@ export default setModifierManager(
 
 		destroyModifier({ element }) {
 			if (enabled()) {
-				viewport.observe(element);
+				viewport.unobserve(element);
 			}
 		}
 
