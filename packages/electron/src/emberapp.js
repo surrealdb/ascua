@@ -71,8 +71,10 @@ module.exports = function() {
 			}
 		});
 
-		window.webContents.on('did-fail-load', (e) => {
-			window.loadURL(BASE);
+		window.webContents.on('did-fail-load', (e, int, text, url) => {
+			setTimeout( () => {
+				window.loadURL(MAIN || INDX);
+			}, 1000);
 		});
 
 	});
