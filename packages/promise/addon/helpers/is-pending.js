@@ -10,9 +10,10 @@ export default class extends Await {
 	async process(promise) {
 		try {
 			await promise;
+			this.value = false;
 		} catch(e) {
 			try {
-				this.value = false;
+				this.value = true;
 			} catch(e) {
 				// Helper is no longer being rendered
 			}
@@ -20,4 +21,3 @@ export default class extends Await {
 	}
 
 }
-

@@ -10,7 +10,6 @@ export default class extends Await {
 	async process(promise) {
 		try {
 			await promise;
-			this.value = false;
 		} catch(e) {
 			try {
 				this.value = true;
