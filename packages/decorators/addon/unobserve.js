@@ -2,7 +2,7 @@ import { assert } from '@ember/debug';
 import { expandProperties } from '@ember/object/computed';
 import { removeObserver } from '@ember/object/observers';
 
-export default function (...paths) {
+export default function(...paths) {
 
 	assert(
 		'The @unobserve decorator requires `dependentKey` parameters',

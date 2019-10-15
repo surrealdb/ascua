@@ -1,7 +1,7 @@
 import { assert } from '@ember/debug';
 import { addListener } from '@ember/object/events';
 
-export default function (...events) {
+export default function(...events) {
 
 	assert(
 		'The @off decorator requires event names to be specified',
