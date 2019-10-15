@@ -10,8 +10,8 @@ export default class extends Helper {
 		this.recompute();
 	}
 
-	compute([...params]) {
-		return this.router.isActive(...params);
+	compute([route]) {
+		return this.router.currentRouteName === route;
 	}
 
 }
