@@ -154,8 +154,11 @@ section.body {
 				&:hover {
 					text-decoration:underline;
 				}
-				&.active {
+				&.select {
 					color:#00ffad;
+				}
+				&.indent {
+					padding-left:15px;
 				}
 			}
 

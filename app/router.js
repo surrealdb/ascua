@@ -35,7 +35,9 @@ Router.map(function() {
 		this.route('codemirror');
 		this.route('mapbox-gl');
 		this.route('marked');
-		this.route('moment');
+		this.route('moment', function() {
+			this.route('helpers');
+		});
 		this.route('sheet');
 		this.route('stripe');
 	});
