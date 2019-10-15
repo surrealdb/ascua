@@ -1,6 +1,6 @@
 {
   "name": "@ascua/transform",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Small description for @ascua/transform goes here",
   "keywords": [
     "ember-addon"
