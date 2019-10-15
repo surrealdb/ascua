@@ -1,73 +1,73 @@
 <nav>
 
 	<div>Introduction</div>
-	<LinkTo @route="index">Setup</LinkTo>
-	<LinkTo @route="config">Config</LinkTo>
-	<LinkTo @route="styling">Styling</LinkTo>
+	<Navigate @route="index" @name="Setup" />
+	<Navigate @route="config" @name="Config" />
+	<Navigate @route="styling" @name="Styling" />
 
 	<div>Guides</div>
-	<LinkTo @route="guides.pwas">PWAs</LinkTo>
-	<LinkTo @route="guides.building">Building</LinkTo>
-	<LinkTo @route="guides.electron">Electron</LinkTo>
-	<LinkTo @route="guides.fastboot">Fastboot</LinkTo>
+	<Navigate @route="guides.pwas" @name="PWAs" />
+	<Navigate @route="guides.building" @name="Building" />
+	<Navigate @route="guides.electron" @name="Electron" />
+	<Navigate @route="guides.fastboot" @name="Fastboot" />
 
 	<div>Services</div>
 	<section show={{begs-with (route-name) "services"}}>
-		<LinkTo @route="services.clock">Clock</LinkTo>
-		<LinkTo @route="services.electron">Electron</LinkTo>
-		<LinkTo @route="services.internet">Internet</LinkTo>
-		<LinkTo @route="services.location">Location</LinkTo>
-		<LinkTo @route="services.metrics">Metrics</LinkTo>
-		<LinkTo @route="services.storage">Storage</LinkTo>
-		<LinkTo @route="services.update">Update</LinkTo>
-		<LinkTo @route="services.worker">Worker</LinkTo>
+		<Navigate @route="services.clock" @name="Clock" />
+		<Navigate @route="services.electron" @name="Electron" />
+		<Navigate @route="services.internet" @name="Internet" />
+		<Navigate @route="services.location" @name="Location" />
+		<Navigate @route="services.metrics" @name="Metrics" />
+		<Navigate @route="services.storage" @name="Storage" />
+		<Navigate @route="services.update" @name="Update" />
+		<Navigate @route="services.worker" @name="Worker" />
 	</section>
 
 	<div>Libraries</div>
 	<section show={{begs-with (route-name) "libraries"}}>
-		<LinkTo @route="libraries.apexcharts">apexcharts.js</LinkTo>
-		<LinkTo @route="libraries.chart">chart.js</LinkTo>
-		<LinkTo @route="libraries.codemirror">codemirror.js</LinkTo>
-		<LinkTo @route="libraries.mapbox-gl">mapbox-gl.js</LinkTo>
-		<LinkTo @route="libraries.marked">marked.js</LinkTo>
-		<LinkTo @route="libraries.moment">moment.js</LinkTo>
-		<LinkTo @route="libraries.sheet">sheet.js</LinkTo>
-		<LinkTo @route="libraries.stripe">stripe.js</LinkTo>
+		<Navigate @route="libraries.apexcharts" @name="apexcharts.js" />
+		<Navigate @route="libraries.chart" @name="chart.js" />
+		<Navigate @route="libraries.codemirror" @name="codemirror.js" />
+		<Navigate @route="libraries.mapbox-gl" @name="mapbox-gl.js" />
+		<Navigate @route="libraries.marked" @name="marked.js" />
+		<Navigate @route="libraries.moment" @name="moment.js" />
+		<Navigate @route="libraries.sheet" @name="sheet.js" />
+		<Navigate @route="libraries.stripe" @name="stripe.js" />
 	</section>
 
 	<div>Elements</div>
 	<section show={{begs-with (route-name) "elements"}}>
-		<LinkTo @route="elements.contextmenu">Contextmenu</LinkTo>
-		<LinkTo @route="elements.dropdown">Dropdown</LinkTo>
-		<LinkTo @route="elements.droppable">Droppable</LinkTo>
-		<LinkTo @route="elements.editable">Editable</LinkTo>
-		<LinkTo @route="elements.iframe">Iframe</LinkTo>
-		<LinkTo @route="elements.gravatar">Gravatar</LinkTo>
-		<LinkTo @route="elements.gridlist">Gridlist</LinkTo>
-		<LinkTo @route="elements.initials">Initials</LinkTo>
-		<LinkTo @route="elements.image">Image</LinkTo>
-		<LinkTo @route="elements.input">Input</LinkTo>
-		<LinkTo @route="elements.label">Label</LinkTo>
-		<LinkTo @route="elements.link">Link</LinkTo>
-		<LinkTo @route="elements.modal">Modal</LinkTo>
-		<LinkTo @route="elements.select">Select</LinkTo>
-		<LinkTo @route="elements.social">Social</LinkTo>
-		<LinkTo @route="elements.tooltip">Tooltip</LinkTo>
-		<LinkTo @route="elements.webview">Webview</LinkTo>
+		<Navigate @route="elements.contextmenu" @name="Contextmenu" />
+		<Navigate @route="elements.dropdown" @name="Dropdown" />
+		<Navigate @route="elements.droppable" @name="Droppable" />
+		<Navigate @route="elements.editable" @name="Editable" />
+		<Navigate @route="elements.iframe" @name="Iframe" />
+		<Navigate @route="elements.gravatar" @name="Gravatar" />
+		<Navigate @route="elements.gridlist" @name="Gridlist" />
+		<Navigate @route="elements.initials" @name="Initials" />
+		<Navigate @route="elements.image" @name="Image" />
+		<Navigate @route="elements.input" @name="Input" />
+		<Navigate @route="elements.label" @name="Label" />
+		<Navigate @route="elements.link" @name="Link" />
+		<Navigate @route="elements.modal" @name="Modal" />
+		<Navigate @route="elements.select" @name="Select" />
+		<Navigate @route="elements.social" @name="Social" />
+		<Navigate @route="elements.tooltip" @name="Tooltip" />
+		<Navigate @route="elements.webview" @name="Webview" />
 	</section>
 
 	<div>Helpers</div>
 	<section show={{begs-with (route-name) "helpers"}}>
-		<LinkTo @route="helpers.arrays">Arrays</LinkTo>
-		<LinkTo @route="helpers.dom">Dom</LinkTo>
-		<LinkTo @route="helpers.events">Events</LinkTo>
-		<LinkTo @route="helpers.format">Format</LinkTo>
-		<LinkTo @route="helpers.keyboard">Keyboard</LinkTo>
-		<LinkTo @route="helpers.logic">Logic</LinkTo>
-		<LinkTo @route="helpers.maths">Maths</LinkTo>
-		<LinkTo @route="helpers.promise">Promise</LinkTo>
-		<LinkTo @route="helpers.routing">Routing</LinkTo>
-		<LinkTo @route="helpers.strings">Strings</LinkTo>
+		<Navigate @route="helpers.arrays" @name="Arrays" />
+		<Navigate @route="helpers.dom" @name="Dom" />
+		<Navigate @route="helpers.events" @name="Events" />
+		<Navigate @route="helpers.format" @name="Format" />
+		<Navigate @route="helpers.keyboard" @name="Keyboard" />
+		<Navigate @route="helpers.logic" @name="Logic" />
+		<Navigate @route="helpers.maths" @name="Maths" />
+		<Navigate @route="helpers.promise" @name="Promise" />
+		<Navigate @route="helpers.routing" @name="Routing" />
+		<Navigate @route="helpers.strings" @name="Strings" />
 	</section>
 
 </nav>
