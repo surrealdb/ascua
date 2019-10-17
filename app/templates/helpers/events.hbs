@@ -8,6 +8,16 @@
 	ember install @ascua/events
 </Example>
 
+<h2>dispatch-event</h2>
+
+<p>Dispatch a new custom event.</p>
+
+<Example @name="demo-services-events-dispatch-event.hbs">
+	<button {{on "click" (dispatch-event "hello")}} {{on "hello" (console)}}>
+		Click me
+	</button>
+</Example>
+
 <h2>on</h2>
 
 <p>Specify an event to listen to, along with a handler.</p>
