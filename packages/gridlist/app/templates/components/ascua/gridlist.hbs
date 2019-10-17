@@ -1,5 +1,5 @@
 <app-gridlist {{did-insert this.didInsert}} {{did-resize this.didResize}} {{did-update this.didUpdate @model @model.length}} ...attributes>
-	<app-gridlist-view {{on "scroll" this.didScroll}}>
+	<app-gridlist-view {{on "scroll" this.didScroll}} {{on "click" this.didClick}}>
 		<app-gridlist-area {{style height=this.conf.h}}>
 			{{~#each this.items as |item|~}}
 				<Ascua::Gridlist::Item

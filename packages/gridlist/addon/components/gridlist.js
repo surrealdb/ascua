@@ -149,7 +149,7 @@ export default class extends Component {
 
 	@action select(item, options) {
 
-		if (options.toggle) {
+		if (item && options.toggle) {
 			if (this.conf.a.includes(item.id)) {
 				this.conf.a.removeObject(item.id);
 			} else {
@@ -157,17 +157,17 @@ export default class extends Component {
 			}
 		}
 
-		if (options.range) {
+		if (item && options.range) {
 			// let idx = range(item.index, this.cursor);
 			// this.conf.a.addObjects(idx);
 		}
 
-		if (options.single) {
+		if (item && options.single) {
 			this.conf.a.clear();
 			this.conf.a.addObject(item.id);
 		}
 
-		if (options.reset) {
+		if (item === undefined) {
 			this.conf.a.clear();
 		}
 
@@ -180,6 +180,8 @@ export default class extends Component {
 	}
 
 	@action didClick(event, item) {
+
+		event.stopPropagation();
 
 		if (event.shiftKey) {
 			this.select(item, { range: true });
@@ -202,6 +204,8 @@ export default class extends Component {
 	}
 
 	@action dblClick(event, item) {
+
+		event.stopPropagation();
 
 		if (event.shiftKey) {
 			this.select(item, { range: true });
