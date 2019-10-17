@@ -22,7 +22,10 @@
     "ember-cli-htmlbars": "^4.0.0"
   },
   "ember-addon": {
-    "demoURL": "https://abcum.github.io/ascua"
+    "demoURL": "https://abcum.github.io/ascua",
+    "after": [
+      "@ascua/transform"
+    ]
   },
   "homepage": "https://abcum.github.io/ascua",
   "publishConfig": {
