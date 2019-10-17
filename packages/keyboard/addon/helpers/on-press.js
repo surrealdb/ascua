@@ -1,21 +1,16 @@
 import Helper from '@ember/component/helper';
 import { inject } from '@ember/service';
-import parse from '../utils/parse';
-import keys from '../utils/keys';
+import handler from '../utils/handler';
 
 export default class extends Helper {
 
 	@inject('-document') document;
 
-	compute([keys, func]) {
+	compute([keys, func, ...params]) {
 
 		if (typeof FastBoot !== 'undefined') return;
 
-		this.func = func;
-
-		this.opts = parse(keys);
-
-		this.call = this.handle.bind(this);
+		this.call = handler.bind(this, keys, func);
 
 		this.document.removeEventListener('keydown', this.call);
 
@@ -30,36 +25,6 @@ export default class extends Helper {
 		this.document.removeEventListener('keydown', this.call);
 
 		super.willDestroy();
-
-	}
-
-	handle(event) {
-
-		if (this.opts.alt && !event.altKey) {
-			return true;
-		}
-
-		if (this.opts.ctrl && !event.ctrlKey) {
-			return true;
-		}
-
-		if (this.opts.meta && !event.metaKey) {
-			return true;
-		}
-
-		if (this.opts.shift && !event.shiftKey) {
-			return true;
-		}
-
-		if (keys[this.opts.char] !== event.which) {
-			return true;
-		}
-
-		event.stopPropagation();
-
-		event.preventDefault();
-
-		return this.func(event);
 
 	}
 

@@ -19,11 +19,7 @@ export default setModifierManager(
 		capabilities: capabilities ? capabilities('3.13') : undefined,
 
 		createModifier() {
-			return {
-				element: null,
-				timeout: null,
-				callback: null,
-			};
+			return { element: null, timeout: null, callback: null };
 		},
 
 		installModifier(state, element, { positional: [callback], named: { debounce = 0 } }) {

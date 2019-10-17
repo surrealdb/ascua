@@ -8,25 +8,41 @@
 	ember install @ascua/keyboard
 </Example>
 
-<h2>on-press</h2>
+<h2>on-press (helper)</h2>
 
 <p>Bind an action to an event whenever a keyboard key is pressed.</p>
 
-<Example @name="demo-helpers-keyboard-hot-key.hbs">
+<Example @name="demo-helpers-keyboard-on-press-helper.hbs">
 	Go ahead and press <strong>b</strong>.
-	{{on-press "b" (console "You pressed b")}}
+	{{on-press "b" (console "You pressed b") "1" "2" "3"}}
 </Example>
 
 <p>Or when a series of keys is pressed together.</p>
 
-<Example @name="demo-helpers-keyboard-hot-key-cmd.hbs">
-	Go ahead and press <strong>command+b</strong>.
-	{{on-press "cmd+b" (console "You pressed command+b")}}
+<Example @name="demo-helpers-keyboard-on-press-helper-cmd.hbs">
+	Go ahead and press <strong>cmd+b</strong>.
+	{{on-press "cmd+b" (console "You pressed cmd+b")}}
 </Example>
 
 <p>Or specify keys using special modifier names.</p>
 
-<Example @name="demo-helpers-keyboard-hot-key-cmd-backspace.hbs">
-	Go ahead and press <strong>command+backspace</strong>.
-	{{on-press "cmd+backspace" (console "You pressed command+backspace")}}
+<Example @name="demo-helpers-keyboard-on-press-helper-cmd-backspace.hbs">
+	Go ahead and press <strong>cmd+backspace</strong>.
+	{{on-press "cmd+backspace" (console "You pressed cmd+backspace")}}
+</Example>
+
+<h2>on-press (modifier)</h2>
+
+<p>Bind an action to an event whenever a keyboard key is pressed.</p>
+
+<Example @name="demo-helpers-keyboard-on-press-modifier.hbs">
+	Type in the box and press <strong>enter</strong>.
+	<Input {{on-press "enter" (console "You pressed enter")}} />
+</Example>
+
+<p>Or when a series of keys is pressed together.</p>
+
+<Example @name="demo-helpers-keyboard-on-press-modifier-cmd.hbs">
+	Type in the box and press <strong>cmd+enter</strong>.
+	<Input {{on-press "cmd+enter" (console "You pressed cmd+enter")}} />
 </Example>
