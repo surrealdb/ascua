@@ -1,5 +1,4 @@
-import EmberObject from '@ember/object';
-import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 
 export default class Range {
 
@@ -8,9 +7,11 @@ export default class Range {
 	}
 
 	@task(function* (fetch) {
-
-		return yield fetch(this.range);
-
+		try {
+			return fetch(this.range);
+		} catch (e) {
+			// Ignore
+		}
 	}).drop() fetcher;
 
 }

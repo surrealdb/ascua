@@ -1,32 +1,35 @@
 import ObjectProxy from '@ember/object/proxy';
-import { task } from 'ember-concurrency';
+
+const noop = () => {};
 
 export default ObjectProxy.extend({
 
-	reject: null,
+	reject: noop,
 
-	resolve: null,
+	resolve: noop,
 
 	content: null,
 
-	reset() {
+	async setup() {
 
-		this.fetcher.cancelAll();
+		try {
 
-		this.set('content', null);
+			let content = await new Promise( (res, rej) => {
+				this.resolve = res; this.reject = rej;
+			});
 
-	},
+			this.set('content', content);
 
-	fetcher: task(function* () {
+		} catch (e) {
 
-		this.set('content', null);
+			// Ignore
 
-		let content = yield new Promise((res, rej) => {
-			this.resolve = res; this.reject = rej;
-		});
+		} finally {
 
-		this.set('content', content);
+			this.reject();
 
-	}).restartable(),
+		}
+
+	}
 
 });

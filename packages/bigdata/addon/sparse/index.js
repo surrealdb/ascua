@@ -1,4 +1,3 @@
-import { task } from 'ember-concurrency';
 import Range from './range';
 import Item from './item';
 
@@ -51,10 +50,6 @@ export default class extends Array {
 		;
 	}
 
-	createObjectAt(idx) {
-		return this[idx] = Item.create();
-	}
-
 	sparseObjectAt(idx) {
 		return this[idx] = this[idx] || Item.create();
 	}
@@ -72,7 +67,7 @@ export default class extends Array {
 		let props = { start, limit };
 		let range = this.range(props);
 
-		this.fetcher.perform(props);
+		this.fetcher(props);
 
 		return this[idx];
 
@@ -81,7 +76,7 @@ export default class extends Array {
 	prepareObectsAt({ start, limit }) {
 		for (let i = start; i < (start + limit); i++) {
 			this[i] = this[i] || Item.create();
-			this[i].fetcher.perform();
+			this[i].setup();
 		}
 	}
 
@@ -101,13 +96,13 @@ export default class extends Array {
 		}
 	}
 
-	@task(function* (rng) {
+	async fetcher(rng) {
 
 		try {
 
 			let range = this.range(rng);
 
-			let array = yield range.fetcher.perform(this.fetch);
+			let array = await range.fetcher.perform(this.fetch);
 
 			let items = [].concat(array.data);
 
@@ -127,6 +122,6 @@ export default class extends Array {
 
 		this.notifyPropertyChange('[]');
 
-	}) fetcher;
+	}
 
 }
