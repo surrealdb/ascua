@@ -13,13 +13,17 @@ export function sparse(limit, ...props) {
 
 	return function(target, key, desc) {
 
-		let array = new Sparse(limit, fetch.bind(target));
+		desc.initializer = function() {
 
-		props.forEach(prop => {
-			addObserver(target, prop, array, 'reset');
-		});
+			let array = new Sparse(limit, fetch.bind(this));
 
-		desc.initializer = () => array;
+			props.forEach(prop => {
+				addObserver(this, prop, array, 'reset');
+			});
+
+			return array;
+
+		}
 
 		return desc;
 

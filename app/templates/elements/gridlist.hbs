@@ -57,7 +57,6 @@
 
 <p>The final argument is the function which will fetch the data from the remote server. This function is passed two arguments: the first argument is a range with a <code>start</code> number and a <code>limit</code> number; the second argument is an object containing the observed query properties.</p>
 
-
 <Example @name="demo-elements-gridlist-delayed-sparse-constructor.js">
 	import Component from '@ember/component';
 	import Sparse from '@ascua/bigdata/sparse';
@@ -83,7 +82,7 @@
 
 		search = '';
 
-		@sparse(10, 'search', async (range) => {
+		@sparse(10, 'search', async function(range) {
 			return { total: 1000, data: new Array(range.limit).fill().map( (v, k) => {
 				return { id: range.start + k + 1 };
 			})};
