@@ -72,6 +72,7 @@
     "@ascua/chart.js": "file:packages/chart.js",
     "@ascua/clock": "file:packages/clock",
     "@ascua/codemirror.js": "file:packages/codemirror.js",
+    "@ascua/context": "file:packages/context",
     "@ascua/contextmenu": "file:packages/contextmenu",
     "@ascua/core": "file:packages/core",
     "@ascua/decorators": "file:packages/decorators",
