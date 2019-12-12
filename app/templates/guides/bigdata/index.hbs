@@ -1,0 +1,15 @@
+<h1>Building</h1>
+
+<p>When loading large amounts of data from a remote API server, you can use a <code>Sparse</code> array or an <code>Infinite</code> array. These array types will fetch content asynchronously when it is needed by the user interface. This works well with the <code>Ascua::Gridlist</code> component for efficient sparse or incremental loading of large amounts of data.</p>
+
+<h2>Infinite loading</h2>
+
+<p>When loading data of an unknown length, the <code>Infinite</code> array can be used to asynchronously fetch data when the end of the array has been accessed.</p>
+
+{{#link-to "guides.bigdata.infinite"}}Learn more...{{/link-to}}
+
+<h2>Sparse loading</h2>
+
+<p>When loading data where the total number of items is known, the <code>Sparse</code> array can be used to asynchronously fetch the necessary data at any position within the array when it is accessed.</p>
+
+{{#link-to "guides.bigdata.sparse"}}Learn more...{{/link-to}}

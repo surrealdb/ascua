@@ -1,5 +1,5 @@
-import Range from './range';
 import Item from './item';
+import Range from './range';
 
 const FETCH = function() {
 	return { data: [], total: 0 };
@@ -9,13 +9,13 @@ export default class extends Array {
 
 	limit = 0;
 
+	total = 0;
+
 	fetch = 0;
 
 	length = 0;
 
 	ranges = {};
-
-	loading = {};
 
 	constructor(limit, fetch = FETCH) {
 
@@ -38,9 +38,10 @@ export default class extends Array {
 	}
 
 	reset() {
+		this.total = 0;
 		this.length = 0;
 		this.notifyPropertyChange('[]');
-		this.returnObjectAt(0);
+		this.remoteObjectAt(0);
 	}
 
 	range(rng) {
@@ -102,7 +103,7 @@ export default class extends Array {
 
 			let range = this.range(rng);
 
-			let array = await range.fetcher.perform(this.fetch);
+			let array = await range.fetch(this.fetch);
 
 			let items = [].concat(array.data);
 
@@ -112,11 +113,17 @@ export default class extends Array {
 
 			this.length = array.total;
 
+			this.total = array.total;
+
 		} catch (error) {
 
-			this.prepareObectsAt(rng);
+			if (this.total) {
 
-			this.declineObjectsAt(rng, error);
+				this.prepareObectsAt(rng);
+
+				this.declineObjectsAt(rng, error);
+
+			}
 
 		}
 

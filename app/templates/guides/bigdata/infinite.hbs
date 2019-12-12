@@ -1,0 +1,55 @@
+<h1>Infinite array</h1>
+
+<p>When loading large amounts of data from a remote API server, you can use an <code>Infinite</code> array. The Infinite array will fetch content only when it is needed by the user interface. This works well with the <code>Ascua::Gridlist</code> component for efficient incremental loading of large amounts of data.</p>
+
+<p>The first argument to the <code>Infinite</code> array class is a number which defines how many items should be fetched in a single query.</p>
+
+<p>The final argument is the function which will fetch the data from the remote server. This function is passed a two arguments: the first is an <code>@ascua/context</code> which can be used to detect whether the context has been cancelled or timedout. The second is a range with a <code>start</code> number and a <code>limit</code> number.</p>
+
+<Example @name="demo-guides-bigdata-infinite-constructor.js">
+	import Component from '@ember/component';
+	import Infinite from '@ascua/bigdata/infinite';
+
+	export default class extends Component {
+
+		data = new Infinite(10, async (ctx, range) => {
+			await ctx.delay(1000);
+			return new Array(range.limit).fill().map( (v, k) => {
+				return { id: range.start + k + 1 };
+			});
+		});
+
+	}
+</Example>
+
+<p>In order to create a computed infinite array, use the <code>@infinite</code> decorator. This will define a computed property which will update then any dependent properties are changed.</p>
+
+<Example @name="demo-guides-bigdata-infinite-decorator.js">
+	import Component from '@ember/component';
+	import { infinite } from '@ascua/bigdata';
+
+	export default class extends Component {
+
+		search = '';
+
+		@infinite(10, 'search', async function(ctx, range) {
+			await ctx.delay(1000);
+			return new Array(range.limit).fill().map( (v, k) => {
+				return { id: range.start + k + 1 };
+			});
+		}) data;
+
+	}
+</Example>
+
+<p>When used together with the <code>Ascua::Gridlist</code> component, items will render efficiently, loading further data from the end of the dataset as the user scrolls.</p>
+
+<Example @name="demo-bigdata-sparse.hbs">
+	<Input @value={{this.search}} />
+	<div class="pos-r min-h-400">
+		<Ascua::Gridlist @model={{this.data}} @rowHeight="80" as |model|>
+			<div class="l">{{if model "List item" "Loading..."}}</div>
+			<div class="r">{{model.id}}</div>
+		</Ascua::Gridlist>
+	</div>
+</Example>

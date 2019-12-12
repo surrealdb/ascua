@@ -1,4 +1,4 @@
-import { task } from 'ember-concurrency';
+import context from '@ascua/context';
 
 export default class Range {
 
@@ -6,12 +6,14 @@ export default class Range {
 		this.range = range;
 	}
 
-	@task(function* (fetch) {
-		try {
-			return fetch(this.range);
-		} catch (e) {
-			// Ignore
-		}
-	}).drop() fetcher;
+	async fetch(fetch) {
+
+		if (this.cancel) this.cancel();
+
+		[this.ctx, this.cancel] = context.withCancel();
+
+		return await fetch(this.ctx, this.range);
+
+	}
 
 }

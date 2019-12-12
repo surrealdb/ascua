@@ -16,6 +16,10 @@ Router.map(function() {
 		this.route('building');
 		this.route('electron');
 		this.route('fastboot');
+		this.route('bigdata', function() {
+			this.route('infinite');
+			this.route('sparse');
+		});
 	});
 
 	this.route('services', function() {
