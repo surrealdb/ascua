@@ -113,7 +113,15 @@ context-menu-item[type='radio'] {
 	background-position:5px 2px;
 }
 
-context-menu-item[visible] {
+context-menu-item[type='normal'][visible] {
+	display:block;
+}
+
+context-menu-item[type='checkbox'][visible] {
+	display:block;
+}
+
+context-menu-item[type='radio'][visible] {
 	display:block;
 }
 
