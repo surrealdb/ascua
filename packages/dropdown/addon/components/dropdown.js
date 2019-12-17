@@ -22,7 +22,7 @@ export default class extends Component {
 		this.visible = false;
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		this.element = element;
 	}
 

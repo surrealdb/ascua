@@ -9,11 +9,11 @@ export default class extends Component {
 
 	@tracked value = this.args.value;
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		this.element = element;
 	}
 
-	@action didUpdate(element) {
+	@action didChange(element) {
 		if (element !== document.activeElement) {
 			this.value = this.args.value;
 		}

@@ -1,5 +1,5 @@
 <app-codemirror
-	{{did-insert this.didInsert}}
-	{{did-update this.didUpdate @value}}
-	{{will-destroy this.willDestroy}}
+	{{did-insert this.didCreate}}
+	{{did-update this.didChange @value}}
+	{{will-destroy this.willDelete}}
 ></app-codemirror>

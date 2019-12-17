@@ -2,8 +2,8 @@
 	list={{eq "l" @conf.k}}
 	grid={{eq "g" @conf.k}}
 	selected={{this.selected}}
-	{{did-insert this.didInsert}}
-	{{did-update this.didUpdate
+	{{did-insert this.didCreate}}
+	{{did-update this.didChange
 		@total
 		@conf.e.w
 		@conf.v.c

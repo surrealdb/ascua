@@ -37,7 +37,7 @@ export default class extends Component {
 		return Object.assign({}, defaults, this.args.opts);
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 
 		this.editor = new CodeMirror(element, this.opts);
 
@@ -51,7 +51,7 @@ export default class extends Component {
 
 	}
 
-	@action didUpdate() {
+	@action didChange() {
 
 		if (this.editor.getValue() !== this.args.value) {
 			this.editor.setValue(this.args.value + '');

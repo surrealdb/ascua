@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 
 export default class extends Component {
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		this.element = element;
 	}
 

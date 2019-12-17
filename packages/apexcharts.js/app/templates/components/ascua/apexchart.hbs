@@ -1,6 +1,6 @@
 <div
 	{{style width=this.width height=this.height}}
-	{{did-insert this.didInsert}}
-	{{did-update this.didUpdate @data @opts}}
-	{{will-destroy this.willDestroy}}
+	{{did-insert this.didCreate}}
+	{{did-update this.didChange @data @opts}}
+	{{will-destroy this.willDelete}}
 ></div>

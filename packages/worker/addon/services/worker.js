@@ -62,11 +62,11 @@ export default class extends Service.extend(Evented) {
 	// destroyed, then let's ensure that
 	// the checker timer is cancelled.
 
-	willDestroy() {
+	willDelete() {
 
 		if (this.timer) clearInterval(this.timer);
 
-		super.willDestroy(...arguments);
+		super.willDelete(...arguments);
 
 	}
 

@@ -11,8 +11,6 @@ export default class extends Array {
 
 	fetch = 0;
 
-	length = 0;
-
 	constructor(limit, fetch = FETCH) {
 
 		super();

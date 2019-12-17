@@ -1,3 +1,3 @@
 <app-input-area>
-	<textarea {{did-insert this.didInsert}} {{did-update this.didUpdate @value}} {{on "keydown" this.didLimit}} {{on "keyup" this.didPress}} {{on "input" this.didInput}} ...attributes>{{this.value}}</textarea>
+	<textarea {{did-insert this.didCreate}} {{did-update this.didChange @value}} {{on "keydown" this.didLimit}} {{on "keyup" this.didPress}} {{on "input" this.didInput}} ...attributes>{{this.value}}</textarea>
 </app-input-area>

@@ -22,11 +22,11 @@ export default class extends Service {
 
 	}
 
-	willDestroy() {
+	willDelete() {
 
 		this.poller.clear();
 
-		super.willDestroy(...arguments);
+		super.willDelete(...arguments);
 
 	}
 

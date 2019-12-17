@@ -39,11 +39,11 @@ export default class extends Component {
 		});
 	}
 
-	@action didInsert() {
+	@action didCreate() {
 		this.contextmenu.items.addObject(this);
 	}
 
-	@action willDestroy() {
+	@action willDelete() {
 		this.contextmenu.items.removeObject(this);
 	}
 

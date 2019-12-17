@@ -10,7 +10,7 @@ export default class extends Component {
 
 	@tracked value = htmlSafe(this.args.value);
 
-	@action didUpdate(element) {
+	@action didChange(element) {
 		if (element !== document.activeElement) {
 			this.value = htmlSafe(this.args.value);
 		}

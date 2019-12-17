@@ -40,7 +40,7 @@ export default class extends Component {
 
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 
 		if (typeof FastBoot !== 'undefined') return;
 
@@ -66,7 +66,7 @@ export default class extends Component {
 
 	}
 
-	@action willDestroy() {
+	@action willDelete() {
 
 		if (typeof FastBoot !== 'undefined') return;
 

@@ -22,17 +22,17 @@ export default class extends Component {
 		});
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		this.chart = new Chart(element, this.initial);
 		this.chart.render();
 	}
 
-	@action didUpdate() {
+	@action didChange() {
 		this.chart.updateOptions(this.args.opts);
 		this.chart.updateSeries(this.args.data);
 	}
 
-	@action willDestroy() {
+	@action willDelete() {
 		this.chart.destroy();
 	}
 

@@ -28,7 +28,7 @@ export default class extends Component {
 		return true;
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		if (this.exit()) return;
 		this.model = this.args.model;
 		this.total = this.model.length;
@@ -39,7 +39,7 @@ export default class extends Component {
 		this.setup(true);
 	}
 
-	@action didUpdate(element) {
+	@action didChange(element) {
 		if (this.exit()) return;
 		this.model = this.args.model;
 		this.total = this.model.length;

@@ -27,7 +27,7 @@ export default class extends Metric {
 
 	}
 
-	willDestroy() {
+	willDelete() {
 
 		document.querySelectorAll(src).forEach(e => {
 			e.parentElement.removeChild(e);

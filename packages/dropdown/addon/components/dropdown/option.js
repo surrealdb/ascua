@@ -8,13 +8,12 @@ export default class extends Component {
 		this.args.dropdown.changed(this);
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		this.element = element;
 		this.args.dropdown.register(this);
 	}
 
-	@action willDestroy(element) {
-		this.element = element;
+	@action willDelete() {
 		this.args.dropdown.unregister(this);
 	}
 

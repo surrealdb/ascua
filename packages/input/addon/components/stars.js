@@ -31,11 +31,11 @@ export default class extends Component {
 		});
 	}
 
-	@action didInsert() {
+	@action didCreate() {
 		this.value = this.args.value;
 	}
 
-	@action didUpdate() {
+	@action didChange() {
 		this.value = this.args.value;
 	}
 

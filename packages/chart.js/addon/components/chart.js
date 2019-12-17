@@ -15,7 +15,7 @@ export default class extends Component {
 		return this.args.height || '100%';
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		this.chart = new Chart(element, {
 			type: this.args.type,
 			data: this.args.data,
@@ -23,13 +23,13 @@ export default class extends Component {
 		});
 	}
 
-	@action didUpdate() {
+	@action didChange() {
 		this.chart.config.data = this.args.data;
 		this.chart.config.options = this.args.opts;
 		this.chart.update();
 	}
 
-	@action willDestroy() {
+	@action willDelete() {
 		this.chart.destroy();
 	}
 

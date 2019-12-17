@@ -42,7 +42,7 @@ export default class extends Component {
 		return `scale(${this.scale})`;
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		this.frame = element.offsetWidth;
 	}
 

@@ -13,8 +13,6 @@ export default class extends Array {
 
 	fetch = 0;
 
-	length = 0;
-
 	ranges = {};
 
 	constructor(limit, fetch = FETCH) {

@@ -11,11 +11,11 @@ export default class extends Component {
 		});
 	}
 
-	@action didInsert(element) {
+	@action didCreate(element) {
 		this.position(element);
 	}
 
-	@action didUpdate(element) {
+	@action didChange(element) {
 		this.position(element);
 	}
 

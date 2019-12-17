@@ -3,7 +3,10 @@ module.exports = {
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
   },
   plugins: [
     'ember'
@@ -16,12 +19,12 @@ module.exports = {
     browser: true
   },
   rules: {
+    'ember/no-jquery': 'error'
   },
   overrides: [
     // node files
     {
       files: [
-        '.ember-cli.js',
         '.eslintrc.js',
         '.template-lintrc.js',
         'ember-cli-build.js',
@@ -29,62 +32,23 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js',
-        'server/**/*.js',
-        // packages
-        'packages/**/blueprints/*/index.js',
-        'packages/**/lib/*.js',
-        'packages/**/src/*.js',
-        'packages/**/plugin/*.js',
-        'packages/**/vendor/*.js',
-        'packages/**/index.js',
-        // specific
-        'packages/electron/blueprints/**/*.js',
-        'packages/fastboot/blueprints/**/*.js',
-        'packages/server/src/**/*.js',
-      ],
-      excludedFiles: [
-        'packages/worker/vendor/sw.mod.js',
-        'packages/**/app/**',
-        'app/**',
+        'server/**/*.js'
       ],
       parserOptions: {
-        sourceType: 'script',
-        ecmaVersion: 2015
+        sourceType: 'script'
       },
       env: {
         browser: false,
-        node: true,
-        es6: true,
+        node: true
       },
       plugins: ['node'],
-      rules: {},
-      extends: [
-        'plugin:node/recommended'
-      ],
-    },
-    //sw.js files
-    {
-      files: [
-        'packages/worker/vendor/sw.mod.js',
-      ],
-      excludedFiles: [
-      	'packages/**/app/**',
-        'app/**',
-      ],
-      parserOptions: {
-        sourceType: 'module',
-        ecmaVersion: 6
-      },
-      env: {
-        browser: false,
-        node: false,
-        es6: true,
-      },
-      plugins: [],
-      rules: {},
-      extends: [
-        'eslint:recommended'
-      ],
+      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
+        // add your custom rules and overrides for node files here
+
+        // this can be removed once the following is fixed
+        // https://github.com/mysticatea/eslint-plugin-node/issues/77
+        'node/no-unpublished-require': 'off'
+      })
     }
   ]
 };
