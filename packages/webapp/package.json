@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "broccoli-caching-writer": "^3.0.3",
-    "broccoli-merge-trees": "^3.0.2",
+    "broccoli-merge-trees": "^4.0.0",
     "ember-cli-babel": "^7.11.1",
     "ember-cli-htmlbars": "^4.0.0",
-    "glob": "^7.1.4",
-    "sharp": "^0.23.1",
+    "glob": "^7.1.6",
+    "sharp": "^0.23.4",
     "xmlbuilder": "^13.0.2"
   },
   "ember-addon": {
