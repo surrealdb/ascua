@@ -1,3 +1,4 @@
+import Object from '@ember/object';
 import { assert } from '@ember/debug';
 
 export default class extends Object {

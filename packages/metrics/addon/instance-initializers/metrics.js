@@ -39,7 +39,7 @@ export default {
 			if (x && f && e) {
 
 				let o = f.create(instance.ownerInjection(), {
-					name: metric.name, config: metric.config
+					config: metric.config
 				});
 
 				instance.register(n, o);
@@ -56,6 +56,9 @@ export default {
 
 		// Push the defined metrics into the service
 		instance.inject('service:metrics', 'metrics', 'metrics:all');
+
+		// Load the metric service
+		instance.lookup('service:metrics');
 
 	},
 
