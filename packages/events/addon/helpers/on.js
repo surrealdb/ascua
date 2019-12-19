@@ -24,11 +24,11 @@ export default class extends Helper {
 
 	}
 
-	willDelete() {
+	willDestroy() {
 
 		this.elem.removeEventListener(this.name, this.func, this.opts);
 
-		super.willDelete();
+		super.willDestroy();
 
 	}
 

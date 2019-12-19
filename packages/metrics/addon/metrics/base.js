@@ -12,8 +12,8 @@ export default class extends Object {
 		assert(`${this.toString()} must implement the load hook!`);
 	}
 
-	willDelete() {
-		assert(`${this.toString()} must implement the willDelete hook!`);
+	willDestroy() {
+		assert(`${this.toString()} must implement the willDestroy hook!`);
 	}
 
 	clear() {}

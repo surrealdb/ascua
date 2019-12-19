@@ -18,13 +18,13 @@ export default class extends Helper {
 
 	}
 
-	willDelete() {
+	willDestroy() {
 
 		if (typeof FastBoot !== 'undefined') return;
 
 		this.document.removeEventListener('keydown', this.call);
 
-		super.willDelete();
+		super.willDestroy();
 
 	}
 
