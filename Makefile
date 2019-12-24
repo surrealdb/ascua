@@ -64,3 +64,8 @@ version:
 publish:
 	@echo "Publish..."
 	npx lerna publish from-package
+
+.PHONY: deploy
+deploy:
+	@echo "Deploy..."
+	ember deploy production
