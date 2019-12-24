@@ -10,6 +10,27 @@
 	ember install @ascua/metrics
 </Example>
 
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>metrics</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-guides-metrics-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			metrics: [
+				{
+					name: 'google-analytics',
+					environments: ['production'],
+					config: {
+						id: 'UA-123456789-1'
+					}
+				},
+			]
+		};
+		return ENV;
+	};
+</Example>
+
 <h2>Identifying a user</h2>
 
 <p>When a user has logged in to your app, or if a user's session data is already known, then you can use the <code>identify()</code> method to identify a user with the different analytics service providers.</p>

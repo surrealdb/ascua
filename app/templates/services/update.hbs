@@ -6,6 +6,21 @@
 
 <p>It is also possible to set the service to trigger an application update automatically, when a new update is found. It does this by reloading the page.</p>
 
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>update</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-guides-update-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			update: {
+				enabled: true
+			}
+		};
+		return ENV;
+	};
+</Example>
+
 <h2>Install</h2>
 
 <Example @name="demo-services-update-install.bash">

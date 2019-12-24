@@ -2,12 +2,63 @@
 
 <h2>Html minification</h2>
 
-<Example @name="demo-guides-building-install-minify.bash">
+<Example @name="demo-guides-minify-install.bash">
 	ember install @ascua/minify
+</Example>
+
+<p>The module can be configured by specifying a <code>minify</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-guides-minify-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			minify: {
+				collapseWhitespace : true,
+				removeComments : true,
+				minifyCSS : true,
+				minifyJS : true,
+				ignoreCustomComments: [
+					/^\s+EMBER_CLI_FASTBOOT_TITLE/,
+					/^\s+EMBER_CLI_FASTBOOT_HEAD/,
+					/^\s+EMBER_CLI_FASTBOOT_BODY/,
+				]
+			}
+		};
+		return ENV;
+	};
 </Example>
 
 <h2>Image minification</h2>
 
-<Example @name="demo-guides-building-install-images.bash">
+<Example @name="demo-guides-images-install.bash">
 	ember install @ascua/images
+</Example>
+
+<p>The module can be configured by specifying a <code>images</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-guides-images-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			images: {
+				jpeg: {
+					quality: 80,
+					progressive: false,
+				},
+				png: {
+					progressive: false,
+					compressionLevel: 9,
+				},
+				webp: {
+					quality: 80,
+					lossless: false,
+					nearLossless: false,
+				},
+				tiff: {
+					quality: 80,
+					compression: 'jpeg',
+					nearLossless: false,
+				},
+			}
+		};
+		return ENV;
+	};
 </Example>

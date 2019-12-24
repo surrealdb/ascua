@@ -2,11 +2,34 @@
 
 <p>Processive Web App support is provided in the <code>@ascua/webapp</code> package. The package automatically generates a <code>webmanifest</code> and a <code>browserconfig</code> file, along with icons, tile images, and launch images for all browsers, devices, and platforms.</p>
 
-<Example @name="demo-guides-building-install-webapp.bash">
+<Example @name="demo-guides-pwas-install.bash">
 	ember install @ascua/webapp
 </Example>
 
-<p>Progressive Web Application settings are configured using the <LinkTo @route="config"><code>webapp</code></LinkTo> configuration options.</p>
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>webapp</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-guides-pwas-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			webapp: {
+				background: '#ffffff',
+				color: '#000000',
+				description: '',
+				display: 'standalone',
+				enabled: true,
+				name: '',
+				orientation: 'portrait',
+				scope: '/',
+				short: '',
+				start: '/',
+				style: 'default',
+			}
+		};
+		return ENV;
+	};
+</Example>
 
 <h2>Asset generation</h2>
 
