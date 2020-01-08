@@ -15,11 +15,11 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
-    "electron": "^7.1.4",
+    "electron": "^7.1.7",
     "electron-builder": "^21.2.0",
     "electron-updater": "^4.2.0",
-    "ember-cli-babel": "^7.11.1",
-    "ember-cli-htmlbars": "^4.0.0"
+    "ember-cli-babel": "^7.13.0",
+    "ember-cli-htmlbars": "^4.2.0"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",

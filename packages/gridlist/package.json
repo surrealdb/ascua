@@ -17,8 +17,8 @@
   "dependencies": {
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/resize": "file:../resize",
-    "ember-cli-babel": "^7.11.1",
-    "ember-cli-htmlbars": "^4.0.0"
+    "ember-cli-babel": "^7.13.0",
+    "ember-cli-htmlbars": "^4.2.0"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
