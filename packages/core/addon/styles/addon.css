@@ -62,6 +62,14 @@ a:hover, a i:hover, a span:hover {
 	color:var(--hover-color);
 }
 
+[draggable=true] {
+	-webkit-user-drag:element;
+	-moz-user-drag:element;
+	-ms-user-drag:element;
+	-o-user-drag:element;
+	user-drag:element;
+}
+
 input, textarea, pre, code, [selectable], [contenteditable] {
 	cursor:text;
 	-webkit-user-select:text;
