@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { setProperties } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
@@ -6,11 +7,11 @@ import Item from '../classes/item';
 
 export default class extends Component {
 
-	@tracked total = 0;
+	total = 0;
 
-	@tracked model = [];
+	model = [];
 
-	@tracked items = [];
+	items = [];
 
 	conf = {
 		@tracked h: 0, // view height
@@ -30,8 +31,10 @@ export default class extends Component {
 
 	@action didCreate(element) {
 		if (this.exit()) return;
-		this.model = this.args.model;
-		this.total = this.model.length;
+		setProperties(this, {
+			model: this.args.model,
+			total: this.args.model.length,
+		});
 		this.conf.e.w = element.clientWidth;
 		this.conf.e.h = element.clientHeight;
 		this.conf.i.w = parseInt(this.args.colWidth);
@@ -41,8 +44,10 @@ export default class extends Component {
 
 	@action didChange(element) {
 		if (this.exit()) return;
-		this.model = this.args.model;
-		this.total = this.model.length;
+		setProperties(this, {
+			model: this.args.model,
+			total: this.args.model.length,
+		});
 		this.conf.e.w = element.clientWidth;
 		this.conf.e.h = element.clientHeight;
 		this.conf.i.w = parseInt(this.args.colWidth);
@@ -70,13 +75,13 @@ export default class extends Component {
 
 		// Total visible columns
 		let cols = 1;
-		cols = colW ? Math.floor( this.conf.e.w / colW ) : cols;
+		cols = colW ? Math.floor(this.conf.e.w / colW) : cols;
 		cols = colW ? Math.max(1, cols) : cols;
 		this.conf.v.c = cols;
 
 		// Total visible rows
 		let rows = 1;
-		rows = rowH ? Math.ceil( this.conf.e.h / rowH ) + 1 : rows;
+		rows = rowH ? Math.ceil(this.conf.e.h / rowH) + 1 : rows;
 		rows = rowH ? Math.max(1, rows) : rows;
 		this.conf.v.r = rows;
 
@@ -90,19 +95,19 @@ export default class extends Component {
 		let frw = Math.floor( brw + ( rows - 1 ) ) + 1;
 
 		// Index of beginning item
-		this.bix = Math.min(this.total, brw * cols) || 0;
+		let bix = Math.min(this.total, brw * cols) || 0;
 
 		// Index of finishing item
-		this.fix = Math.min(this.total, frw * cols) || 0;
+		let fix = Math.min(this.total, frw * cols) || 0;
 
 		// Check if we have scrolled
-		if (this.cix == this.bix && force === false) return;
+		if (this.idx == bix && force === false) return;
 
 		// Set current start index
-		this.cix = this.bix;
+		this.idx = bix;
 
 		// Difference of ids
-		let sub = this.fix - this.bix;
+		let sub = fix - bix;
 
 		// Difference of rows
 		let dif = sub - this.items.length;
@@ -122,7 +127,7 @@ export default class extends Component {
 		}
 
 		// Array of ids for rows to be loaded
-		let ids = Array(sub).fill().map( (v, k) => k + this.bix );
+		let ids = Array(sub).fill().map( (v, k) => k + bix );
 
 		// Change placeholder content
 		ids.forEach(i => {
