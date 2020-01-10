@@ -1,25 +1,29 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
+import { setProperties } from '@ember/object';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
 import { htmlSafe } from '@ember/template';
 
 export default class extends Component {
 
-	@tracked values = [];
+	values = [];
 
-	@tracked options = [];
+	options = [];
 
-	@tracked visible = false;
+	visible = false;
 
 	@action open() {
 		this.style();
-		this.visible = true;
+		setProperties(this, {
+			visible: true,
+		});
 	}
 
 	@action close() {
 		this.style();
-		this.visible = false;
+		setProperties(this, {
+			visible: false,
+		});
 	}
 
 	@action didCreate(element) {
