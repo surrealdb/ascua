@@ -9,10 +9,10 @@ export default class Router extends EmberRouter {
 Router.map(function() {
 
 	this.route('config');
-	this.route('styling');
 
 	this.route('guides', function() {
 		this.route('pwas');
+		this.route('styling');
 		this.route('building');
 		this.route('electron');
 		this.route('fastboot');

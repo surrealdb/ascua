@@ -6,11 +6,17 @@
 
 <p>It is also possible to set the service to trigger an application update automatically, when a new version is found. It does this by reloading all assets in the cache, and forcing the service worker to update on all pages.</p>
 
+<h2>Install</h2>
+
+<Example @name="demo-services-worker-install.bash">
+	ember install @ascua/worker
+</Example>
+
 <h2>Configuration</h2>
 
 <p>The module can be configured by specifying a <code>worker</code> property in <code>config/environment.js</code>.</p>
 
-<Example @name="demo-guides-worker-environment.js">
+<Example @name="demo-services-worker-environment.js">
 	module.exports = function(environment) {
 		let ENV = {
 			worker: {
@@ -19,12 +25,6 @@
 		};
 		return ENV;
 	};
-</Example>
-
-<h2>Install</h2>
-
-<Example @name="demo-services-worker-install.bash">
-	ember install @ascua/worker
 </Example>
 
 <h2>Update available?</h2>

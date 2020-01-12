@@ -2,6 +2,12 @@
 
 <p>When loading large amounts of data from a remote API server, you can use a <code>Sparse</code> array or an <code>Infinite</code> array. These array types will fetch content asynchronously when it is needed by the user interface. This works well with the <code>Ascua::Gridlist</code> component for efficient sparse or incremental loading of large amounts of data.</p>
 
+<h2>Install</h2>
+
+<Example @name="demo-guides-bigdata-install.bash">
+	ember install @ascua/bigdata
+</Example>
+
 <h2>Infinite loading</h2>
 
 <p>When loading data of an unknown length, the <code>Infinite</code> array can be used to asynchronously fetch data when the end of the array has been accessed.</p>
