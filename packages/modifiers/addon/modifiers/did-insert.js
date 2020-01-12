@@ -9,7 +9,7 @@ export default setModifierManager(
 
 		installModifier(state, element, args) {
 			let [fn, ...rest] = args.positional;
-			fn(element, rest, args.named);
+			fn(element, ...rest, args.named);
 		},
 
 		updateModifier() {},

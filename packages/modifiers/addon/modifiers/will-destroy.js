@@ -15,9 +15,9 @@ export default setModifierManager(
 
 		updateModifier() {},
 
-		destroyModifier({ element }, args) {
+		destroyModifier(state, args) {
 			let [fn, ...rest] = args.positional;
-			fn(element, rest, args.named);
+			fn(state.element, ...rest, args.named);
 		},
 
 	}),

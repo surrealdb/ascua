@@ -16,9 +16,9 @@ export default setModifierManager(
 			});
 		},
 
-		updateModifier({ element }, args) {
+		updateModifier(state, args) {
 			Object.keys(args.named).forEach(k => {
-				element.style[k] = isNaN(args.named[k]) ? args.named[k] : args.named[k]+'px';
+				state.element.style[k] = isNaN(args.named[k]) ? args.named[k] : args.named[k]+'px';
 			});
 		},
 

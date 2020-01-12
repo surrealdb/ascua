@@ -33,5 +33,5 @@ export default setModifierManager(
 		destroyModifier() {},
 
 	}),
-	class StyleModifier {}
+	class RefModifier {}
 );

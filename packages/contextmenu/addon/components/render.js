@@ -9,7 +9,7 @@ export default class extends Component {
 
 	visible = !Electron;
 
-	@action didRender(element, [x, y]) {
+	@action didRender(element, x, y) {
 
 		let w = element.offsetWidth;
 		let h = element.offsetHeight;
