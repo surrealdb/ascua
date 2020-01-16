@@ -1,7 +1,7 @@
 {
-  "name": "@ascua/droppable",
+  "name": "@ascua/uploader",
   "version": "0.0.9",
-  "description": "Small description for @ascua/droppable goes here",
+  "description": "Small description for @ascua/uploader goes here",
   "keywords": [
     "ember-addon"
   ],

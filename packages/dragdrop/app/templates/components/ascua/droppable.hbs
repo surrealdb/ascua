@@ -1,0 +1,11 @@
+<app-droppable
+	droppable={{true}}
+	dropping={{this.dropping}}
+	{{on "drop" this.didDrop}}
+	{{on "dragover" this.didDragOver}}
+	{{on "dragenter" this.didDragEnter}}
+	{{on "dragleave" this.didDragLeave}}
+	...attributes
+>
+	{{yield this}}
+</app-droppable>

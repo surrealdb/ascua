@@ -384,6 +384,35 @@ input, textarea {
 	border-bottom:1px dotted orange;
 }
 
+app-draggable {
+	width:100px;
+	height:100px;
+	cursor:pointer;
+	margin-right:10px;
+	background:#00bfff;
+}
+
+app-droppable {
+	height:250px;
+	cursor:pointer;
+	position:relative;
+	background:#b3b3b3;
+}
+
+app-droppable div:after {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:1;
+	content:"";
+	display:block;
+	position:absolute;
+	pointer-events:none;
+	outline-offset:-15px;
+	outline:5px dashed rgb(145, 255, 91);
+}
+
 app-modal-front.custom {
 	width:400px;
 	height:200px;

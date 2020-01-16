@@ -1,0 +1,15 @@
+app-draggable {
+	display:block;
+}
+
+app-draggable[inline] {
+	display:inline-block;
+}
+
+app-droppable {
+	display:block;
+}
+
+app-droppable[inline] {
+	display:inline-block;
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@ascua/dragdrop",
+  "version": "0.0.9",
+  "description": "Small description for @ascua/dragdrop goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
+  "dependencies": {
+    "@ascua/modifiers": "file:../modifiers",
+    "ember-cli-babel": "^7.13.0",
+    "ember-cli-htmlbars": "^4.2.0"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua"
+  },
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
+}

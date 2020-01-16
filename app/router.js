@@ -37,8 +37,8 @@ Router.map(function() {
 	this.route('elements', function() {
 		this.route('codemirror');
 		this.route('contextmenu');
+		this.route('dragdrop');
 		this.route('dropdown');
-		this.route('droppable');
 		this.route('editable');
 		this.route('iframe');
 		this.route('gravatar');
@@ -52,6 +52,7 @@ Router.map(function() {
 		this.route('social');
 		this.route('label');
 		this.route('tooltip');
+		this.route('uploader');
 		this.route('webview');
 	});
 

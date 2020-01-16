@@ -1,0 +1,9 @@
+<app-draggable
+	draggable={{true}}
+	dragging={{this.dragging}}
+	{{on "dragend" this.didDragEnd}}
+	{{on "dragstart" this.didDragStart}}
+	...attributes
+>
+	{{yield this}}
+</app-draggable>

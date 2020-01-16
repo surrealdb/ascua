@@ -1,0 +1,27 @@
+<h1>Dragdrop</h1>
+
+<p>The <code>Ascua::Draggable</code> and <code>Ascua::Droppable</code> components enable drag-and-drop support for html elements in an Ember application.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-dragdrop-install.bash">
+	ember install @ascua/dragdrop
+</Example>
+
+<h2>Basic</h2>
+
+<p>To create a draggable item, surround your HTML with an <code>Ascua::Draggable</code> component. Any handlebars inside the <code>Ascua::Draggable</code> component will be made draggable.</p>
+
+<Example @name="demo-elements-dragdrop-draggable.hbs">
+	<Ascua::Draggable inline @onDrag={{console}} />
+	<Ascua::Draggable inline @onDrag={{console}} />
+	<Ascua::Draggable inline @onDrag={{console}} />
+</Example>
+
+<h2>Advanced</h2>
+
+<p>To create a droppable area, surround your HTML with an <code>Ascua::Droppable</code> component. Any handlebars inside the <code>Ascua::Droppable</code> component will be made droppable.</p>
+
+<Example @name="demo-elements-dragdrop-droppable.hbs">
+	<Ascua::Droppable @onDrop={{console}} />
+</Example>
