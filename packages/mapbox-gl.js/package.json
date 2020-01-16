@@ -1,7 +1,7 @@
 {
-  "name": "@ascua/mapbox.js",
+  "name": "@ascua/mapbox-gl.js",
   "version": "0.0.10",
-  "description": "Small description for @ascua/mapbox.js goes here",
+  "description": "Small description for @ascua/mapbox-gl.js goes here",
   "keywords": [
     "ember-addon"
   ],
@@ -25,5 +25,8 @@
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
   },
-  "homepage": "https://abcum.github.io/ascua"
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
 }
