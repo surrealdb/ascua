@@ -78,6 +78,7 @@ Router.map(function() {
 		this.route('codemirror', function() {
 			this.route('elements');
 		});
+		this.route('mapbox-gl');
 		this.route('marked', function() {
 			this.route('helpers');
 		});

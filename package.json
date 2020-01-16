@@ -101,6 +101,7 @@
     "@ascua/label": "file:packages/label",
     "@ascua/location": "file:packages/location",
     "@ascua/logic": "file:packages/logic",
+    "@ascua/mapbox-gl.js": "file:packages/mapbox-gl.js",
     "@ascua/marked.js": "file:packages/marked.js",
     "@ascua/maths": "file:packages/maths",
     "@ascua/metrics": "file:packages/metrics",
