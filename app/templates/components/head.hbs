@@ -1,3 +1,27 @@
 <div>
 
+	<LinkTo @route="index" class="{{if (is-active "index") "select"}}" ...attributes>
+		Home
+	</LinkTo>
+
+	<LinkTo @route="guides" class="{{if (is-active "guides") "select"}}" ...attributes>
+		Guides
+	</LinkTo>
+
+	<LinkTo @route="services" class="{{if (is-active "services") "select"}}" ...attributes>
+		Services
+	</LinkTo>
+
+	<LinkTo @route="elements" class="{{if (is-active "elements") "select"}}" ...attributes>
+		Elements
+	</LinkTo>
+
+	<LinkTo @route="helpers" class="{{if (is-active "helpers") "select"}}" ...attributes>
+		Helpers
+	</LinkTo>
+
+	<LinkTo @route="libraries" class="{{if (is-active "libraries") "select"}}" ...attributes>
+		Libraries
+	</LinkTo>
+
 </div>

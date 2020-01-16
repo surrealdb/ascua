@@ -1,0 +1,39 @@
+<h1>Images</h1>
+
+<h2>Install</h2>
+
+<Example @name="demo-guides-images-install.bash">
+	ember install @ascua/images
+</Example>
+
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>images</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-guides-images-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			images: {
+				jpeg: {
+					quality: 80,
+					progressive: false,
+				},
+				png: {
+					progressive: false,
+					compressionLevel: 9,
+				},
+				webp: {
+					quality: 80,
+					lossless: false,
+					nearLossless: false,
+				},
+				tiff: {
+					quality: 80,
+					compression: 'jpeg',
+					nearLossless: false,
+				},
+			}
+		};
+		return ENV;
+	};
+</Example>

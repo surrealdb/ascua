@@ -1,19 +1,9 @@
 {{#if (or (is-route @route) (is-route (concat @route ".index")))}}
 	<LinkTo @route={{@route}} class="select" ...attributes>
-		{{@name}} {{route}}
+		{{@name}}
 	</LinkTo>
 {{else}}
 	<LinkTo @route={{@route}} ...attributes>
-		{{@name}} {{route}}
+		{{@name}}
 	</LinkTo>
-{{/if}}
-
-{{#if @others}}
-
-	{{#if (is-active @route)}}
-		{{#each (w @others) as |other|}}
-			<Navigate @route={{concat @route "." other}} @name={{other}} class="indent" />
-		{{/each}}
-	{{/if}}
-
 {{/if}}

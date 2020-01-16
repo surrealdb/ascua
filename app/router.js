@@ -8,17 +8,17 @@ export default class Router extends EmberRouter {
 
 Router.map(function() {
 
-	this.route('config');
-
 	this.route('guides', function() {
-		this.route('pwas');
 		this.route('styling');
-		this.route('building');
 		this.route('electron');
-		this.route('fastboot');
 		this.route('bigdata', function() {
 			this.route('infinite');
 			this.route('sparse');
+		});
+		this.route('webapps', function() {
+			this.route('images');
+			this.route('fastboot');
+			this.route('minification');
 		});
 	});
 
@@ -29,21 +29,9 @@ Router.map(function() {
 		this.route('location');
 		this.route('metrics');
 		this.route('storage');
+		this.route('surreal');
 		this.route('update');
 		this.route('worker');
-	});
-
-	this.route('libraries', function() {
-		this.route('apexcharts');
-		this.route('chart');
-		this.route('codemirror');
-		this.route('mapbox-gl');
-		this.route('marked');
-		this.route('moment', function() {
-			this.route('helpers');
-		});
-		this.route('sheet');
-		this.route('stripe');
 	});
 
 	this.route('elements', function() {
@@ -78,6 +66,25 @@ Router.map(function() {
 		this.route('promise');
 		this.route('routing');
 		this.route('strings');
+	});
+
+	this.route('libraries', function() {
+		this.route('apexcharts', function() {
+			this.route('elements');
+		});
+		this.route('chart', function() {
+			this.route('elements');
+		});
+		this.route('codemirror', function() {
+			this.route('elements');
+		});
+		this.route('marked', function() {
+			this.route('helpers');
+		});
+		this.route('moment', function() {
+			this.route('helpers');
+		});
+		this.route('sheet');
 	});
 
 });

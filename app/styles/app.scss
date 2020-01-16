@@ -97,8 +97,32 @@ section.head {
 	box-shadow:0 2px 4px 0 rgba(0,0,0,0.1);
 
 	div {
+
+		text-align:left;
 		max-width:1400px;
 		margin:0 auto 0 auto;
+
+		a {
+
+			color:#606f7b;
+			padding:20px 20px;
+			display:inline-block;
+			text-decoration:none;
+
+			&:first-of-type {
+				padding-left:0;
+			}
+
+			&:last-of-type {
+				padding-right:0;
+			}
+
+			&.select {
+				color:#000000;
+			}
+
+		}
+
 	}
 
 }
@@ -147,25 +171,35 @@ section.body {
 			position:sticky;
 			padding-bottom:150px;
 			top:30px;
+			overflow:auto;
+			max-height:100vh;
 
 			div {
+
+				font-weight:bold;
 				margin-top:1rem;
 				margin-bottom:0.5rem;
+
+				&:first-of-type {
+					margin-top:2rem;
+				}
+
 			}
 
 			a {
+
 				color:#606f7b;
 				display:block;
 				margin-left:1rem;
+
 				&:hover {
 					text-decoration:underline;
 				}
+
 				&.select {
 					color:#00ffad;
 				}
-				&.indent {
-					padding-left:15px;
-				}
+
 			}
 
 			section:not([show]) {
@@ -173,7 +207,7 @@ section.body {
 				@media (min-width:768px) {
 
 					height:60px;
-					display:block;
+					display:none;
 					overflow:hidden;
 					position:relative;
 
@@ -183,6 +217,7 @@ section.body {
 						right:0;
 						bottom:0;
 						z-index:1;
+						display:none;
 						color:#606f7b;
 						content:"...";
 						line-height:110px;

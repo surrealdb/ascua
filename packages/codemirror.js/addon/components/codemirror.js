@@ -41,7 +41,7 @@ export default class extends Component {
 
 		this.editor = new CodeMirror(element, this.opts);
 
-		this.editor.setValue(this.args.value + '');
+		this.editor.setValue( String(this.args.value) );
 
 		this.editor.on('change', (i) => {
 			if (this.args.onChange) {

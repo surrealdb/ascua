@@ -9,6 +9,15 @@ module.exports = function(environment) {
 		locationType: 'auto',
 		modulePrefix: 'ascua',
 
+		codemirror: {
+			includeTags: true,
+			includeComments: true,
+			includeBrackets: true,
+			includeWhitespace: true,
+			modes: ["htmlmixed", "css",  "sass",  "javascript",  "markdown",  "handlebars"],
+			themes: ["base16-dark", "base16-light", "bespin", "dracula", "eclipse"],
+		},
+
 		APP: {
 			BINDINGS: false,
 			LOG_RESOLVER: false,

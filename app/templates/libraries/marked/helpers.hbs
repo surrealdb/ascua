@@ -1,0 +1,21 @@
+<h1>marked.js helpers</h1>
+
+<p>The following helpers convert markdown content to html or text. The markdown content used in the demo is:</p>
+
+<p><code>This is **some** markdown with [a link](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf).</code></p>
+
+<h2>markdown</h2>
+
+<p>Convert markdown content to HTML.</p>
+
+<Example @name="demo-libraries-markedjs-markdown.hbs">
+	{{markdown this.markdown}}
+</Example>
+
+<h2>plaintext</h2>
+
+<p>Convert markdown content to plain text by removing all formatting.</p>
+
+<Example @name="demo-libraries-markedjs-plaintext.hbs">
+	{{plaintext this.markdown}}
+</Example>

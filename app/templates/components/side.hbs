@@ -1,77 +1,128 @@
 <nav>
 
-	<div>Introduction</div>
-	<Navigate @route="index" @name="Setup" />
+	{{#if (is-active "index")}}
 
-	<div>Guides</div>
-	<Navigate @route="guides.pwas" @name="PWAs" />
-	<Navigate @route="guides.styling" @name="Styling" />
-	<Navigate @route="guides.building" @name="Building" />
-	<Navigate @route="guides.electron" @name="Electron" />
-	<Navigate @route="guides.fastboot" @name="Fastboot" />
-	<Navigate @route="guides.bigdata" @name="Bigdata" />
-	{{#if (is-active "guides.bigdata")}}
-		<Navigate @route="guides.bigdata.infinite" @name="Infinite" class="indent" />
-		<Navigate @route="guides.bigdata.sparse" @name="Sparse" class="indent" />
+		<div>Introduction</div>
+		<Navigate @route="index" @name="Setup" />
+
 	{{/if}}
 
-	<div>Services</div>
-	<section show={{begs-with (route-name) "services"}}>
-		<Navigate @route="services.clock" @name="Clock" />
-		<Navigate @route="services.electron" @name="Electron" />
-		<Navigate @route="services.internet" @name="Internet" />
-		<Navigate @route="services.location" @name="Location" />
-		<Navigate @route="services.metrics" @name="Metrics" />
-		<Navigate @route="services.storage" @name="Storage" />
-		<Navigate @route="services.update" @name="Update" />
-		<Navigate @route="services.worker" @name="Worker" />
-	</section>
+	{{#if (is-active "guides")}}
 
-	<div>Libraries</div>
-	<section show={{begs-with (route-name) "libraries"}}>
-		<Navigate @route="libraries.apexcharts" @name="apexcharts.js" />
-		<Navigate @route="libraries.chart" @name="chart.js" />
-		<Navigate @route="libraries.codemirror" @name="codemirror.js" />
-		<Navigate @route="libraries.mapbox-gl" @name="mapbox-gl.js" />
-		<Navigate @route="libraries.marked" @name="marked.js" />
-		<Navigate @route="libraries.moment" @name="moment.js" @others="helpers" />
-		<Navigate @route="libraries.sheet" @name="sheet.js" />
-		<Navigate @route="libraries.stripe" @name="stripe.js" />
-	</section>
+		<div>General</div>
+		<Navigate @route="guides.styling" @name="Styling" />
+		<Navigate @route="guides.electron" @name="Electron" />
 
-	<div>Elements</div>
-	<section show={{begs-with (route-name) "elements"}}>
-		<Navigate @route="elements.contextmenu" @name="Contextmenu" />
-		<Navigate @route="elements.dropdown" @name="Dropdown" />
-		<Navigate @route="elements.droppable" @name="Droppable" />
-		<Navigate @route="elements.editable" @name="Editable" />
-		<Navigate @route="elements.iframe" @name="Iframe" />
-		<Navigate @route="elements.gravatar" @name="Gravatar" />
-		<Navigate @route="elements.gridlist" @name="Gridlist" />
-		<Navigate @route="elements.initials" @name="Initials" />
-		<Navigate @route="elements.image" @name="Image" />
-		<Navigate @route="elements.input" @name="Input" />
-		<Navigate @route="elements.label" @name="Label" />
-		<Navigate @route="elements.link" @name="Link" />
-		<Navigate @route="elements.modal" @name="Modal" />
-		<Navigate @route="elements.select" @name="Select" />
-		<Navigate @route="elements.social" @name="Social" />
-		<Navigate @route="elements.tooltip" @name="Tooltip" />
-		<Navigate @route="elements.webview" @name="Webview" />
-	</section>
+		<div>Bigdata</div>
+		<Navigate @route="guides.bigdata" @name="Intro" />
+		<Navigate @route="guides.bigdata.infinite" @name="Infinite" />
+		<Navigate @route="guides.bigdata.sparse" @name="Sparse" />
 
-	<div>Helpers</div>
-	<section show={{begs-with (route-name) "helpers"}}>
-		<Navigate @route="helpers.arrays" @name="Arrays" />
-		<Navigate @route="helpers.dom" @name="Dom" />
-		<Navigate @route="helpers.events" @name="Events" />
-		<Navigate @route="helpers.format" @name="Format" />
-		<Navigate @route="helpers.keyboard" @name="Keyboard" />
-		<Navigate @route="helpers.logic" @name="Logic" />
-		<Navigate @route="helpers.maths" @name="Maths" />
-		<Navigate @route="helpers.promise" @name="Promise" />
-		<Navigate @route="helpers.routing" @name="Routing" />
-		<Navigate @route="helpers.strings" @name="Strings" />
-	</section>
+		<div>Webapps</div>
+		<Navigate @route="guides.webapps" @name="Intro" />
+		<Navigate @route="guides.webapps.images" @name="Images" />
+		<Navigate @route="guides.webapps.fastboot" @name="Fastboot" />
+		<Navigate @route="guides.webapps.minification" @name="Minification" />
+
+	{{/if}}
+
+	{{#if (is-active "services")}}
+
+		<div>General</div>
+		<section show={{begs-with (route-name) "services"}}>
+			<Navigate @route="services.clock" @name="Clock" />
+			<Navigate @route="services.electron" @name="Electron" />
+			<Navigate @route="services.internet" @name="Internet" />
+			<Navigate @route="services.location" @name="Location" />
+			<Navigate @route="services.metrics" @name="Metrics" />
+			<Navigate @route="services.storage" @name="Storage" />
+			<Navigate @route="services.surreal" @name="Surreal" />
+			<Navigate @route="services.update" @name="Update" />
+			<Navigate @route="services.worker" @name="Worker" />
+		</section>
+
+	{{/if}}
+
+	{{#if (is-active "elements")}}
+
+		<div>General</div>
+		<section show={{begs-with (route-name) "elements"}}>
+			<Navigate @route="elements.contextmenu" @name="Contextmenu" />
+			<Navigate @route="elements.dropdown" @name="Dropdown" />
+			<Navigate @route="elements.droppable" @name="Droppable" />
+			<Navigate @route="elements.editable" @name="Editable" />
+			<Navigate @route="elements.iframe" @name="Iframe" />
+			<Navigate @route="elements.gravatar" @name="Gravatar" />
+			<Navigate @route="elements.gridlist" @name="Gridlist" />
+			<Navigate @route="elements.initials" @name="Initials" />
+			<Navigate @route="elements.image" @name="Image" />
+			<Navigate @route="elements.input" @name="Input" />
+			<Navigate @route="elements.label" @name="Label" />
+			<Navigate @route="elements.link" @name="Link" />
+			<Navigate @route="elements.modal" @name="Modal" />
+			<Navigate @route="elements.select" @name="Select" />
+			<Navigate @route="elements.social" @name="Social" />
+			<Navigate @route="elements.tooltip" @name="Tooltip" />
+			<Navigate @route="elements.webview" @name="Webview" />
+		</section>
+
+	{{/if}}
+
+	{{#if (is-active "helpers")}}
+
+		<div>General</div>
+		<section show={{begs-with (route-name) "helpers"}}>
+			<Navigate @route="helpers.arrays" @name="Arrays" />
+			<Navigate @route="helpers.dom" @name="Dom" />
+			<Navigate @route="helpers.events" @name="Events" />
+			<Navigate @route="helpers.format" @name="Format" />
+			<Navigate @route="helpers.keyboard" @name="Keyboard" />
+			<Navigate @route="helpers.logic" @name="Logic" />
+			<Navigate @route="helpers.maths" @name="Maths" />
+			<Navigate @route="helpers.promise" @name="Promise" />
+			<Navigate @route="helpers.routing" @name="Routing" />
+			<Navigate @route="helpers.strings" @name="Strings" />
+		</section>
+
+	{{/if}}
+
+	{{#if (is-active "libraries")}}
+
+		<div>apexcharts.js</div>
+		<section show=true>
+			<Navigate @route="libraries.apexcharts" @name="Setup" />
+			<Navigate @route="libraries.apexcharts.elements" @name="Elements" />
+		</section>
+
+		<div>chart.js</div>
+		<section show=true>
+			<Navigate @route="libraries.chart" @name="Setup" />
+			<Navigate @route="libraries.chart.elements" @name="Elements" />
+		</section>
+
+		<div>codemirror.js</div>
+		<section show=true>
+			<Navigate @route="libraries.codemirror" @name="Setup" />
+			<Navigate @route="libraries.codemirror.elements" @name="Elements" />
+		</section>
+
+		<div>marked.js</div>
+		<section show=true>
+			<Navigate @route="libraries.marked" @name="Setup" />
+			<Navigate @route="libraries.marked.helpers" @name="Helpers" />
+		</section>
+
+		<div>moment.js</div>
+		<section show=true>
+			<Navigate @route="libraries.moment" @name="Setup" />
+			<Navigate @route="libraries.moment.helpers" @name="Helpers" />
+		</section>
+
+		<div>sheet.js</div>
+		<section show=true>
+			<Navigate @route="libraries.sheet" @name="Setup" />
+		</section>
+
+	{{/if}}
 
 </nav>

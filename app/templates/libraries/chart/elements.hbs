@@ -1,0 +1,49 @@
+<h1>chart.js elements</h1>
+
+<h2>Bar charts</h2>
+
+<Example @name="demo-libraries-chartjs-elements-bar.hbs">
+	<div style="height:400px;">
+		<Ascua::Chart @type="bar" @data={{this.normal.data}} @opts={{this.normal.opts}} />
+	</div>
+</Example>
+
+<h2>Line charts</h2>
+
+<Example @name="demo-libraries-chartjs-elements-line.hbs">
+	<div style="height:400px;">
+		<Ascua::Chart @type="line" @data={{this.normal.data}} @opts={{this.normal.opts}} />
+	</div>
+</Example>
+
+<h2>Pie charts</h2>
+
+<Example @name="demo-libraries-chartjs-elements-pie.hbs">
+	<div style="height:400px;">
+		<Ascua::Chart @type="pie" @data={{this.circle.data}} @opts={{this.circle.opts}} />
+	</div>
+</Example>
+
+<h2>Doughnut charts</h2>
+
+<Example @name="demo-libraries-chartjs-elements-doughnut.hbs">
+	<div style="height:400px;">
+		<Ascua::Chart @type="doughnut" @data={{this.circle.data}} @opts={{this.circle.opts}} />
+	</div>
+</Example>
+
+<h2>Polar charts</h2>
+
+<Example @name="demo-libraries-chartjs-elements-polar.hbs">
+	<div style="height:400px;">
+		<Ascua::Chart @type="polarArea" @data={{this.circle.data}} @opts={{this.circle.opts}} />
+	</div>
+</Example>
+
+<h2>Bubble charts</h2>
+
+<Example @name="demo-libraries-chartjs-elements-bubble.hbs">
+	<div style="height:400px;">
+			<Ascua::Chart @type="bubble" @data={{this.bubble.data}} @opts={{this.bubble.opts}} />
+	</div>
+</Example>

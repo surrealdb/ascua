@@ -1,0 +1,30 @@
+<h1>Minification</h1>
+
+<h2>Install</h2>
+
+<Example @name="demo-guides-minify-install.bash">
+	ember install @ascua/minify
+</Example>
+
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>minify</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-guides-minify-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			minify: {
+				collapseWhitespace : true,
+				removeComments : true,
+				minifyCSS : true,
+				minifyJS : true,
+				ignoreCustomComments: [
+					/^\s+EMBER_CLI_FASTBOOT_TITLE/,
+					/^\s+EMBER_CLI_FASTBOOT_HEAD/,
+					/^\s+EMBER_CLI_FASTBOOT_BODY/,
+				]
+			}
+		};
+		return ENV;
+	};
+</Example>
