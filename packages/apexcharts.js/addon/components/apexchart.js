@@ -17,9 +17,8 @@ export default class extends Component {
 
 	@computed('args.{data,opts}')
 	get initial() {
-		return Object.assign({}, {
-			series: this.args.data
-		}, this.args.opts);
+		let data = { series: this.args.data };
+		return Object.assign({}, data, this.args.opts);
 	}
 
 	@action didCreate(element) {
