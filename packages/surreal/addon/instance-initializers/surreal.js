@@ -25,7 +25,7 @@ export default {
 
 		let config = { opts: [] };
 
-		config.url = `${c.surreal.uri}/rpc` || Surreal.EU;
+		config.url = c.surreal.uri ? `${c.surreal.uri}/rpc` : Surreal.EU;
 
 		config.opts.id = unid();
 		config.opts.ns = c.surreal.ns;
