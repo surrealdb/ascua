@@ -22149,7 +22149,7 @@ if("object"!==Ember.typeOf(i.surreal))throw new Error("Please set the `surreal` 
 if("string"!==Ember.typeOf(i.surreal.ns))throw new Error("Please set the `surreal.ns` property in your environment config as a string.")
 if("string"!==Ember.typeOf(i.surreal.db))throw new Error("Please set the `surreal.db` property in your environment config as a string.")
 var o={opts:[]}
-o.url="".concat(i.surreal.uri,"/rpc")||t.default.EU,o.opts.id=(0,r.default)(),o.opts.ns=i.surreal.ns,o.opts.db=i.surreal.db,e.register("ascua:surreal",o,{instantiate:!1}),e.lookup("service:surreal")}}
+o.url=i.surreal.uri?"".concat(i.surreal.uri,"/rpc"):t.default.EU,o.opts.id=(0,r.default)(),o.opts.ns=i.surreal.ns,o.opts.db=i.surreal.db,e.register("ascua:surreal",o,{instantiate:!1}),e.lookup("service:surreal")}}
 e.default=n})),define("@ascua/surreal/model",["exports","@ascua/surreal/classes/model"],(function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var r=t.default
