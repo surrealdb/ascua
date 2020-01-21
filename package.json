@@ -119,6 +119,7 @@
     "@ascua/social": "file:packages/social",
     "@ascua/storage": "file:packages/storage",
     "@ascua/strings": "file:packages/strings",
+    "@ascua/surreal": "file:packages/surreal",
     "@ascua/tooltip": "file:packages/tooltip",
     "@ascua/transform": "file:packages/transform",
     "@ascua/update": "file:packages/update",

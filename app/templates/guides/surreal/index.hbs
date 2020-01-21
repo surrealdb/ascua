@@ -1,0 +1,25 @@
+<h1>Surreal</h1>
+
+<p>To connect with SurrealDB, and to manage your local and remote application data in an Ember application, install the <code>surreal</code> package, which provides three services - a <code>surreal</code>, <code>store</code>, and <code>session</code>.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-guides-surreal-install.bash">
+	ember install @ascua/surreal
+</Example>
+
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>surreal</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-guides-surreal-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			surreal: {
+				NS: "test",
+				DB: "test",
+			}
+		};
+		return ENV;
+	};
+</Example>

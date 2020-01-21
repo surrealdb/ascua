@@ -24,18 +24,27 @@
 		<Navigate @route="guides.webapps.fastboot" @name="Fastboot" />
 		<Navigate @route="guides.webapps.minification" @name="Minification" />
 
+		<div>SurrealDB</div>
+		<Navigate @route="guides.surreal" @name="Intro" />
+		<Navigate @route="guides.surreal.routing" @name="Routing" />
+		<Navigate @route="guides.surreal.authing" @name="Authentication" />
+		<Navigate @route="guides.surreal.defining" @name="Defining models" />
+		<Navigate @route="guides.surreal.selecting" @name="Selecting records" />
+		<Navigate @route="guides.surreal.modifying" @name="Modifying records" />
+
 	{{/if}}
 
 	{{#if (is-active "services")}}
 
 		<div>General</div>
-		<section show={{begs-with (route-name) "services"}}>
+		<section>
 			<Navigate @route="services.clock" @name="Clock" />
 			<Navigate @route="services.electron" @name="Electron" />
 			<Navigate @route="services.internet" @name="Internet" />
 			<Navigate @route="services.location" @name="Location" />
 			<Navigate @route="services.metrics" @name="Metrics" />
 			<Navigate @route="services.storage" @name="Storage" />
+			<Navigate @route="services.store" @name="Store" />
 			<Navigate @route="services.surreal" @name="Surreal" />
 			<Navigate @route="services.update" @name="Update" />
 			<Navigate @route="services.worker" @name="Worker" />
@@ -46,7 +55,7 @@
 	{{#if (is-active "elements")}}
 
 		<div>General</div>
-		<section show={{begs-with (route-name) "elements"}}>
+		<section>
 			<Navigate @route="elements.contextmenu" @name="Contextmenu" />
 			<Navigate @route="elements.dragdrop" @name="Dragdrop" />
 			<Navigate @route="elements.dropdown" @name="Dropdown" />
@@ -72,7 +81,7 @@
 	{{#if (is-active "helpers")}}
 
 		<div>General</div>
-		<section show={{begs-with (route-name) "helpers"}}>
+		<section>
 			<Navigate @route="helpers.arrays" @name="Arrays" />
 			<Navigate @route="helpers.dom" @name="Dom" />
 			<Navigate @route="helpers.events" @name="Events" />

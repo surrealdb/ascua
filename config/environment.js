@@ -9,6 +9,11 @@ module.exports = function(environment) {
 		locationType: 'auto',
 		modulePrefix: 'ascua',
 
+		surreal: {
+			ns: 'test',
+			db: 'test',
+		},
+
 		codemirror: {
 			includeTags: true,
 			includeComments: true,
@@ -48,6 +53,7 @@ module.exports = function(environment) {
 
 	if (environment === 'development') {
 		ENV.rootURL = '/';
+		ENV.surreal.uri = 'http://localhost:8000';
 	}
 
 	if (environment === 'production') {

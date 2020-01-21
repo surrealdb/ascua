@@ -20,6 +20,13 @@ Router.map(function() {
 			this.route('fastboot');
 			this.route('minification');
 		});
+		this.route('surreal', function() {
+			this.route('routing');
+			this.route('authing');
+			this.route('defining');
+			this.route('selecting');
+			this.route('modifying');
+		});
 	});
 
 	this.route('services', function() {
@@ -29,6 +36,7 @@ Router.map(function() {
 		this.route('location');
 		this.route('metrics');
 		this.route('storage');
+		this.route('store');
 		this.route('surreal');
 		this.route('update');
 		this.route('worker');

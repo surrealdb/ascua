@@ -1,0 +1,47 @@
+<h1>Surreal</h1>
+
+<p>The <code>surreal</code> service adds functionality for detecting the connection and authentication state, when working with SurrealDB. For further information on working with SurrealDB in Ember, consult the <LinkTo @route="guides.surreal">SurrealDB guides</LinkTo>.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-surreal-install.bash">
+	ember install @ascua/surreal
+</Example>
+
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>surreal</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-services-surreal-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			surreal: {
+				NS: "test",
+				DB: "test",
+			}
+		};
+		return ENV;
+	};
+</Example>
+
+<h2>Connection opened?</h2>
+
+<Example @name="demo-services-surreal-opened.hbs">
+	{{this.surreal.opened}}
+</Example>
+
+<h2>Authentication attempted?</h2>
+
+<Example @name="demo-services-surreal-attempted.hbs">
+	{{this.surreal.attempted}}
+</Example>
+
+<h2>Current authentication status?</h2>
+
+<Example @name="demo-services-surreal-invalidated.hbs">
+	{{this.surreal.invalidated}}
+</Example>
+
+<Example @name="demo-services-surreal-authenticated.hbs">
+	{{this.surreal.authenticated}}
+</Example>

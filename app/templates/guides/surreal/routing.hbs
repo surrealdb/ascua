@@ -1,0 +1,67 @@
+<h1>Routing</h1>
+
+<p>Surreal offers specific route decorators in order to augment routes within an Ember application. With these decorators, certain areas can be marked as authenticated only (ensuring that a user is authenticated before being able to access any subsidiary routes), or as invalidated only (ensuring that a user who is already authentiated, is instead redirected to an authenticated section). Using these decorators, advanced application logic can be enabled, using simple methodologies.</p>
+
+<h2>Wait before progressing</h2>
+
+<p>In order to prevent a route from progressing until the WebSocket connection with the database has attempted authentication (regardless of whether it fails or succeeds), apply the <code>@attempted</code> decorator to a route. This decorator would normally be applied to the application route, to prevent the application from progressing until a database connection has been successful, and authentication has been attempted.</p>
+
+<Example @name="demo-guides-surreal-routing-attempted.js">
+	import Route from '@ember/routing/route';
+	import { attempted } from '@ascua/surreal';
+
+	export default @attempted class extends Route {
+		// This route will wait for the SurrealDB
+		// connection to attempt authentication
+		// before progressing.
+	}
+</Example>
+
+<h2>Define an invalidated route</h2>
+
+<p>In order to only display a route if the user is unauthenticated, add the <code>@invalidated</code> decorator to a route, and specify the <code>redirectIfAuthenticated</code> property within the route. If the user navigates to the route but is already authenticed, they will be redirected to the specified route.</p>
+
+<Example @name="demo-guides-surreal-routing-invalidated.js">
+	import Route from '@ember/routing/route';
+	import { invalidated } from '@ascua/surreal';
+
+	export default @invalidated class extends Route {
+		// The user will be redirected to the
+		// 'index' route if they have already
+		// authenticated with the database.
+		redirectIfAuthenticated = 'index';
+	}
+</Example>
+
+<h2>Define an authenticated route</h2>
+
+<p>In order to only display a route if the user is authenticated, add the <code>@authenticated</code> decorator to a route, and specify the <code>redirectIfInvalidated</code> property within the route. If the user navigates to the route but is not yet	 authenticed, they will be redirected to the specified route.</p>
+
+<Example @name="demo-guides-surreal-routing-authenticated.js">
+	import Route from '@ember/routing/route';
+	import { authenticated } from '@ascua/surreal';
+
+	export default @authenticated class extends Route {
+		// The user will be redirected to the
+		// 'signin' route if they have not yet
+		// authenticated with the database.
+		redirectIfInvalidated = 'signin';
+	}
+</Example>
+
+<h2>Define a signout route</h2>
+
+<p>In order to properly invalidate a user's session, and to remove all locally cached data in the store, add the <code>@signout</code> decorator to a route, and navigate the user to this route to signout. When the user navigates to this route, the store will be reset, the session cleared, and all locally cached records will be removed. Finally the user will be redirected to the route specified with the <code>redirectAfterSignout</code> property.</p>
+
+<Example @name="demo-guides-surreal-routing-signout.js">
+	import Route from '@ember/routing/route';
+	import { signout } from '@ascua/surreal';
+
+	export default @signout class extends Route {
+		// When the user navigates to this
+		// route, they will be redirected to
+		// the signing route, the store will
+		// be reset, and the session cleared.
+		redirectAfterSignout = 'signin';
+	}
+</Example>

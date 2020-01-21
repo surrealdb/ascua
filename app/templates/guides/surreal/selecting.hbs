@@ -1,0 +1,45 @@
+<h1>Selecting records</h1>
+
+<p>The SurrealDB Ember.js data store provides an interface for retrieving records of a single type from SurrealDB, and for retrieving records which have already been loaded and cached on the client.</p>
+
+<h2>Inject the store</h2>
+
+<p>In order to start selecting data from the database, you must first inject the store into any <code>route</code>, <code>controller</code>, or <code>component</code> which needs to access the store.</p>
+
+<details>
+
+	<summary>Example</summary>
+
+	<Example @name="demo-guides-surreal-selecting-inject.js">
+		import Route from '@ember/routing/route';
+		import { inject } from '@ember/service';
+
+		export default class extends Route {
+			@inject store;
+			async model() {
+				return this.store.select('person');
+			}
+		};
+	</Example>
+
+</details>
+
+<h2>Selecting remote records</h2>
+
+<Example @name="demo-guides-surreal-selecting-select-all.js">
+	await this.store.select('person');
+</Example>
+
+<Example @name="demo-guides-surreal-selecting-select-one.js">
+	await this.store.select('person', 'test');
+</Example>
+
+<h2>Selecting cached records</h2>
+
+<Example @name="demo-guides-surreal-selecting-cached-all.js">
+	await this.store.cached('person');
+</Example>
+
+<Example @name="demo-guides-surreal-selecting-cached-one.js">
+	await this.store.cached('person', 'test');
+</Example>

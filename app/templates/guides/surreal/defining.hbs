@@ -1,0 +1,182 @@
+<h1>Defining models</h1>
+
+<p>Models in the SurrealDB Ember.js adapter support a number of different field types, embedded objects, embedded arrays, one-to-one foreign records, many-to-many foreign records, and autosaving records. </p>
+
+<h2>Defining a model</h2>
+
+<p>In order to create a model, create a class which extends the default export from <code>@ascua/surreal/model</code>. Use the field decorators to define the fields on the model.</p>
+
+<Example @name="demo-guides-surreal-defining-model.js">
+	// app/models/person.js
+	import Model from '@ascua/surreal/model';
+	import { any } from '@ascua/surreal/field';
+	import { boolean } from '@ascua/surreal/field';
+	import { datetime } from '@ascua/surreal/field';
+	import { number } from '@ascua/surreal/field';
+	import { string } from '@ascua/surreal/field';
+
+	export default class Person extends Model {
+		@any custom; // Any field type
+		@string name; // A string field
+		@number age; // A number field
+		@boolean admin; // A boolean field
+		@datetime birthday; // A datetime field
+	}
+</Example>
+
+<h2>Autosaving records</h2>
+
+<p>Instead of having to <code>save()</code> a record after modifying it, a model can be specified to autosave whenever a change is made to it or any embedded fields. Use the <code>@autosave</code> decorator to specify that a model class should autosave.</p>
+
+<Example @name="demo-guides-surreal-defining-autosave.js">
+	// app/models/account.js
+	import Model from '@ascua/surreal/field';
+	import { autosave } from '@ascua/surreal'
+
+	export default @autosave class Account extends Model {
+		@string name;
+	}
+</Example>
+
+<h2>Embedded arrays</h2>
+
+<p>For arrays of basic types, define the field on the base model using the <code>@array</code> decorator, and specify one of <code>string</code>, <code>number</code>, <code>boolean</code>, <code>datetime</code> as the first argument. Omitting the first argument, will allow any type to be used in the array.</p>
+
+<Example @name="demo-guides-surreal-defining-array.js">
+	// app/models/person.js
+	import Model from '@ascua/surreal/model';
+	import { array } from '@ascua/surreal/field';
+
+	export default class Person extends Model {
+		@array() array; // An array of any value
+		@array('string') tags; // An array of strings
+		@array('number') numbers; // An array of numbers
+		@array('boolean') booleans; // An array of booleans
+		@array('datetime') datetimes; // An array of datetimes
+	}
+</Example>
+
+<h2>Embedded objects</h2>
+
+<p>For objects, define the field on the base model using the <code>@object</code> decorator, specifying the dasherized model name as the first argument. Next, define the embedded field as a separate model which extends the default export from <code>@ascua/surreal/field</code>.</p>
+
+<Example @name="demo-guides-surreal-defining-objects.js">
+	// app/models/person.js
+	import Model from '@ascua/surreal/model';
+	import { array } from '@ascua/surreal/field';
+
+	export default class Person extends Model {
+		@object('person-name') name;
+	}
+</Example>
+
+<Example @name="demo-guides-surreal-defining-objects-field.js">
+	// app/models/person-name.js
+	import Field from '@ascua/surreal/field';
+	import { string } from '@ascua/surreal/field';
+
+	export default class PersonName extends Field {
+		@string firstname;
+		@string lastname;
+	}
+</Example>
+
+<h2>Embedded arrays of objects</h2>
+
+<p>For arrays of embedded objects, define the field on the base model using the <code>@array</code> decorator, and specify the dasherized model name as the first argument. Next, define the embedded field as a separate model which extends the default export from <code>@ascua/surreal/field</code>.</p>
+
+<Example @name="demo-guides-surreal-defining-arrays.js">
+	// app/models/person.js
+	import Model from '@ascua/surreal/model';
+	import { array } from '@ascua/surreal/field';
+
+	export default class Person extends Model {
+		@array('person-skills') skillsets; // An array of embedded objects
+	}
+</Example>
+
+<Example @name="demo-guides-surreal-defining-arrays-field.js">
+	// app/models/person-skills.js
+	import Field from '@ascua/surreal/field';
+	import { string } from '@ascua/surreal/field';
+	import { number } from '@ascua/surreal/field';
+
+	export default class PersonSkills extends Field {
+		@string name;
+		@number years;
+	}
+</Example>
+
+<h2>Foreign relationships</h2>
+
+<h3>One-to-one relationships</h3>
+
+<p>To declare a one-to-one relationship between two models, use the <code>@record</code> decorator on each of the models. Specify the dasherized model name as the first argument to the decorator.</p>
+
+<Example @name="demo-guides-surreal-defining-records-one-to-one.js">
+	// app/models/user.js
+	import Model from '@ascua/surreal/model';
+	import { record } from '@ascua/surreal/field';
+
+	export default class User extends Model {
+		@record('profile') profile; // A pointer to another record
+	}
+</Example>
+
+<Example @name="demo-guides-surreal-defining-records-one-to-one-other.js">
+	// app/models/profile.js
+	import Model from '@ascua/surreal/model';
+	import { record } from '@ascua/surreal/field';
+
+	export default class Profile extends Model {
+		@record('user') user; // A pointer to another record
+	}
+</Example>
+
+<h3>One-to-many relationships</h3>
+
+<p>To declare a one-to-many relationship between two models, use the <code>@array</code> and <code>@record</code> decorators. Specify the dasherized model name as the first argument to the decorator.</p>
+
+<Example @name="demo-guides-surreal-defining-records-one-to-many.js">
+	// app/models/post.js
+	import Model from '@ascua/surreal/model';
+	import { array } from '@ascua/surreal/field';
+
+	export default class Post extends Model {
+		@array('comments') comments; // An array of record pointers
+	}
+</Example>
+
+<Example @name="demo-guides-surreal-defining-records-one-to-many-other.js">
+	// app/models/comment.js
+	import Model from '@ascua/surreal/model';
+	import { record } from '@ascua/surreal/field';
+
+	export default class Comment extends Model {
+		@record('post') post; // A pointer to another record
+	}
+</Example>
+
+<h3>Many-to-many relationships</h3>
+
+<p>To declare a many-to-many relationship between two models, use the <code>@array</code> decorator on each model. Specify the dasherized model name as the first argument to the decorator.</p>
+
+<Example @name="demo-guides-surreal-defining-records-many-to-many.js">
+	// app/models/post.js
+	import Model from '@ascua/surreal/model';
+	import { array } from '@ascua/surreal/field';
+
+	export default class Post extends Model {
+		@array('tag') tags; // An array of record pointers
+	}
+</Example>
+
+<Example @name="demo-guides-surreal-defining-records-many-to-many-other.js">
+	// app/models/tag.js
+	import Model from '@ascua/surreal/model';
+	import { array } from '@ascua/surreal/field';
+
+	export default class Tag extends Model {
+		@array('post') posts; // An array of record pointers
+	}
+</Example>

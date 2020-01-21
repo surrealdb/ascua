@@ -1,0 +1,81 @@
+<h1>Authentication</h1>
+
+<p>Authentication against SurrealDB makes use of specific defined access scopes in order to grant the necessary permissions for data access. Signing-up and signing-in to these scopes enable the client-side data store to authenticate against the database, and permitting access for creating, updating, deleting, or selecting data.</p>
+
+<h2>Signing up</h2>
+
+<p>To signup to a SurrealDB scope, inject the <code>surreal</code> service and use the <code>signup</code> method. This will allow you to submit parameters to the specified scope, which, if successful, will authenticate future requests, by running the scope's <code>SIGNUP</code> definition. The necessary parameters for the <code>signup</code> method are determined by the scope definition on the database.</p>
+
+<Example @name="demo-guides-surreal-authing-signup.js">
+	import Component from '@ember/routing/route';
+	import config from 'app/config/environment';
+	import { inject } from '@ember/service';
+	import { action } from '@ember/object';
+
+	export default class SignupForm extends Component {
+
+		@inject surreal;
+
+		@inject router;
+
+		@acton async signup() {
+
+			try {
+
+				await this.surreal.signup({
+					NS: config.surreal.NS,
+					DB: config.surreal.DB,
+					SC: 'test',
+					email: this.email,
+					pass: this.pass,
+				});
+
+				this.router.transitionTo('index');
+
+			} catch (e) {
+				// Signup failed
+			}
+
+		}
+
+	}
+</Example>
+
+<h2>Signing in</h2>
+
+<p>To signin to a SurrealDB scope, inject the <code>surreal</code> service and use the <code>signin</code> method. This will allow you to submit parameters to the specified scope, which, if successful, will authenticate future requests, by running the scope's <code>SIGNIN</code> definition. The necessary parameters for the <code>signin</code> method are determined by the scope definition on the database.</p>
+
+<Example @name="demo-guides-surreal-authing-signin.js">
+	import Component from '@ember/routing/route';
+	import config from 'app/config/environment';
+	import { inject } from '@ember/service';
+	import { action } from '@ember/object';
+
+	export default class SigninForm extends Component {
+
+		@inject surreal;
+
+		@inject router;
+
+		@acton async signin() {
+
+			try {
+
+				await this.surreal.signin({
+					NS: config.surreal.NS,
+					DB: config.surreal.DB,
+					SC: 'test',
+					email: this.email,
+					pass: this.pass,
+				});
+
+				this.router.transitionTo('index');
+
+			} catch (e) {
+				// Signin failed
+			}
+
+		}
+
+	}
+</Example>

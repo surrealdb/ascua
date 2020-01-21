@@ -1,0 +1,62 @@
+<h1>Modifying records</h1>
+
+<p>The SurrealDB Ember.js data store provides an interface for creating records locally, and saving them within SurrealDB. Manipulating records can be done using vanilla Javascript methods, with concurrent changes merged together in the client.</p>
+
+<h2>Inject the store</h2>
+
+<p>In order to start creating, updating, and deleting data in the database, you must first inject the store into any <code>route</code>, <code>controller</code>, or <code>component</code> which needs to access the store.</p>
+
+<details>
+
+	<summary>Example</summary>
+
+	<Example @name="demo-guides-surreal-modifying-inject.js">
+		import Component from '@glimmer/component';
+		import { inject } from '@ember/service';
+		import { action } from '@ember/object';
+
+		export default class extends Component {
+			@inject store;
+			@action async create() {
+				return this.store.create('person', {
+					name: 'Tobie',
+				});
+			}
+		};
+	</Example>
+
+</details>
+
+<h2>Creating a record</h2>
+
+<p>To create a new record locally and within the database, use the <code>create</code> method. The record is created locally, before being saved to the server, with a promise returned which will succeed or fail depending on the database response.</p>
+
+<Example @name="demo-guides-surreal-modifying-create.js">
+	await this.store.create('person', {
+		name: 'Tobie',
+		skillsets: [
+			{ name: 'js', years: 12 },
+			{ name: 'go', years: 5 },
+		],
+	});
+</Example>
+
+<h2>Updating a record</h2>
+
+<p>To update a record, set the properties normally. If a model is not specified to autosave, then call the <code>save()</code> method on the record. The <code>save()</code> method returns a promise which resolves successfully if the update was successful on SurrealDB.</p>
+
+<Example @name="demo-guides-surreal-modifying-update.js">
+	let record = await this.store.cached('person', 'test');
+	record.name = "Joe Bloggs";
+	record.skillsets[0].name = 'javascript';
+	record.save();
+</Example>
+
+<h2>Deleting a record</h2>
+
+<p>To delete a record call the <code>delete()</code> method on the record. The <code>delete()</code> method returns a promise which resolves successfully if the delete was successful on SurrealDB.</p>
+
+<Example @name="demo-guides-surreal-modifying-delete.js">
+	let record = await this.store.cached('person', 'test');
+	record.delete();
+</Example>

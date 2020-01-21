@@ -1,0 +1,77 @@
+<h1>Store</h1>
+
+<p>The <code>store</code> service adds functionality for creating, updating, deleting, and selecting records from SurrealDB. For further information on working with SurrealDB in Ember, consult the <LinkTo @route="guides.surreal">SurrealDB guides</LinkTo>.</p>
+
+<h2>Install</h2>
+
+<Example @name="demo-services-surreal-install.bash">
+	ember install @ascua/surreal
+</Example>
+
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>surreal</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-services-surreal-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			surreal: {
+				NS: "test",
+				DB: "test",
+			}
+		};
+		return ENV;
+	};
+</Example>
+
+<h2>Create a new record</h2>
+
+<p>To create a new record locally and within the database, use the <code>create</code> method. The record is created locally, before being saved to the server, with a promise returned which will succeed or fail depending on the database response.</p>
+
+<Example @name="demo-guides-surreal-store-create.js">
+	await this.store.create('person', {
+		name: 'Tobie',
+		skillsets: [
+			{ name: 'js', years: 12 },
+			{ name: 'go', years: 5 },
+		],
+	});
+</Example>
+
+<h2>Select records from the database</h2>
+
+<Example @name="demo-guides-surreal-store-select-all.js">
+	await this.store.select('person');
+</Example>
+
+<Example @name="demo-guides-surreal-store-select-one.js">
+	await this.store.select('person', 'test');
+</Example>
+
+<h2>Select records from the local cache</h2>
+
+<Example @name="demo-guides-surreal-store-cached-all.js">
+	await this.store.cached('person');
+</Example>
+
+<Example @name="demo-guides-surreal-store-cached-one.js">
+	await this.store.cached('person', 'test');
+</Example>
+
+<h2>Remove records from the local cache</h2>
+
+<Example @name="demo-guides-surreal-store-unload-all.js">
+	await this.store.unload('person');
+</Example>
+
+<Example @name="demo-guides-surreal-store-unload-one.js">
+	await this.store.unload('person', 'test');
+</Example>
+
+<h2>Reset the store</h2>
+
+<p>In order to remove all cached data from the store, and to reset the store back to its initial clean state, use the <code>reset</code> method.</p>
+
+<Example @name="demo-guides-surreal-store-reset.js">
+	this.store.reset();
+</Example>
