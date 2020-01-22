@@ -37,11 +37,7 @@ function func(target) {
 		},
 
 		invalidate() {
-			if (this.surreal.transition) {
-				this.surreal.transition.retry();
-			} else {
-				this.transitionTo(this.redirectIfInvalidated);
-			}
+			this.transitionTo(this.redirectIfInvalidated);
 		},
 
 		async beforeModel() {

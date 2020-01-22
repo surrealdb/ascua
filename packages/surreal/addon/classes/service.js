@@ -4,33 +4,37 @@ export default class extends Service {
 
 	events = {};
 
-	on(e, func) {
+	on(e, ctx, func) {
 		if (typeof this.events[e] !== 'object') {
 			this.events[e] = [];
 		}
-		this.events[e].push(func);
+		if (func instanceof Function) {
+			this.events[e].push({ ctx, func });
+		}
 	}
 
-	off(e, func) {
+	off(e, ctx, func) {
 		if (typeof this.events[e] === 'object') {
-			const idx = this.events[e].indexOf(func);
-			if (idx > -1) {
-				this.events[e].splice(idx, 1);
+			const idxs = this.events[e].filter(v => {
+				return v.ctx === ctx && v.func === func;
+			});
+			for (let i = idxs.length -1; i >= 0; i--) {
+				this.events[e].splice(idxs[i], 1);
 			}
 		}
 	}
 
-	once(e, func) {
+	once(e, ctx, func) {
 		this.on(e, function f(...args) {
-			this.off(e, f);
-			func.apply(this, args);
+			this.off(e, ctx, f);
+			func.apply(ctx, args);
 		});
 	}
 
 	emit(e, ...args) {
 		if (typeof this.events[e] === 'object') {
-			this.events[e].forEach(func => {
-				func.apply(this, args);
+			this.events[e].forEach(val => {
+				val.func.apply(val.ctx, args);
 			});
 		}
 	}

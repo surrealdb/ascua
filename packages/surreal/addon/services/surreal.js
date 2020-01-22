@@ -232,9 +232,9 @@ export default class Surreal extends Service {
 
 	async signup() {
 		try {
-			let e = await this.db.signup(...arguments);
-			this.storage.set('surreal', e.result);
-			this.token = e.result;
+			let t = await this.db.signup(...arguments);
+			this.storage.set('surreal', t);
+			this.token = t;
 			this.attempted = true;
 			this.invalidated = false;
 			this.authenticated = true;
@@ -242,7 +242,7 @@ export default class Surreal extends Service {
 			this.emit('authenticated');
 			return Promise.resolve();
 		} catch (e) {
-			this.storage.set('surreal', null);
+			this.storage.del('surreal');
 			this.token = null;
 			this.attempted = true;
 			this.invalidated = true;
@@ -255,9 +255,9 @@ export default class Surreal extends Service {
 
 	async signin() {
 		try {
-			let e = await this.db.signin(...arguments);
-			this.storage.set('surreal', e.result);
-			this.token = e.result;
+			let t = await this.db.signin(...arguments);
+			this.storage.set('surreal', t);
+			this.token = t;
 			this.attempted = true;
 			this.invalidated = false;
 			this.authenticated = true;
@@ -265,7 +265,7 @@ export default class Surreal extends Service {
 			this.emit('authenticated');
 			return Promise.resolve();
 		} catch (e) {
-			this.storage.set('surreal', null);
+			this.storage.del('surreal');
 			this.token = null;
 			this.attempted = true;
 			this.invalidated = true;
@@ -278,8 +278,8 @@ export default class Surreal extends Service {
 
 	async invalidate() {
 		try {
-			let e = await this.db.invalidate(...arguments);
-			this.storage.set('surreal', null);
+			await this.db.invalidate(...arguments);
+			this.storage.del('surreal');
 			this.token = null;
 			this.attempted = true;
 			this.invalidated = true;
@@ -288,7 +288,7 @@ export default class Surreal extends Service {
 			this.emit('invalidated');
 			return Promise.resolve();
 		} catch (e) {
-			this.storage.set('surreal', null);
+			this.storage.del('surreal');
 			this.token = null;
 			this.attempted = true;
 			this.invalidated = true;
@@ -301,7 +301,7 @@ export default class Surreal extends Service {
 
 	async authenticate() {
 		try {
-			let e = await this.db.authenticate(...arguments);
+			await this.db.authenticate(...arguments);
 			this.attempted = true;
 			this.invalidated = false;
 			this.authenticated = true;

@@ -52,8 +52,6 @@ function func(target) {
 		},
 
 		async redirect(model, transition) {
-			// Store the current desired route.
-			this.surreal.transition = transition;
 			// Wait for Surreal to attempt and redirect.
 			return this.surreal.wait().then( () => {
 				if (this.surreal.authenticated === true) {

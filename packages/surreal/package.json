@@ -18,7 +18,7 @@
     "@ascua/context": "file:../context",
     "broccoli-persistent-filter": "^2.3.1",
     "ember-cli-babel": "^7.13.0",
-    "surreal.js": "0.4.3"
+    "surreal.js": "0.4.4"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",
