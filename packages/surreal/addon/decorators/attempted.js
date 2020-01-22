@@ -22,10 +22,11 @@ function func(target) {
 
 		surreal: inject(),
 
-		beforeModel() {
-			super.beforeModel(...arguments);
+		async beforeModel() {
 			// Wait for authentication attempt.
-			return this.surreal.wait();
+			await this.surreal.wait();
+			// Continue with application loading.
+			return this._super(...arguments);
 		},
 
 	});

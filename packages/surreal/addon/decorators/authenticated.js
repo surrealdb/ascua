@@ -25,13 +25,13 @@ function func(target) {
 		redirectIfInvalidated: 'signin',
 
 		activate() {
-			super.activate(...arguments);
+			this._super(...arguments);
 			// Enable listening to invalidated events.
 			this.surreal.on('invalidated', this, this.invalidate);
 		},
 
 		deactivate() {
-			super.deactivate(...arguments);
+			this._super(...arguments);
 			// Disable listening to invalidated events.
 			this.surreal.off('invalidated', this, this.invalidate);
 		},
@@ -44,21 +44,22 @@ function func(target) {
 			}
 		},
 
-		beforeModel() {
-			super.beforeModel(...arguments);
+		async beforeModel() {
 			// Wait for authentication attempt.
-			return this.surreal.wait('attempted');
+			await this.surreal.wait();
+			// Continue with application loading.
+			return this._super(...arguments);
 		},
 
-		redirect(model, transition) {
+		async redirect(model, transition) {
 			// Store the current desired route.
 			this.surreal.transition = transition;
 			// Wait for Surreal to attempt and redirect.
-			return this.surreal.wait('attempted').then( () => {
+			return this.surreal.wait().then( () => {
 				if (this.surreal.authenticated === false) {
 					return this.transitionTo(this.redirectIfInvalidated);
 				}
-				return super.redirect(...arguments);
+				return this._super(...arguments);
 			});
 		},
 

@@ -25,13 +25,13 @@ function func(target) {
 		closed: () => {},
 
 		activate() {
-			super.activate(...arguments);
+			this._super(...arguments);
 			// Enable listening to closed events.
 			this.surreal.on('closed', this, this.closed);
 		},
 
 		deactivate() {
-			super.deactivate(...arguments);
+			this._super(...arguments);
 			// Disable listening to closed events.
 			this.surreal.off('closed', this, this.closed);
 		},
