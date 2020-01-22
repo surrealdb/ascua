@@ -15,6 +15,7 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
+    "@ascua/context": "file:../context",
     "broccoli-persistent-filter": "^2.3.1",
     "ember-cli-babel": "^7.13.0",
     "surreal.js": "0.4.2"
