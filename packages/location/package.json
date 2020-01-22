@@ -1,6 +1,6 @@
 {
   "name": "@ascua/location",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Small description for @ascua/location goes here",
   "keywords": [
     "ember-addon"

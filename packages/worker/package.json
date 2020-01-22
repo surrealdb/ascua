@@ -1,6 +1,6 @@
 {
   "name": "@ascua/worker",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Small description for @ascua/worker goes here",
   "keywords": [
     "ember-addon"
