@@ -19,6 +19,18 @@ export default class Field extends Core {
 		return this.#data = value;
 	}
 
+	// The `parent` property can be used
+	// to retrieve the underlying parent
+	// model that owns this record.
+
+	get parent() {
+		return this.#parent;
+	}
+
+	set parent(value) {
+		return this.#parent = value;
+	}
+
 	// When formatted as a JSON string,
 	// the record's underlying data will
 	// be used for serlialization.

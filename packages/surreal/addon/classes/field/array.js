@@ -35,7 +35,7 @@ export default function(type) {
 
 					if (model && model.class.prototype instanceof Field) {
 						return this.data[key] = this.data[key] || new Array(this, (v) => {
-							let fields = Object.assign({}, v, { _parent: this });
+							let fields = Object.assign({}, v, { parent: this });
 							return model.create(fields);
 						}, ...value);
 					}
@@ -77,7 +77,7 @@ export default function(type) {
 
 					if (model && model.class.prototype instanceof Field) {
 						return this.data[key] = new Array(this, (v) => {
-							let fields = Object.assign({}, v, { _parent: this });
+							let fields = Object.assign({}, v, { parent: this });
 							return model.create(fields);
 						}, ...value);
 					}
