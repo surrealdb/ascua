@@ -403,7 +403,7 @@
 
 <p>You can also pass an action as second argument.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
+<Example @name="demo-helpers-arrays-sortby-action.hbs" @hide={{true}}>
 	{{#each (sort-by (action "mySortAction") people) as |person|}}
 		{{!-- All people sorted by the custom sorting action --}}
 	{{/each}}
@@ -411,7 +411,7 @@
 
 <p>Returns the given array sorted using a specific locale comparator.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
+<Example @name="demo-helpers-arrays-sortby-locale.hbs" @hide={{true}}>
 	{{#each (sort-by "name" people locale=true) as |person|}}
 		{{!-- All people sorted by name ascending --}}
 	{{/each}}
@@ -419,7 +419,7 @@
 
 <p>You can also pass <code>asc</code> or <code>desc</code> suffixes to specify sort ordering.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
+<Example @name="demo-helpers-arrays-sortby-locale-desc.hbs" @hide={{true}}>
 	{{#each (sort-by "name:desc" people locale=true) as |person|}}
 		{{!-- All people sorted by name descending --}}
 	{{/each}}
@@ -427,7 +427,7 @@
 
 <p>Or you can specify that numeric collation should be used when sorting.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
+<Example @name="demo-helpers-arrays-sortby-locale-numeric.hbs" @hide={{true}}>
 	{{#each (sort-by "age" people locale=true numeric=true) as |person|}}
 		{{!-- All people sorted by age with numbers sorting correctly --}}
 	{{/each}}
@@ -435,7 +435,7 @@
 
 <p>Or you can specify that punctuation should be ignored when sorting.</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
+<Example @name="demo-helpers-arrays-sortby-locale-punctuation.hbs" @hide={{true}}>
 	{{#each (sort-by "name" people locale=true ignorePunctuation=false) as |person|}}
 		{{!-- All people sorted by name with punctuation ignored --}}
 	{{/each}}
@@ -443,7 +443,7 @@
 
 <p>Or you can specify which case should sort first. Possible values are <code>lower</code>, <code>upper</code>, or <code>false</code> (default).</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
+<Example @name="demo-helpers-arrays-sortby-locale-castfirst.hbs" @hide={{true}}>
 	{{#each (sort-by "name" people locale=true caseFirst="upper") as |person|}}
 		{{!-- All people sorted by name with upper case ordered first --}}
 	{{/each}}
@@ -451,7 +451,7 @@
 
 <p>Or you can specify the sensitivity of the locale sort algorithm. Possible values are <code>case</code>, <code>accent</code>, <code>variant</code>, or <code>base</code> (default).</p>
 
-<Example @name="demo-helpers-arrays-sortby.hbs" @hide={{true}}>
+<Example @name="demo-helpers-arrays-sortby-locale-sensitivity.hbs" @hide={{true}}>
 	{{#each (sort-by "name" people locale=true sensitivity="case") as |person|}}
 		{{!-- All people sorted by name with specifc sensitivity case ordering --}}
 	{{/each}}
