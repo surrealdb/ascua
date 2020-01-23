@@ -12,11 +12,11 @@
 
 <p>Performs the Javascript equivalent of <code>document.querySelectorAll(...)</code>.</p>
 
-<Example @name="demo-helpers-dom-$-html.hbs" @hide={{true}}>
+<Example @name="demo-helpers-dom-$-html.hbs">
 	<div id="my-id"></div>
 </Example>
 
-<Example @name="demo-helpers-dom-$.hbs" @hide={{true}}>
+<Example @name="demo-helpers-dom-$.hbs">
 	{{#-in-element ($ "#my-id")}}
 		Display somewhere else
 	{{/-in-element}}
@@ -63,12 +63,12 @@
 
 <p>Performs the Javascript equivalent of <code>document.getElementsByClassName(...)</code>.</p>
 
-<Example @name="demo-helpers-dom-get-element-by-class-html.hbs" @hide={{true}}>
-	<div class="my-class"></div>
+<Example @name="demo-helpers-dom-get-element-by-class-html.hbs">
+	<div class="by-class"></div>
 </Example>
 
-<Example @name="demo-helpers-dom-get-element-by-class.hbs" @hide={{true}}>
-	{{#-in-element (get-element-by-class "my-class")}}
+<Example @name="demo-helpers-dom-get-element-by-class.hbs">
+	{{#-in-element (get-element-by-class "by-class")}}
 		Display somewhere else
 	{{/-in-element}}
 </Example>
@@ -77,12 +77,12 @@
 
 <p>Performs the Javascript equivalent of <code>document.getElementById(...)</code>.</p>
 
-<Example @name="demo-helpers-dom-get-element-by-id-html.hbs" @hide={{true}}>
-	<div id="my-id"></div>
+<Example @name="demo-helpers-dom-get-element-by-id-html.hbs">
+	<div id="by-id"></div>
 </Example>
 
-<Example @name="demo-helpers-dom-get-element-by-id.hbs" @hide={{true}}>
-	{{#-in-element (get-element-by-id "my-id")}}
+<Example @name="demo-helpers-dom-get-element-by-id.hbs">
+	{{#-in-element (get-element-by-id "by-id")}}
 		Display somewhere else
 	{{/-in-element}}
 </Example>
@@ -91,12 +91,12 @@
 
 <p>Performs the Javascript equivalent of <code>document.getElementsByTagName(...)</code>.</p>
 
-<Example @name="demo-helpers-dom-get-element-by-tag-html.hbs" @hide={{true}}>
-	<my-tag></my-tag>
+<Example @name="demo-helpers-dom-get-element-by-tag-html.hbs">
+	<by-tag></by-tag>
 </Example>
 
-<Example @name="demo-helpers-dom-get-element-by-tag.hbs" @hide={{true}}>
-	{{#-in-element (get-element-by-tag "my-tag")}}
+<Example @name="demo-helpers-dom-get-element-by-tag.hbs">
+	{{#-in-element (get-element-by-tag "by-tag")}}
 		Display somewhere else
 	{{/-in-element}}
 </Example>
