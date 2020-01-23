@@ -1,4 +1,3 @@
-import { computed } from '@ember/object';
 import Array from '../types/array';
 import Any from '../types/any';
 import String from '../types/string';

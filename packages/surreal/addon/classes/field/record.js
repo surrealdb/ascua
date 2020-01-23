@@ -1,4 +1,3 @@
-import { computed } from '@ember/object';
 import Record from '../types/record';
 import Model from '@ascua/surreal/model';
 
