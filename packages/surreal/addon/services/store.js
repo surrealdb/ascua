@@ -14,10 +14,6 @@ export default class Store extends Service {
 
 	stack = new Object();
 
-	lookup(model) {
-		return getOwner(this).factoryFor(`model:${model}`);
-	}
-
 	/**
 	 * Reset the store.
 	 *
@@ -26,6 +22,31 @@ export default class Store extends Service {
 
 	reset() {
 		this.cache = new Cache();
+	}
+
+	/**
+	 * Lookup the model by its name.
+	 *
+	 * @returns {Model} The class for the desired model.
+	 */
+
+	lookup(model) {
+		return getOwner(this).factoryFor(`model:${model}`);
+	}
+
+	/**
+	 * Find records in the store. This is an alias
+	 * for the select method, as the Ember Router
+	 * will use this method if a Route's model
+	 * hook has not been defined.
+	 *
+	 * @param {string} model - The model type.
+	 * @param {undefined|string|Array} id - A specific record id.
+	 * @returns {Promise} Promise object with the desired records.
+	 */
+
+	async find() {
+		return this.select(...arguments);
 	}
 
 	/**
