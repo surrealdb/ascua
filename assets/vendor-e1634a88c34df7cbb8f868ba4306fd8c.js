@@ -21919,7 +21919,7 @@ case"number":return this.data[f]=this.data[f]||new t.default(this,i.default)
 case"boolean":return this.data[f]=this.data[f]||new t.default(this,o.default)
 case"datetime":return this.data[f]=this.data[f]||new t.default(this,a.default)
 default:var p=this.data[f]||[],m=this.store.lookup(e)
-if(m&&m.class.prototype instanceof c.default)return this.data[f]=this.data[f]||h(t.default,[this,function(e){var t=Object.assign({},e,{_parent:u})
+if(m&&m.class.prototype instanceof c.default)return this.data[f]=this.data[f]||h(t.default,[this,function(e){var t=Object.assign({},e,{parent:u})
 return m.create(t)}].concat(d(p)))
 if(m&&m.class.prototype instanceof l.default)return this.data[f]=h(t.default,[this,function(t){switch(!0){case t instanceof s.default:return t
 default:return s.default.create({id:t,promise:u.store.select(e,t)})}}].concat(d(p)))}},set:function(){var u=this,p=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[]
@@ -21929,7 +21929,7 @@ case"number":return this.data[f]=h(t.default,[this,i.default].concat(d(p)))
 case"boolean":return this.data[f]=h(t.default,[this,o.default].concat(d(p)))
 case"datetime":return this.data[f]=h(t.default,[this,a.default].concat(d(p)))
 default:var m=this.store.lookup(e)
-if(m&&m.class.prototype instanceof c.default)return this.data[f]=h(t.default,[this,function(e){var t=Object.assign({},e,{_parent:u})
+if(m&&m.class.prototype instanceof c.default)return this.data[f]=h(t.default,[this,function(e){var t=Object.assign({},e,{parent:u})
 return m.create(t)}].concat(d(p)))
 if(m&&m.class.prototype instanceof l.default)return this.data[f]=h(t.default,[this,function(e){switch(!0){case e instanceof s.default:return e
 default:return(0,n.default)(e)}}].concat(d(p)))}}}}}})),define("@ascua/surreal/classes/field/boolean",["exports","@ascua/surreal/classes/types/boolean"],(function(e,t){"use strict"
@@ -21941,28 +21941,28 @@ var r=Ember.computed({get:function(e){return(0,t.default)(this.data[e])},set:fun
 e.default=r})),define("@ascua/surreal/classes/field/index",["exports"],(function(e){"use strict"
 function t(e){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function i(e,r){return!r||"object"!==t(r)&&"function"!=typeof r?a(e):r}function o(e){return(o=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function a(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}function s(e,t){return(s=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function l(e,t){var r=t.get(e)
-if(!r)throw new TypeError("attempted to get private field on non-instance")
-return r.get?r.get.call(e):r.value}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var c=function(e){function t(){var e,n
-r(this,t)
-for(var s=arguments.length,l=new Array(s),c=0;c<s;c++)l[c]=arguments[c]
-return n=i(this,(e=o(t)).call.apply(e,[this].concat(l))),u.set(a(n),{writable:!0,value:{}}),h.set(a(n),{writable:!0,value:void 0}),n}var c,f,d
-return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&s(e,t)}(t,Ember.Object),c=t,(f=[{key:"toJSON",value:function(){return l(this,u)}},{key:"save",value:function(){return l(this,h)&&l(this,h).save()}},{key:"autosave",value:function(){return l(this,h)&&l(this,h).autosave()}},{key:"data",get:function(){return l(this,u)},set:function(e){return function(e,t,r){var n=t.get(e)
+return e}function s(e,t){return(s=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function l(e,t,r){var n=t.get(e)
 if(!n)throw new TypeError("attempted to set private field on non-instance")
 if(n.set)n.set.call(e,r)
 else{if(!n.writable)throw new TypeError("attempted to set read only private field")
-n.value=r}return r}(this,u,e)}}])&&n(c.prototype,f),d&&n(c,d),t}()
-e.default=c
-var u=new WeakMap,h=new WeakMap})),define("@ascua/surreal/classes/field/number",["exports","@ascua/surreal/classes/types/number"],(function(e,t){"use strict"
+n.value=r}return r}function c(e,t){var r=t.get(e)
+if(!r)throw new TypeError("attempted to get private field on non-instance")
+return r.get?r.get.call(e):r.value}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
+var u=function(e){function t(){var e,n
+r(this,t)
+for(var s=arguments.length,l=new Array(s),c=0;c<s;c++)l[c]=arguments[c]
+return n=i(this,(e=o(t)).call.apply(e,[this].concat(l))),h.set(a(n),{writable:!0,value:{}}),f.set(a(n),{writable:!0,value:void 0}),n}var u,d,p
+return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&s(e,t)}(t,Ember.Object),u=t,(d=[{key:"toJSON",value:function(){return c(this,h)}},{key:"save",value:function(){return c(this,f)&&c(this,f).save()}},{key:"autosave",value:function(){return c(this,f)&&c(this,f).autosave()}},{key:"data",get:function(){return c(this,h)},set:function(e){return l(this,h,e)}},{key:"parent",get:function(){return c(this,f)},set:function(e){return l(this,f,e)}}])&&n(u.prototype,d),p&&n(u,p),t}()
+e.default=u
+var h=new WeakMap,f=new WeakMap})),define("@ascua/surreal/classes/field/number",["exports","@ascua/surreal/classes/types/number"],(function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var r=Ember.computed({get:function(e){return(0,t.default)(this.data[e])},set:function(e,r){return this.data[e]=(0,t.default)(r),this.autosave(),this.data[e]}})
 e.default=r})),define("@ascua/surreal/classes/field/object",["exports","@ascua/surreal/model","@ascua/surreal/field"],(function(e,t,r){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e){return Ember.computed({get:function(n){var i=this.store.lookup(e)
-switch(!0){case i&&i.class.prototype instanceof t.default:case i&&i.class.prototype instanceof r.default:var o=Object.assign({},{_parent:this})
+switch(!0){case i&&i.class.prototype instanceof t.default:case i&&i.class.prototype instanceof r.default:var o=Object.assign({},{parent:this})
 return this.data[n]=this.data[n]||i.create(o)}},set:function(n){var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},o=this.store.lookup(e)
-switch(!0){case o&&o.class.prototype instanceof t.default:case o&&o.class.prototype instanceof r.default:var a=Object.assign({},i,{_parent:this})
+switch(!0){case o&&o.class.prototype instanceof t.default:case o&&o.class.prototype instanceof r.default:var a=Object.assign({},i,{parent:this})
 return this.data[n]=o.create(a)}}})}})),define("@ascua/surreal/classes/field/record",["exports","@ascua/surreal/classes/types/record","@ascua/surreal/model"],(function(e,t,r){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e){return function(n,i,o){return{configurable:!0,enumerable:!0,get:function(){var r=this.data[i]
 switch(!0){case void 0===r:case r instanceof t.default:return this.data[i]
@@ -22145,9 +22145,11 @@ return e}function p(e,t){return(p=Object.setPrototypeOf||function(e,t){return e.
 var g,v,y,b,_,x,w=(g=(n=function(e){function r(){var e,n
 c(this,r)
 for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s]
-return l(d(n=h(this,(e=f(r)).call.apply(e,[this].concat(a)))),"surreal",i,d(n)),m(d(n),"cache",new t.default),m(d(n),"stack",new Object),n}var n,o,a,g,v,y,b,_,x,w,S
+return l(d(n=h(this,(e=f(r)).call.apply(e,[this].concat(a)))),"surreal",i,d(n)),m(d(n),"cache",new t.default),m(d(n),"stack",new Object),n}var n,o,a,g,v,y,b,_,x,w,S,E
 return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&p(e,t)}(r,Ember.Service),n=r,(o=[{key:"lookup",value:function(e){return Ember.getOwner(this).factoryFor("model:".concat(e))}},{key:"reset",value:function(){this.cache=new t.default}},{key:"remove",value:(S=s(regeneratorRuntime.mark((function e(t){var r=this
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&p(e,t)}(r,Ember.Service),n=r,(o=[{key:"reset",value:function(){this.cache=new t.default}},{key:"lookup",value:function(e){return Ember.getOwner(this).factoryFor("model:".concat(e))}},{key:"find",value:(E=s(regeneratorRuntime.mark((function e(){var t=arguments
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.abrupt("return",this.select.apply(this,t))
+case 1:case"end":return e.stop()}}),e,this)}))),function(){return E.apply(this,arguments)})},{key:"remove",value:(S=s(regeneratorRuntime.mark((function e(t){var r=this
 return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.abrupt("return",[].concat(t).map(function(){var e=s(regeneratorRuntime.mark((function e(t){return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,r.unload(t.meta.tb,t.id)
 case 2:return e.abrupt("return",e.sent)
 case 3:case"end":return e.stop()}}),e)})))
