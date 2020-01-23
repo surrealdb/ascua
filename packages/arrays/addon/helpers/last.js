@@ -1,23 +1,9 @@
-import { isArray, A } from '@ember/array';
-import { observer } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
 
-export default Helper.extend({
+export function last([value]) {
+	return [].concat(value).objectAt(
+		[].concat(value).length - 1
+	);
+}
 
-	changed: observer('array.[]', function() {
-		this.recompute();
-	}),
-
-	compute([array]) {
-
-		if ( !isArray(array) ) {
-			return undefined;
-		}
-
-		this.set('array', array);
-
-		return A(array).objectAt( A(array).get('length') - 1 );
-
-	},
-
-});
+export default helper(last);

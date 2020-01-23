@@ -1,36 +1,14 @@
-import { isArray, A } from '@ember/array';
-import { observer, computed, get } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
+import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export function without([needle, haystack]) {
+	if ( isArray(needle) ) {
+		return [].concat(haystack).reduce( (prev, item) => {
+			return [].concat(needle).includes(item) ? prev : prev.concat(item);
+		}, []);
+	} else {
+		return [].concat(haystack).without(needle);
+	}
+}
 
-	compute([needle, haystack]) {
-		this.set('needle', needle);
-		this.set('haystack', haystack);
-		return this.get('content');
-	},
-
-	changed: observer('content', function() {
-		this.recompute();
-	}),
-
-	content: computed('needle.[]', 'haystack.[]', function() {
-
-		let needle = get(this, 'needle');
-		let haystack = get(this, 'haystack');
-
-		if ( !isArray(haystack) ) {
-			return false;
-		}
-
-		if ( isArray(needle) && get(needle, 'length') ) {
-			return haystack.reduce( (prev, item) => {
-				return A(needle).contains(item) ? prev : prev.concat(item);
-			}, []);
-		} else {
-			return A(haystack).without(needle);
-		}
-
-	}).readOnly(),
-
-});
+export default helper(without);

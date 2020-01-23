@@ -1,45 +1,31 @@
+import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
-import { observer, computed, get } from '@ember/object';
-import { isArray, A } from '@ember/array';
-import Helper from '@ember/component/helper';
+import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export function anyBy([thing, value, array]) {
 
-	compute([path, value, array]) {
+	if ( !isArray(array) && isArray(value) ) {
+		array = value;
+		value = true;
+	}
 
-		if ( !isArray(array) && isArray(value) ) {
-			array = value;
-			value = true;
-		}
+	if ( isEmpty(thing) ) {
+		return false;
+	}
 
-		this.set('path', path);
-		this.set('value', value);
-		this.set('array', array);
+	if ( !isArray(array) ) {
+		return false;
+	}
 
-		return this.get('content');
+	switch (true) {
+	case typeof thing === 'function':
+		return array.any(thing);
+	case value === undefined:
+		return array.isAny(thing, true);
+	default:
+		return array.isAny(thing, value);
+	}
 
-	},
+}
 
-	changed: observer('content', function() {
-		this.recompute();
-	}),
-
-	content: computed('path', 'array.[]', function() {
-
-		let path = get(this, 'path');
-		let value = get(this, 'value');
-		let array = get(this, 'array');
-
-		if ( isEmpty(path) ) {
-			return false;
-		}
-
-		if ( !isArray(array) ) {
-			return false;
-		}
-
-		return A(array).isAny(path, value);
-
-	}).readOnly(),
-
-});
+export default helper(anyBy);

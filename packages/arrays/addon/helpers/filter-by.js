@@ -1,53 +1,31 @@
-import { filter } from '@ember/object/computed';
-import { isEmpty, isPresent } from '@ember/utils';
-import { observer, get, defineProperty } from '@ember/object';
+import { helper } from '@ember/component/helper';
+import { isEmpty } from '@ember/utils';
 import { isArray } from '@ember/array';
-import Helper from '@ember/component/helper';
 
-export default Helper.extend({
+export function filterBy([param, value, array]) {
 
-	compute([path, value, array]) {
+	if ( !isArray(array) && isArray(value) ) {
+		array = value;
+		value = undefined;
+	}
 
-		if ( !isArray(array) && isArray(value) ) {
-			array = value;
-			value = undefined;
-		}
+	if ( isEmpty(param) ) {
+		return [];
+	}
 
-		this.set('path', path);
-		this.set('value', value);
-		this.set('array', array);
+	if ( !isArray(array) ) {
+		return [];
+	}
 
-		return this.get('content');
+	switch (true) {
+	case typeof param === 'function':
+		return array.reject(param);
+	case value === undefined:
+		return array.filterBy(param);
+	default:
+		return array.filterBy(param, value);
+	}
 
-	},
+}
 
-	changed: observer('content', function() {
-		this.recompute();
-	}),
-
-	pathDidChange: observer('path', 'value', function() {
-
-		let func = () => null;
-		let path = get(this, 'path');
-		let value = get(this, 'value');
-
-		if ( isEmpty(path) ) {
-			defineProperty(this, 'content', []);
-			return;
-		}
-
-		if ( isPresent(value) ) {
-			if (typeof value === 'function') {
-				func = (item) => value( get(item, path) );
-			} else {
-				func = (item) => get(item, path) === value;
-			}
-		} else {
-			func = (item) => isPresent( get(item, path) );
-		}
-
-		defineProperty(this, 'content', filter(`array.@each.${path}`, func));
-
-	}),
-
-});
+export default helper(filterBy);

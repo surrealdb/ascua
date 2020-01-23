@@ -1,23 +1,14 @@
-import { isArray, A } from '@ember/array';
-import { observer } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
+import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export function slice([beg, end, array]) {
 
-	changed: observer('array.[]', function() {
-		this.recompute();
-	}),
+	if ( !isArray(array) ) {
+		return [];
+	}
 
-	compute([beg, end, array]) {
+	return [].concat(array).slice(beg, end);
 
-		if ( !isArray(array) ) {
-			return undefined;
-		}
+}
 
-		this.set('array', array);
-
-		return A(array).slice(beg, end);
-
-	},
-
-});
+export default helper(slice);

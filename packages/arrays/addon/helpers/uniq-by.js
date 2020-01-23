@@ -1,31 +1,19 @@
-import { uniqBy } from '@ember/object/computed';
+import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
-import { observer, get, defineProperty } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export function uniqBy([path, array]) {
 
-	compute([path, array]) {
-		this.set('path', path);
-		this.set('array', array);
-		return this.get('content');
-	},
+	if ( isEmpty(path) ) {
+		return [];
+	}
 
-	changed: observer('content', function() {
-		this.recompute();
-	}),
+	if ( !isArray(array) ) {
+		return [];
+	}
 
-	pathDidChange: observer('path', function() {
+	return [].concat(array).uniqBy(path);
 
-		let path = get(this, 'path');
+}
 
-		if ( isEmpty(path) ) {
-			defineProperty(this, 'content', []);
-			return;
-		}
-
-		defineProperty(this, 'content', uniqBy('array', path));
-
-	}),
-
-});
+export default helper(uniqBy);

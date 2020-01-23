@@ -1,15 +1,7 @@
-import { observer } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
 
-export default Helper.extend({
+export function flatten([array]) {
+	return [].concat.apply([], array);
+}
 
-	changed: observer('array.[]', function() {
-		this.recompute();
-	}),
-
-	compute([array]) {
-		this.set('array', array);
-		return [].concat.apply([], array);
-	},
-
-});
+export default helper(flatten);

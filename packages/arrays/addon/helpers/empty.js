@@ -1,15 +1,7 @@
-import { observer } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
 
-export default Helper.extend({
+export function empty([value]) {
+	return [].concat(value).length === 0;
+}
 
-	changed: observer('array.[]', function() {
-		this.recompute();
-	}),
-
-	compute([array]) {
-		this.set('array', array);
-		return this.get('array.length') === 0;
-	},
-
-});
+export default helper(empty);

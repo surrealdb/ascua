@@ -1,59 +1,31 @@
-import { isEmpty, isPresent } from '@ember/utils';
-import {
-  observer,
-  get,
-  defineProperty,
-  computed
-} from '@ember/object';
-import { isArray, A } from '@ember/array';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
+import { isEmpty } from '@ember/utils';
+import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export function findBy([param, value, array]) {
 
-	compute([path, value, array]) {
+	if ( !isArray(array) && isArray(value) ) {
+		array = value;
+		value = undefined;
+	}
 
-		if ( !isArray(array) && isArray(value) ) {
-			array = value;
-			value = undefined;
-		}
+	if ( isEmpty(param) ) {
+		return undefined;
+	}
 
-		this.set('path', path);
-		this.set('value', value);
-		this.set('array', array);
+	if ( !isArray(array) ) {
+		return undefined;
+	}
 
-		return this.get('content');
+	switch (true) {
+	case typeof param === 'function':
+		return array.find(param);
+	case value === undefined:
+		return array.findBy(param);
+	default:
+		return array.findBy(param, value);
+	}
 
-	},
+}
 
-	changed: observer('content', function() {
-		this.recompute();
-	}),
-
-	pathDidChange: observer('path', 'value', function() {
-
-		let func = () => null;
-		let path = get(this, 'path');
-		let value = get(this, 'value');
-
-		if ( isEmpty(path) ) {
-			defineProperty(this, 'content', []);
-			return;
-		}
-
-		if ( isPresent(value) ) {
-			if (typeof value === 'function') {
-				func = (item) => value( get(item, path) );
-			} else {
-				func = (item) => get(item, path) === value;
-			}
-		} else {
-			func = (item) => isPresent( get(item, path) );
-		}
-
-		defineProperty(this, 'content', computed(`array.@each.${path}`, function() {
-			return A( get(this, 'array') ).find(func);
-		}));
-
-	}),
-
-});
+export default helper(findBy);

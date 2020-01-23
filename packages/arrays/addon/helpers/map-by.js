@@ -1,50 +1,27 @@
-import { isArray } from '@ember/array';
-import { map, mapBy } from '@ember/object/computed';
+import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
-import { observer, get, defineProperty } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export function mapBy([param, array]) {
 
-	compute([param, array]) {
+	if ( isArray(param) ) {
+		array = param;
+		param = undefined;
+	}
 
-		if ( isArray(param) ) {
-			array = param;
-			param = undefined;
-		}
+	if ( !isArray(array) ) {
+		return [];
+	}
 
-		if ( !isArray(array) ) {
-			array = [];
-		}
+	switch (true) {
+	case typeof param === 'function':
+		return array.map(thing);
+	case isEmpty(param):
+		return array.map(v => v);
+	default:
+		return array.mapBy(param);
+	}
 
-		this.set('param', param);
-		this.set('array', array);
+}
 
-		return this.get('content');
-
-	},
-
-	changed: observer('content', function() {
-		this.recompute();
-	}),
-
-	pathDidChange: observer('param', function() {
-
-		let param = get(this, 'param');
-
-		if ( isEmpty(param) ) {
-			defineProperty(this, 'content', map('array', v => v));
-			return;
-		}
-
-		if (typeof param === 'function') {
-			defineProperty(this, 'content', map('array', param));
-			return;
-		} else {
-			defineProperty(this, 'content', mapBy('array', param));
-			return;
-		}
-
-	}),
-
-});
+export default helper(mapBy);

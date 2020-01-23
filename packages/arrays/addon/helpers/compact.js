@@ -1,23 +1,7 @@
-import { isArray, A } from '@ember/array';
-import { observer } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
 
-export default Helper.extend({
+export function compact([value]) {
+	return [].concat(value).compact();
+}
 
-	changed: observer('array.[]', function() {
-		this.recompute();
-	}),
-
-	compute([array]) {
-
-		if ( !isArray(array) ) {
-			return undefined;
-		}
-
-		this.set('array', array);
-
-		return A(array).compact();
-
-	},
-
-});
+export default helper(compact);

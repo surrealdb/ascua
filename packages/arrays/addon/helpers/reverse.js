@@ -1,23 +1,14 @@
-import { isArray, A } from '@ember/array';
-import { observer } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
+import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export function reverse([array]) {
 
-	changed: observer('array.[]', function() {
-		this.recompute();
-	}),
+	if ( !isArray(array) ) {
+		return [];
+	}
 
-	compute([array]) {
+	return [].concat(array).slice(0).reverse();
 
-		if ( !isArray(array) ) {
-			return undefined;
-		}
+}
 
-		this.set('array', array);
-
-		return A(array).slice(0).reverse();
-
-	},
-
-});
+export default helper(reverse);

@@ -1,16 +1,15 @@
-import { A } from '@ember/array';
-import { observer } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
+import { isArray } from '@ember/array';
 
-export default Helper.extend({
+export function join([separator, ...array]) {
 
-	changed: observer('array.[]', function() {
-		this.recompute();
-	}),
+	if ( isArray(separator) ) {
+		array = separator;
+		separator = " ";
+	}
 
-	compute([separator, ...array]) {
-		this.set('array', array);
-		return A(array).reduce( (words, other) => words.concat(other) ).join(separator);
-	},
+	return [].concat.apply([], array).join(separator);
 
-});
+}
+
+export default helper(join);

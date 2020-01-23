@@ -1,84 +1,60 @@
-import { sort } from '@ember/object/computed';
-import { observer, get, defineProperty } from '@ember/object';
-import { typeOf, isEmpty } from '@ember/utils';
-import { computed } from '@ember/object';
+import { helper } from '@ember/component/helper';
+import { isEmpty } from '@ember/utils';
 import { isArray } from '@ember/array';
-import Helper from '@ember/component/helper';
+import { typeOf } from '@ember/utils';
+import { get } from '@ember/object';
 
-export default Helper.extend({
+export function sortBy([...params], { locale = false, numeric = false, caseFirst = 'false', sensitivity = 'base', ignorePunctuation = false }) {
 
-	compute([...props], { locale = false, numeric = false, caseFirst = 'false', sensitivity = 'base', ignorePunctuation = false }) {
+	let props = params.slice(0, -1);
+	let array = params.slice().pop();
 
-		let param = props.slice(0, -1);
-		let array = props.slice().pop();
+	if ( isArray(props[0]) || typeOf(props[0]) === 'function') {
+		props = props[0];
+	}
 
-		if ( isArray(param[0]) || typeOf(param[0]) === 'function') {
-			param = param[0];
+	if ( isEmpty(props) ) {
+		return [];
+	}
+
+	if ( !isArray(array) ) {
+		return [];
+	}
+
+	if ( typeOf(props) === 'function' ) {
+		return array.sort(props);
+	}
+
+	if ( locale === false ) {
+		return array.sortBy(...props);
+	}
+
+	return [].concat(array).sort(function(one, two) {
+
+		for (let i=0; i<props.length; i++) {
+
+			let [prop, dir] = String(props[i]).split(':');
+
+			let a = String( get(one, prop) );
+			let b = String( get(two, prop) );
+
+			let comps = a.localeCompare(b, undefined, {
+				numeric,
+				caseFirst,
+				sensitivity,
+				ignorePunctuation,
+			});
+
+			if (comps !== 0) {
+				return (dir === 'desc') ? (-1 * comps) : comps;
+			} else {
+				continue;
+			}
+
 		}
 
-		this.set('param', param);
-		this.set('array', array);
+	});
 
-		this.set('confs', {
-			locale,
-			numeric,
-			caseFirst,
-			sensitivity,
-			ignorePunctuation,
-		});
+}
 
-		return this.get('content');
-
-	},
-
-	changed: observer('content', function() {
-		this.recompute();
-	}),
-
-	sortDidChange: observer('param', 'confs', function() {
-
-		let confs = get(this, 'confs');
-		let param = get(this, 'param');
-
-		if ( isEmpty(param) ) {
-			defineProperty(this, 'content', []);
-			return;
-		}
-
-		if ( typeOf(param) === 'function' ) {
-			defineProperty(this, 'content', sort('array', param));
-		} else if (confs.locale === false) {
-			defineProperty(this, 'content', sort('array', 'param'));
-		} else if (confs.locale === true) {
-			defineProperty(this, 'content', computed(param, function() {
-				return this.get('array').slice().sort(function(one, two) {
-
-					for (let i=0; i<param.length; i++) {
-
-						let [prop, dir] = String(param[i]).split(':');
-
-						let first = String( get(one, prop) );
-						let secnd = String( get(two, prop) );
-
-						let comps = first.localeCompare(secnd, undefined, {
-							numeric: confs.numeric,
-							caseFirst: confs.caseFirst,
-							sensitivity: confs.sensitivity,
-							ignorePunctuation: confs.ignorePunctuation,
-						});
-
-						if (comps !== 0) {
-							return (dir === 'desc') ? (-1 * comps) : comps;
-						} else {
-							continue;
-						}
-
-					}
-
-				});
-			}));
-		}
-
-	}),
-
-});
+export default helper(sortBy);

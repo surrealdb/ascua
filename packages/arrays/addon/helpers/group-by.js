@@ -1,54 +1,35 @@
-import Helper from '@ember/component/helper';
-import { isArray, A } from '@ember/array';
+import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
-import { get, defineProperty } from '@ember/object';
-import { observer, computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import { get } from '@ember/object';
 
-export default Helper.extend({
+export function groupBy([path, array]) {
 
-	compute([path, array]) {
-		this.set('path', path);
-		this.set('array', array);
-		return this.get('content');
-	},
+	if ( isEmpty(path) ) {
+		return undefined;
+	}
 
-	changed: observer('content', function() {
-		this.recompute();
-	}),
+	if ( !isArray(array) ) {
+		return undefined;
+	}
 
-	pathDidChange: observer('path', 'value', function() {
+	let groups = {};
 
-		let path = get(this, 'path');
+	[].concat(array).forEach(item => {
 
-		if ( isEmpty(path) ) {
-			defineProperty(this, 'content', null);
-			return;
+		let value = get(item, path);
+		let group = get(groups, value);
+
+		if ( !isArray(group) ) {
+			groups[value] = [];
 		}
 
-		defineProperty(this, 'content', computed(`array.@each.${path}`, function() {
+		groups[value].push(item);
 
-			let path = get(this, 'path');
-			let array = get(this, 'array');
-			let groups = {};
+	});
 
-			array.forEach(item => {
+	return groups;
 
-				let value = get(item, path);
-				let group = get(groups, value);
+}
 
-				if ( !isArray(group) ) {
-					group = A();
-					groups[value] = group;
-				}
-
-				group.push(item);
-
-			});
-
-			return groups;
-
-		}));
-
-	}),
-
-});
+export default helper(groupBy);
