@@ -66,24 +66,26 @@ app-dropdown > app-dropdown-cover {
 	pointer-events:none;
 }
 
-app-dropdown > app-dropdown-cover[visible] {
+app-dropdown > app-dropdown-cover[display] {
 	display:block;
+}
+
+app-dropdown > app-dropdown-cover[visible] {
 	visibility:visible;
 	pointer-events:auto;
 }
 
 app-dropdown > app-dropdown-front {
 	margin:0;
-	position:relative;
-	overflow:auto;
-	position:absolute;
-	overflow-x:hidden;
-	overflow-y:auto;
-	cursor:pointer;
+	display:none;
 	z-index:11111;
+	cursor:pointer;
+	overflow-y:auto;
+	overflow-x:hidden;
 	min-width:100px;
 	max-width:560px;
 	max-height:500px;
+	position:absolute;
 	visibility:hidden;
 	pointer-events:none;
 	padding:4px 0 4px 0;
@@ -99,8 +101,11 @@ app-dropdown > app-dropdown-front {
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-app-dropdown > app-dropdown-front[visible] {
+app-dropdown > app-dropdown-front[display] {
 	display:block;
+}
+
+app-dropdown > app-dropdown-front[visible] {
 	visibility:visible;
 	pointer-events:auto;
 }

@@ -2,26 +2,29 @@ import Component from '@glimmer/component';
 import { setProperties } from '@ember/object';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
-import { htmlSafe } from '@ember/template';
 
 export default class extends Component {
 
-	values = [];
-
 	options = [];
+
+	selected = [];
+
+	display = false;
 
 	visible = false;
 
 	@action open() {
-		this.style();
 		setProperties(this, {
-			visible: true,
+			display: true,
+		});
+		setTimeout( () => {
+			this.style();
 		});
 	}
 
 	@action close() {
-		this.style();
 		setProperties(this, {
+			display: false,
 			visible: false,
 		});
 	}
@@ -30,25 +33,25 @@ export default class extends Component {
 		this.element = element;
 	}
 
-	@action register(option) {
-		this.options.addObject(option);
+	@action register(value, label, el) {
+		let id = el.getAttribute('id');
+		this.options.addObject({ id, el, label, value });
 	}
 
-	@action unregister(option) {
-		this.options.removeObject(option);
+	@action unregister(value, label, el) {
+		let id = el.getAttribute('id');
+		this.options = this.options.rejectBy('id', id);
 	}
 
-	@action changed(option) {
-
-		let value = option.args.value;
+	@action changed(value) {
 
 		if (!this.args.multiple) this.close();
 
 		if (this.args.multiple) {
-			if ( this.values.includes(value) ) {
-				value = this.values.removeObject(value);
+			if ( this.selected.includes(value) ) {
+				value = this.selected.removeObject(value);
 			} else {
-				value = this.values.addObject(value);
+				value = this.selected.addObject(value);
 			}
 		}
 
@@ -58,7 +61,7 @@ export default class extends Component {
 
 	}
 
-	@action style() {
+	style() {
 
 		let f = this.element.children[2];
 		let w = this.element.children[2].offsetWidth;
@@ -76,36 +79,39 @@ export default class extends Component {
 			t--; y--;
 		}
 
-		Object.assign(f.style, {
-			top: `${y}px`,
-			left: `${x}px`,
+		setProperties(this, {
+			top: y,
+			left: x,
+			visible: true,
 		});
 
 	}
 
 	@computed('args.value')
 	get value() {
-		return this.args.value || undefined;
+		return this.args.value;
 	}
 
-	@computed('args.{value,default,multiple}', 'options.@each.{label,value}')
+	@computed('args.value', 'options.@each')
 	get label() {
 
-		let label = null;
+		let value = [].concat(this.args.value);
 
-		label = this.options.filter(o => {
-			if (this.args.multiple) {
-				return [].concat(this.args.value).includes(o.args.value);
-			} else {
-				return this.args.value == o.args.value;
+		let label = this.options.reduce( (a, o, k) => {
+
+			if ( value.includes(o.value) ) {
+				if (o.label) {
+					a.push(o.label);
+				} else {
+					a.push(o.el.innerHTML);
+				}
 			}
-		});
 
-		label = label.map(o => {
-			return o.args.label ? o.args.label : o.element.innerHTML;
-		});
+			return a;
 
-		return htmlSafe(label.join(', ') || this.args.default);
+		}, []);
+
+		return label.join(', ');
 
 	}
 

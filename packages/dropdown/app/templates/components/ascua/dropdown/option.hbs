@@ -1,4 +1,11 @@
-<app-dropdown-option {{on "click" this.clicked}} {{did-insert this.didCreate}} {{will-destroy this.willDelete}} disabled={{@disabled}} selected={{this.selected}} ...attributes>
+<app-dropdown-option
+	uniq={{uniq}}
+	disabled={{@disabled}}
+	selected={{includes @value @dropdown.value}}
+	{{on "click" (fn @dropdown.changed @value)}}
+	{{did-insert (fn @dropdown.register @value @label)}}
+	{{will-destroy (fn @dropdown.unregister @value @label)}}
+	...attributes>
 	{{#if hasBlock}}
 		{{~yield~}}
 	{{else}}
