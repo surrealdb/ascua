@@ -15,6 +15,7 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
+    "@ascua/config": "file:../config",
     "broccoli-caching-writer": "^3.0.3",
     "broccoli-merge-trees": "^4.1.0",
     "broccoli-rollup": "^4.1.1",
