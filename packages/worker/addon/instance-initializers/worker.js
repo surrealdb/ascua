@@ -1,7 +1,7 @@
+import config from '@ascua/config';
+
 const defaults = {
 	enabled: true,
-	autoupdate: false,
-	frequency: 5 * 60 * 1000,
 };
 
 export default {
@@ -10,17 +10,11 @@ export default {
 
 	initialize(instance) {
 
-		// Get the app config
-		let c = instance.resolveRegistration('config:environment');
-
-		// Set the addon config
-		let o = Object.assign({}, defaults, c.ascua && c.ascua.worker);
-
-		// Register the addon config
-		instance.register('ascua:worker', o, { instantiate: false });
+		// Get the addon config
+		let c = Object.assign({}, defaults, config.worker);
 
 		// Only instantiate worker service if enabled
-		if (o.enabled === true) instance.lookup('service:worker');
+		if (c.enabled === true) instance.lookup('service:worker');
 
 	},
 

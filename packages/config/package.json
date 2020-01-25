@@ -1,0 +1,29 @@
+{
+  "name": "@ascua/config",
+  "version": "0.0.18",
+  "description": "Small description for @ascua/config goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
+  "dependencies": {
+    "broccoli-file-creator": "^2.1.1",
+    "ember-cli-babel": "^7.13.0",
+    "ember-cli-htmlbars": "^4.2.0"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua"
+  },
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
+}

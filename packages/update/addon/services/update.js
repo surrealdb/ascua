@@ -3,6 +3,13 @@ import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import config from '@ascua/config';
+
+const defaults = {
+	enabled: true,
+	autoupdate: false,
+	frequency: 5 * 60 * 1000,
+};
 
 function enabled() {
 	try {
@@ -33,7 +40,7 @@ export default class extends Service.extend(Evented) {
 
 		if (enabled() === false) return;
 
-		this.config = getOwner(this).lookup('ascua:update');
+		this.config = Object.assign({}, defaults, config.update);
 
 		if (this.config.enabled === true) {
 			if (this.config.frequency) {

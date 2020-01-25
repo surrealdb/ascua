@@ -3,7 +3,13 @@ import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import config from '@ascua/config';
 import Electron from 'electron';
+
+const defaults = {
+	autoupdate: false,
+	frequency: 5 * 60 * 1000,
+};
 
 export default class extends Service.extend(Evented) {
 
@@ -23,7 +29,7 @@ export default class extends Service.extend(Evented) {
 
 		if (Electron === null) return;
 
-		this.config = getOwner(this).lookup('ascua:electron');
+		this.config = Object.assign({}, defaults, config.electron);
 
 		if (this.config.frequency) {
 			this.timer = setInterval(

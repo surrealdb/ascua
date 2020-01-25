@@ -20,7 +20,9 @@
 	module.exports = function(environment) {
 		let ENV = {
 			update: {
-				enabled: true
+				enabled: true,
+				autoupdate: false,
+				frequency: 5 * 60 * 1000,
 			}
 		};
 		return ENV;

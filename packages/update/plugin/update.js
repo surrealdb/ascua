@@ -4,7 +4,7 @@ const Plugin = require('broccoli-caching-writer');
 const fs = require('fs');
 const path = require('path');
 
-module.exports = class Version extends Plugin {
+module.exports = class Update extends Plugin {
 
 	constructor(inputNodes, conf, opts) {
 

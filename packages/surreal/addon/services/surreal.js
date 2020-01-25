@@ -1,12 +1,22 @@
-import { getOwner } from '@ember/application';
+import Service from '../classes/service';
+import Storage from '../classes/storage';
+import config from '@ascua/config';
+import unid from '../utils/unid';
+import Database from 'surreal';
 import { tracked } from '@glimmer/tracking';
 import { inject } from '@ember/service';
 import { computed } from '@ember/object';
-import { action } from '@ember/object';
-import Service from '../classes/service';
-import Storage from '../classes/storage';
-import Database from 'surreal';
+import { assert } from '@ember/debug';
 import JWT from '../utils/jwt';
+
+const defaults = {
+	id: unid(),
+	ns: undefined,
+	db: undefined,
+	NS: undefined,
+	DB: undefined,
+	url: Database.EU,
+};
 
 export default class Surreal extends Service {
 
@@ -152,13 +162,23 @@ export default class Surreal extends Service {
 		// which have been specified in the
 		// app environment config file.
 
-		let config = getOwner(this).lookup('ascua:surreal');
+		this.config = Object.assign({}, defaults, config.surreal);
+
+		assert(
+			'Set the `surreal.ns` property in your environment config as a string',
+			this.config.ns !== undefined || this.config.NS !== undefined,
+		);
+
+		assert(
+			'Set the `surreal.db` property in your environment config as a string',
+			this.config.db !== undefined || this.config.DB !== undefined,
+		);
 
 		// Open the websocket for the first
 		// time. This will automatically
 		// attempt to reconnect on failure.
 
-		this.db.connect(config.url, config.opts);
+		this.db.connect(this.config.url, this.config);
 
 	}
 
