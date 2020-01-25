@@ -9,7 +9,7 @@ module.exports = {
 		this._super.included(...arguments);
 
 		// Get the project rootURL
-		this.base = this.project.config(this.app.env).rootURL;
+		this.base = this.project.config(process.env.EMBER_ENV).rootURL;
 
 		// Prevent autoimport of electron
 		app.options.autoImport = app.options.autoImport || {};

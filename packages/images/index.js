@@ -32,9 +32,9 @@ module.exports = {
 
 		this._super.included(...arguments);
 
-		this.conf = this.project.config(app.env);
+		this.conf = this.project.config(process.env.EMBER_ENV);
 
-		this.opts = this.project.config(app.env).images;
+		this.opts = this.project.config(process.env.EMBER_ENV).images;
 
 		this.opts = Object.assign({}, defaults, this.opts);
 
@@ -44,7 +44,7 @@ module.exports = {
 
 		if (type !== 'all') return tree;
 
-		if (this.app.env !== 'production') return tree;
+		if (process.env.EMBER_ENV !== 'production') return tree;
 
 		let out = new Plugin([tree], this.conf, this.opts);
 

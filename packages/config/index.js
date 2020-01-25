@@ -10,7 +10,7 @@ module.exports = {
 
 	treeForAddon() {
 
-		let name = this.project.config(this.app.env).modulePrefix;
+		let name = this.project.config(process.env.EMBER_ENV).modulePrefix;
 
 		let tree = new FileCreator(
 			'index.js',
