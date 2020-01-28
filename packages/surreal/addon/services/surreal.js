@@ -26,7 +26,7 @@ export default class Surreal extends Service {
 	// the Surreal database which
 	// connects to the server.
 
-	db = Database.Instance;
+	#db = Database.Instance;
 
 	// The localStorage proxy class
 	// which enables us to write to
@@ -96,13 +96,13 @@ export default class Surreal extends Service {
 		// the jwt getter value, so that the
 		// token contents can be accessed.
 
-		this.token = this.db.token = this.storage.get('surreal');
+		this.token = this.#db.token = this.storage.get('surreal');
 
 		// When the connection is closed we
 		// change the relevant properties
 		// stop live queries, and trigger.
 
-		this.db.on('closed', () => {
+		this.#db.on('closed', () => {
 			this.opened = false;
 			this.attempted = false;
 			this.invalidated = false;
@@ -114,7 +114,7 @@ export default class Surreal extends Service {
 		// change the relevant properties
 		// open live queries, and trigger.
 
-		this.db.on('opened', () => {
+		this.#db.on('opened', () => {
 			this.opened = true;
 			this.attempted = false;
 			this.invalidated = false;
@@ -126,7 +126,7 @@ export default class Surreal extends Service {
 		// always attempt to authenticate
 		// or mark as attempted if no token.
 
-		this.db.on('opened', async () => {
+		this.#db.on('opened', async () => {
 			let res = await this.wait();
 			this.attempted = true;
 			this.emit('attempted');
@@ -143,16 +143,16 @@ export default class Surreal extends Service {
 		// we process it. If it has an ID
 		// then it is a query response.
 
-		this.db.on('notify', (e) => {
+		this.#db.on('notify', (e) => {
 
 			this.emit(e.action, e.result);
 
 			switch (e.action) {
-				case 'CREATE':
+			case 'CREATE':
 				return this.store.inject(e.result);
-				case 'UPDATE':
+			case 'UPDATE':
 				return this.store.inject(e.result);
-				case 'DELETE':
+			case 'DELETE':
 				return this.store.remove(e.result);
 			}
 
@@ -178,7 +178,7 @@ export default class Surreal extends Service {
 		// time. This will automatically
 		// attempt to reconnect on failure.
 
-		this.db.connect(this.config.url, this.config);
+		this.#db.connect(this.config.url, this.config);
 
 	}
 
@@ -188,7 +188,7 @@ export default class Surreal extends Service {
 
 	willDestroy() {
 
-		this.db.close();
+		this.#db.close();
 
 		super.willDestroy(...arguments);
 
@@ -199,51 +199,51 @@ export default class Surreal extends Service {
 	// --------------------------------------------------
 
 	sync() {
-		return this.db.sync(...arguments);
+		return this.#db.sync(...arguments);
 	}
 
 	wait() {
-		return this.db.wait(...arguments);
+		return this.#db.wait(...arguments);
 	}
 
 	live() {
-		return this.db.live(...arguments);
+		return this.#db.live(...arguments);
 	}
 
 	kill() {
-		return this.db.kill(...arguments);
+		return this.#db.kill(...arguments);
 	}
 
 	info() {
-		return this.db.info(...arguments);
+		return this.#db.info(...arguments);
 	}
 
 	query() {
-		return this.db.query(...arguments);
+		return this.#db.query(...arguments);
 	}
 
 	select() {
-		return this.db.select(...arguments);
+		return this.#db.select(...arguments);
 	}
 
 	create() {
-		return this.db.create(...arguments);
+		return this.#db.create(...arguments);
 	}
 
 	update() {
-		return this.db.update(...arguments);
+		return this.#db.update(...arguments);
 	}
 
 	change() {
-		return this.db.change(...arguments);
+		return this.#db.change(...arguments);
 	}
 
 	modify() {
-		return this.db.modify(...arguments);
+		return this.#db.modify(...arguments);
 	}
 
 	delete() {
-		return this.db.delete(...arguments);
+		return this.#db.delete(...arguments);
 	}
 
 	// --------------------------------------------------
@@ -252,7 +252,7 @@ export default class Surreal extends Service {
 
 	async signup() {
 		try {
-			let t = await this.db.signup(...arguments);
+			let t = await this.#db.signup(...arguments);
 			this.storage.set('surreal', t);
 			this.token = t;
 			this.attempted = true;
@@ -275,7 +275,7 @@ export default class Surreal extends Service {
 
 	async signin() {
 		try {
-			let t = await this.db.signin(...arguments);
+			let t = await this.#db.signin(...arguments);
 			this.storage.set('surreal', t);
 			this.token = t;
 			this.attempted = true;
@@ -298,7 +298,7 @@ export default class Surreal extends Service {
 
 	async invalidate() {
 		try {
-			await this.db.invalidate(...arguments);
+			await this.#db.invalidate(...arguments);
 			this.storage.del('surreal');
 			this.token = null;
 			this.attempted = true;
@@ -321,7 +321,7 @@ export default class Surreal extends Service {
 
 	async authenticate() {
 		try {
-			await this.db.authenticate(...arguments);
+			await this.#db.authenticate(...arguments);
 			this.attempted = true;
 			this.invalidated = false;
 			this.authenticated = true;
