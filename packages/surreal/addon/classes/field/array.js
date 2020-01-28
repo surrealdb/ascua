@@ -45,6 +45,10 @@ export default function(type) {
 							switch (true) {
 							case v instanceof Record:
 								return v;
+							case v instanceof Object:
+								return Record.create({
+									id: v, promise: this.store.inject(v)
+								});
 							default:
 								return Record.create({
 									id: v, promise: this.store.select(type, v)
@@ -87,6 +91,10 @@ export default function(type) {
 							switch (true) {
 							case v instanceof Record:
 								return v;
+							case v instanceof Object:
+								return Record.create({
+									id: v, promise: this.store.inject(v)
+								});
 							default:
 								return String(v);
 							}

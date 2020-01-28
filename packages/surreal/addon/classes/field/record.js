@@ -15,6 +15,10 @@ export default function(type) {
 					return this.data[key];
 				case value instanceof Record:
 					return this.data[key];
+				case value instanceof Object:
+					return this.data[key] = Record.create({
+						id: value, promise: this.store.inject(value),
+					});
 				default:
 					return this.data[key] = Record.create({
 						id: value, promise: this.store.select(type, value),
