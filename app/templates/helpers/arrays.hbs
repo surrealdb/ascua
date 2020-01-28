@@ -208,6 +208,14 @@
 	{{/with}}
 </Example>
 
+<h2>length</h2>
+
+<p>Returns the length of the given array.</p>
+
+<Example @name="demo-helpers-arrays-length.hbs">
+	{{length this.people}}
+</Example>
+
 <h2>map-by</h2>
 
 <p>Returns the given array mapped to the given property.</p>
@@ -436,16 +444,6 @@
 
 <Example @name="demo-helpers-arrays-union.hbs">
 	{{#each (union this.people this.childs this.adults) as |person|}}
-		{{person.name}}
-	{{/each}}
-</Example>
-
-<h2>uniq</h2>
-
-<p>Returns an array of unique items from all of the given arrays.</p>
-
-<Example @name="demo-helpers-arrays-uniq.hbs">
-	{{#each (uniq this.people this.childs this.adults) as |person|}}
 		{{person.name}}
 	{{/each}}
 </Example>

@@ -12,7 +12,7 @@ export function uniqBy([path, array]) {
 		return [];
 	}
 
-	return [].concat(array).uniqBy(path);
+	return array.uniqBy(path);
 
 }
 

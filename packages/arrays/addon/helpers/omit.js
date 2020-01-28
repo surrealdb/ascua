@@ -7,7 +7,7 @@ export function omit([count, array]) {
 		return [];
 	}
 
-	return [].concat(array).slice(count);
+	return array.slice(count);
 
 }
 

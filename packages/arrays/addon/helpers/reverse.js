@@ -7,7 +7,7 @@ export function reverse([array]) {
 		return [];
 	}
 
-	return [].concat(array).slice(0).reverse();
+	return array.slice(0).reverse();
 
 }
 

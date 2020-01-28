@@ -3,11 +3,12 @@ import { isEmpty } from '@ember/utils';
 import { isArray } from '@ember/array';
 import { typeOf } from '@ember/utils';
 import { get } from '@ember/object';
+import array from '../utils/array';
 
 export function sortBy([...params], { locale = false, numeric = false, caseFirst = 'false', sensitivity = 'base', ignorePunctuation = false }) {
 
 	let props = params.slice(0, -1);
-	let array = params.slice().pop();
+	let value = params.slice().pop();
 
 	if ( isArray(props[0]) || typeOf(props[0]) === 'function') {
 		props = props[0];
@@ -17,19 +18,19 @@ export function sortBy([...params], { locale = false, numeric = false, caseFirst
 		return [];
 	}
 
-	if ( !isArray(array) ) {
+	if ( !isArray(value) ) {
 		return [];
 	}
 
 	if ( typeOf(props) === 'function' ) {
-		return array.sort(props);
+		return array(value).sort(props);
 	}
 
 	if ( locale === false ) {
-		return array.sortBy(...props);
+		return array(value).sortBy(...props);
 	}
 
-	return [].concat(array).sort(function(one, two) {
+	return array(value).sort(function(one, two) {
 
 		for (let i=0; i<props.length; i++) {
 

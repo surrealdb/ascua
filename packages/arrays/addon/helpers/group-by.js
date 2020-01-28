@@ -2,20 +2,21 @@ import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
 import { isArray } from '@ember/array';
 import { get } from '@ember/object';
+import array from '../utils/array';
 
-export function groupBy([path, array]) {
+export function groupBy([path, value]) {
 
 	if ( isEmpty(path) ) {
 		return undefined;
 	}
 
-	if ( !isArray(array) ) {
+	if ( !isArray(value) ) {
 		return undefined;
 	}
 
 	let groups = {};
 
-	[].concat(array).forEach(item => {
+	array(value).forEach(item => {
 
 		let value = get(item, path);
 		let group = get(groups, value);

@@ -10,7 +10,7 @@ export function objectsAt([...params]) {
 		return [];
 	}
 
-	return [].concat(array).objectsAt(items);
+	return array.objectsAt(items);
 
 }
 

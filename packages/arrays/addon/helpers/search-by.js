@@ -3,12 +3,13 @@ import { isEmpty } from '@ember/utils';
 import { isArray } from '@ember/array';
 import { typeOf } from '@ember/utils';
 import { get } from '@ember/object';
+import array from '../utils/array';
 
 export function searchBy([...params], { exact = false }) {
 
 	let props = params.slice(0, -2);
-	let value = params.slice(-2)[0];
-	let array = params.slice(-1)[0];
+	let match = params.slice(-2)[0];
+	let value = params.slice(-1)[0];
 
 	props = [].concat.apply([], props);
 
@@ -16,21 +17,25 @@ export function searchBy([...params], { exact = false }) {
 		return [];
 	}
 
-	if ( isEmpty(value) ) {
-		return [].concat(array).uniq();
+	if ( !isArray(value) ) {
+		return [];
 	}
 
-	if (typeOf(value) === 'number') {
-		value = String(value).split(' ');
+	if ( isEmpty(match) ) {
+		return array(value).uniq();
 	}
 
-	if (typeOf(value) === 'string') {
-		value = value.toLowerCase().split(' ');
+	if (typeOf(match) === 'number') {
+		match = String(match).split(' ');
 	}
 
-	return [].concat(array).filter(item => {
-		return [].concat(value).every(v => {
-			return [].concat(props).any(p => {
+	if (typeOf(match) === 'string') {
+		match = match.toLowerCase().split(' ');
+	}
+
+	return array(value).filter(item => {
+		return array(match).every(v => {
+			return array(props).any(p => {
 
 				let f = get(item, p);
 

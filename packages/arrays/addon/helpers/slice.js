@@ -7,7 +7,7 @@ export function slice([beg, end, array]) {
 		return [];
 	}
 
-	return [].concat(array).slice(beg, end);
+	return array.slice(beg, end);
 
 }
 

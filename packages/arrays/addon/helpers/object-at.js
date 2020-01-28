@@ -7,7 +7,7 @@ export function objectAt([index, array]) {
 		return undefined;
 	}
 
-	return [].concat(array).objectAt(index);
+	return array.objectAt(index);
 
 }
 

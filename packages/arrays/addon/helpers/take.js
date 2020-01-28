@@ -7,7 +7,7 @@ export function take([count, array]) {
 		return [];
 	}
 
-	return [].concat(array).slice(0, count);
+	return array.slice(0, count);
 
 }
 

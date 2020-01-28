@@ -1,15 +1,8 @@
-import { observer } from '@ember/object';
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
+import array from '../utils/array';
 
-export default Helper.extend({
+export function length([value]) {
+	return array(value).length;
+}
 
-	changed: observer('array.[]', function() {
-		this.recompute();
-	}),
-
-	compute([array]) {
-		this.set('array', array);
-		return this.get('array.length');
-	},
-
-});
+export default helper(length);
