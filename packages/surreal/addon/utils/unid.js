@@ -13,13 +13,13 @@ export default function() {
 
 	if (persisted === true) {
 
-		let session = localStorage.getItem('session');
+		let session = window.localStorage.getItem('session');
 
 		if (session === null || session.length != 64) {
 			session = uniq(64);
 		}
 
-		localStorage.setItem('session', session);
+		window.localStorage.setItem('session', session);
 
 		return session;
 

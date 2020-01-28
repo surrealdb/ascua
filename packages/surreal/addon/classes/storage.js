@@ -1,13 +1,13 @@
 import test from '../utils/test';
 
+const enabled = test();
+
 export default class Storage {
 
 	data = {};
 
-	enabled = test();
-
 	set(id, val) {
-		switch (this.enabled) {
+		switch (enabled) {
 		case true:
 			return window.localStorage.setItem(id, val);
 		case false:
@@ -16,7 +16,7 @@ export default class Storage {
 	}
 
 	get(id) {
-		switch (this.enabled) {
+		switch (enabled) {
 		case true:
 			return window.localStorage.getItem(id);
 		case false:
@@ -25,7 +25,7 @@ export default class Storage {
 	}
 
 	del(id) {
-		switch (this.enabled) {
+		switch (enabled) {
 		case true:
 			return window.localStorage.removeItem(id);
 		case false:
@@ -34,7 +34,7 @@ export default class Storage {
 	}
 
 	clear() {
-		switch (this.enabled) {
+		switch (enabled) {
 		case true:
 			return window.localStorage.clear();
 		case false:

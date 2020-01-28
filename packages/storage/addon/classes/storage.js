@@ -1,25 +1,22 @@
-function enabled() {
+const enabled = (function() {
 	try {
 		if (!window) throw "exception";
 		if (!window.localStorage) throw "exception";
+		if (!window.sessionStorage) throw "exception";
 		window.localStorage.setItem('test', 'OK');
 		window.localStorage.removeItem('test');
 		return true;
 	} catch (e) {
 		return false;
 	}
-}
+})();
 
-export default class extends Object {
+export default class Storage {
 
-	constructor() {
-		super();
-		this.ok = enabled();
-		this.data = new Object();
-	}
+	data = {};
 
-	setItem(id, val) {
-		switch (this.ok) {
+	set(id, val) {
+		switch (enabled) {
 		case true:
 			return window.localStorage.setItem(id, val);
 		case false:
@@ -27,8 +24,8 @@ export default class extends Object {
 		}
 	}
 
-	getItem(id) {
-		switch (this.ok) {
+	get(id) {
+		switch (enabled) {
 		case true:
 			return window.localStorage.getItem(id);
 		case false:
@@ -36,8 +33,8 @@ export default class extends Object {
 		}
 	}
 
-	removeItem(id) {
-		switch (this.ok) {
+	del(id) {
+		switch (enabled) {
 		case true:
 			return window.localStorage.removeItem(id);
 		case false:
@@ -46,11 +43,11 @@ export default class extends Object {
 	}
 
 	clear() {
-		switch (this.ok) {
+		switch (enabled) {
 		case true:
 			return window.localStorage.clear();
 		case false:
-			return this.data = new Object();
+			return this.data = {};
 		}
 	}
 

@@ -3,9 +3,9 @@ import Storage from '../classes/storage';
 import isJson from '../utils/is-json';
 import isNum from '../utils/is-num';
 
-const Store = new Storage();
-
 export default class extends Service {
+
+	#ls = new Storage();
 
 	constructor() {
 
@@ -21,7 +21,7 @@ export default class extends Service {
 
 	unknownProperty(key) {
 
-		let val = Store.getItem(key) || undefined;
+		let val = this.#ls.get(key) || undefined;
 
 		if ( val === 'true' ) {
 			return Boolean(true);
@@ -46,32 +46,32 @@ export default class extends Service {
 	setUnknownProperty(key, val) {
 
 		if (val === null) {
-			Store.removeItem(key);
+			this.#ls.del(key);
 			return this.notifyPropertyChange(key);
 		}
 
 		if (val === true) {
-			Store.setItem(key, val);
+			this.#ls.set(key, val);
 			return this.notifyPropertyChange(key);
 		}
 
 		if (val === false) {
-			Store.setItem(key, val);
+			this.#ls.set(key, val);
 			return this.notifyPropertyChange(key);
 		}
 
 		if (typeof val === 'string') {
-			Store.setItem(key, val);
+			this.#ls.set(key, val);
 			return this.notifyPropertyChange(key);
 		}
 
 		if (typeof val === 'number') {
-			Store.setItem(key, val);
+			this.#ls.set(key, val);
 			return this.notifyPropertyChange(key);
 		}
 
 		if (typeof val === 'object') {
-			Store.setItem(key, JSON.stringify(val));
+			this.#ls.set(key, JSON.stringify(val));
 			return this.notifyPropertyChange(key);
 		}
 
