@@ -42,6 +42,15 @@ export default class Field extends Core {
 	}
 
 	/**
+	 * Enables setting undefined properties.
+	 * @returns {undefined} Does not return anything.
+	 */
+
+	setUnknownProperty() {
+		// Ignore
+	}
+
+	/**
 	 * Save the record to the database.
 	 * @returns {Promise} Promise object with the saved record.
 	 */
