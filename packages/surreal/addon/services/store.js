@@ -1,18 +1,19 @@
 import Cache from '../classes/cache';
 import Service from '@ember/service';
-import { set } from '@ember/object';
 import { inject } from '@ember/service';
 import { getOwner } from '@ember/application';
 import { assert } from '@ember/debug';
 import Model from '@ascua/surreal/model';
+import count from "../builders/count";
+import table from "../builders/table";
 
 export default class Store extends Service {
 
 	@inject surreal;
 
-	cache = new Cache();
+	#cache = new Cache();
 
-	stack = new Object();
+	#stack = new Object();
 
 	/**
 	 * Reset the store.
@@ -21,7 +22,7 @@ export default class Store extends Service {
 	 */
 
 	reset() {
-		this.cache = new Cache();
+		this.#cache = new Cache();
 	}
 
 	/**
@@ -75,13 +76,13 @@ export default class Store extends Service {
 
 	async inject(items) {
 
-		return [].concat(items).map(async item => {
+		let records = [].concat(items).map(async item => {
 
 			let cached = await this.cached(item.meta.tb, item.id);
 
 			if (cached === undefined) {
 				cached = this.lookup(item.meta.tb).create(item);
-				this.cache.get(item.meta.tb).addObject(cached);
+				this.#cache.get(item.meta.tb).addObject(cached);
 			} else {
 				cached.ingest(item);
 				return cached;
@@ -90,6 +91,13 @@ export default class Store extends Service {
 			return cached;
 
 		});
+
+		switch ( Array.isArray(items) ) {
+		case true:
+			return await Promise.all(records);
+		case false:
+			return await records[0];
+		}
 
 	}
 
@@ -112,16 +120,14 @@ export default class Store extends Service {
 		if (id !== undefined) {
 
 			if (Array.isArray(id)) {
-				return this.cache.get(model).remove(v => {
-					return id.includes(v);
-				});
+				return this.#cache.get(model).remove( v => id.includes(v) );
 			} else {
-				return this.cache.get(model).removeBy('id', id);
+				return this.#cache.get(model).removeBy('id', id);
 			}
 
 		} else {
 
-			return this.cache.get(model).clear();
+			return this.#cache.get(model).clear();
 
 		}
 
@@ -146,18 +152,39 @@ export default class Store extends Service {
 		if (id !== undefined) {
 
 			if (Array.isArray(id)) {
-				return this.cache.get(model).filter(v => {
-					return id.includes(v);
-				});
+				return this.#cache.get(model).filter( v => id.includes(v) );
 			} else {
-				return this.cache.get(model).findBy('id', id);
+				return this.#cache.get(model).findBy('id', id);
 			}
 
 		} else {
 
-			return this.cache.get(model);
+			return this.#cache.get(model);
 
 		}
+
+	}
+
+	/**
+	 * Fetch records from the remote database server
+	 * only, and inject the data into the cache. The
+	 * second argument can be a single id, an array
+	 * of ids, or undefined. If no id is specified,
+	 * then all records of the specified type will be
+	 * retrieved from the database. This method will
+	 * update the local record cache.
+	 *
+	 * @param {string} model - The model type.
+	 * @param {undefined|string|Array} id - A specific record id.
+	 * @returns {Promise} Promise object with the desired records.
+	 */
+
+	async remote(model, id) {
+
+		assert('The model type must be a string', typeof model === 'string');
+
+		let server = await this.surreal.select(model, id);
+		return this.inject(server);
 
 	}
 
@@ -169,22 +196,23 @@ export default class Store extends Service {
 	 *
 	 * @param {string} model - The model type.
 	 * @param {string} id - Optional record id.
-	 * @param {Object} properties - The record data.
+	 * @param {Object} data - The record data.
 	 * @returns {Promise} Promise object with the updated record.
 	 */
 
-	async create(model, id, properties) {
+	async create(model, id, data) {
 
 		assert('The model type must be a string', typeof model === 'string');
 
 		if (arguments.length === 2) {
-			[id, properties] = [undefined, id];
+			[id, data] = [undefined, id];
 		}
 
-		let record = this.lookup(model).create(properties);
+		let record = this.lookup(model).create(data);
 		let server = await this.surreal.create(model, id, record.data);
 		await this.inject(server);
 		return this.cached(model, server.id);
+
 	}
 
 	/**
@@ -193,7 +221,7 @@ export default class Store extends Service {
 	 * error or permissions failure, then the record
 	 * will be rolled back.
 	 *
-	 * @param {Record} record - A record.
+	 * @param {Model} record - A record.
 	 * @returns {Promise} Promise object with the updated record.
 	 */
 
@@ -223,7 +251,7 @@ export default class Store extends Service {
 	 * successful due to an error or permissions
 	 * failure, then the record will be rolled back.
 	 *
-	 * @param {Record} record - A record.
+	 * @param {Model} record - A record.
 	 * @returns {Promise} Promise object with the delete record.
 	 */
 
@@ -248,7 +276,7 @@ export default class Store extends Service {
 
 	/**
 	 * Select records from the remote database server
-	 * or from the local record cache if desired. The
+	 * or from the local record cache if cached. The
 	 * second argument can be a single id, an array
 	 * of ids, or undefined. If no id is specified,
 	 * then all records of the specified type will be
@@ -257,39 +285,97 @@ export default class Store extends Service {
 	 *
 	 * @param {string} model - The model type.
 	 * @param {undefined|string|Array} id - A specific record id.
+	 * @param {Object} opts - Select options object.
 	 * @returns {Promise} Promise object with the desired records.
 	 */
 
-	async select(model, id) {
+	async select(model, id, opts) {
 
 		assert('The model type must be a string', typeof model === 'string');
 
-		let s = id || model;
+		opts = Object.assign({}, { reload: false }, opts);
 
-		if (this.stack[s] === undefined) {
-			return this.stack[s] = this.surreal.select(model, id).then(async data => {
-				await this.inject(data);
-				// delete this.stack[s];
-				return this.cached(model, id);
+		if (this.#stack[id||model] === undefined) {
+
+			this.#stack[id||model] = this.cached(model, id).then(cached => {
+
+				switch (true) {
+				case cached === undefined || opts.reload === true:
+					return this.remote(model, id).then(result => {
+						delete this.#stack[id||model];
+						return result;
+					});
+				case cached !== undefined && opts.reload !== true:
+					return this.cached(model, id).then(result => {
+						delete this.#stack[id||model];
+						return result;
+					});
+				}
+
 			});
-		} else {
-			await this.stack[s];
-			return this.cached(model, id);
+
 		}
 
-		if (id !== undefined) {
-			let cached = await this.cached(model, id);
-			if (cached) {
-				// delete this.stack[s];
-				return cached;
-			}
-		}
+		return await this.#stack[id||model];
 
-		// let records = await this.surreal.select(model, id);
-		let records = await this.stack[s];
-		await this.inject(records);
-		delete this.stack[s];
-		return this.cached(model, id);
+	}
+
+	/**
+	 * Count the total number of records within the
+	 * remote database server, for the given search
+	 * query paramaters. The second argument is an
+	 * object containing query parameters which will
+	 * be built into a count(*) SQL query. This method
+	 * will return a number with the total records.
+	 *
+	 * @param {string} model - The model type.
+	 * @param {Object} query - The query parameters.
+	 * @returns {Promise} Promise object with the total number of records.
+	 */
+
+	async count(model, query) {
+
+		let { text, vars } = count(model, query);
+
+		let [json] = await this.surreal.query(text, vars);
+
+		const { status, detail, result = [] } = json;
+
+		if (status !== 'OK') throw new Error(detail);
+
+		return result && result[0] && result[0].count || 0;
+
+	}
+
+	/**
+	 * Search for records within the remote database
+	 * server, skipping records already in the cache.
+	 * The second argument is an object containing
+	 * query parameters which will be built into an
+	 * SQL query. This method will not update records
+	 * in the local cache.
+	 *
+	 * @param {string} model - The model type.
+	 * @param {Object} query - The query parameters.
+	 * @returns {Promise} Promise object with the desired matching records.
+	 */
+
+	async search(model, query) {
+
+		let { text, vars } = table(model, query);
+
+		let [json] = await this.surreal.query(text, vars);
+
+		const { status, detail, result = [] } = json;
+
+		if (status !== 'OK') throw new Error(detail);
+
+		let records = [].concat(result).map(item => {
+			return this.lookup(model).create(item);
+		});
+
+		return query.limit === 1 ? records[0] : records;
+
 	}
 
 }
