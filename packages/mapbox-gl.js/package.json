@@ -21,7 +21,7 @@
     "@mapbox/mapbox-gl-geocoder": "^4.5.1",
     "ember-cli-babel": "^7.13.0",
     "ember-cli-htmlbars": "^4.2.0",
-    "mapbox-gl": "^1.6.1"
+    "mapbox-gl": "^1.7.0"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
