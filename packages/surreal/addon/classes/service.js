@@ -5,6 +5,9 @@ export default class extends Service {
 	events = {};
 
 	on(e, ctx, func) {
+		if (func === undefined) {
+			func = ctx;
+		}
 		if (typeof this.events[e] !== 'object') {
 			this.events[e] = [];
 		}
