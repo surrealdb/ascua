@@ -178,6 +178,12 @@ export default class Surreal extends Service {
 		// time. This will automatically
 		// attempt to reconnect on failure.
 
+		if (this.config.uri) this.config.url = `${this.config.uri}/rpc`;
+
+		// Open the websocket for the first
+		// time. This will automatically
+		// attempt to reconnect on failure.
+
 		this.#db.connect(this.config.url, this.config);
 
 	}
