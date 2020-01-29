@@ -47,7 +47,7 @@ export default function(type) {
 								return v;
 							case v instanceof Object:
 								return Record.create({
-									id: v, promise: this.store.inject(v)
+									id: v.id, promise: this.store.inject(v)
 								});
 							default:
 								return Record.create({
@@ -93,7 +93,7 @@ export default function(type) {
 								return v;
 							case v instanceof Object:
 								return Record.create({
-									id: v, promise: this.store.inject(v)
+									id: v.id, promise: this.store.inject(v)
 								});
 							default:
 								return String(v);
