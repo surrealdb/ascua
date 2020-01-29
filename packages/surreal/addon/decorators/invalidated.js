@@ -16,6 +16,14 @@ export default function(target) {
 	};
 }
 
+function authenticate() {
+	if (this.surreal.transition) {
+		this.surreal.transition.retry();
+	} else {
+		this.transitionTo(this.redirectIfAuthenticated);
+	}
+}
+
 function func(target) {
 
 	target.reopen({
@@ -27,38 +35,24 @@ function func(target) {
 		activate() {
 			this._super(...arguments);
 			// Enable listening to authenticated events.
-			this.surreal.on('authenticated', this, this.authenticate);
+			this.surreal.on('authenticated', this, authenticate);
 		},
 
 		deactivate() {
 			this._super(...arguments);
 			// Disable listening to authenticated events.
-			this.surreal.off('authenticated', this, this.authenticate);
+			this.surreal.off('authenticated', this, authenticate);
 		},
 
-		authenticate() {
-			if (this.surreal.transition) {
-				this.surreal.transition.retry();
-			} else {
-				this.transitionTo(this.redirectIfAuthenticated);
-			}
-		},
-
-		async beforeModel() {
+		async beforeModel(transition) {
 			// Wait for authentication attempt.
 			await this.surreal.wait();
+			// Redirect if connection is invalidated.
+			if (this.surreal.authenticated === true) {
+				return this.transitionTo(this.redirectIfAuthenticated);
+			}
 			// Continue with application loading.
 			return this._super(...arguments);
-		},
-
-		async redirect(model, transition) {
-			// Wait for Surreal to attempt and redirect.
-			return this.surreal.wait().then( () => {
-				if (this.surreal.authenticated === true) {
-					return this.transitionTo(this.redirectIfAuthenticated);
-				}
-				return this._super(...arguments);
-			});
 		},
 
 	});
