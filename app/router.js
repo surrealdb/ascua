@@ -12,13 +12,19 @@ Router.map(function() {
 		this.route('styling');
 		this.route('electron');
 		this.route('bigdata', function() {
-			this.route('infinite');
 			this.route('sparse');
+			this.route('infinite');
 		});
 		this.route('webapps', function() {
 			this.route('images');
 			this.route('fastboot');
 			this.route('minification');
+		});
+		this.route('tasks', function() {
+			this.route('defining');
+			this.route('running');
+			this.route('catching');
+			this.route('cancelling');
 		});
 		this.route('surreal', function() {
 			this.route('routing');

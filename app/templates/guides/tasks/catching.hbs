@@ -1,0 +1,48 @@
+<h1>Catching errors</h1>
+
+<p>By using <code>try</code>-<code>catch</code>statements, errors can be caught regardless of whether they originated within synchronous or asynchronous code. In addition, <code>cancellation</code> errors will be caught if a task is cancelled before finishing.</p>
+
+<h2>Catching standard errors</h2>
+
+<Example @name="demo-guides-tasks-catching-throw.js">
+	import Component from '@ember/component';
+	import { timeout } from '@ascua/tasks';
+	import { task } from '@ascua/tasks';
+
+	export default class extends Component {
+		@task * mytask() {
+			try {
+				yield timeout(5000);
+				throw new Error('Failed');
+				return new Date();
+			} catch(e) {
+				console.error(e);
+			} finally {
+				// This will always run
+			}
+		}
+	}
+</Example>
+
+<h2>Catching asynchronous errors</h2>
+
+<Example @name="demo-guides-tasks-catching-async.js">
+	import Component from '@ember/component';
+	import { timeout } from '@ascua/tasks';
+	import { task } from '@ascua/tasks';
+
+	export default class extends Component {
+		@task * mytask() {
+			try {
+				yield timeout(5000).then(() => {
+					throw new Error('Failed');
+				});
+				return new Date();
+			} catch(e) {
+				console.error(e);
+			} finally {
+				// This will always run
+			}
+		}
+	}
+</Example>

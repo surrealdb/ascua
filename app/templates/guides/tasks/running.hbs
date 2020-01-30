@@ -1,0 +1,53 @@
+<h1>Running tasks</h1>
+
+<p>Once a task property has been defined, it is possible to interact with the task from Javascript or from a Handlebars template. Task properties are trackable, exposing their underlying state (whether they're running or idle) which makes it trivial to build loading indicators without having to manually track or mutate state.</p>
+
+<h2>Start running the task</h2>
+
+<p>In order to start the task, call the <code>run</code> method on the task property. This method can be called from Javascript or as an action from a Handlebars template.</p>
+
+<Example @name="demo-guides-tasks-running-run.hbs">
+	<button {{on "click" this.mytask.run}}>
+		Start task
+	</button>
+</Example>
+
+<h2>Check the running status of the task</h2>
+
+<p>A task has a number of properties available for detecting the status of the task. These properties enable detecting whether a task is currently idle or running, and whether the last running task failed or succeeded.</p>
+
+<Example @name="demo-guides-tasks-running-isIdle.hbs">
+	{{this.mytask.isIdle}}
+</Example>
+
+<Example @name="demo-guides-tasks-running-isRunning.hbs">
+	{{this.mytask.isRunning}}
+</Example>
+
+<Example @name="demo-guides-tasks-running-isSuccess.hbs">
+	{{this.mytask.isSuccess}}
+</Example>
+
+<Example @name="demo-guides-tasks-running-isFailure.hbs">
+	{{this.mytask.isFailure}}
+</Example>
+
+<h2>Get the total number of running tasks</h2>
+
+<p>If using a normal <code>task</code>, then the total number of concurrently running tasks will be retrievable using the <code>tasks.length</code> property. If the task is a <code>drop</code> or <code>restart</code> task, then the total number of running tasks will never exceed 1.</p>
+
+<Example @name="demo-guides-tasks-running-tasks.hbs">
+	{{this.mytask.tasks.length}}
+</Example>
+
+<h2>Retrieve the output status of the last task</h2>
+
+<p>If the last running task did not error, then it's final return value will be available with the <code>value</code> property. Conversely, if the task did not succeed, then the error will be available with the <code>error</code> property.</p>
+
+<Example @name="demo-guides-tasks-running-value.hbs">
+	{{this.mytask.value}}
+</Example>
+
+<Example @name="demo-guides-tasks-running-error.hbs">
+	{{this.mytask.error}}
+</Example>

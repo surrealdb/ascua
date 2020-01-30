@@ -1,0 +1,29 @@
+<h1>Cancelling tasks</h1>
+
+<p>Tasks can be canceled either explicitly (by calling the <code>cancel</code> or <code>cancelAll</code> methods on a task instance) or implicitly (due to a task beiing cancelled because the task was specified as a <code>drop</code> or a <code>restart</code> task. When a task is cancelled implicitly, an <code>Error("Cancelled task instance")</code> will be thrown.</p>
+
+<h2>Start running the task</h2>
+
+<p>In order to start the task, call the <code>run</code> method on the task property. This method can be called from Javascript or as an action from a Handlebars template.</p>
+
+<Example @name="demo-guides-tasks-cancelling-run.hbs">
+	<button {{on "click" this.mytask.run}}>
+		Start task
+	</button>
+</Example>
+
+<h2>Cancel a single task or all tasks</h2>
+
+<p>In order to explicitly cancel a task, or all currently running tasks, use the <code>cancel</code> or <code>cancelAll</code> methods on a task instance.</p>
+
+<Example @name="demo-guides-tasks-cancelling-cancel.hbs">
+	<button {{on "click" this.mytask.cancel}}>
+		Cancel last task
+	</button>
+</Example>
+
+<Example @name="demo-guides-tasks-cancelling-cancelall.hbs">
+	<button {{on "click" this.mytask.cancelAll}}>
+		Cancel all tasks
+	</button>
+</Example>

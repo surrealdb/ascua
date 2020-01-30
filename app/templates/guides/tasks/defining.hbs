@@ -1,0 +1,54 @@
+<h1>Defining tasks</h1>
+
+<p>By using the <code>task</code>, <code>drop</code>, and <code>restart</code> decorators it is simple to define complex task primitives which support cancellation, expose their underlying state, and with the ability to prevent multiple instances of the same running task.</p>
+
+<h2>Concurrent tasks</h2>
+
+<p>When creating a task instance which can be run multiple times, you can use the <code>task</code> decorator. This task instance will enable an unlimited number of tasks to be run.</p>
+
+<Example @name="demo-guides-tasks-defining-task.js">
+	import Component from '@ember/component';
+	import { timeout } from '@ascua/tasks';
+	import { task } from '@ascua/tasks';
+
+	export default class extends Component {
+		@task * mytask() {
+			yield timeout(1000);
+			return await fetch('https://abcum.com');
+		}
+	}
+</Example>
+
+<h2>Single concurrency dropped tasks</h2>
+
+<p>When creating a task instance which should run without concurrency, you can use the <code>drop</code> decorator. This task instance will enable only a single instance of the task to run at any one time, preventing new tasks to be dropped until the running task has completed.</p>
+
+<Example @name="demo-guides-tasks-defining-drop.js">
+	import Component from '@ember/component';
+	import { timeout } from '@ascua/tasks';
+	import { drop } from '@ascua/tasks';
+
+	export default class extends Component {
+		@drop * mytask() {
+			yield timeout(1000);
+			return await fetch('https://abcum.com');
+		}
+	}
+</Example>
+
+<h2>Single concurrency restartable tasks</h2>
+
+<p>When creating a task instance which should run without concurrency, you can use the <code>restart</code> decorator. This task instance will enable only a single instance of the task to run at any one time, by stopping any previous running tasks and restarting the last task again.</p>
+
+<Example @name="demo-guides-tasks-defining-restart.js">
+	import Component from '@ember/component';
+	import { timeout } from '@ascua/tasks';
+	import { restart } from '@ascua/tasks';
+
+	export default class extends Component {
+		@restart * mytask() {
+			yield timeout(1000);
+			return await fetch('https://abcum.com');
+		}
+	}
+</Example>
