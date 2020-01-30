@@ -8,7 +8,7 @@ export function sparse(limit, ...props) {
 	let fetch = props.pop();
 
 	assert(
-		'The infinite decorator must have a limit number as its first argument',
+		'The sparse decorator must have a limit number as its first argument',
 		limit && typeof limit === 'number',
 	);
 
