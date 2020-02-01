@@ -15,13 +15,13 @@ export function task(target, key, desc) {
 		desc.value && typeof desc.value === 'function',
 	);
 
-	let task;
+	let s = Symbol(key);
 
 	return {
 		enumerable: true,
 		configurable: true,
 		get() {
-			return task ? task : task = new Task(this, desc.value, 'task');
+			return this[s] ? this[s] : this[s] = new Task(this, desc.value, 'task');
 		},
 	};
 
@@ -34,13 +34,13 @@ export function drop(target, key, desc) {
 		desc.value && typeof desc.value === 'function',
 	);
 
-	let task;
+	let s = Symbol(key);
 
 	return {
 		enumerable: true,
 		configurable: true,
 		get() {
-			return task ? task : task = new Task(this, desc.value, 'drop');
+			return this[s] ? this[s] : this[s] = new Task(this, desc.value, 'drop');
 		},
 	};
 
@@ -53,13 +53,13 @@ export function restart(target, key, desc) {
 		desc.value && typeof desc.value === 'function',
 	);
 
-	let task;
+	let s = Symbol(key);
 
 	return {
 		enumerable: true,
 		configurable: true,
 		get() {
-			return task ? task : task = new Task(this, desc.value, 'restart');
+			return this[s] ? this[s] : this[s] = new Task(this, desc.value, 'restart');
 		},
 	};
 
