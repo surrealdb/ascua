@@ -2,7 +2,7 @@
 
 <h2>moment</h2>
 
-<Example @name="docs-demo-helpers-time-moment.hbs">
+<Example @name="demo-libraries-momentjs-moment.hbs">
 	{{moment (now)}}
 </Example>
 
@@ -10,11 +10,11 @@
 
 <p>See <a href="https://momentjs.com/docs/#/manipulating/add/" rel="noopener" target="_blank">Moment.js add</a> for more information.</p>
 
-<Example @name="docs-demo-helpers-time-moment-add.hbs">
+<Example @name="demo-libraries-momentjs-moment-add.hbs">
 	{{moment-add (now) 2 "days"}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-add-options.hbs">
+<Example @name="demo-libraries-momentjs-moment-add-options.hbs">
 	{{moment-add (now) days=2 months=1}}
 </Example>
 
@@ -22,15 +22,15 @@
 
 <p>See <a href="https://momentjs.com/docs/#/displaying/calendar-time/" rel="noopener" target="_blank">Moment.js calendar time</a> for more information.</p>
 
-<Example @name="docs-demo-helpers-time-moment-calendar.hbs">
+<Example @name="demo-libraries-momentjs-moment-calendar.hbs">
 	{{moment-calendar (now)}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-calendar-reference.hbs">
+<Example @name="demo-libraries-momentjs-moment-calendar-reference.hbs">
 	{{moment-calendar (moment-add (now) 2 "days")}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-calendar-format.hbs">
+<Example @name="demo-libraries-momentjs-moment-calendar-format.hbs">
 	{{moment-calendar (now) format=(hash sameDay="[Today]")}}
 </Example>
 
@@ -38,15 +38,15 @@
 
 <p>See <a href="https://momentjs.com/docs/#/displaying/difference/" rel="noopener" target="_blank">Moment.js difference</a> for more information.</p>
 
-<Example @name="docs-demo-helpers-time-moment-diff.hbs">
+<Example @name="demo-libraries-momentjs-moment-diff.hbs">
 	{{moment-diff (now) "2016-06-21"}} milliseconds
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-diff-precision.hbs">
+<Example @name="demo-libraries-momentjs-moment-diff-precision.hbs">
 	{{moment-diff (now) "2016-06-21" precision="years"}} years
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-diff-fraction.hbs">
+<Example @name="demo-libraries-momentjs-moment-diff-fraction.hbs">
 	{{moment-diff (now) "2016-06-21" precision="years" fraction=true}} years
 </Example>
 
@@ -54,29 +54,29 @@
 
 <p>See <a href="https://momentjs.com/docs/#/displaying/format/" rel="noopener" target="_blank">Moment.js format</a> for more information.</p>
 
-<Example @name="docs-demo-helpers-time-moment-format.hbs">
+<Example @name="demo-libraries-momentjs-moment-format.hbs">
 	{{moment-format (now)}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-format-simple.hbs">
+<Example @name="demo-libraries-momentjs-moment-format-simple.hbs">
 	{{moment-format (now) "ddd, hA"}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-format-complex.hbs">
+<Example @name="demo-libraries-momentjs-moment-format-complex.hbs">
 	{{moment-format (now) "dddd, MMMM Do YYYY, h:mm:ss a"}}
 </Example>
 
 <h2>moment-relative</h2>
 
-<Example @name="docs-demo-helpers-time-moment-relative.hbs">
+<Example @name="demo-libraries-momentjs-moment-relative.hbs">
 	{{moment-relative (now)}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-relative-reference.hbs">
+<Example @name="demo-libraries-momentjs-moment-relative-reference.hbs">
 	{{moment-relative "2016-06-21" (now)}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-relative-suffix.hbs">
+<Example @name="demo-libraries-momentjs-moment-relative-suffix.hbs">
 	{{moment-relative "2016-06-21" (now) ignoreSuffix=true}}
 </Example>
 
@@ -84,26 +84,26 @@
 
 <p>See <a href="https://momentjs.com/docs/#/manipulating/subtract/" rel="noopener" target="_blank">Moment.js subtract</a> for more information.</p>
 
-<Example @name="docs-demo-helpers-time-moment-sub.hbs">
+<Example @name="demo-libraries-momentjs-moment-sub.hbs">
 	{{moment-sub (now) 2 "days"}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-moment-sub-options.hbs">
+<Example @name="demo-libraries-momentjs-moment-sub-options.hbs">
 	{{moment-sub (now) days=2 months=1}}
 </Example>
 
 <h2>now</h2>
 
-<Example @name="docs-demo-helpers-time-now.hbs">
+<Example @name="demo-libraries-momentjs-now.hbs">
 	{{now}}
 </Example>
 
 <h2>utc</h2>
 
-<Example @name="docs-demo-helpers-time-utc.hbs">
+<Example @name="demo-libraries-momentjs-utc.hbs">
 	{{utc}}
 </Example>
 
-<Example @name="docs-demo-helpers-time-utc-now.hbs">
+<Example @name="demo-libraries-momentjs-utc-now.hbs">
 	{{utc (now)}}
 </Example>
