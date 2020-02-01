@@ -10,14 +10,14 @@ export default class extends Service {
 				let script = document.createElement('script');
 				script.onload = resolve;
 				script.onerror = reject;
-				script.src = '/assets/pdf.js';
+				script.src = '/assets/pdfjs.js';
 				document.head.appendChild(script);
 			});
 		}
 
 		await this.loader;
 
-		pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/pdf-worker.js';
+		pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/pdfjs-worker.js';
 
 		return pdfjsLib;
 
