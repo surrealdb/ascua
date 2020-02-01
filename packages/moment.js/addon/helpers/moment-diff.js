@@ -1,18 +1,8 @@
-import Helper from '@ember/component/helper';
-import { inject } from '@ember/service';
-import { observe } from '@ascua/decorators';
+import { helper } from '@ember/component/helper';
 import Moment from 'moment';
 
-export default class extends Helper {
-
-	@inject clock;
-
-	@observe('clock.quart') changed() {
-		this.recompute();
-	}
-
-	compute([ value = undefined, reference = undefined ], { precision = undefined, fraction = false }) {
-		return Moment(value).diff(reference, precision, fraction);
-	}
-
+export function momentDiff([ value = undefined, reference = undefined ], { precision = undefined, fraction = false }) {
+	return Moment(value).diff(reference, precision, fraction);
 }
+
+export default helper(momentDiff);

@@ -35,6 +35,7 @@ export default class extends Service {
 		const date = new Date();
 
 		this.setProperties({
+			now: date,
 			full: date,
 			year: date.getFullYear(),
 			month: date.getMonth() + 1,

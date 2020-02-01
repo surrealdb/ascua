@@ -1,8 +1,18 @@
-import { helper } from '@ember/component/helper';
+import Helper from '@ember/component/helper';
+import { inject } from '@ember/service';
+import { observe } from '@ascua/decorators';
 import Moment from 'moment';
 
-export function now() {
-	return Moment();
-}
+export default class extends Helper {
 
-export default helper(now);
+	@inject clock;
+
+	@observe('clock.quart') changed() {
+		this.recompute();
+	}
+
+	compute() {
+		return Moment(this.clock.now);
+	}
+
+}
