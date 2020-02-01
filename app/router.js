@@ -100,6 +100,9 @@ Router.map(function() {
 		this.route('moment', function() {
 			this.route('helpers');
 		});
+		this.route('pdf', function() {
+			this.route('elements');
+		});
 		this.route('sheet');
 	});
 
