@@ -58,7 +58,7 @@ export default class Task {
 			break;
 		}
 
-		let task = this.task = this.#fnc.call(this.#ctx);
+		let task = this.task = this.#fnc.call(this.#ctx, ...arguments);
 
 		this.tasks.pushObject(task);
 
