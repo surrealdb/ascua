@@ -62,12 +62,12 @@ export default class Task {
 
 		this.tasks.pushObject(task);
 
-		const loop = async (fnc) => {
+		const loop = async (fnc, res) => {
 			try {
-				let item = fnc.next();
-				await item.value;
+				let item = fnc.next(res);
+				res = await item.value;
 				if (!item.done) {
-					return await loop(fnc);
+					return await loop(fnc, res);
 				}
 				return item;
 			} catch (e) {
