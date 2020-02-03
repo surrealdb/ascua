@@ -8,9 +8,9 @@
 
 <Example @name="demo-guides-surreal-authing-signup.js">
 	import Component from '@ember/routing/route';
-	import config from 'app/config/environment';
 	import { inject } from '@ember/service';
 	import { action } from '@ember/object';
+	import config from '@ascua/config';
 
 	export default class SignupForm extends Component {
 
@@ -18,7 +18,7 @@
 
 		@inject router;
 
-		@acton async signup() {
+		@action async signup() {
 
 			try {
 
@@ -47,9 +47,9 @@
 
 <Example @name="demo-guides-surreal-authing-signin.js">
 	import Component from '@ember/routing/route';
-	import config from 'app/config/environment';
 	import { inject } from '@ember/service';
 	import { action } from '@ember/object';
+	import config from '@ascua/config';
 
 	export default class SigninForm extends Component {
 
@@ -57,7 +57,7 @@
 
 		@inject router;
 
-		@acton async signin() {
+		@action async signin() {
 
 			try {
 
