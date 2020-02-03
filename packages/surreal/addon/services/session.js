@@ -1,11 +1,14 @@
 import Service from '@ember/service';
 import { inject } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class Session extends Service {
 
 	@inject surreal;
 
 	@inject store;
+
+	@tracked model;
 
 	constructor() {
 
