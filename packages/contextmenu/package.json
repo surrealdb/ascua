@@ -1,6 +1,6 @@
 {
   "name": "@ascua/contextmenu",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "Small description for @ascua/contextmenu goes here",
   "keywords": [
     "ember-addon"
