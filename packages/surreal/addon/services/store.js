@@ -51,6 +51,21 @@ export default class Store extends Service {
 	}
 
 	/**
+	 * Query records in the store. This is an alias
+	 * for the search method, as the Ember Router
+	 * will use this method if a Route's model
+	 * hook has not been defined.
+	 *
+	 * @param {string} model - The model type.
+	 * @param {undefined|string|Array} id - A specific record id.
+	 * @returns {Promise} Promise object with the desired records.
+	 */
+
+	async query() {
+		return this.search(...arguments);
+	}
+
+	/**
 	 * Remove records from the local record cache.
 	 *
 	 * @param {string} model - The model type.
