@@ -17,7 +17,7 @@ module.exports = {
 			`export { default } from '${name}/config/environment';`
 		);
 
-    	return this._super.treeForAddon.call(this, tree);
+		return this._super.treeForAddon.call(this, tree);
 
 	},
 
