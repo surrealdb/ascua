@@ -65,7 +65,7 @@ export default class extends Component {
 
 			yield this.ren.promise;
 
-			this.i.src = this.c.toDataURL('image/jpeg');
+			this.i.src = this.c.toDataURL('image/png');
 
 		} catch (e) {
 

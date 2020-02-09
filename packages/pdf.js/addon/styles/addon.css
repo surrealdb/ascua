@@ -93,16 +93,35 @@ app-pdf app-pdf-viewer canvas {
 	right:0;
 	bottom:0;
 	padding:0;
-	opacity:1;
 	margin:auto;
 	display:none;
 	position:absolute;
+	max-width:calc(100% - 50px);
+	max-height:calc(100% - 50px);
 	box-shadow: 2px 5px 15px 0px rgba(0,0,0,0.25);
 	-webkit-transition:opacity 0.25s;
 	-moz-transition:opacity 0.25s;
 	-ms-transition:opacity 0.25s;
 	-o-transition:opacity 0.25s;
 	transition:opacity 0.25s;
+}
+
+app-pdf app-pdf-viewer img {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	padding:0;
+	margin:auto;
+	display:none;
+	position:absolute;
+	max-width:calc(100% - 50px);
+	max-height:calc(100% - 50px);
+	box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
+}
+
+app-pdf app-pdf-viewer canvas {
+	display:none;
 }
 
 app-pdf app-pdf-viewer canvas[loaded] {

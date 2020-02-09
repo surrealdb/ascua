@@ -72,6 +72,8 @@ export default class Viewer extends Component {
 
 			yield this.ren.promise;
 
+			this.i.src = this.c.toDataURL('image/png');
+
 		} catch (e) {
 
 			// Ignore
