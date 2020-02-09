@@ -27,7 +27,12 @@ export default class extends Component {
 	}
 
 	@action select(e, page) {
-		this.num = page;
+		if (page != this.num) {
+			this.num = page;
+			if (this.args.onSelectPage) {
+				this.args.onSelectPage(page);
+			}
+		}
 	}
 
 	@restart * cleanup() {

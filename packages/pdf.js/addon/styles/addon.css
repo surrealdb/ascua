@@ -8,11 +8,6 @@ app-pdf {
 	position:absolute;
 }
 
-app-pdf:before, app-pdf:after {
-	content:'';
-	margin:auto;
-}
-
 app-pdf app-pdf-thumbs {
 	top:0;
 	left:0;
@@ -27,6 +22,16 @@ app-pdf app-pdf-thumbs {
 	flex-direction:column;
 	padding:30px 0 30px 0;
 	-ms-overflow-style: none;
+}
+
+app-pdf app-pdf-thumbs:before {
+	content:'';
+	margin:auto;
+}
+
+app-pdf app-pdf-thumbs:after {
+	content:'';
+	margin:auto;
 }
 
 app-pdf app-pdf-thumbs::-webkit-scrollbar {
