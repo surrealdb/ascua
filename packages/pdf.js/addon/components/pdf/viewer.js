@@ -58,8 +58,9 @@ export default class Viewer extends Component {
 
 			let ww = this.w - 75;
 			let wh = this.h - 75;
+			let pr = window.devicePixelRatio || 1;
 			let vp = this.pge.getViewport({ scale: 1 });
-			let scale = Math.min(ww/vp.width, wh/vp.height);
+			let scale = Math.min(ww/vp.width, wh/vp.height) * pr;
 
 			let viewport = this.pge.getViewport({ scale });
 			this.c.width = viewport.width;
