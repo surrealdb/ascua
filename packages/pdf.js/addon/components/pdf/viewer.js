@@ -21,6 +21,14 @@ export default class Viewer extends Component {
 		this.process.run(this.args.doc, this.args.page);
 	}
 
+	@action didResize(element) {
+		this.w = element.offsetWidth;
+		this.h = element.offsetHeight;
+		this.i = element.querySelectorAll('img')[0];
+		this.c = element.querySelectorAll('canvas')[0];
+		this.process.run(this.args.doc, this.args.page);
+	}
+
 	@action willDelete() {
 		this.cleanup.run();
 	}
