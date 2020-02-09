@@ -33,8 +33,8 @@ export default class extends Component {
 
 	@restart * cleanup() {
 		try {
-			if (this.pge && this.pge.cleanup) this.pge.cleanup();
-			if (this.ren && this.ren.cancel) this.ren.cancel();
+			if (this.ren && this.ren.cancel) yield this.ren.cancel();
+			if (this.pge && this.pge.cleanup) yield this.pge.cleanup();
 		} catch (e) {
 			// Ignore
 		}
@@ -75,12 +75,12 @@ export default class extends Component {
 
 		} finally {
 
-			if (this.pge && this.pge.cleanup) {
-				this.pge.cleanup();
-			}
-
 			if (this.ren && this.ren.cancel) {
 				this.ren.cancel();
+			}
+
+			if (this.pge && this.pge.cleanup) {
+				this.pge.cleanup();
 			}
 
 		}

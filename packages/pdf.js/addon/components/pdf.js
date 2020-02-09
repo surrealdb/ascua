@@ -37,8 +37,9 @@ export default class extends Component {
 
 	@restart * cleanup() {
 		try {
-			if (this.xhr && this.xhr.destroy) this.xhr.destroy();
-			if (this.doc && this.doc.destroy) this.doc.destroy();
+			if (this.doc && this.doc.cleanup) yield this.doc.cleanup();
+			if (this.doc && this.doc.destroy) yield this.doc.destroy();
+			if (this.xhr && this.xhr.destroy) yield this.xhr.destroy();
 		} catch (e) {
 			// Ignore
 		}
