@@ -197,6 +197,9 @@ export default class Model extends Core {
 		let current = new Patch(this.#server, changes).output();
 		setProperties(this, current);
 		this.#state = LOADED;
+		if (changes.length) {
+			this.save();
+		}
 	}
 
 	/**
