@@ -104,6 +104,9 @@ Router.map(function() {
 			this.route('elements');
 		});
 		this.route('sheet');
+		this.route('stripe', function() {
+			this.route('elements');
+		});
 	});
 
 });

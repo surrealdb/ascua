@@ -120,6 +120,7 @@
     "@ascua/social": "file:packages/social",
     "@ascua/storage": "file:packages/storage",
     "@ascua/strings": "file:packages/strings",
+    "@ascua/stripe.js": "file:packages/stripe.js",
     "@ascua/surreal": "file:packages/surreal",
     "@ascua/tasks": "file:packages/tasks",
     "@ascua/tooltip": "file:packages/tooltip",

@@ -1,0 +1,39 @@
+<h1>stripe.js elements</h1>
+
+<h2>Elements</h2>
+
+<p>Render a <a href="https://stripe.com/docs/js/elements_object/create_element?type=card" target="_blank" rel="noopener"><code>card</code></a> element.</p>
+
+<Example @name="demo-libraries-stripejs-elements-card.hbs">
+	<Ascua::Stripe::Elements as |elements|>
+		<elements.card {{on "change" (console "element")}} />
+	</Ascua::Stripe::Elements>
+</Example>
+
+<p>Render a <a href="https://stripe.com/docs/js/elements_object/create_element?type=cardNumber" target="_blank" rel="noopener"><code>cardNumber</code></a>, <a href="https://stripe.com/docs/js/elements_object/create_element?type=cardExpiry" target="_blank" rel="noopener"><code>cardExpiry</code></a>, <a href="https://stripe.com/docs/js/elements_object/create_element?type=cardCvc" target="_blank" rel="noopener"><code>cardCvc</code></a> element.</p>
+
+<Example @name="demo-libraries-stripejs-elements-cardNumber.hbs">
+	<Ascua::Stripe::Elements as |elements|>
+		<elements.cardNumber />
+		<elements.cardExpiry />
+		<elements.cardCvc />
+	</Ascua::Stripe::Elements>
+</Example>
+
+<p>Render an <a href="https://stripe.com/docs/js/elements_object/create_element?type=idealBank" target="_blank" rel="noopener"><code>idealBank</code></a> element.</p>
+
+<Example @name="demo-libraries-stripejs-elements-idealBank.hbs">
+	<Ascua::Stripe::Elements as |elements|>
+		<elements.idealBank />
+	</Ascua::Stripe::Elements>
+</Example>
+
+<h3>Editor events</h3>
+
+<p>In order to listen to events on each element, use the <code>on</code> modifier. The available events are <a href="https://stripe.com/docs/js/element/events/on_ready" target="_blank" rel="noopener"><code>ready</code></a>, <a href="https://stripe.com/docs/js/element/events/on_change" target="_blank" rel="noopener"><code>change</code></a>, <a href="https://stripe.com/docs/js/element/events/on_focus" target="_blank" rel="noopener"><code>focus</code></a>, <a href="https://stripe.com/docs/js/element/events/on_blur" target="_blank" rel="noopener"><code>blur</code></a>, and <a href="https://stripe.com/docs/js/element/events/on_click" target="_blank" rel="noopener"><code>click</code></a>. For more information view the <a href="https://stripe.com/docs/js/element/events" target="_blank" rel="noopened">documentation</a>.</p>
+
+<Example @name="demo-libraries-stripejs-elements-card-event.hbs">
+	<Ascua::Stripe::Elements as |elements|>
+		<elements.card {{on "change" (console)}} />
+	</Ascua::Stripe::Elements>
+</Example>

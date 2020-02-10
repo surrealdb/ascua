@@ -157,6 +157,14 @@ section.body {
 			padding:50px 5rem 50px 5rem;
 		}
 
+		a {
+			border-bottom:2px dotted #00ffad;
+			&:hover {
+				text-decoration:none;
+				border-bottom:2px dotted #ff0000;
+			}
+		}
+
 	}
 
 	section.side.l {
