@@ -315,12 +315,12 @@ export default class Store extends Service {
 			this.#stack[id||model] = this.cached(model, id).then(cached => {
 
 				switch (true) {
-				case cached === undefined || opts.reload === true:
+				case cached === undefined || cached.length === 0 || opts.reload === true:
 					return this.remote(model, id).then(result => {
 						delete this.#stack[id||model];
 						return result;
 					});
-				case cached !== undefined && opts.reload !== true:
+				case cached !== undefined && cached.length !== 0 && opts.reload !== true:
 					return this.cached(model, id).then(result => {
 						delete this.#stack[id||model];
 						return result;
