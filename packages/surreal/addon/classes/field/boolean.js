@@ -1,13 +1,11 @@
-import { computed } from '@ember/object';
+import Property from './property';
 import Boolean from '../types/boolean';
 
-export default computed({
+export default Property({
 	get(key) {
 		return Boolean(this.data[key]);
 	},
 	set(key, value) {
-		this.data[key] = Boolean(value);
-		this.autosave();
-		return this.data[key];
-	}
+		return this.data[key] = Boolean(value);
+	},
 });

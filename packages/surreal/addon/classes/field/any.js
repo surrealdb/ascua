@@ -1,12 +1,11 @@
-import { computed } from '@ember/object';
+import Property from './property';
+import Any from '../types/any';
 
-export default computed({
+export default Property({
 	get(key) {
-		return this.data[key];
+		return Any(this.data[key]);
 	},
 	set(key, value) {
-		this.data[key] = value;
-		this.autosave();
-		return this.data[key];
-	}
+		return this.data[key] = Any(value);
+	},
 });

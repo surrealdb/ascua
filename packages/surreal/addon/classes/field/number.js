@@ -1,13 +1,11 @@
-import { computed } from '@ember/object';
+import Property from './property';
 import Number from '../types/number';
 
-export default computed({
+export default Property({
 	get(key) {
 		return Number(this.data[key]);
 	},
 	set(key, value) {
-		this.data[key] = Number(value);
-		this.autosave();
-		return this.data[key];
-	}
+		return this.data[key] = Number(value);
+	},
 });

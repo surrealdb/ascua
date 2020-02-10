@@ -5,55 +5,90 @@ import { setProperties } from '@ember/object';
 
 export default class Record extends Object {
 
+	#id = undefined;
+
+	#future = undefined;
+
+	#promise = undefined;
+
 	isRejected = false;
 
 	isFulfilled = false;
 
 	toJSON() {
-		return this.id;
+		return this.#id;
 	}
 
 	toString() {
-		return this.id;
+		return this.#id;
 	}
 
-	init() {
+	init(params) {
+		super.init();
+		this.#id = params.id;
+		this.#future = params.future;
+		this.#promise = params.promise;
+		delete this.id;
+		delete this.future;
+		delete this.promise;
+		this.setup();
+	}
 
-		super.init(...arguments);
-
-		this.promise.then(
-			(value) => {
-				if (!this.isDestroyed && !this.isDestroying) {
-					setProperties(this, {
-						isFulfilled: true,
-						content: value,
-					});
-				}
-				return value;
-			},
-			(reason) => {
-				if (!this.isDestroyed && !this.isDestroying) {
-					setProperties(this, {
-						isRejected: true,
-						reason: reason,
-					});
-				}
-				throw reason;
-			},
-		);
-
+	unknownProperty(key) {
+		this.fetch();
+		this.setup();
+		return super.unknownProperty(key);
 	}
 
 	then() {
-		return this.promise['then'](...arguments);
+		this.fetch();
+		this.setup();
+		return this.#promise['then'](...arguments);
 	}
 
 	catch() {
-		return this.promise['catch'](...arguments);
+		this.fetch();
+		this.setup();
+		return this.#promise['catch'](...arguments);
 	}
 
 	finally() {
-		return this.promise['finally'](...arguments);
+		this.fetch();
+		this.setup();
+		return this.#promise['finally'](...arguments);
+	}
+
+	fetch() {
+		if (this.#future) {
+			this.#promise = this.#future();
+			this.#future = undefined;
+		}
+	}
+
+	setup() {
+		if (this.#promise) {
+			this.#promise.then(
+				(value) => {
+					if (!this.isDestroyed && !this.isDestroying) {
+						setProperties(this, {
+							isFulfilled: true,
+							content: value,
+						});
+					}
+					return value;
+				},
+				(reason) => {
+					console.debug(reason);
+					if (!this.isDestroyed && !this.isDestroying) {
+						setProperties(this, {
+							isRejected: true,
+							reason: reason,
+						});
+					}
+					throw reason;
+				},
+			);
+		}
 	}
 
 }

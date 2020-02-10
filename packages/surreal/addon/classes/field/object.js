@@ -1,39 +1,37 @@
-import { computed } from '@ember/object';
-import Model from '@ascua/surreal/model';
+import Property from './property';
 import Field from '@ascua/surreal/field';
 import { assert } from '@ember/debug';
+import { setProperties } from '@ember/object';
 
 export default function(type) {
-	return computed({
+	return Property({
 		get(key) {
 
 			let model = this.store.lookup(type);
 
-			switch (true) {
-			case model && model.class.prototype instanceof Model:
-				assert('An embedded object must be of type Field');
-			case model && model.class.prototype instanceof Field:
-				let fields = Object.assign({}, { parent: this });
-				return this.data[key] = this.data[key] || model.create(fields);
-			default:
-				assert('An embedded object must be of type Field');
+			if (model && model.class.prototype instanceof Field) {
+				return this.data[key] = this.data[key] || model.create({ parent: this });
 			}
+
+			assert('An embedded object must be of type Field');
 
 		},
 		set(key, value={}) {
 
 			let model = this.store.lookup(type);
 
-			switch (true) {
-			case model && model.class.prototype instanceof Model:
-				assert('An embedded object must be of type Field');
-			case model && model.class.prototype instanceof Field:
-				let fields = Object.assign({}, value, { parent: this });
-				return this.data[key] = model.create(fields);
-			default:
-				assert('An embedded object must be of type Field');
+			if (model && model.class.prototype instanceof Field) {
+				switch (true) {
+				case this.data[key] !== undefined:
+					setProperties(this.data[key], value);
+					return this.data[key];
+				case this.data[key] === undefined:
+					return this.data[key] = model.create({ ...value, parent: this });
+				}
 			}
 
-		}
+			assert('An embedded object must be of type Field');
+
+		},
 	});
 }

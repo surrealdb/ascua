@@ -1,13 +1,11 @@
-import { computed } from '@ember/object';
+import Property from './property';
 import Datetime from '../types/datetime';
 
-export default computed({
+export default Property({
 	get(key) {
 		return Datetime(this.data[key]);
 	},
 	set(key, value) {
-		this.data[key] = Datetime(value);
-		this.autosave();
-		return this.data[key];
-	}
+		return this.data[key] = Datetime(value);
+	},
 });
