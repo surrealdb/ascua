@@ -3,9 +3,26 @@ import { inject } from '@ember/service';
 
 export default class Field extends Core {
 
+	static create(data) {
+
+		for (const key in data) {
+			switch (true) {
+			case data[key] === null:
+				delete data[key];
+				break;
+			case data[key] === undefined:
+				delete data[key];
+				break;
+			}
+		}
+
+		return super.create(...arguments);
+
+	}
+
 	@inject store;
 
-	#data = {};
+	#data = undefined;
 
 	#parent = undefined;
 
@@ -14,11 +31,7 @@ export default class Field extends Core {
 	// that is used with the record.
 
 	get data() {
-		return this.#data;
-	}
-
-	set data(value) {
-		return this.#data = value;
+		return this.#data = this.#data || {};
 	}
 
 	// The `parent` property can be used
@@ -30,7 +43,7 @@ export default class Field extends Core {
 	}
 
 	set parent(value) {
-		return this.#parent = value;
+		return this.#parent = this.#parent || value;
 	}
 
 	// When formatted as a JSON string,

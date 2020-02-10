@@ -12,13 +12,30 @@ const RESYNC = Symbol("Resync");
 
 export default class Model extends Core {
 
+	static create(data) {
+
+		for (const key in data) {
+			switch (true) {
+			case data[key] === null:
+				delete data[key];
+				break;
+			case data[key] === undefined:
+				delete data[key];
+				break;
+			}
+		}
+
+		return super.create(...arguments);
+
+	}
+
 	@inject store;
 
 	#id = null;
 
-	#data = {};
+	#meta = undefined;
 
-	#meta = {};
+	#data = undefined;
 
 	// Current record state
 	#state = INITIAL;
@@ -52,19 +69,7 @@ export default class Model extends Core {
 	}
 
 	set id(value) {
-		return this.#id = value;
-	}
-
-	// The `data` property can be used
-	// to retrieve the underlying data
-	// that is used with the record.
-
-	get data() {
-		return this.#data;
-	}
-
-	set data(value) {
-		return this.#data = value;
+		return this.#id = this.#id || value;
 	}
 
 	// The `meta` property stores the
@@ -76,7 +81,15 @@ export default class Model extends Core {
 	}
 
 	set meta(value) {
-		return this.#meta = value;
+		return this.#meta = this.#meta || value;
+	}
+
+	// The `data` property can be used
+	// to retrieve the underlying data
+	// that is used with the record.
+
+	get data() {
+		return this.#data = this.#data || {};
 	}
 
 	// The `json` property returns a
