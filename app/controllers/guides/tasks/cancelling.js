@@ -9,6 +9,7 @@ export default class extends Controller {
 			yield timeout(5000);
 			return new Date();
 		} catch (e) {
+			// eslint-disable-next-line no-console
 			console.log(e);
 			throw e;
 		}

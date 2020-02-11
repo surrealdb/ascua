@@ -22,7 +22,7 @@
 
 <p>To download a file (in the browser), or directly inside the application (in Electron), then simply add an <code>Ascua::Link</code> element with the <code>url</code> attribute of the file or page to download, and specify the <code>download</code> attribute. For the browser the filename will be changed to the value of the download attribute when it is downloaded.</p>
 
-<p>If downloading a file which is not on the same origin, the download attribute will not work when being used in a web browser. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes" rel="noopener" target="_blank">this page</a> for further information.</p>
+<p>If downloading a file which is not on the same origin, the download attribute will not work when being used in a web browser. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes" rel="noopener noreferrer" target="_blank">this page</a> for further information.</p>
 
 <Example @name="demo-elements-link-download.hbs">
 	<Ascua::Link @url={{root-url "/img/logo.png"}} @download="abcum">

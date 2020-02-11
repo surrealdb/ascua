@@ -106,7 +106,7 @@
 <p>Scrolls a particular element into the visible area of the window.</p>
 
 <Example @name="demo-helpers-scrolling-scroll-into-view-default.hbs">
-	<button {{on "click" (scroll-into-view "#my-id")}}>
+	<button type="button" {{on "click" (scroll-into-view "#my-id")}}>
 		Click me
 	</button>
 </Example>
@@ -114,7 +114,7 @@
 <p>And specify whether the scrolling should be smooth.</p>
 
 <Example @name="demo-helpers-scrolling-scroll-into-view-smooth.hbs">
-	<button {{on "click" (scroll-into-view "#my-id" smooth=true)}}>
+	<button type="button" {{on "click" (scroll-into-view "#my-id" smooth=true)}}>
 		Click me
 	</button>
 </Example>
@@ -122,7 +122,7 @@
 <p>Or define the vertical alignment position.</p>
 
 <Example @name="demo-helpers-scrolling-scroll-into-view-block.hbs">
-	<button {{on "click" (scroll-into-view "#my-id" block="center")}}>
+	<button type="button" {{on "click" (scroll-into-view "#my-id" block="center")}}>
 		Click me
 	</button>
 </Example>
@@ -130,7 +130,7 @@
 <p>Or define the horizontal alignment position.</p>
 
 <Example @name="demo-helpers-scrolling-scroll-into-view-inline.hbs">
-	<button {{on "click" (scroll-into-view "#my-id" inline="nearest")}}>
+	<button type="button" {{on "click" (scroll-into-view "#my-id" inline="nearest")}}>
 		Click me
 	</button>
 </Example>
@@ -144,7 +144,7 @@
 <p>Scrolls to a particular set of coordinates on the page.</p>
 
 <Example @name="demo-helpers-scrolling-scroll-to-top.hbs">
-	<button {{on "click" (scroll-to top=520)}}>
+	<button type="button" {{on "click" (scroll-to top=520)}}>
 		Click me
 	</button>
 </Example>
@@ -152,7 +152,7 @@
 <p>And scroll horizontally aswell as vertically.</p>
 
 <Example @name="demo-helpers-scrolling-scroll-to-left.hbs">
-	<button {{on "click" (scroll-to top=520 left=100)}}>
+	<button type="button" {{on "click" (scroll-to top=520 left=100)}}>
 		Click me
 	</button>
 </Example>
@@ -160,7 +160,7 @@
 <p>And specify whether the scrolling should be smooth.</p>
 
 <Example @name="demo-helpers-scrolling-scroll-to-smooth.hbs">
-	<button {{on "click" (scroll-to top=520 left=100 smooth=true)}}>
+	<button type="button" {{on "click" (scroll-to top=520 left=100 smooth=true)}}>
 		Click me
 	</button>
 </Example>

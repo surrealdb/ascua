@@ -33,7 +33,7 @@
 <p>Calls <code>window.history.back()</code> to reverse one position in the browser history.</p>
 
 <Example @name="demo-helpers-routing-history.hbs">
-	<button {{on "click" (history-back)}}>
+	<button type="button" {{on "click" (history-back)}}>
 		&larr;
 	</button>
 </Example>
@@ -43,7 +43,7 @@
 <p>Calls <code>window.history.forward()</code> to advance one position in the browser history.</p>
 
 <Example @name="demo-helpers-routing-history.hbs">
-	<button {{on "click" (history-forward)}}>
+	<button type="button" {{on "click" (history-forward)}}>
 		&rarr;
 	</button>
 </Example>
@@ -53,7 +53,7 @@
 <p>Calls <code>window.open()</code> enabling opening a new browser tab or window from an action on a component.</p>
 
 <Example @name="demo-helpers-routing-open.hbs">
-	<button {{on "click" (open "https://github.com/abcum/ascua" width=1200 height=600 center=true)}}>
+	<button type="button" {{on "click" (open "https://github.com/abcum/ascua" width=1200 height=600 center=true)}}>
 		Open a window
 	</button>
 </Example>
@@ -63,7 +63,7 @@
 <p>Calls <code>window.location.reload()</code> enabling reloading the page, or changing the url from an action on a component.</p>
 
 <Example @name="demo-helpers-routing-reload.hbs">
-	<button {{on "click" (reload)}}>
+	<button type="button" {{on "click" (reload)}}>
 		Reload
 	</button>
 </Example>
@@ -99,9 +99,9 @@
 <Example @name="demo-helpers-routing-route-query.hbs">
 	Query: {{get (route-query) "test"}}
 	<div class="fl-r">
-		{{#link-to (query-params test="one")}}Test one{{/link-to}}
+		<LinkTo @route="helpers.routing" @query={{hash test="one"}}>Test one</LinkTo>
 		|
-		{{#link-to (query-params test="two")}}Test two{{/link-to}}
+		<LinkTo @route="helpers.routing" @query={{hash test="two"}}>Test two</LinkTo>
 	</div>
 </Example>
 
@@ -112,9 +112,9 @@
 <Example @name="demo-helpers-routing-route-url.hbs">
 	{{route-url}}
 	<div class="fl-r">
-		{{#link-to (query-params test="one")}}Test one{{/link-to}}
+		<LinkTo @route="helpers.routing" @query={{hash test="one"}}>Test one</LinkTo>
 		|
-		{{#link-to (query-params test="two")}}Test two{{/link-to}}
+		<LinkTo @route="helpers.routing" @query={{hash test="two"}}>Test two</LinkTo>
 	</div>
 </Example>
 
@@ -125,9 +125,9 @@
 <Example @name="demo-helpers-routing-route-vars.hbs">
 	{{route-vars}}
 	<div class="fl-r">
-		{{#link-to (query-params test="one")}}Test one{{/link-to}}
+		<LinkTo @route="helpers.routing" @query={{hash test="one"}}>Test one</LinkTo>
 		|
-		{{#link-to (query-params test="two")}}Test two{{/link-to}}
+		<LinkTo @route="helpers.routing" @query={{hash test="two"}}>Test two</LinkTo>
 	</div>
 </Example>
 
@@ -136,7 +136,7 @@
 <p>Allows the route to be changed from an action on a component, similar to <code>LinkTo</code>.</p>
 
 <Example @name="demo-helpers-routing-transition-to.hbs">
-	<button {{on "click" (transition-to "index")}}>
+	<button type="button" {{on "click" (transition-to "index")}}>
 		Go to docs
 	</button>
 </Example>

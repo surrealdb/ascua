@@ -325,13 +325,13 @@
 <h2>search-by</h2>
 
 <Example @name="demo-helpers-arrays-searchby.hbs">
-	{{input type="text" value=this.search}}
+	<Input @type="text" @value={{this.search}} />
 </Example>
 
 <p>Returns the given array where the given property contain the given value.</p>
 
 <Example @name="demo-helpers-arrays-searchby-one.hbs">
-	{{#each (search-by "name" search this.people) as |person|}}
+	{{#each (search-by "name" this.search this.people) as |person|}}
 		{{person.name}}
 	{{/each}}
 </Example>
@@ -339,7 +339,7 @@
 <p>You can also specify multiple properties to search.</p>
 
 <Example @name="demo-helpers-arrays-searchby-multi.hbs">
-	{{#each (search-by "name" "age" search this.people) as |person|}}
+	{{#each (search-by "name" "age" this.search this.people) as |person|}}
 		{{person.name}}
 	{{/each}}
 </Example>
@@ -347,7 +347,7 @@
 <p>You can also use an array containing the properties to search.</p>
 
 <Example @name="demo-helpers-arrays-searchby-array-display.hbs">
-	{{#each (search-by (array "name" "age") search this.people) as |person|}}
+	{{#each (search-by (array "name" "age") this.search this.people) as |person|}}
 		{{person.name}}
 	{{/each}}
 </Example>

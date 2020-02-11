@@ -7,7 +7,7 @@
 <p>In order to start the task, call the <code>run</code> method on the task property. This method can be called from Javascript or as an action from a Handlebars template.</p>
 
 <Example @name="demo-guides-tasks-cancelling-run.hbs">
-	<button {{on "click" this.mytask.run}}>
+	<button type="button" {{on "click" this.mytask.run}}>
 		Start task
 	</button>
 </Example>
@@ -17,13 +17,13 @@
 <p>In order to explicitly cancel a task, or all currently running tasks, use the <code>cancel</code> or <code>cancelAll</code> methods on a task instance.</p>
 
 <Example @name="demo-guides-tasks-cancelling-cancel.hbs">
-	<button {{on "click" this.mytask.cancel}}>
+	<button type="button" {{on "click" this.mytask.cancel}}>
 		Cancel last task
 	</button>
 </Example>
 
 <Example @name="demo-guides-tasks-cancelling-cancelall.hbs">
-	<button {{on "click" this.mytask.cancelAll}}>
+	<button type="button" {{on "click" this.mytask.cancelAll}}>
 		Cancel all tasks
 	</button>
 </Example>

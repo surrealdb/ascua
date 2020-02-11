@@ -48,17 +48,14 @@ export default function(type) {
 						case v instanceof Record:
 							return v;
 						case v instanceof Model:
-							// console.debug('---', 'record -> model', this.id, v);
 							return Record.create({
 								id: v.id, promise: Promise.resolve(v)
 							});
 						case v instanceof Object:
-							// console.debug('---', 'record -> object', this.id, v);
 							return Record.create({
 								id: v.id, promise: this.store.inject(v)
 							});
 						default:
-							// console.debug('---', 'record -> default', this.id, v);
 							return Record.create({
 								id: v, future: () => this.store.select(type, v)
 							});
