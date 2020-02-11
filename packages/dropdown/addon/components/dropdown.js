@@ -40,7 +40,7 @@ export default class extends Component {
 
 	@action unregister(value, label, el) {
 		let id = el.getAttribute('id');
-		this.options = this.options.rejectBy('id', id);
+		this.options.removeObject( this.options.findBy('id', id) );
 	}
 
 	@action changed(value) {
