@@ -1,5 +1,4 @@
-import Service from '@ember/service';
-import Evented from '@ember/object/evented';
+import Service from '@ascua/service/evented';
 import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -11,7 +10,7 @@ const defaults = {
 	frequency: 5 * 60 * 1000,
 };
 
-export default class extends Service.extend(Evented) {
+export default class extends Service {
 
 	// Whether an update is available
 	// for the ember app, so that we
@@ -78,7 +77,7 @@ export default class extends Service.extend(Evented) {
 		const { autoUpdater } = Electron.remote.require('electron-updater');
 
 		autoUpdater.on('update-downloaded', () => {
-			this.trigger('updatefound');
+			this.emit('updatefound');
 		});
 
 	}

@@ -1,6 +1,6 @@
 import Service from '@ember/service';
 
-export default class extends Service {
+export default class Evented extends Service {
 
 	events = {};
 

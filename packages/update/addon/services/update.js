@@ -1,5 +1,4 @@
-import Service from '@ember/service';
-import Evented from '@ember/object/evented';
+import Service from '@ascua/service/evented';
 import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -22,7 +21,7 @@ function enabled() {
 	}
 }
 
-export default class extends Service.extend(Evented) {
+export default class extends Service {
 
 	// Whether an update is available
 	// for the ember app, so that we
@@ -102,7 +101,7 @@ export default class extends Service.extend(Evented) {
 				if (this.version === undefined) {
 					this.version = xhr.responseText;
 				} else if (this.version != xhr.responseText) {
-					this.trigger('updatefound');
+					this.emit('updatefound');
 				}
 			};
 			xhr.send();

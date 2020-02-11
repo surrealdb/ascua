@@ -1,4 +1,4 @@
-import Service from '../classes/service';
+import Service from '@ascua/service/evented';
 import Storage from '../classes/storage';
 import config from '@ascua/config';
 import unid from '../utils/unid';

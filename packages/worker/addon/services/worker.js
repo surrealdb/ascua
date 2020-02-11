@@ -1,5 +1,4 @@
-import Service from '@ember/service';
-import Evented from '@ember/object/evented';
+import Service from '@ascua/service/evented';
 import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -23,7 +22,7 @@ function enabled() {
 	}
 }
 
-export default class extends Service.extend(Evented) {
+export default class extends Service {
 
 	// Whether an update is available
 	// for the service worker, so that
@@ -124,7 +123,7 @@ export default class extends Service.extend(Evented) {
 				// immediately activate it and reload.
 
 				if (reg.waiting) {
-					this.trigger('updatefound');
+					this.emit('updatefound');
 				}
 
 				// If an updated service worker is
@@ -138,7 +137,7 @@ export default class extends Service.extend(Evented) {
 							this.active = this.worker.active;
 
 							if (this.active) {
-								return this.trigger('updatefound');
+								return this.emit('updatefound');
 							} else {
 								return this.worker.waiting.postMessage('skipWaiting');
 							}

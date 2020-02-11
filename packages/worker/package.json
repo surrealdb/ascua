@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@ascua/config": "file:../config",
+    "@ascua/service": "file:../service",
     "broccoli-caching-writer": "^3.0.3",
     "broccoli-merge-trees": "^4.1.0",
     "broccoli-rollup": "^4.1.1",

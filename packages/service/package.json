@@ -1,7 +1,7 @@
 {
-  "name": "@ascua/surreal",
+  "name": "@ascua/service",
   "version": "0.0.26",
-  "description": "Small description for @ascua/surreal goes here",
+  "description": "Small description for @ascua/service goes here",
   "keywords": [
     "ember-addon"
   ],
@@ -15,22 +15,11 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
-    "@ascua/config": "file:../config",
-    "@ascua/context": "file:../context",
-    "@ascua/service": "file:../service",
-    "broccoli-persistent-filter": "^2.3.1",
     "ember-cli-babel": "^7.13.0",
-    "surreal.js": "0.4.6",
-    "ws": "^7.2.1"
+    "ember-cli-htmlbars": "^4.2.0"
   },
-  "fastbootDependencies": [
-    "ws"
-  ],
   "ember-addon": {
-    "demoURL": "https://abcum.github.io/ascua",
-    "before": [
-      "ember-cli-babel"
-    ]
+    "demoURL": "https://abcum.github.io/ascua"
   },
   "homepage": "https://abcum.github.io/ascua",
   "publishConfig": {

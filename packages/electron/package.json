@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@ascua/config": "file:../config",
+    "@ascua/service": "file:../service",
     "electron": "^7.1.7",
     "electron-builder": "^21.2.0",
     "electron-updater": "^4.2.0",
