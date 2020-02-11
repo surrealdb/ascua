@@ -8,7 +8,7 @@ module.exports = {
 
 		this._super.included(...arguments);
 
-		app.import('vendor/stripejs.js', {
+		app.import('vendor/stripe.js', {
 			exports: { stripe: ['default'] }
 		});
 

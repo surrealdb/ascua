@@ -16,7 +16,7 @@ module.exports = {
 
 		app.import('node_modules/xlsx/dist/xlsx.full.min.js', fastboot);
 
-		app.import('vendor/sheetjs.js', {
+		app.import('vendor/sheet.js', {
 			exports: {
 				XLS: ['default', 'saveAs'],
 				XLSX: ['default', 'saveAs'],
