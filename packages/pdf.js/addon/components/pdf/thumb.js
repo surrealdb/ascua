@@ -25,12 +25,6 @@ export default class extends Component {
 		this.cleanup.run();
 	}
 
-	@action didClick(event) {
-		if (this.args.onClick) {
-			return this.args.onClick(event, this.args.page);
-		}
-	}
-
 	@restart * cleanup() {
 		try {
 			if (this.ren && this.ren.cancel) yield this.ren.cancel();

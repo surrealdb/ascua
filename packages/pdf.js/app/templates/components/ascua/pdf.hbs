@@ -4,7 +4,7 @@
 
 	<app-pdf-thumbs>
 		{{#each (pdf-pages this.doc.numPages) as |page|}}
-			<Ascua::pdf::thumb @doc={{this.doc}} @page={{page}} @onClick={{fn this.select}} />
+			<Ascua::pdf::thumb @doc={{this.doc}} @page={{page}} {{on "click" (fn this.select page)}} />
 		{{/each}}
 	</app-pdf-thumbs>
 

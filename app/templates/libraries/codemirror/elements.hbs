@@ -3,9 +3,17 @@
 <h2>Codemirror</h2>
 
 <Example @name="demo-libraries-codemirrorjs-coder.hbs">
-	<Ascua::Codemirror @value={{this.value}} @onChange={{action (mut this.value)}} />
+	<Ascua::Codemirror @value={{this.value}} @onValue={{fn (mut this.value)}} />
 </Example>
 
 <Example @name="demo-libraries-codemirrorjs-coder-view.hbs">
 	{{this.value}}
+</Example>
+
+<h3>Editor events</h3>
+
+<p>It is possible to listen to the events which the underlying codemirror instance emits. The available events are <code>change</code>, <code>changes</code>, <code>beforeChange</code>, <code>cursorActivity</code>, <code>keyHandled</code>, <code>beforeSelectionChange</code>, <code>viewportChange</code>, <code>gutterClick</code>, <code>gutterContextMenu</code>, <code>focus</code>, <code>blur</code>, and <code>scroll</code>. For more information view the <a href="https://codemirror.net/doc/manual.html#events" target="_blank" rel="noopened">documentation</a>.</p>
+
+<Example @name="demo-libraries-codemirrorjs-coder-event.hbs">
+	<Ascua::Codemirror @value={{this.value}} {{on "change" (console)}} />
 </Example>

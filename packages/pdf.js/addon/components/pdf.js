@@ -26,7 +26,7 @@ export default class extends Component {
 		this.cleanup.run();
 	}
 
-	@action select(e, page) {
+	@action select(page) {
 		if (page != this.num) {
 			this.num = page;
 			if (this.args.onSelectPage) {

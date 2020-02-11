@@ -15,6 +15,7 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
+    "@ascua/events": "file:../events",
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/transform": "file:../transform",
     "codemirror": "^5.50.2",
