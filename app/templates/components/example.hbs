@@ -2,7 +2,7 @@
 
 	{{#let (get-code-snippet @name unindent=true) as |snippet|}}
 
-		<output>
+		<output ...attributes>
 			{{~#if (and (not @hide) (eq "handlebars" snippet.language) )~}}
 				{{~yield~}}
 			{{~/if~}}

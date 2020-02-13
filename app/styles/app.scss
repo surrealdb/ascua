@@ -277,6 +277,11 @@ example {
 			display:none;
 		}
 
+		&.nopad {
+			padding:0;
+			border-bottom:3px solid #ffffff;
+		}
+
 		.h-400 {
 			height:400px;
 			position:relative;
