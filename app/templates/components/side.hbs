@@ -3,41 +3,53 @@
 	{{#if (is-active "index")}}
 
 		<div>Introduction</div>
-		<Navigate @route="index" @name="Setup" />
+		<section>
+			<Navigate @route="index" @name="Setup" />
+		</section>
 
 	{{/if}}
 
 	{{#if (is-active "guides")}}
 
 		<div>General</div>
-		<Navigate @route="guides.styling" @name="Styling" />
-		<Navigate @route="guides.electron" @name="Electron" />
+		<section>
+			<Navigate @route="guides.styling" @name="Styling" />
+			<Navigate @route="guides.electron" @name="Electron" />
+		</section>
 
 		<div>Bigdata</div>
-		<Navigate @route="guides.bigdata" @name="Intro" />
-		<Navigate @route="guides.bigdata.infinite" @name="Infinite" />
-		<Navigate @route="guides.bigdata.sparse" @name="Sparse" />
+		<section>
+			<Navigate @route="guides.bigdata" @name="Intro" />
+			<Navigate @route="guides.bigdata.infinite" @name="Infinite" />
+			<Navigate @route="guides.bigdata.sparse" @name="Sparse" />
+		</section>
 
 		<div>Webapps</div>
-		<Navigate @route="guides.webapps" @name="Intro" />
-		<Navigate @route="guides.webapps.images" @name="Images" />
-		<Navigate @route="guides.webapps.fastboot" @name="Fastboot" />
-		<Navigate @route="guides.webapps.minification" @name="Minification" />
+		<section>
+			<Navigate @route="guides.webapps" @name="Intro" />
+			<Navigate @route="guides.webapps.images" @name="Images" />
+			<Navigate @route="guides.webapps.fastboot" @name="Fastboot" />
+			<Navigate @route="guides.webapps.minification" @name="Minification" />
+		</section>
 
 		<div>Tasks</div>
-		<Navigate @route="guides.tasks" @name="Intro" />
-		<Navigate @route="guides.tasks.defining" @name="Defining tasks" />
-		<Navigate @route="guides.tasks.running" @name="Running tasks" />
-		<Navigate @route="guides.tasks.catching" @name="Catching errors" />
-		<Navigate @route="guides.tasks.cancelling" @name="Cancelling tasks" />
+		<section>
+			<Navigate @route="guides.tasks" @name="Intro" />
+			<Navigate @route="guides.tasks.defining" @name="Defining tasks" />
+			<Navigate @route="guides.tasks.running" @name="Running tasks" />
+			<Navigate @route="guides.tasks.catching" @name="Catching errors" />
+			<Navigate @route="guides.tasks.cancelling" @name="Cancelling tasks" />
+		</section>
 
 		<div>SurrealDB</div>
-		<Navigate @route="guides.surreal" @name="Intro" />
-		<Navigate @route="guides.surreal.routing" @name="Routing" />
-		<Navigate @route="guides.surreal.authing" @name="Authentication" />
-		<Navigate @route="guides.surreal.defining" @name="Defining models" />
-		<Navigate @route="guides.surreal.selecting" @name="Selecting records" />
-		<Navigate @route="guides.surreal.modifying" @name="Modifying records" />
+		<section>
+			<Navigate @route="guides.surreal" @name="Intro" />
+			<Navigate @route="guides.surreal.routing" @name="Routing" />
+			<Navigate @route="guides.surreal.authing" @name="Authentication" />
+			<Navigate @route="guides.surreal.defining" @name="Defining models" />
+			<Navigate @route="guides.surreal.selecting" @name="Selecting records" />
+			<Navigate @route="guides.surreal.modifying" @name="Modifying records" />
+		</section>
 
 	{{/if}}
 

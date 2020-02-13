@@ -196,8 +196,8 @@ section.body {
 			div {
 
 				font-weight:bold;
-				margin-top:1rem;
-				margin-bottom:0.5rem;
+				margin-top:0.75rem;
+				margin-bottom:0rem;
 
 				&:first-of-type {
 					margin-top:2rem;
@@ -205,18 +205,22 @@ section.body {
 
 			}
 
-			a {
+			section {
 
-				color:#606f7b;
-				display:block;
-				margin-left:1rem;
+				a {
 
-				&:hover {
-					text-decoration:underline;
-				}
+					color:#606f7b;
+					display:block;
+					margin-left:1rem;
 
-				&.select {
-					color:#00ffad;
+					&:hover {
+						text-decoration:underline;
+					}
+
+					&.select {
+						color:#00ffad;
+					}
+
 				}
 
 			}
