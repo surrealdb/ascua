@@ -1,0 +1,44 @@
+.ql-container.auto {
+	height:auto;
+	position:relative;
+}
+
+.ql-dimensions {
+	opacity:0.8;
+	color:#333333;
+	cursor:default;
+	font-size:12px;
+	position:absolute;
+	text-align:center;
+	box-sizing:border-box;
+	background-color:white;
+	padding:4px 8px 4px 8px;
+	border:1px solid #777777;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.ql-resizehandle {
+	opacity:0.8;
+	width:12px;
+	height:12px;
+	position:absolute;
+	box-sizing:border-box;
+	background-color:white;
+	border:1px solid #777777;
+}
+
+.ql-resizehandle.nwse-resize {
+	cursor:nwse-resize;
+}
+
+.ql-resizehandle.nesw-resize {
+	cursor:nesw-resize;
+}
+
+.ql-resizehandle.nwse-resize {
+	cursor:nwse-resize;
+}
+
+.ql-resizehandle.nesw-resize {
+	cursor:nesw-resize;
+}

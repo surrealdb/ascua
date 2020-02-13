@@ -385,7 +385,7 @@ input, textarea {
 //
 //
 
-[contenteditable] {
+[contenteditable]:not(.ql-editor) {
 	border-bottom:1px dotted orange;
 }
 

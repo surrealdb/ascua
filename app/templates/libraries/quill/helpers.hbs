@@ -1,0 +1,97 @@
+<h1>quill.js helpers</h1>
+
+<h3>quill-set-text</h3>
+
+<p>Sets the text content of all Quill instances with the matching name.</p>
+
+<Example @name="demo-libraries-quilljs-helpers-quill-set-text.hbs">
+	<button type="button" {{on "click" (quill-set-text "test" text="Some text")}}>
+		Set the text content
+	</button>
+</Example>
+
+<Ascua::Quill @name="test" class="auto" />
+
+<h3>quill-set-html</h3>
+
+<p>Sets the html content of all Quill instances with the matching name.</p>
+
+<Example @name="demo-libraries-quilljs-helpers-quill-set-html.hbs">
+	<button type="button" {{on "click" (quill-set-html "test" html="Some <b>html</b>")}}>
+		Set the html content
+	</button>
+</Example>
+
+<Ascua::Quill @name="test" class="auto" />
+
+<h3>quill-set-contents</h3>
+
+<p>Sets the editor contents to the specified Quill delta.</p>
+
+<p>
+
+	<details>
+
+		<summary>Example delta</summary>
+
+		<Example @name="demo-libraries-quilljs-helpers-quill-set-contents-delta.js">
+			import Component from '@glimmer/component';
+
+			export default class extends Component {
+				delta = {
+					ops: [
+						{ insert: 'Gandalf', attributes: { bold: true } },
+						{ insert: ' the ' },
+						{ insert: 'Grey', attributes: { color: '#cccccc' } }
+					]
+				}
+			};
+		</Example>
+
+	</details>
+
+</p>
+
+<Example @name="demo-libraries-quilljs-helpers-quill-set-contents.hbs">
+	<button type="button" {{on "click" (quill-set-contents "test" delta=this.delta)}}>
+		Set the editor contents with a delta
+	</button>
+</Example>
+
+<Ascua::Quill @name="test" class="auto" />
+
+<h3>quill-update-contents</h3>
+
+<p>Updates the editor contents with the specified Quill delta.</p>
+
+<p>
+
+	<details>
+
+		<summary>Example delta</summary>
+
+		<Example @name="demo-libraries-quilljs-helpers-quill-update-contents-delta.js">
+			import Component from '@glimmer/component';
+
+			export default class extends Component {
+				delta = {
+					ops: [
+						{ insert: 'Gandalf', attributes: { bold: true } },
+						{ insert: ' the ' },
+						{ insert: 'Grey', attributes: { color: '#cccccc' } }
+					]
+				}
+			};
+		</Example>
+
+	</details>
+
+</p>
+
+<Example @name="demo-libraries-quilljs-helpers-quill-update-contents.hbs">
+	<button type="button" {{on "click" (quill-update-contents "test" delta=this.delta)}}>
+		Update the editor contents with a delta
+	</button>
+</Example>
+
+<Ascua::Quill @name="test" class="auto" />

@@ -1,0 +1,39 @@
+<h1>quill.js elements</h1>
+
+<h2>Editor</h2>
+
+<p>A quill editor needs to be given a name using the <code>name</code> property. An optional initial value (which can be either text or html) can be specified using the <code>value</code> property. Every quill editor with the same name will be kept in sync automatically.</p>
+
+<Example @name="demo-libraries-quilljs-elements-editor.hbs" class="nopad">
+	<Ascua::Quill @name="test" @value={{this.html}} />
+</Example>
+
+<h3>Editor options</h3>
+
+<p>The editor can be configured using individual arguments. These include <code>bounds</code>, <code>debug</code>, <code>formats</code>, <code>placeholder</code>, <code>readOnly</code>, <code>scrollingContainer</code>, <code>theme</code>, and <code>toolbar</code>. For more information view the <a href="https://quilljs.com/docs/configuration/#options" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
+
+<Example @name="demo-libraries-quilljs-elements-editor-opts.hbs" class="nopad">
+	<Ascua::Quill @name="test" @value={{this.html}} @theme="bubble" @readOnly={{true}} />
+</Example>
+
+<h3>Detecting changes</h3>
+
+<p>To subscribe to changes to the editor's text contents, use the <code>onChangeText</code> argument.</p>
+
+<Example @name="demo-libraries-quilljs-elements-editor-text.hbs" class="nopad">
+	<Ascua::Quill @name="test" @value={{this.html}} @onChangeText={{fn (mut this.text)}} />
+</Example>
+
+<p>To subscribe to changes to the editor's html contents, use the <code>onChangeHtml</code> argument.</p>
+
+<Example @name="demo-libraries-quilljs-elements-editor-html.hbs" class="nopad">
+	<Ascua::Quill @name="test" @value={{this.html}} @onChangeHtml={{fn (mut this.html)}} />
+</Example>
+
+<h3>Editor events</h3>
+
+<p>It is possible to listen to the events which the underlying quill instance emits. The available events are <code>text-change</code>, and <code>selection-change</code>. For more information view the <a href="https://quilljs.com/docs/api/#events" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
+
+<Example @name="demo-libraries-quilljs-elements-editor-events.hbs" class="nopad">
+	<Ascua::Quill @name="test" @value={{this.html}} {{on "text-change" (console)}} />
+</Example>

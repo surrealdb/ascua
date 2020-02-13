@@ -103,6 +103,10 @@ Router.map(function() {
 		this.route('pdf', function() {
 			this.route('elements');
 		});
+		this.route('quill', function() {
+			this.route('elements');
+			this.route('helpers');
+		});
 		this.route('sheet');
 		this.route('stripe', function() {
 			this.route('elements');
