@@ -1,0 +1,31 @@
+<h1>jsoneditor.js elements</h1>
+
+<h2>Editor</h2>
+
+<p>Create a JSONeditor instance, and give it an option initial value by specifying the <code>json</code> property.</p>
+
+<Example @name="demo-libraries-jsoneditorjs-elements-editor.hbs" class="nopad">
+	<div class="h-400">
+		<Ascua::Jsoneditor @json={{this.json}} />
+	</div>
+</Example>
+
+<h3>Editor options</h3>
+
+<p>The editor can be configured using using individual arguments. These include <code>enableSort</code>, <code>enableTransform</code>, <code>indentation</code>, <code>mode</code>, and <code>modes</code>. For more information view the <a href="https://github.com/josdejong/jsoneditor/blob/master/docs/api.md#configuration-options" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
+
+<Example @name="demo-libraries-jsoneditorjs-elements-editor-opts.hbs" class="nopad">
+	<div class="h-400">
+		<Ascua::Jsoneditor @json={{this.json}} @mode="form" @modes={{array "form"}} />
+	</div>
+</Example>
+
+<h3>Detecting changes</h3>
+
+<p>To subscribe to changes to the editor's json contents, use the <code>onChange</code> argument.</p>
+
+<Example @name="demo-libraries-jsoneditorjs-elements-editor-change.hbs" class="nopad">
+	<div class="h-400">
+		<Ascua::Jsoneditor @json={{this.json}} @onChange={{fn (mut this.json)}} />
+	</div>
+</Example>

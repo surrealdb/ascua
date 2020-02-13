@@ -327,7 +327,7 @@ button {
 	}
 }
 
-input, textarea {
+input:not([type='checkbox']), textarea {
 	padding:5px;
 	width:300px;
 	font-size:1rem;

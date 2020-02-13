@@ -97,6 +97,7 @@
     "@ascua/initials": "file:packages/initials",
     "@ascua/input": "file:packages/input",
     "@ascua/internet": "file:packages/internet",
+    "@ascua/jsoneditor.js": "file:packages/jsoneditor.js",
     "@ascua/keyboard": "file:packages/keyboard",
     "@ascua/label": "file:packages/label",
     "@ascua/location": "file:packages/location",
