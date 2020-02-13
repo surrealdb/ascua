@@ -16,7 +16,7 @@ function clear(state, owner, element, callback) {
 export default setModifierManager(
 	(owner) => ({
 
-		capabilities: capabilities ? capabilities('3.13') : undefined,
+		capabilities: capabilities('3.13', { disableAutoTracking: true }),
 
 		createModifier() {
 			return { element: null, timeout: null, callback: null };
