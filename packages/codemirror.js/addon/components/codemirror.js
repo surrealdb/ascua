@@ -1,52 +1,76 @@
 import Component from '@glimmer/component';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
+import { arg } from '@ascua/decorators';
 import CodeMirror from 'codemirror';
 import Event from '@ascua/events';
 
-const defaults = {
-	autoCloseBrackets: true,
-	autofocus: false,
-	commentBlankLines: false,
-	cursorBlinkRate: 530,
-	electricChars: true,
-	extraKeys: {
-		'Cmd-/': 'toggleComment',
-		'Cmd-Alt-/': 'blockComment',
-	},
-	firstLineNumber: 1,
-	historyEventDelay: 1250,
-	indentUnit: 4,
-	indentWithTabs: false,
-	lineNumbers: true,
-	lineWrapping: false,
-	matchBrackets: true,
-	mode: 'javascript',
-	readOnly: false,
-	smartIndent: true,
-	tabSize: 4,
-	theme: 'abcum',
-	undoDepth: 200,
-	value: '',
-	viewportMargin: 10,
-};
+const options = [
+	'autoCloseBrackets',
+	'autofocus',
+	'commentBlankLines',
+	'cursorBlinkRate',
+	'electricChars',
+	'extraKeys',
+	'firstLineNumber',
+	'historyEventDelay',
+	'indentUnit',
+	'indentWithTabs',
+	'lineNumbers',
+	'lineWrapping',
+	'matchBrackets',
+	'mode',
+	'readOnly',
+	'smartIndent',
+	'tabSize',
+	'theme',
+	'undoDepth',
+	'viewportMargin',
+];
 
 export default class extends Component {
 
-	@computed('args.opts')
-	get opts() {
-		return Object.assign({}, defaults, this.args.opts);
-	}
+	@arg value = null;
+
+	@arg autoCloseBrackets = true;
+	@arg autofocus = false;
+	@arg commentBlankLines = false;
+	@arg cursorBlinkRate = 530;
+	@arg electricChars = true;
+	@arg extraKeys = {
+		'Cmd-/': 'toggleComment',
+		'Cmd-Alt-/': 'blockComment',
+	};
+	@arg firstLineNumber = 1;
+	@arg historyEventDelay = 1250;
+	@arg indentUnit = 4;
+	@arg indentWithTabs = true;
+	@arg lineNumbers = true;
+	@arg lineWrapping = false;
+	@arg matchBrackets = true;
+	@arg mode = 'javascript';
+	@arg readOnly = false;
+	@arg smartIndent = true;
+	@arg tabSize = 4;
+	@arg theme = 'abcum';
+	@arg undoDepth = 200;
+	@arg viewportMargin = 10;
 
 	@action didCreate(element) {
 
-		this.editor = new CodeMirror(element, this.opts);
+		this.editor = new CodeMirror(element);
 
-		this.editor.setValue( String(this.args.value) );
+		options.forEach(k => {
+			this.editor.setOption(k, this[k]);
+		});
+
+		if (this.value) {
+			this.editor.setValue( String(this.value) );
+		}
 
 		this.editor.on('change', (i) => {
-			if (this.args.onValue) {
-				this.args.onValue( i.getValue() );
+			if (this.args.onChange) {
+				this.args.onChange( i.getValue() );
 			}
 		});
 
@@ -130,8 +154,8 @@ export default class extends Component {
 			this.editor.setValue(this.args.value + '');
 		}
 
-		Object.keys(this.opts).forEach(k => {
-			this.editor.setOption(k, this.opts[k]);
+		options.forEach(k => {
+			this.editor.setOption(k, this[k]);
 		});
 
 	}

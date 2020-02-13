@@ -2,14 +2,32 @@
 
 <h2>Editor</h2>
 
-<Example @name="demo-libraries-codemirrorjs-elements-coder.hbs" class="nopad">
-	<Ascua::Codemirror @value={{this.value}} @onValue={{fn (mut this.value)}} />
+<p>Create a Codemirror instance, and give it an option initial value by specifying the <code>value</code> property.</p>
+
+<Example @name="demo-libraries-codemirrorjs-elements-editor.hbs" class="nopad">
+	<Ascua::Codemirror @value={{this.value}} />
+</Example>
+
+<h3>Editor options</h3>
+
+<p>The editor can be configured using using individual arguments. These include <code>autoCloseBrackets</code>, <code>autofocus</code>, <code>commentBlankLines</code>, <code>cursorBlinkRate</code>, <code>electricChars</code>, <code>extraKeys</code>, <code>firstLineNumber</code>, <code>historyEventDelay</code>, <code>indentUnit</code>, <code>indentWithTabs</code>, <code>lineNumbers</code>, <code>lineWrapping</code>, <code>matchBrackets</code>, <code>mode</code>, <code>readOnly</code>, <code>smartIndent</code>, <code>tabSize</code>, <code>theme</code>, <code>undoDepth</code>, and <code>viewportMargin</code>. For more information view the <a href="https://codemirror.net/doc/manual.html#config" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
+
+<Example @name="demo-libraries-codemirrorjs-elements-editor-opts.hbs" class="nopad">
+	<Ascua::Codemirror @value={{this.value}} @theme="default" @readOnly={{true}} />
+</Example>
+
+<h3>Detecting changes</h3>
+
+<p>To subscribe to changes to the editor's text contents, use the <code>onChange</code> argument.</p>
+
+<Example @name="demo-libraries-codemirrorjs-elements-editor-change.hbs" class="nopad">
+	<Ascua::Codemirror @value={{this.value}} @onChange={{fn (mut this.value)}} />
 </Example>
 
 <h3>Editor events</h3>
 
-<p>It is possible to listen to the events which the underlying codemirror instance emits. The available events are <code>change</code>, <code>changes</code>, <code>beforeChange</code>, <code>cursorActivity</code>, <code>keyHandled</code>, <code>beforeSelectionChange</code>, <code>viewportChange</code>, <code>gutterClick</code>, <code>gutterContextMenu</code>, <code>focus</code>, <code>blur</code>, and <code>scroll</code>. For more information view the <a href="https://codemirror.net/doc/manual.html#events" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
+<p>It is possible to listen to the events which the underlying Codemirror instance emits. The available events are <code>change</code>, <code>changes</code>, <code>beforeChange</code>, <code>cursorActivity</code>, <code>keyHandled</code>, <code>beforeSelectionChange</code>, <code>viewportChange</code>, <code>gutterClick</code>, <code>gutterContextMenu</code>, <code>focus</code>, <code>blur</code>, and <code>scroll</code>. For more information view the <a href="https://codemirror.net/doc/manual.html#events" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
 
-<Example @name="demo-libraries-codemirrorjs-elements-coder-events.hbs" class="nopad">
-	<Ascua::Codemirror @value={{this.value}} {{on "change" (console)}} />
+<Example @name="demo-libraries-codemirrorjs-elements-editor-events.hbs" class="nopad">
+	<Ascua::Codemirror @value={{this.value}} {{on "cursorActivity" (console)}} />
 </Example>
