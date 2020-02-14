@@ -211,7 +211,7 @@ export default class Model extends Core {
 		setProperties(this, current);
 		this.#state = LOADED;
 		if (changes.length) {
-			this.save();
+			this.autosave();
 		}
 	}
 
