@@ -22,7 +22,9 @@ export default class Store extends Service {
 	 */
 
 	reset() {
-		this.#cache = new Cache();
+		for (const k in this.#cache.data) {
+			this.#cache.get(k).clear();
+		}
 	}
 
 	/**
@@ -100,7 +102,6 @@ export default class Store extends Service {
 				this.#cache.get(item.meta.tb).addObject(cached);
 			} else {
 				cached.ingest(item);
-				return cached;
 			}
 
 			return cached;
