@@ -11,6 +11,18 @@ export default class extends Component {
 		this.element.mount(element);
 
 		this.element.on('change', detail => {
+			if (this.args.onError) {
+				this.args.onError(detail.error);
+			}
+			if (this.args.onEmpty) {
+				this.args.onEmpty(detail.empty);
+			}
+			if (this.args.onComplete) {
+				this.args.onComplete(detail.complete);
+			}
+		});
+
+		this.element.on('change', detail => {
 			element.dispatchEvent(
 				new Event('change', { detail })
 			)
