@@ -15,7 +15,7 @@ module.exports = function(environment) {
 		},
 
 		stripe: {
-			publishableKey: 'pk_live_SHy0Gyzh7FH7J3Qb8BS0YOda',
+			publishableKey: 'pk_test_SWarCDaast79iYO0YdTILYos',
 		},
 
 		codemirror: {
