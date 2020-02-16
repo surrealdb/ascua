@@ -1,19 +1,41 @@
-import Object from '@ember/object/proxy';
 import { tracked } from '@glimmer/tracking';
-import { computed } from '@ember/object';
-import { setProperties } from '@ember/object';
 
-export default class Record extends Object {
+export default class Remote {
+
+	static create(data) {
+		return new Proxy(new Remote(data), {
+			get(target, key) {
+				if (key in target) {
+					let value = Reflect.get(...arguments);
+					return typeof value === 'function' ? value.bind(target) : value;
+				} else {
+					target.fetch();
+					target.setup();
+					return target.content[key];
+				}
+			},
+			set(target, key, val) {
+				if (key in target) {
+					let value = Reflect.set(...arguments);
+					return typeof value === 'function' ? value.bind(target) : value;
+				} else {
+					target.fetch();
+					target.setup();
+					return target.content[key] = val;
+				}
+			}
+		});
+	}
 
 	#id = undefined;
+
+	#done = false;
 
 	#future = undefined;
 
 	#promise = undefined;
 
-	isRejected = false;
-
-	isFulfilled = false;
+	@tracked content = {};
 
 	toJSON() {
 		return this.#id;
@@ -23,21 +45,11 @@ export default class Record extends Object {
 		return this.#id;
 	}
 
-	init(params) {
-		super.init();
+	constructor(params) {
 		this.#id = params.id;
 		this.#future = params.future;
 		this.#promise = params.promise;
-		delete this.id;
-		delete this.future;
-		delete this.promise;
 		this.setup();
-	}
-
-	unknownProperty(key) {
-		this.fetch();
-		this.setup();
-		return super.unknownProperty(key);
 	}
 
 	then() {
@@ -59,33 +71,24 @@ export default class Record extends Object {
 	}
 
 	fetch() {
-		if (this.#future) {
+		if (this.#future && !this.#done) {
 			this.#promise = this.#future();
 			this.#future = undefined;
 		}
 	}
 
 	setup() {
-		if (this.#promise) {
+		if (this.#promise && !this.#done) {
 			this.#promise.then(
-				(value) => {
-					if (!this.isDestroyed && !this.isDestroying) {
-						setProperties(this, {
-							isFulfilled: true,
-							content: value,
-						});
-					}
-					return value;
+				(content) => {
+					this.content = content;
+					this.#done = true;
+					return content;
 				},
-				(reason) => {
-					console.debug(reason);
-					if (!this.isDestroyed && !this.isDestroying) {
-						setProperties(this, {
-							isRejected: true,
-							reason: reason,
-						});
-					}
-					throw reason;
+				(failure) => {
+					this.failure = failure
+					this.#done = true;
+					throw failure;
 				},
 			);
 		}
