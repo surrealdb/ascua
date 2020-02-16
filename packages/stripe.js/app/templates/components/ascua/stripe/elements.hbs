@@ -1,6 +1,6 @@
 <div>
 
-	{{yield (hash
+	{{yield (augment this.elements
 		card=(component "ascua/stripe/elements/card"
 			stripe=this.stripe elements=this.elements
 		)
