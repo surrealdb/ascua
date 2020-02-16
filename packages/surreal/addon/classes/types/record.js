@@ -21,7 +21,8 @@ export default class Remote {
 				} else {
 					target.fetch();
 					target.setup();
-					return target.content[key] = val;
+					target.content[key] = val;
+					return true;
 				}
 			}
 		});
