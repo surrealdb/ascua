@@ -75,10 +75,10 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the removed records.
 	 */
 
-	async remove(items) {
+	async remove(ids) {
 
-		return [].concat(items).map(async item => {
-			return await this.unload(item.meta.tb, item.id);
+		return [].concat(ids).map(async id => {
+			return await this.unload(id.split(':')[0], id);
 		});
 
 	}

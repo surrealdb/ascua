@@ -209,6 +209,7 @@ export default class Model extends Core {
 		let changes = new Diff(this.#client, this.json).output();
 		let current = new Patch(this.#server, changes).output();
 		setProperties(this, current);
+		this.#client = this.json;
 		this.#state = LOADED;
 		if (changes.length) {
 			this.autosave();
