@@ -33,4 +33,8 @@ export default class CustomArray extends Array {
 		super.pushObjects( [].concat(values).map(this.type) );
 	}
 
+	setObjects(values) {
+		super.setObjects( [].concat(values).map(this.type) );
+	}
+
 }
