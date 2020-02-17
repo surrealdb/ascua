@@ -34,13 +34,13 @@
 
 <Example @name="demo-libraries-stripejs-elements-card-change.hbs">
 	<Ascua::Stripe::Elements as |elements|>
-		<elements.card @onError={{fn (mut error)}} @onEmpty={{fn (mut empty)}} @onComplete={{fn (mut complete)}} />
+		<elements.card @onError={{fn (mut this.error)}} @onEmpty={{fn (mut this.empty)}} @onComplete={{fn (mut this.complete)}} />
 	</Ascua::Stripe::Elements>
 </Example>
 
-<span>{{if error error.message}}</span>
-<span>{{if empty "The input is empty"}}</span>
-<span>{{if complete "The input is complete"}}</span>
+<span>{{if this.error this.error.message}}</span>
+<span>{{if this.empty "The input is empty"}}</span>
+<span>{{if this.complete "The input is complete"}}</span>
 
 <h3>Element events</h3>
 
