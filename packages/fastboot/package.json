@@ -1,6 +1,6 @@
 {
   "name": "@ascua/fastboot",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "Small description for @ascua/fastboot goes here",
   "keywords": [
     "ember-addon"
