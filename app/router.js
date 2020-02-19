@@ -111,6 +111,9 @@ Router.map(function() {
 			this.route('helpers');
 		});
 		this.route('sheet');
+		this.route('sortable', function() {
+			this.route('elements');
+		});
 		this.route('stripe', function() {
 			this.route('elements');
 		});

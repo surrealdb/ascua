@@ -1,0 +1,8 @@
+<app-sortable
+	{{did-insert this.didCreate}}
+	{{did-update this.didChange @options}}
+	{{will-destroy this.willDelete}}
+	...attributes
+>
+	{{yield this.instance}}
+</app-sortable>

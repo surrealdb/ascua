@@ -418,6 +418,19 @@ app-droppable div:after {
 	outline:5px dashed rgb(145, 255, 91);
 }
 
+app-sortable div {
+	width:100%;
+	height:100px;
+	display:flex;
+	cursor:pointer;
+	font-size:24px;
+	background:#00bfff;
+	margin-bottom:10px;
+	align-items:center;
+	flex-direction:column;
+	justify-content:center;
+}
+
 app-modal-front.custom {
 	width:400px;
 	height:200px;

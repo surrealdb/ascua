@@ -121,6 +121,7 @@
     "@ascua/server": "file:packages/server",
     "@ascua/sheet.js": "file:packages/sheet.js",
     "@ascua/social": "file:packages/social",
+    "@ascua/sortable.js": "file:packages/sortable.js",
     "@ascua/storage": "file:packages/storage",
     "@ascua/strings": "file:packages/strings",
     "@ascua/stripe.js": "file:packages/stripe.js",
