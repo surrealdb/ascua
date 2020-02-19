@@ -1,6 +1,6 @@
 {
   "name": "@ascua/routing",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "Small description for @ascua/routing goes here",
   "keywords": [
     "ember-addon"
