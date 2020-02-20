@@ -12,7 +12,7 @@ const RESYNC = Symbol("Resync");
 
 export default class Model extends Core {
 
-	static create(data) {
+	static create(data = {}) {
 
 		for (const key in data) {
 			switch (true) {

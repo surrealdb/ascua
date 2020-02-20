@@ -3,7 +3,7 @@ import { inject } from '@ember/service';
 
 export default class Field extends Core {
 
-	static create(data) {
+	static create(data = {}) {
 
 		for (const key in data) {
 			switch (true) {
