@@ -224,7 +224,13 @@ export default class Model extends Core {
 
 	async update() {
 		this.#client = this.json;
-		return this.#promise = this.store.update(this);
+		try {
+			this.#promise = this.store.update(this);
+			return await this.#promise;
+		} catch (e) {
+			this.#promise = undefined;
+			throw e;
+		}
 	}
 
 	/**
@@ -235,7 +241,13 @@ export default class Model extends Core {
 
 	async delete() {
 		this.#client = this.json;
-		return this.#promise = this.store.delete(this);
+		try {
+			this.#promise = this.store.delete(this);
+			return await this.#promise;
+		} catch (e) {
+			this.#promise = undefined;
+			throw e;
+		}
 	}
 
 	/**
