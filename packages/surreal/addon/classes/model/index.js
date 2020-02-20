@@ -121,7 +121,7 @@ export default class Model extends Core {
 	// be used for serlialization.
 
 	toJSON() {
-		return this.#data;
+		return this.data;
 	}
 
 	/**

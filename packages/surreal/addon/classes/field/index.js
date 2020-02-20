@@ -51,7 +51,7 @@ export default class Field extends Core {
 	// be used for serlialization.
 
 	toJSON() {
-		return this.#data;
+		return this.data;
 	}
 
 	/**
