@@ -2,30 +2,19 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
+import { arg } from '@ascua/decorators';
 
 export default class extends Component {
 
 	@tracked frame;
 
-	@computed('args.src')
-	get src() {
-		return this.args.src || 'about:blank';
-	}
+	@arg src = 'about:blank';
 
-	@computed('args.zoom')
-	get zoom() {
-		return this.args.zoom || 1;
-	}
+	@arg zoom = 1;
 
-	@computed('args.width')
-	get width() {
-		return this.args.width || '100%';
-	}
+	@arg width = '100%';
 
-	@computed('args.height')
-	get height() {
-		return this.args.height || '100%';
-	}
+	@arg height = '100%';
 
 	@computed('zoom', 'frame')
 	get scale() {

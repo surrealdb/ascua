@@ -2,25 +2,17 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
+import { arg } from '@ascua/decorators';
 
 export default class extends Component {
 
+	@arg min = 1;
+
+	@arg max = 5;
+
+	@arg disabled = false;
+
 	@tracked value = undefined;
-
-	@computed('args.min')
-	get min() {
-		return this.args.min || 1;
-	}
-
-	@computed('args.max')
-	get max() {
-		return this.args.max || 5;
-	}
-
-	@computed('args.disabled')
-	get disabled() {
-		return this.args.disabled || false;
-	}
 
 	@computed('min', 'max', 'value')
 	get stars() {

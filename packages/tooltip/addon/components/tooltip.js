@@ -4,29 +4,21 @@ import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { action } from '@ember/object';
 import position from '../utils/position';
+import { arg } from '@ascua/decorators';
 
 export default class extends Component {
 
 	@inject('-document') document;
 
+	@arg side = 's';
+
+	@arg show = 'hover';
+
+	@arg hide = 'hover';
+
 	@tracked enabled = false;
 
 	@tracked visible = false;
-
-	@computed('args.side')
-	get side() {
-		return this.args.side || 's';
-	}
-
-	@computed('args.show')
-	get show() {
-		return this.args.show || 'hover';
-	}
-
-	@computed('args.hide')
-	get hide() {
-		return this.args.hide || 'hover';
-	}
 
 	constructor() {
 

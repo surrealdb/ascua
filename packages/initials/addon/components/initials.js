@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import initials from '../utils/initials';
 import hashcode from '../utils/hashcode';
 import { computed } from '@ember/object';
+import { arg } from '@ascua/decorators';
 
 const COLOURS = [
 	'#1abc9c', '#16a085', '#f1c40f',
@@ -17,15 +18,9 @@ const COLOURS = [
 
 export default class extends Component {
 
-	@computed('args.size')
-	get size() {
-		return this.args.size || 80;
-	}
+	@arg size = 80;
 
-	@computed('args.name')
-	get name() {
-		return this.args.name || '?';
-	}
+	@arg name = '?';
 
 	@computed('name')
 	get chars() {

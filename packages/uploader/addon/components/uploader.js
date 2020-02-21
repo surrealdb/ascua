@@ -2,24 +2,21 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
+import { arg } from '@ascua/decorators';
 
 export default class extends Component {
+
+	@arg width = '100%';
+
+	@arg height = '100%';
+
+	@arg clickable = true;
 
 	@tracked waiting = false;
 
 	@tracked loading = false;
 
 	@tracked dropping = false;
-
-	@computed('args.width')
-	get width() {
-		return this.args.width || '100%';
-	}
-
-	@computed('args.height')
-	get height() {
-		return this.args.height || '100%';
-	}
 
 	@action didStop(event) {
 		event.stopPropagation();
