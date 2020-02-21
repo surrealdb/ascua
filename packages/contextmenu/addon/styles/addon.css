@@ -176,6 +176,10 @@ context-menu-item[enabled] {
 	color:#434343;
 }
 
+context-menu-item:not([enabled]) {
+	opacity:0.5;
+}
+
 body[macos-theme='dark'] context-menu-item[enabled] {
 	color:#ffffff;
 }
