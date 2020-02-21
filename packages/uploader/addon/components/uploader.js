@@ -6,10 +6,6 @@ import { arg } from '@ascua/decorators';
 
 export default class extends Component {
 
-	@arg width = '100%';
-
-	@arg height = '100%';
-
 	@arg clickable = true;
 
 	@tracked waiting = false;
@@ -23,7 +19,9 @@ export default class extends Component {
 	}
 
 	@action didClick(event) {
-		event.target.querySelectorAll('input')[0].click();
+		if (this.clickable) {
+			event.target.querySelectorAll('input')[0].click();
+		}
 	}
 
 	@action didInput(event) {
@@ -36,15 +34,23 @@ export default class extends Component {
 	}
 
 	@action didDragEnter(event) {
-		this.dropping = true;
 		event.preventDefault();
 		event.stopPropagation();
+		if (event.dataTransfer) {
+			if (event.dataTransfer.types.includes('Files')) {
+				this.dropping = true;
+			}
+		}
 	}
 
 	@action didDragLeave(event) {
-		this.dropping = false;
 		event.preventDefault();
 		event.stopPropagation();
+		if (event.dataTransfer) {
+			if (event.dataTransfer.types.includes('Files')) {
+				this.dropping = false;
+			}
+		}
 	}
 
 	@action didDrop(event) {

@@ -13,7 +13,9 @@
 <p>When a file is selected, or when dropped onto the uploader area, the file is processed and sent via the <code>onOpen</code> action to the parent component.</p>
 
 <Example @name="demo-elements-uploader-basic.hbs">
-	<Ascua::Uploader @height="300" @onOpen={{console "File uploaded"}} />
+	<div class="h-400">
+		<Ascua::Uploader @height="300" @onOpen={{console "File uploaded"}} />
+	</div>
 </Example>
 
 <h2>Advanced</h2>
@@ -21,16 +23,18 @@
 <p>To enable a more advanced interface, the <code>Ascua::Uploader</code> component can be used in block form. The <code>dropping</code> property is true when a file is being dragged over the area. If no files are being loaded then the <code>waiting</code> property is true, and if a file is being processed then the <code>loading</code> property will be true.</p>
 
 <Example @name="demo-elements-uploader-block.hbs">
-	<Ascua::Uploader @height="300" @onOpen={{console "File uploaded"}} as |d|>
-		{{#if d.dropping}}
-			<br> Drop your files here.
-		{{else}}
-			{{#if d.waiting}}
-				<br> Drag your files here.
+	<div class="h-400">
+		<Ascua::Uploader @height="300" @onOpen={{console "File uploaded"}} as |d|>
+			{{#if d.dropping}}
+				<br> Drop your files here.
+			{{else}}
+				{{#if d.waiting}}
+					<br> Drag your files here.
+				{{/if}}
+				{{#if d.loading}}
+					<br> Processing your files.
+				{{/if}}
 			{{/if}}
-			{{#if d.loading}}
-				<br> Processing your files.
-			{{/if}}
-		{{/if}}
-	</Ascua::Uploader>
+		</Ascua::Uploader>
+	</div>
 </Example>
