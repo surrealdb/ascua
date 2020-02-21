@@ -8,6 +8,7 @@ export default class extends Component {
 
 	@action didClick(event) {
 		if (event.ctrlKey === true) {
+			event.stopPropagation();
 			return this.contextmenu.show(
 				event, this.args.menu, this.args.model,
 			);
@@ -15,6 +16,7 @@ export default class extends Component {
 	}
 
 	@action didCmenu(event) {
+		event.stopPropagation();
 		return this.contextmenu.show(
 			event, this.args.menu, this.args.model,
 		);
