@@ -36,8 +36,10 @@ export default class extends Component {
 
 	@action didLimit(event) {
 		if (event.which !== 13) return true;
-		if (this.args.limit == false) return true;
-		return (this.element.value.split('\n').length < this.args.limit);
+		if (this.args.limit === undefined) return true;
+		if (this.element.value.split('\n').length < this.args.limit) return true;
+		event.preventDefault();
+		return false;
 	}
 
 }
