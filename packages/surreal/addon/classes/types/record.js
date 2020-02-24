@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import Core from '@ember/object/proxy';
 import { get, set } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 const { combine } = Ember.__loader.require('@glimmer/reference');
@@ -10,28 +9,30 @@ export default class Remote {
 	static create(data) {
 		return new Proxy(new Remote(data), {
 			get(target, key) {
-				if (key in target) {
-					let value = Reflect.get(target, key);
-					return typeof value === 'function' ? value.bind(target) : value;
-				} else {
+				switch (true) {
+				case key in target && typeof target[key] === 'function':
+					return target[key].bind(target);
+				case typeof key === 'symbol':
+					return target[key];
+				case key in target:
+					return target[key];
+				case target.content && typeof target.content[key] === 'function':
+					return target.content[key].bind(target.content);
+				default:
 					target.fetch();
 					target.setup();
-					let proxy = target.content;
-					let value = Reflect.get(proxy, key);
-					return typeof value === 'function' ? value.bind(proxy) : value;
+					return get(target, `content.${key}`);
 				}
 			},
 			set(target, key, val) {
-				if (key in target) {
-					let value = Reflect.set(target, key, val);
-					typeof value === 'function' ? value.bind(target) : value;
+				switch (true) {
+				case key in target:
+					target[key] = val;
 					return true;
-				} else {
+				default:
 					target.fetch();
 					target.setup();
-					let proxy = target.content;
-					let value = Reflect.set(proxy, key, val);
-					typeof value === 'function' ? value.bind(proxy) : value;
+					set(target, `content.${key}`, val);
 					return true;
 				}
 			}
