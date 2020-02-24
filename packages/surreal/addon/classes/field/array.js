@@ -71,7 +71,21 @@ export default function(type) {
 		set(key, value=[]) {
 
 			if (this.data[key] !== undefined) {
-				this.data[key].setObjects(value);
+				value.forEach( async (v, k) => {
+					switch (true) {
+					case this.data[key][k] !== undefined:
+						await this.data[key][k];
+						setProperties(this.data[key][k], v);
+						this.autosave();
+						break;
+					case this.data[key][k] === undefined:
+						this.data[key].pushObject(v);
+						break;
+					}
+				});
+				for (let i=this.data[key].length; i>value.length; i--) {
+					this.data[key].popObject();
+				}
 				return this.data[key];
 			}
 
