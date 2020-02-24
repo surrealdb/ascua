@@ -8,14 +8,14 @@ export default class Session extends Service {
 
 	@inject store;
 
-	@tracked model;
+	@tracked model = {};
 
 	constructor() {
 
 		super(...arguments);
 
 		this.surreal.on('invalidated', () => {
-			this.store.reset();
+			this.store.reset(); this.model = {};
 		});
 
 		this.surreal.on('authenticated', () => {
