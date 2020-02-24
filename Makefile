@@ -68,4 +68,5 @@ publish:
 .PHONY: deploy
 deploy:
 	@echo "Deploy..."
+	rm -rf /tmp/ascua-deploy
 	ember deploy production
