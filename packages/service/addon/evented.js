@@ -18,12 +18,9 @@ export default class Evented extends Service {
 
 	off(e, ctx, func) {
 		if (typeof this.events[e] === 'object') {
-			const idxs = this.events[e].filter(v => {
-				return v.ctx === ctx && v.func === func;
+			this.events[e] = this.events[e].filter(v => {
+				return v.ctx !== ctx && v.func !== func;
 			});
-			for (let i = idxs.length -1; i >= 0; i--) {
-				this.events[e].splice(idxs[i], 1);
-			}
 		}
 	}
 
