@@ -16,9 +16,7 @@ export default function(target) {
 	};
 }
 
-function invalidate() {
-	this.transitionTo(this.redirectIfInvalidated);
-}
+
 
 function func(target) {
 
@@ -31,13 +29,17 @@ function func(target) {
 		activate() {
 			this._super(...arguments);
 			// Enable listening to invalidated events.
-			this.surreal.on('invalidated', this, invalidate);
+			this.surreal.on('invalidated', this, this.invalidate);
 		},
 
 		deactivate() {
 			this._super(...arguments);
 			// Disable listening to invalidated events.
-			this.surreal.off('invalidated', this, invalidate);
+			this.surreal.off('invalidated', this, this.invalidate);
+		},
+
+		invalidate() {
+			this.transitionTo(this.redirectIfInvalidated);
 		},
 
 		async beforeModel(transition) {

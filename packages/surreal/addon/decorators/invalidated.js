@@ -16,14 +16,6 @@ export default function(target) {
 	};
 }
 
-function authenticate() {
-	if (this.surreal.transition) {
-		this.surreal.transition.retry();
-	} else {
-		this.transitionTo(this.redirectIfAuthenticated);
-	}
-}
-
 function func(target) {
 
 	target.reopen({
@@ -35,13 +27,21 @@ function func(target) {
 		activate() {
 			this._super(...arguments);
 			// Enable listening to authenticated events.
-			this.surreal.on('authenticated', this, authenticate);
+			this.surreal.on('authenticated', this, this.authenticate);
 		},
 
 		deactivate() {
 			this._super(...arguments);
 			// Disable listening to authenticated events.
-			this.surreal.off('authenticated', this, authenticate);
+			this.surreal.off('authenticated', this, this.authenticate);
+		},
+
+		authenticate() {
+			if (this.surreal.transition) {
+				this.surreal.transition.retry();
+			} else {
+				this.transitionTo(this.redirectIfAuthenticated);
+			}
 		},
 
 		async beforeModel(transition) {
