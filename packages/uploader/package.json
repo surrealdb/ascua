@@ -1,6 +1,6 @@
 {
   "name": "@ascua/uploader",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "Small description for @ascua/uploader goes here",
   "keywords": [
     "ember-addon"
