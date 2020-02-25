@@ -76,7 +76,6 @@ export default function(type) {
 					case this.data[key][k] !== undefined:
 						await this.data[key][k];
 						setProperties(this.data[key][k], v);
-						this.autosave();
 						break;
 					case this.data[key][k] === undefined:
 						this.data[key].pushObject(v);
