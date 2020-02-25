@@ -1,14 +1,22 @@
+import { computed } from '@ember/object';
+
 export default function(target, key, desc) {
-	return {
-		configurable: true,
-		enumerable: true,
+
+	const init = desc.initializer;
+
+	desc.initializer = undefined;
+
+	const cp = computed(`args.${key}`, {
 		get() {
 			switch (this.args[key]) {
 			case undefined:
-				return desc.initializer();
+				return init();
 			default:
 				return this.args[key];
 			}
 		},
-	}
+	});
+
+	return cp(target, key, desc);
+
 }
