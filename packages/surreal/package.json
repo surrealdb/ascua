@@ -31,6 +31,9 @@
     "demoURL": "https://abcum.github.io/ascua",
     "before": [
       "ember-cli-babel"
+    ],
+    "fastbootDependencies": [
+      "ws"
     ]
   },
   "homepage": "https://abcum.github.io/ascua",
