@@ -6,6 +6,8 @@ export default class extends Component {
 
 	@action didCreate(element) {
 
+		if (this.args.elements === null) return;
+
 		this.element = this.args.elements.create(this.type, this.opts);
 
 		this.element.mount(element);
@@ -56,11 +58,15 @@ export default class extends Component {
 
 	@action didChange() {
 
+		if (this.args.elements === null) return;
+
 		this.element.update(this.opts);
 
 	}
 
 	@action willDelete() {
+
+		if (this.args.elements === null) return;
 
 		this.element.unmount();
 
