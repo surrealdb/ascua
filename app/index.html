@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ascua</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<html lang="en">
+	<head>
 
-    {{content-for "head"}}
+		<title>Ascua</title>
+		<meta charset="utf-8">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+		<meta name="description" content="A library for building advanced, optimised Ember.js apps">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/ascua.css">
+		{{content-for "head"}}
 
-    {{content-for "head-footer"}}
-  </head>
-  <body>
-    {{content-for "body"}}
+		<link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+		<link integrity="" rel="stylesheet" href="{{rootURL}}assets/ascua.css">
 
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/ascua.js"></script>
+		{{content-for "head-footer"}}
 
-    {{content-for "body-footer"}}
-  </body>
+	</head>
+	<body>
+
+		{{content-for "body"}}
+
+		<script src="{{rootURL}}assets/vendor.js"></script>
+		<script src="{{rootURL}}assets/ascua.js"></script>
+
+		{{content-for "body-footer"}}
+
+	</body>
 </html>
