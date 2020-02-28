@@ -26,6 +26,8 @@ export default class extends Component {
 
 	@action didCreate(element) {
 
+		if (!Sortable) return;
+
 		this.instance = Sortable.create(element, {
 			...this.options
 		});
@@ -43,6 +45,8 @@ export default class extends Component {
 
 	@action didChange(element) {
 
+		if (!Sortable) return;
+
 		let opts = Object.entries(this.options);
 
 		for (let [key, val] of opts) {
@@ -52,6 +56,8 @@ export default class extends Component {
 	}
 
 	@action willDelete() {
+
+		if (!Sortable) return;
 
 		this.instance.destroy();
 

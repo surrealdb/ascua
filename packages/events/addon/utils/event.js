@@ -1,5 +1,7 @@
 export default (function () {
 
+	if ( typeof FastBoot !== "undefined" ) return undefined;
+
 	if ( typeof window.CustomEvent === "function" ) return window.CustomEvent;
 
 	function CustomEvent(name, params) {

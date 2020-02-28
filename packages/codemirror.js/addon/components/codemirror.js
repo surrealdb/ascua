@@ -58,6 +58,8 @@ export default class extends Component {
 
 	@action didCreate(element) {
 
+		if (!CodeMirror) return;
+
 		this.editor = new CodeMirror(element);
 
 		options.forEach(k => {
@@ -149,6 +151,8 @@ export default class extends Component {
 	}
 
 	@action didChange() {
+
+		if (!CodeMirror) return;
 
 		if (this.editor.getValue() !== this.args.value) {
 			this.editor.setValue(this.args.value + '');

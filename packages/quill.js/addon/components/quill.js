@@ -50,6 +50,8 @@ export default class extends Component {
 
 	@action didCreate(element) {
 
+		if (!Quill) return;
+
 		// Instantiate the Quill editor instance.
 
 		this.instance = new Quill(element, {
@@ -121,6 +123,8 @@ export default class extends Component {
 
 	@action didChange(element) {
 
+		if (!Quill) return;
+
 		let delta = this.instance.clipboard.convert(this.value);
 
 		this.instance.setContents(delta, 'silent');
@@ -128,6 +132,8 @@ export default class extends Component {
 	}
 
 	@action willDelete() {
+
+		if (!Quill) return;
 
 		this.quill.unregister(this);
 

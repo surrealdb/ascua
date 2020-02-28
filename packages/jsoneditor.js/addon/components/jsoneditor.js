@@ -13,6 +13,8 @@ export default class extends Component {
 
 	@action didCreate(element) {
 
+		if (!JSONEditor) return;
+
 		this.instance = new JSONEditor(element, {
 			enableTransform: this.enableTransform,
 			enableSort: this.enableSort,
@@ -38,6 +40,8 @@ export default class extends Component {
 
 	@action didChange(element, json) {
 
+		if (!JSONEditor) return;
+
 		if (this.json != this.args.json) {
 
 			this.instance.set(this.args.json);
@@ -51,6 +55,8 @@ export default class extends Component {
 	}
 
 	@action willDelete() {
+
+		if (!JSONEditor) return;
 
 		this.instance.destroy();
 

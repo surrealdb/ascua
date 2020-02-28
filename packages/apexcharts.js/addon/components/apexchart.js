@@ -22,17 +22,23 @@ export default class extends Component {
 	}
 
 	@action didCreate(element) {
-		this.chart = new Chart(element, this.initial);
-		this.chart.render();
+		if (Chart) {
+			this.chart = new Chart(element, this.initial);
+			this.chart.render();
+		}
 	}
 
 	@action didChange() {
-		this.chart.updateOptions(this.args.opts);
-		this.chart.updateSeries(this.args.data);
+		if (Chart) {
+			this.chart.updateOptions(this.args.opts);
+			this.chart.updateSeries(this.args.data);
+		}
 	}
 
 	@action willDelete() {
-		this.chart.destroy();
+		if (Chart) {
+			this.chart.destroy();
+		}
 	}
 
 }
