@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@ascua/resize": "file:../resize",
-    "ember-cli-babel": "^7.13.0",
-    "ember-cli-htmlbars": "^4.2.0",
+    "ember-cli-babel": "^7.17.2",
+    "ember-cli-htmlbars": "^4.2.2",
     "pdfjs-dist": "^2.2.228"
   },
   "ember-addon": {

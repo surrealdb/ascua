@@ -19,8 +19,8 @@
     "@ascua/transform": "file:../transform",
     "@mapbox/mapbox-gl-draw": "^1.1.2",
     "@mapbox/mapbox-gl-geocoder": "^4.5.1",
-    "ember-cli-babel": "^7.13.0",
-    "ember-cli-htmlbars": "^4.2.0",
+    "ember-cli-babel": "^7.17.2",
+    "ember-cli-htmlbars": "^4.2.2",
     "mapbox-gl": "^1.7.0"
   },
   "ember-addon": {

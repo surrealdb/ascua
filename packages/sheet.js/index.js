@@ -12,9 +12,9 @@ module.exports = {
 
 		this._super.included(...arguments);
 
-		app.import('node_modules/file-saver/FileSaver.min.js', fastboot);
+		app.import('node_modules/file-saver/dist/FileSaver.js', fastboot);
 
-		app.import('node_modules/xlsx/dist/xlsx.full.min.js', fastboot);
+		app.import('node_modules/xlsx/dist/xlsx.core.min.js', fastboot);
 
 		app.import('vendor/sheet.js', {
 			exports: {

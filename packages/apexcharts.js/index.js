@@ -12,7 +12,7 @@ module.exports = {
 
 		this._super.included(...arguments);
 
-		app.import('node_modules/apexcharts/dist/apexcharts.min.js', fastboot);
+		app.import('node_modules/apexcharts/dist/apexcharts.js', fastboot);
 
 		app.import('vendor/apexcharts.js', {
 			exports: { ApexCharts: ['default'] }

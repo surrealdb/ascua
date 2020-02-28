@@ -15,8 +15,8 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
-    "ember-cli-babel": "^7.13.0",
-    "ember-cli-htmlbars": "^4.2.0",
+    "ember-cli-babel": "^7.17.2",
+    "ember-cli-htmlbars": "^4.2.2",
     "marked": "^0.8.0"
   },
   "ember-addon": {
