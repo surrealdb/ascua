@@ -38,26 +38,30 @@ srv.use( (req, res) => {
 
 		let body = await result.html();
 
-		for (let h of result.headers.entries()) {
-			res.set(h[0], h[1]);
+		if (result.error) throw result.error;
+
+		if (result.headers) {
+			for (let h of result.headers.entries()) {
+				res.set(h[0], h[1]);
+			}
 		}
 
-		res.status(result.statusCode);
-
-		result.error ? res.send() : res.send(body);
+		res.status(result.statusCode).send(body);
 
 	}
 
 	async function success(result) {
 		try {
 			await respond(result);
-		} catch(e) {
-			res.status(500);
+		} catch(error) {
+			console.error(error);
+			res.status(500).send();
 		}
 	}
 
 	async function failure(error) {
-		res.status(500);
+		console.error(error);
+		res.status(500).send();
 	}
 
 });
