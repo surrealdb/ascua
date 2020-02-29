@@ -1,6 +1,6 @@
 {
   "name": "@ascua/tasks",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "Small description for @ascua/tasks goes here",
   "keywords": [
     "ember-addon"
