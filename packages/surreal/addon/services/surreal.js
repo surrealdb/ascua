@@ -87,7 +87,9 @@ export default class Surreal extends Service {
 		if (window && window.addEventListener) {
 			window.addEventListener('storage', e => {
 				if (e.key === 'surreal') {
-					this.authenticate(this.token = e.newValue);
+					this.token = e.newValue;
+					this.#db.token = e.newValue;
+					this.authenticate(e.newValue);
 				}
 			});
 		}
