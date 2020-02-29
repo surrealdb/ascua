@@ -9,6 +9,10 @@ const app = new fastboot({
 
 const srv = express();
 
+srv.use(plugins.json); // Parse body
+
+srv.use(plugins.form); // Parse body
+
 srv.use(plugins.host); // Get hostname
 
 srv.use(plugins.logger); // Log the request
