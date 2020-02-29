@@ -26,11 +26,11 @@ function func(target) {
 
 		redirectAfterSignout: 'signin',
 
-		async beforeModel(model, transition) {
+		async beforeModel() {
+			// Reset the data store.
+			this.store.reset();
 			// Invalidate the connection.
 			await this.surreal.invalidate();
-			// Unload all data store records.
-			this.store.reset();
 			// Redirect to the specified route.
 			return this.transitionTo(this.redirectAfterSignout);
 		},
