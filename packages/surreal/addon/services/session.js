@@ -4,9 +4,9 @@ import { tracked } from '@glimmer/tracking';
 
 export default class Session extends Service {
 
-	@inject surreal;
-
 	@inject store;
+
+	@inject surreal;
 
 	@tracked model = {};
 

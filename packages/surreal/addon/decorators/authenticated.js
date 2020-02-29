@@ -16,9 +16,13 @@ export default function(target) {
 	};
 }
 
-
-
 function func(target) {
+
+	let enter = target.prototype.activate;
+
+	let leave = target.prototype.deactivate;
+
+	let before = target.prototype.beforeModel;
 
 	target.reopen({
 
@@ -27,13 +31,13 @@ function func(target) {
 		redirectIfInvalidated: 'signin',
 
 		activate() {
-			this._super(...arguments);
+			enter(...arguments);
 			// Enable listening to invalidated events.
 			this.surreal.on('invalidated', this, this.invalidate);
 		},
 
 		deactivate() {
-			this._super(...arguments);
+			leave(...arguments);
 			// Disable listening to invalidated events.
 			this.surreal.off('invalidated', this, this.invalidate);
 		},
@@ -42,16 +46,15 @@ function func(target) {
 			this.transitionTo(this.redirectIfInvalidated);
 		},
 
-		async beforeModel(transition) {
+		beforeModel(transition) {
 			// Store the current desired route.
 			this.surreal.transition = transition;
-			// Wait for authentication attempt.
-			return this.surreal.wait().then( () => {
-				if (this.surreal.authenticated === false) {
-					return this.transitionTo(this.redirectIfInvalidated);
-				}
-				return this._super(...arguments);
-			});
+			// Redirect if connection is invalidated.
+			if (this.surreal.authenticated === false) {
+				return this.transitionTo(this.redirectIfInvalidated);
+			}
+			// Continue with original hook.
+			return before.apply(this, ...arguments);
 		},
 
 	});

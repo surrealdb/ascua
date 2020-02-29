@@ -18,6 +18,12 @@ export default function(target) {
 
 function func(target) {
 
+	let enter = target.prototype.activate;
+
+	let leave = target.prototype.deactivate;
+
+	let before = target.prototype.beforeModel;
+
 	target.reopen({
 
 		surreal: inject(),
@@ -25,13 +31,13 @@ function func(target) {
 		redirectIfAuthenticated: 'index',
 
 		activate() {
-			this._super(...arguments);
+			enter(...arguments);
 			// Enable listening to authenticated events.
 			this.surreal.on('authenticated', this, this.authenticate);
 		},
 
 		deactivate() {
-			this._super(...arguments);
+			leave(...arguments);
 			// Disable listening to authenticated events.
 			this.surreal.off('authenticated', this, this.authenticate);
 		},
@@ -44,15 +50,13 @@ function func(target) {
 			}
 		},
 
-		async beforeModel(transition) {
-			// Wait for authentication attempt.
-			await this.surreal.wait();
-			// Redirect if connection is invalidated.
+		beforeModel(transition) {
+			// Redirect if connection is authenticated.
 			if (this.surreal.authenticated === true) {
 				return this.transitionTo(this.redirectIfAuthenticated);
 			}
-			// Continue with application loading.
-			return this._super(...arguments);
+			// Continue with original hook.
+			return before.apply(this, ...arguments);
 		},
 
 	});

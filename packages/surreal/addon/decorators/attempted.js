@@ -18,15 +18,18 @@ export default function(target) {
 
 function func(target) {
 
+	let before = target.prototype.beforeModel;
+
 	target.reopen({
 
 		surreal: inject(),
 
-		async beforeModel() {
+		beforeModel() {
 			// Wait for authentication attempt.
-			await this.surreal.wait();
-			// Continue with application loading.
-			return this._super(...arguments);
+			return this.surreal.wait().then( () => {
+				// Continue with original hook.
+				return before.apply(this, ...arguments);
+			});
 		},
 
 	});
