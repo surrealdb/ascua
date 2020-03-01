@@ -15,6 +15,7 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
+    "@ascua/config": "file:../config",
     "@ascua/server": "file:../server",
     "ember-cli-babel": "^7.17.2",
     "ember-cli-htmlbars": "^4.2.2"
