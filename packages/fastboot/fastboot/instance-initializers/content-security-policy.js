@@ -33,6 +33,8 @@ export default {
 
 		let opts = Object.assign({}, defaults, { ...config.CSP });
 
+		if (config.environment !== 'production') opts.report = true;
+
 		let bits = Object.keys(opts.policy).map(k => {
 			switch (true) {
 			case typeof opts.policy[k] === 'string':
