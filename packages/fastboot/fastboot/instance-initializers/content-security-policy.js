@@ -36,7 +36,7 @@ export default {
 		let bits = Object.keys(opts.policy).map(k => {
 			switch (true) {
 			case typeof opts.policy[k] === 'string':
-				return opts.policy[k];
+				return k + ' ' + opts.policy[k];
 			case Array.isArray(opts.policy[k]) === true:
 				return k + ' ' + unique(opts.policy[k]).join(' ');
 			default:
