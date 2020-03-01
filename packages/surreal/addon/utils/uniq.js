@@ -10,7 +10,7 @@ const random = function(size) {
 		return crypto.getRandomValues( new Uint32Array(size) );
 	}
 
-	return [].slice.call( new Array(size) ).map( () => {
+	return [...Array(size)].map( () => {
 		return Math.abs(Math.random() * uint32 | 0);
 	});
 
