@@ -31,13 +31,13 @@ function func(target) {
 		redirectIfAuthenticated: 'index',
 
 		activate() {
-			enter(...arguments);
+			enter.apply(this, ...arguments);
 			// Enable listening to authenticated events.
 			this.surreal.on('authenticated', this, this.authenticate);
 		},
 
 		deactivate() {
-			leave(...arguments);
+			leave.apply(this, ...arguments);
 			// Disable listening to authenticated events.
 			this.surreal.off('authenticated', this, this.authenticate);
 		},

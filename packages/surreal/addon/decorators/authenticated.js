@@ -31,13 +31,13 @@ function func(target) {
 		redirectIfInvalidated: 'signin',
 
 		activate() {
-			enter(...arguments);
+			enter.apply(this, ...arguments);
 			// Enable listening to invalidated events.
 			this.surreal.on('invalidated', this, this.invalidate);
 		},
 
 		deactivate() {
-			leave(...arguments);
+			leave.apply(this, ...arguments);
 			// Disable listening to invalidated events.
 			this.surreal.off('invalidated', this, this.invalidate);
 		},
