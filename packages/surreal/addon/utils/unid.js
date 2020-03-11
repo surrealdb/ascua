@@ -26,9 +26,3 @@ export default function() {
 	}
 
 }
-
-
-
-
-
-
