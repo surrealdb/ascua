@@ -1,0 +1,35 @@
+@mixin theme($type) {
+
+	$theme: 'light' !default;
+
+	@if $type == 'dark' {
+		@if $theme == $type {
+			@content;
+		}
+		body[macos-theme='dark'] {
+			@content;
+		}
+		body[macos-theme='dark'] & {
+			@content;
+		}
+		@media (prefers-color-scheme: dark) {
+			@content;
+		}
+	}
+
+	@if $type == 'light' {
+		@if $theme == $type {
+			@content;
+		}
+		body[macos-theme='light'] {
+			@content;
+		}
+		body[macos-theme='light'] & {
+			@content;
+		}
+		@media (prefers-color-scheme: light) {
+			@content;
+		}
+	}
+
+}
