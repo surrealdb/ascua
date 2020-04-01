@@ -20,13 +20,25 @@ context-menu {
 	border-color:#cccccc;
 	font-family:var(--system-fonts);
 	background-color:rgba(255, 255, 255, 0.95);
-	-webkit-backdrop-filter:blur(40px);
-	backdrop-filter:blur(40px);
 	-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
 	-ms-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
 	-o-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+}
+
+context-menu:before {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:-1;
+	content:'';
+	display:block;
+	border-radius:5px;
+	position:absolute;
+	-webkit-backdrop-filter:blur(20px);
+	backdrop-filter:blur(20px);
 }
 
 context-menu:empty {
@@ -95,6 +107,24 @@ body[macos-theme='light'] context-menu-item[type='separator'] {
 	}
 }
 
+@media not all and (min-resolution:.001dpcm) {
+	@supports (-webkit-appearance:none) {
+		context-menu {
+			background:rgba(255, 255, 255, 0.7);
+		}
+		@media (prefers-color-scheme: dark) {
+			context-menu {
+				background:rgba(46, 46, 46, 0.7);
+			}
+		}
+		@media (prefers-color-scheme: light) {
+			context-menu {
+				background:rgba(255, 255, 255, 0.7);
+			}
+		}
+	}
+}
+
 context-menu-item[type='normal'],
 context-menu-item[type='checkbox'],
 context-menu-item[type='radio'] {
@@ -104,7 +134,7 @@ context-menu-item[type='radio'] {
 	color:#bebebe;
 	font-size:14px;
 	overflow:hidden;
-	line-height:18px;
+	line-height:1.5;
 	white-space:nowrap;
 	text-decoration:none;
 	text-overflow:ellipsis;

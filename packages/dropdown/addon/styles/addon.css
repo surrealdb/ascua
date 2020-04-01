@@ -92,13 +92,25 @@ app-dropdown > app-dropdown-front {
 	border-radius:5px;
 	border:1px solid #cccccc;
 	background:rgba(255, 255, 255, 0.95);
-	-webkit-backdrop-filter:blur(40px);
-	backdrop-filter:blur(40px);
 	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	-ms-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	-o-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+app-dropdown > app-dropdown-front:before {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:-1;
+	content:'';
+	display:block;
+	border-radius:5px;
+	position:absolute;
+	-webkit-backdrop-filter:blur(20px);
+	backdrop-filter:blur(20px);
 }
 
 app-dropdown > app-dropdown-front[display] {
@@ -157,7 +169,7 @@ app-dropdown > app-dropdown-front app-dropdown-option {
 	padding:0;
 	color:#333333;
 	display:block;
-	font-size:10pt;
+	font-size:14px;
 	line-height:1.5;
 	overflow:hidden;
 	position:relative;
@@ -251,27 +263,27 @@ app-dropdown > app-dropdown-front app-dropdown-group {
 	display:block;
 }
 
-app-dropdown > app-dropdown-front app-dropdown-group:not(:first-child) {
+app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
 	margin-top:4px;
 	border-top:1px solid rgba(200, 200, 200, 0.6);
 }
 
-body[macos-theme='dark'] app-dropdown > app-dropdown-front app-dropdown-group:not(:first-child) {
+body[macos-theme='dark'] app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
 	border-top:1px solid rgba(50, 50, 50, 0.6);
 }
 
-body[macos-theme='light'] app-dropdown > app-dropdown-front app-dropdown-group:not(:first-child) {
+body[macos-theme='light'] app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
 	border-top:1px solid rgba(200, 200, 200, 0.6);
 }
 
 @media (prefers-color-scheme: dark) {
-	app-dropdown > app-dropdown-front app-dropdown-group:not(:first-child) {
+	app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
 		border-top:1px solid rgba(50, 50, 50, 0.6);
 	}
 }
 
 @media (prefers-color-scheme: light) {
-	app-dropdown > app-dropdown-front app-dropdown-group:not(:first-child) {
+	app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
 		border-top:1px solid rgba(200, 200, 200, 0.6);
 	}
 }
