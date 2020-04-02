@@ -1,6 +1,6 @@
 {
   "name": "@ascua/surreal",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "description": "Small description for @ascua/surreal goes here",
   "keywords": [
     "ember-addon"

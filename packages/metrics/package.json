@@ -1,6 +1,6 @@
 {
   "name": "@ascua/metrics",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "description": "Small description for @ascua/metrics goes here",
   "keywords": [
     "ember-addon"
