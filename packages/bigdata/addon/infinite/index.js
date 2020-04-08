@@ -1,5 +1,6 @@
 import Item from './item';
 import context from '@ascua/context';
+import { tracked } from '@glimmer/tracking';
 
 const FETCH = function() {
 	return [];
@@ -10,6 +11,8 @@ export default class extends Array {
 	limit = 0;
 
 	fetch = 0;
+
+	@tracked loaded = false;
 
 	constructor(limit, fetch = FETCH) {
 
@@ -31,6 +34,7 @@ export default class extends Array {
 
 	reset() {
 		this.length = 0;
+		this.loaded = false;
 		this.notifyPropertyChange('[]');
 		this.loadmore(0);
 	}
@@ -65,6 +69,8 @@ export default class extends Array {
 			this.fulfillObjectsAt(rng, items);
 
 			this.length = rng.start + items.length;
+
+			this.loaded = true;
 
 		} catch (error) {
 

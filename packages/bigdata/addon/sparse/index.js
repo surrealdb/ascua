@@ -1,5 +1,6 @@
 import Item from './item';
 import Range from './range';
+import { tracked } from '@glimmer/tracking';
 
 const FETCH = function() {
 	return { data: [], total: 0 };
@@ -14,6 +15,8 @@ export default class extends Array {
 	fetch = 0;
 
 	ranges = {};
+
+	@tracked loaded = false;
 
 	constructor(limit, fetch = FETCH) {
 
@@ -38,6 +41,7 @@ export default class extends Array {
 	reset() {
 		this.total = 0;
 		this.length = 0;
+		this.loaded = false;
 		this.notifyPropertyChange('[]');
 		this.remoteObjectAt(0);
 	}
@@ -112,6 +116,8 @@ export default class extends Array {
 			this.length = array.total;
 
 			this.total = array.total;
+
+			this.loaded = true;
 
 		} catch (error) {
 
