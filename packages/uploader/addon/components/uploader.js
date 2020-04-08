@@ -6,6 +6,8 @@ import { arg } from '@ascua/decorators';
 
 export default class extends Component {
 
+	counter = 0;
+
 	@arg clickable = true;
 
 	@tracked waiting = false;
@@ -34,21 +36,27 @@ export default class extends Component {
 	}
 
 	@action didDragEnter(event) {
+		this.counter++;
 		event.preventDefault();
 		event.stopPropagation();
 		if (event.dataTransfer) {
 			if (event.dataTransfer.types.includes('Files')) {
-				this.dropping = true;
+				if (this.counter > 0) {
+					this.dropping = true;
+				}
 			}
 		}
 	}
 
 	@action didDragLeave(event) {
+		this.counter--;
 		event.preventDefault();
 		event.stopPropagation();
 		if (event.dataTransfer) {
 			if (event.dataTransfer.types.includes('Files')) {
-				this.dropping = false;
+				if (this.counter < 1) {
+					this.dropping = false;
+				}
 			}
 		}
 	}
