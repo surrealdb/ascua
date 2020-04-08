@@ -6,19 +6,11 @@ app-uploader {
 	position:relative;
 }
 
-app-uploader * {
-	pointer-events:none;
-}
-
 app-uploader input {
 	display:none;
 }
 
-app-uploader[dropping]:after {
-	outline:3px dashed rgb(145, 255, 91);
-}
-
-app-uploader:hover:after, app-uploader[dropping]:after {
+app-uploader:after {
 	top:0;
 	left:0;
 	right:0;
@@ -28,5 +20,4 @@ app-uploader:hover:after, app-uploader[dropping]:after {
 	display:block;
 	position:absolute;
 	pointer-events:none;
-	outline-offset:-5px;
 }
