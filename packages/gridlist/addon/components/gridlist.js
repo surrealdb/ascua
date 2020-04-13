@@ -135,6 +135,11 @@ export default class extends Component {
 			let obj = this.items.objectAt(pos);
 			obj.index = i;
 			obj.model = this.args.model.objectAt(i, false);
+			if (i === this.total - 1) {
+				if (typeof this.args.model.loadmore === 'function') {
+					this.args.model.loadmore(this.total);
+				}
+			}
 		});
 
 		// Cancel all remote fetches
@@ -142,12 +147,19 @@ export default class extends Component {
 
 		// Fetch and change placeholder content
 		this.timer = setTimeout( () => {
+
 			ids.forEach(i => {
 				let pos = i % sub;
 				let obj = this.items.objectAt(pos);
 				obj.index = i;
 				obj.model = this.args.model.objectAt(i, true);
+				if (i === this.total - 1) {
+					if (typeof this.args.model.loadmore === 'function') {
+						this.args.model.loadmore(this.total);
+					}
+				}
 			});
+
 		}, 100);
 
 	}

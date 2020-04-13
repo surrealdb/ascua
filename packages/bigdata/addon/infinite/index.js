@@ -26,9 +26,6 @@ export default class extends Array {
 	}
 
 	objectAt(idx) {
-		if (idx === this.length-1) {
-			this.loadmore(idx+1);
-		}
 		return this[idx];
 	}
 
