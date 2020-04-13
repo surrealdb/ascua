@@ -83,6 +83,7 @@
     "@ascua/context": "file:packages/context",
     "@ascua/contextmenu": "file:packages/contextmenu",
     "@ascua/core": "file:packages/core",
+    "@ascua/cropper.js": "file:packages/cropper.js",
     "@ascua/decorators": "file:packages/decorators",
     "@ascua/dom": "file:packages/dom",
     "@ascua/dragdrop": "file:packages/dragdrop",

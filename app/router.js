@@ -94,6 +94,9 @@ Router.map(function() {
 		this.route('codemirror', function() {
 			this.route('elements');
 		});
+		this.route('cropper', function() {
+			this.route('elements');
+		});
 		this.route('jsoneditor', function() {
 			this.route('elements');
 		});

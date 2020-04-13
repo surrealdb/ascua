@@ -1,0 +1,35 @@
+{
+  "name": "@ascua/cropper.js",
+  "version": "0.0.45",
+  "description": "Small description for @ascua/cropper.js goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
+  "dependencies": {
+    "@ascua/decorators": "file:../decorators",
+    "@ascua/modifiers": "file:../modifiers",
+    "@ascua/transform": "file:../transform",
+    "cropperjs": "^1.5.6",
+    "ember-cli-babel": "^7.17.2",
+    "ember-cli-htmlbars": "^4.2.2"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua",
+    "after": [
+      "@ascua/transform"
+    ]
+  },
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,9 @@
+<app-cropper ...attributes>
+	<img
+		{{did-insert this.didCreate}}
+		{{did-update this.didChange @src}}
+		{{did-resize this.didResize @data}}
+		{{will-destroy this.willDestroy}}
+		src={{@src}}
+	>
+</app-cropper>

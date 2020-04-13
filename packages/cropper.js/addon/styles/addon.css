@@ -1,0 +1,8 @@
+app-cropper {
+	display:block;
+}
+
+app-cropper img {
+	display:block;
+	max-width:100%;
+}
