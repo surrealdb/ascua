@@ -1,0 +1,23 @@
+<h1>Masonry</h1>
+
+<p>The <code>Ascua::Masonry</code> component adds functionality for working with a masonry column-based grid layout, enabling the optimal positioning of elements based on their width and height, and the available horizontal and vertical space. The component works well with the <LinkTo @route="guides.bigdata.infinite"><code>Infinite</code></LinkTo> array for efficient incremental rendering of large amounts of data.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-masonry-install.bash">
+	ember install @ascua/masonry
+</Example>
+
+<h2>Masonry view</h2>
+
+<p>To create a masonry view, specify the <code>model</code> to define the item content for the full list. The masonry view can be configured using using additional arguments. These include <code>columnWidth</code>, <code>fitWidth</code>, <code>horizontalOrder</code>, <code>gutter</code>, <code>originLeft</code>, <code>originTop</code>, <code>percentPosition</code>, <code>resize</code>, <code>stagger</code>, <code>transitionDuration</code>. For more information view the <a href="https://masonry.desandro.com/options.html" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
+
+<Example @name="demo-elements-masonry-view.hbs">
+	<div class="pos-r min-h-600">
+		<Ascua::Masonry @model={{this.items}} @gutter={{10}} as |item|>
+			<div {{style height=item.h}}>
+				{{item.id}}
+			</div>
+		</Ascua::Masonry>
+	</div>
+</Example>

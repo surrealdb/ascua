@@ -1,0 +1,30 @@
+app-masonry {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+}
+
+app-masonry-view {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	overflow:scroll;
+	position:absolute;
+	will-change:scroll-position;
+}
+
+app-masonry-area {
+	width:100%;
+	display:block;
+	position:relative;
+	will-change:width,height;
+}
+
+app-masonry-item {
+	display:block;
+	overflow:hidden;
+	will-change:top,left,width,height;
+}

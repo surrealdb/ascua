@@ -61,6 +61,7 @@ Router.map(function() {
 		this.route('image');
 		this.route('input');
 		this.route('link');
+		this.route('masonry');
 		this.route('modal');
 		this.route('select');
 		this.route('social');

@@ -108,6 +108,7 @@
     "@ascua/logic": "file:packages/logic",
     "@ascua/mapbox-gl.js": "file:packages/mapbox-gl.js",
     "@ascua/marked.js": "file:packages/marked.js",
+    "@ascua/masonry": "file:packages/masonry",
     "@ascua/maths": "file:packages/maths",
     "@ascua/metrics": "file:packages/metrics",
     "@ascua/minify": "file:packages/minify",

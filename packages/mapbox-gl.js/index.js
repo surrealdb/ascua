@@ -22,7 +22,7 @@ module.exports = {
 		app.import('node_modules/@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css');
 
 		app.import('vendor/mapbox.js', {
-			exports: { marked: ['default'] }
+			exports: { 'mapbox-gl': ['default'] }
 		});
 
 	},

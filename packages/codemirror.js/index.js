@@ -51,7 +51,7 @@ module.exports = {
 
 		app.import('vendor/codemirror.css');
 		app.import('vendor/codemirror.js', {
-			exports: { CodeMirror: ['default'] }
+			exports: { codemirror: ['default'] }
 		});
 
 	},
