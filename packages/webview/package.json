@@ -1,6 +1,6 @@
 {
   "name": "@ascua/webview",
-  "version": "0.0.46",
+  "version": "0.0.47",
   "description": "Small description for @ascua/webview goes here",
   "keywords": [
     "ember-addon"
