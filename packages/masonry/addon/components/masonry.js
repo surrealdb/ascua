@@ -1,6 +1,8 @@
 import Component from '@glimmer/component';
 import { arg } from '@ascua/decorators';
 import { action } from '@ember/object';
+import { timeout } from '@ascua/tasks';
+import { restart } from '@ascua/tasks';
 import Masonry from 'masonry.js';
 
 export default class extends Component {
@@ -39,11 +41,6 @@ export default class extends Component {
 		this.masonry.layout();
 	}
 
-	@action didRepack() {
-		this.masonry.reloadItems();
-		this.masonry.layout();
-	}
-
 	@action willDestroy() {
 		this.masonry.destroy();
 	}
@@ -55,6 +52,12 @@ export default class extends Component {
 				this.args.model.loadmore(this.args.model.length);
 			}
 		}
+	}
+
+	@restart * reload() {
+		yield timeout(1000);
+		this.masonry.reloadItems();
+		this.masonry.layout();
 	}
 
 }
