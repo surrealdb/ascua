@@ -23,7 +23,7 @@ module.exports = class Update extends Plugin {
 		// specified in the options, then
 		// use this for the version number.
 
-		let text = this.opts.version || new Date().getTime();
+		let text = String( this.opts.version || new Date().getTime() );
 
 		// Write the module content to the
 		// virtual config.js file so it can
