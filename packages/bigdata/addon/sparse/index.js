@@ -68,6 +68,11 @@ export default class extends Array {
 		let index = Math.floor(idx / limit);
 		let start = index * limit;
 		let props = { start, limit };
+
+		if (start < this.length) {
+			props.start = this.length;
+		}
+
 		let range = this.range(props);
 
 		this.fetcher(props);
