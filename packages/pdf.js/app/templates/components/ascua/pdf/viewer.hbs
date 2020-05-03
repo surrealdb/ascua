@@ -1,4 +1,4 @@
-<app-pdf-viewer {{did-insert this.didCreate}} {{did-resize this.didResize}} {{did-update this.didChange @doc}} {{will-destroy this.willDelete}}>
+<app-pdf-viewer {{did-insert this.didCreate}} {{did-resize this.didResize}} {{did-update this.didChange @doc @page}} {{will-destroy this.willDelete}}>
 
 	<img alt> <canvas loaded={{this.process.isSuccess}}></canvas>
 
