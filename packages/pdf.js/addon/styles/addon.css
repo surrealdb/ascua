@@ -107,7 +107,7 @@ app-pdf app-pdf-viewer img {
 	bottom:0;
 	padding:0;
 	margin:auto;
-	display:none;
+	display:block;
 	position:absolute;
 	max-width:calc(100% - 50px);
 	max-height:calc(100% - 50px);
