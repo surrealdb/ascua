@@ -16,7 +16,7 @@ export default function(type) {
 			case value instanceof Record:
 				return this.data[key];
 			default:
-				return this.data[key] = Record.create({
+				return this.data[key] = Record.initiate({
 					id: value, future: () => this.store.select(type, value)
 				});
 			}
@@ -34,15 +34,15 @@ export default function(type) {
 			case value === String(this.data[key]):
 				return this.data[key] = this.data[key];
 			case value instanceof Object:
-				return this.data[key] = Record.create({
+				return this.data[key] = Record.initiate({
 					id: value.id, promise: this.store.inject(value),
 				});
 			case value instanceof Model:
-				return this.data[key] = Record.create({
+				return this.data[key] = Record.initiate({
 					id: value.id, promise: Promise.resolve(value),
 				});
 			default:
-				return this.data[key] = Record.create({
+				return this.data[key] = Record.initiate({
 					id: value, future: () => this.store.select(type, value)
 				});
 			}

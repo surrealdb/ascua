@@ -8,8 +8,15 @@ const { CUSTOM_TAG_FOR, getChainTagsForKey } = Ember.__loader.require('@ember/-i
 
 export default class Remote {
 
-	static create(data) {
-		return new Proxy(new Remote(data), {
+	static cache = [];
+
+	static initiate(data) {
+
+		if (this.cache[data.id]) {
+			return this.cache[data.id];
+		}
+
+		return this.cache[data.id] = new Proxy(new Remote(data), {
 			get(target, key) {
 				switch (true) {
 				case key in target && typeof target[key] === 'function':
@@ -39,6 +46,7 @@ export default class Remote {
 				}
 			}
 		});
+
 	}
 
 	#id = undefined;
