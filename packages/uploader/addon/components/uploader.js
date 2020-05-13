@@ -77,6 +77,10 @@ export default class extends Component {
 		let ms = [].concat(this.args.mimetypes).filter(Boolean);
 		let es = [].concat(this.args.extensions).filter(Boolean);
 
+		if (this.args.onDrop) {
+			this.args.onDrop(files);
+		}
+
 		for (let i=0; i<files.length; i++) {
 
 			let f = files[i];
