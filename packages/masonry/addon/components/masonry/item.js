@@ -25,4 +25,19 @@ export default class extends Component {
 		});
 	}
 
+	@action didReload(el) {
+
+		this.args.reload();
+
+		[].forEach.call(el.querySelectorAll('img'), img => {
+			img.addEventListener('load', () => {
+				this.args.reload();
+			});
+			img.addEventListener('error', () => {
+				this.args.reload();
+			});
+		});
+
+	}
+
 }
