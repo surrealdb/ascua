@@ -1,6 +1,6 @@
 const func = (v) => v;
 
-export default class CustomArray extends Array {
+export default class RecordArray extends Array {
 
 	constructor(owner, type = func, ...values) {
 
