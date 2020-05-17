@@ -50,8 +50,6 @@ export default class extends Service {
 
 		this.check();
 
-		this.theme();
-
 	}
 
 	// If this service is going to be
@@ -74,29 +72,13 @@ export default class extends Service {
 
 		if (Electron === null) return;
 
+		document.body.setAttribute('electron', true);
+
 		const { autoUpdater } = Electron.remote.require('electron-updater');
 
 		autoUpdater.on('update-downloaded', () => {
 			this.emit('updatefound');
 		});
-
-	}
-
-	// Theme determines whether this app
-	// is running in light or dark mode
-	// according to the MacOS setting.
-
-	theme() {
-
-		const prefs = Electron.remote.systemPreferences;
-
-		let theme = () => prefs.isDarkMode() ? 'dark' : 'light';
-
-		prefs.subscribeNotification('AppleInterfaceThemeChangedNotification', () => {
-			document.body.setAttribute('macos-theme', theme());
-		});
-
-		document.body.setAttribute('macos-theme', theme());
 
 	}
 
