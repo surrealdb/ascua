@@ -150,7 +150,7 @@ export default class extends Service {
 		setTimeout( () => {
 			const remote = Electron.remote;
 			// Build the menu from the template.
-			let menu = remote.Menu.buildFromTemplate( this.list.map(list) );
+			let menu = remote.Menu.buildFromTemplate( this.items.map(list) );
 			// Display the contextmenu in the window.
 			menu.popup({ window: remote.getCurrentWindow() });
 			// Clear up the contextmenu artifacts.

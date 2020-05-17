@@ -10,11 +10,21 @@ export default class extends Component {
 
 	@arg type = 'normal';
 
+	@arg role = null;
+
+	@arg label = null;
+
 	@arg enabled = true;
 
 	@arg visible = true;
 
 	@arg checked = false;
+
+	@arg sublabel = null;
+
+	@arg accelerator = null;
+
+	@arg click = undefined;
 
 	@action didClick() {
 		if (this.args.click) {
