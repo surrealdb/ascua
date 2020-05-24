@@ -121,6 +121,7 @@ Router.map(function() {
 		this.route('stripe', function() {
 			this.route('elements');
 		});
+		this.route('zip');
 	});
 
 });

@@ -142,6 +142,7 @@
     "@ascua/visuals": "file:packages/visuals",
     "@ascua/webapp": "file:packages/webapp",
     "@ascua/webview": "file:packages/webview",
-    "@ascua/worker": "file:packages/worker"
+    "@ascua/worker": "file:packages/worker",
+    "@ascua/zip.js": "file:packages/zip.js"
   }
 }
