@@ -74,6 +74,8 @@ export default class extends Service {
 
 		document.body.setAttribute('electron', true);
 
+		if (Electron.remote.app.isPackaged === false) return;
+
 		const { autoUpdater } = Electron.remote.require('electron-updater');
 
 		autoUpdater.on('update-downloaded', () => {
@@ -90,6 +92,8 @@ export default class extends Service {
 
 		if (Electron === null) return;
 
+		if (Electron.remote.app.isPackaged === false) return;
+
 		const { autoUpdater } = Electron.remote.require('electron-updater');
 
 		autoUpdater.quitAndInstall({ isSilent: true, isForceRunAfter: true });
@@ -103,6 +107,8 @@ export default class extends Service {
 	@action check() {
 
 		if (Electron === null) return;
+
+		if (Electron.remote.app.isPackaged === false) return;
 
 		const { autoUpdater } = Electron.remote.require('electron-updater');
 
