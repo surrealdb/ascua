@@ -1,7 +1,7 @@
 import Core from '@ember/object';
 import context from '@ascua/context';
 import { inject } from '@ember/service';
-import { setProperties } from '@ember/object';
+import { set, setProperties } from '@ember/object';
 import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
 
@@ -208,7 +208,13 @@ export default class Model extends Core {
 		this.#server = data;
 		let changes = new Diff(this.#client, this.json).output();
 		let current = new Patch(this.#server, changes).output();
-		setProperties(this, current);
+		for (const key in current) {
+			let old = JSON.stringify(this[key]);
+			let now = JSON.stringify(current[key]);
+			if (old != now) {
+				set(this, key, current[key]);
+			}
+		}
 		this.#client = this.json;
 		this.#state = LOADED;
 		if (changes.length) {
