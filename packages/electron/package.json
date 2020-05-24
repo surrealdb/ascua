@@ -17,11 +17,11 @@
   "dependencies": {
     "@ascua/config": "file:../config",
     "@ascua/service": "file:../service",
-    "electron": "^8.0.2",
-    "electron-builder": "^22.3.2",
-    "electron-updater": "^4.2.0",
-    "ember-cli-babel": "^7.17.2",
-    "ember-cli-htmlbars": "^4.2.2"
+    "electron": "^9.0.0",
+    "electron-builder": "^22.6.1",
+    "electron-updater": "^4.3.1",
+    "ember-cli-babel": "^7.19.0",
+    "ember-cli-htmlbars": "^4.3.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",
