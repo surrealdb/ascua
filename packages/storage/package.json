@@ -1,6 +1,6 @@
 {
   "name": "@ascua/storage",
-  "version": "0.0.51",
+  "version": "0.0.52",
   "description": "Small description for @ascua/storage goes here",
   "keywords": [
     "ember-addon"
