@@ -53,13 +53,6 @@ module.exports = function() {
 
 		window.on('focus', () => {
 			global.lastWindow = window;
-			global.currentWindow = window;
-		});
-
-		window.on('blur', () => {
-			if (global.currentWindow === window) {
-				global.currentWindow = null;
-			}
 		});
 
 		window.on('swipe', (e, direction) => {
