@@ -72,24 +72,4 @@ module.exports = function() {
 
 	});
 
-	app.on('web-contents-created', (e, webContents) => {
-
-		webContents.on('new-window', (e, url) => {
-			if (url.indexOf(MAIN) !== 0) {
-				e.preventDefault();
-				shell.openExternal(url);
-			}
-		});
-
-		webContents.on('will-navigate', (e, url) => {
-			if (webContents.hostWebContents === null) {
-				if (url.indexOf(MAIN) !== 0) {
-					e.preventDefault();
-					shell.openExternal(url);
-				}
-			}
-		});
-
-	});
-
 };
