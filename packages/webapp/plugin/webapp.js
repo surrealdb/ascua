@@ -84,7 +84,7 @@ module.exports = class Webapp extends Plugin {
 					},
 				},
 			},
-		});
+		}).end();
 
 		fs.writeFileSync(path.join(this.outputPath, 'browserconfig.xml'), browser);
 
