@@ -69,30 +69,9 @@ export default class extends Service {
 
 	}
 
-	hide() {
-
-		this.route.disconnectOutlet({
-			outlet: 'contextmenu',
-			parentView: 'application',
-		});
-
-		this.enabled = false;
-
-	}
-
-	show(event, name, model) {
+	load(name, model) {
 
 		this.items = [];
-
-		if (Electron) {
-			return this.showDesktop(event, name, model);
-		} else {
-			return this.showBrowser(event, name, model);
-		}
-
-	}
-
-	render(event, name, model) {
 
 		let cont = this.owner.lookup(`controller:${name}`);
 
@@ -107,7 +86,36 @@ export default class extends Service {
 
 	}
 
-	showBrowser(event, name, model) {
+	hide() {
+
+		this.route.disconnectOutlet({
+			outlet: 'contextmenu',
+			parentView: 'application',
+		});
+
+		this.enabled = false;
+
+		this.element = null;
+
+	}
+
+	prep(element, event, vars, name, model) {
+
+		this.element = element;
+
+	}
+
+	show(element, event, vars, name, model) {
+
+		if (Electron) {
+			return this.showDesktop(element, event, vars, name, model);
+		} else {
+			return this.showBrowser(element, event, vars, name, model);
+		}
+
+	}
+
+	showBrowser(element, event, vars, name, model) {
 
 		if (event.target.matches('input,textarea'))
 			return true;
@@ -120,7 +128,7 @@ export default class extends Service {
 
 		this.enabled = true;
 
-		this.render(event, name, model);
+		this.load(name, model);
 
 		event.preventDefault();
 
@@ -128,46 +136,65 @@ export default class extends Service {
 
 	}
 
-	showDesktop(event, name, model) {
+	showDesktop(element, event, vars, name, model) {
 
-		if (event.target.matches('input,textarea'))
-			return this.showDesktopText();
+		if (this.element !== element)
+			return true;
 
-		if (event.target.isContentEditable)
-			return this.showDesktopText();
+		this.load(name, model);
 
-		this.render(event, name, model);
-
-		this.showDesktopMenu();
-
-		event.preventDefault();
-
-		return false;
-
-	}
-
-	showDesktopMenu() {
 		setTimeout( () => {
+
+			// Fetch remote variables
 			const remote = Electron.remote;
+			const window = remote.getCurrentWindow();
+			const webcont = window.webContents;
+			const session = webcont.session;
+
 			// Build the menu from the template.
 			let menu = remote.Menu.buildFromTemplate( this.items.map(list) );
-			// Display the contextmenu in the window.
-			menu.popup({ window: remote.getCurrentWindow() });
-			// Clear up the contextmenu artifacts.
-			this.hide();
-		});
-	}
 
-	showDesktopText() {
-		setTimeout( () => {
-			const remote = Electron.remote;
-			// Build the menu from the template.
-			let menu = remote.Menu.buildFromTemplate( text );
+			// Check to see if there are dictionary suggestions
+			if (vars.dictionarySuggestions && vars.dictionarySuggestions.length > 0) {
+
+				// Add a separator at the top of the menu.
+				menu.insert(0, new remote.MenuItem({
+					type: 'separator',
+				}));
+
+				// Enable add-to-dictionary for misspelling.
+				if (vars.misspelledWord) {
+					menu.insert(0, new remote.MenuItem({
+						label: 'Add to dictionary',
+						click: () => session.addWordToSpellCheckerDictionary(vars.misspelledWord)
+					}));
+					menu.insert(0, new remote.MenuItem({
+						type: 'separator',
+					}));
+				}
+
+				// List spelling suggestions at top of menu.
+				for (const [i, v] of vars.dictionarySuggestions.entries()) {
+					menu.insert(i, new remote.MenuItem({
+						label: v,
+						click: () => webcont.replaceMisspelling(v)
+					}));
+				}
+
+			}
+
 			// Display the contextmenu in the window.
-			menu.popup({ window: remote.getCurrentWindow() });
+			menu.popup({ window: window });
+
 			// Clear up the contextmenu artifacts.
 			this.hide();
+
 		});
+
+		event.preventDefault();
+
+		return false;
+
 	}
 
 }

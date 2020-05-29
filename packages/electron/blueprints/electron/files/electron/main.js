@@ -49,6 +49,7 @@ const loadapp = (show) => {
 			images: true,
 			plugins: true,
 			affinity: 'app',
+			spellcheck: true,
 			webviewTag: true,
 			webSecurity: true,
 			sharedWorker: true,

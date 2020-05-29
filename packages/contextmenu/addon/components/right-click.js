@@ -1,25 +1,47 @@
 import Component from '@glimmer/component';
 import { inject } from '@ember/service';
 import { action } from '@ember/object';
+import { arg } from '@ascua/decorators';
+import Electron from 'electron';
 
 export default class extends Component {
 
 	@inject contextmenu;
 
+	@arg model = null;
+
+	@arg menu = null;
+
+	constructor() {
+
+		super(...arguments);
+
+		if (Electron) {
+			Electron.remote.getCurrentWindow().webContents.on('context-menu', (event, vars) => {
+				return this.contextmenu.show(this, event, vars, this.menu, this.model);
+			});
+		}
+
+	}
+
 	@action didClick(event) {
 		if (event.ctrlKey === true) {
 			event.stopPropagation();
-			return this.contextmenu.show(
-				event, this.args.menu, this.args.model,
-			);
+			if (Electron) {
+				return this.contextmenu.prep(this, event, null, this.menu, this.model);
+			} else {
+				return this.contextmenu.show(this, event, null, this.menu, this.model);
+			}
 		}
 	}
 
 	@action didCmenu(event) {
 		event.stopPropagation();
-		return this.contextmenu.show(
-			event, this.args.menu, this.args.model,
-		);
+		if (Electron) {
+			return this.contextmenu.prep(this, event, null, this.menu, this.model);
+		} else {
+			return this.contextmenu.show(this, event, null, this.menu, this.model);
+		}
 	}
 
 }
