@@ -74,6 +74,7 @@
   },
   "dependencies": {
     "@ascua/apexcharts.js": "file:packages/apexcharts.js",
+    "@ascua/app": "file:packages/app",
     "@ascua/arrays": "file:packages/arrays",
     "@ascua/bigdata": "file:packages/bigdata",
     "@ascua/chart.js": "file:packages/chart.js",

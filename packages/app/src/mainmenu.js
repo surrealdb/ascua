@@ -1,4 +1,4 @@
-const { app, Menu } = require('electron')
+const { app, Menu } = require('electron');
 
 const template = [
 	{
@@ -82,14 +82,10 @@ if (process.platform === 'darwin') {
 
 }
 
-module.exports = function() {
+app.once('ready', () => {
 
-	app.once('ready', () => {
+	Menu.setApplicationMenu(
+		Menu.buildFromTemplate(template)
+	);
 
-		Menu.setApplicationMenu(
-			Menu.buildFromTemplate(template)
-		);
-
-	});
-
-}
+});

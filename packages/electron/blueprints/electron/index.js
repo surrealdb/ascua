@@ -6,5 +6,12 @@ module.exports = {
 
 	normalizeEntityName() {},
 
+	async afterInstall() {
+
+		return this.taskFor('npm-install').run({
+			save: true, packages: ['@ascua/app']
+		});
+	},
+
 };
 
