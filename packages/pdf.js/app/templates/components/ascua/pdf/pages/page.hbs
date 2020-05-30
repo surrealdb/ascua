@@ -1,0 +1,11 @@
+<app-pdf-page
+	{{did-enter-viewport this.didEnter}}
+	{{did-leave-viewport this.didLeave}}
+	{{did-insert this.didCreate}}
+	{{did-update this.didChange @w @h @doc @page this.visible}}
+	...attributes
+>
+
+	<canvas></canvas>
+
+</app-pdf-page>

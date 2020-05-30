@@ -1,11 +1,12 @@
+{{on-press "up" this.prev}}
+{{on-press "left" this.prev}}
+{{on-press "down" this.next}}
+{{on-press "right" this.next}}
+
 <app-pdf {{did-insert this.didCreate}} {{did-update this.didChange @url @time}} {{will-destroy this.willDelete}}>
 
-	<Ascua::pdf::viewer @doc={{this.doc}} @page={{this.num}} />
+	<Ascua::pdf::pages @pages={{this.pages}} @page={{this.page}} @on-select={{this.select}} />
 
-	<app-pdf-thumbs>
-		{{#each (pdf-pages this.doc.numPages) as |page|}}
-			<Ascua::pdf::thumb @doc={{this.doc}} @page={{page}} {{on "click" (fn this.select page)}} />
-		{{/each}}
-	</app-pdf-thumbs>
+	<Ascua::pdf::icons @pages={{this.pages}} @page={{this.page}} @on-select={{this.select}} />
 
 </app-pdf>

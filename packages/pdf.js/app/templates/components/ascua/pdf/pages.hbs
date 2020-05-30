@@ -1,0 +1,10 @@
+<app-pdf-pages tabindex="-1" {{did-resize this.didResize}} {{did-insert this.didCreate}} {{did-update this.didSelect @page}}>
+	{{#each @pages as |page|}}
+		<Ascua::pdf::pages::page
+			@w={{this.w}}
+			@h={{this.h}}
+			@page={{page}}
+			@on-select={{fn @on-select page.pageNumber}}
+		/>
+	{{/each}}
+</app-pdf-pages>

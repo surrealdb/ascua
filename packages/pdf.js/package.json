@@ -15,7 +15,9 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
+    "@ascua/keyboard": "file:../keyboard",
     "@ascua/resize": "file:../resize",
+    "@ascua/viewport": "file:../viewport",
     "ember-cli-babel": "^7.19.0",
     "ember-cli-htmlbars": "^4.3.1",
     "pdfjs-dist": "^2.3.200"

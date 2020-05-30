@@ -12,13 +12,17 @@ export default class extends Component {
 
 	@tracked doc;
 
-	@tracked num = this.args.page || 1;
+	@tracked pages = [];
+
+	@tracked page = this.args.page || 1;
 
 	@action didCreate(element) {
+		this.element = element;
 		this.process.run(this.args.url);
 	}
 
 	@action didChange(element) {
+		this.element = element;
 		this.process.run(this.args.url);
 	}
 
@@ -26,9 +30,35 @@ export default class extends Component {
 		this.cleanup.run();
 	}
 
+	@action prev() {
+		if (this.element) {
+			if (this.page > 1) {
+				if (this.element.contains(document.activeElement)) {
+					this.page--;
+					if (this.args.onSelectPage) {
+						this.args.onSelectPage(this.page);
+					}
+				}
+			}
+		}
+	}
+
+	@action next() {
+		if (this.element) {
+			if (this.page < this.pages.length) {
+				if (this.element.contains(document.activeElement)) {
+					this.page++;
+					if (this.args.onSelectPage) {
+						this.args.onSelectPage(this.page);
+					}
+				}
+			}
+		}
+	}
+
 	@action select(page) {
-		if (page != this.num) {
-			this.num = page;
+		if (page != this.page) {
+			this.page = page;
 			if (this.args.onSelectPage) {
 				this.args.onSelectPage(page);
 			}
@@ -47,11 +77,25 @@ export default class extends Component {
 
 	@restart * process(url) {
 		try {
+
+			let pages = [];
+
 			yield timeout(100);
+
 			yield this.cleanup.run();
+
 			this.lib = yield this.pdfjs.load();
 			this.xhr = this.lib.getDocument(url);
 			this.doc = yield this.xhr.promise;
+
+			for (let i=1; i<=this.doc.numPages; i++) {
+				pages.pushObject(
+					this.doc.getPage(i)
+				);
+			}
+
+			this.pages = yield Promise.all(pages);
+
 		} catch (e) {
 			// Ignore
 		}

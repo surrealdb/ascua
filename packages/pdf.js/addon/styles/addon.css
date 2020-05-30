@@ -8,11 +8,17 @@ app-pdf {
 	position:absolute;
 }
 
-app-pdf app-pdf-thumbs {
+/*
+--------------------------------------------------
+-- Thumbs
+--------------------------------------------------
+*/
+
+app-pdf app-pdf-icons {
 	top:0;
 	left:0;
 	bottom:0;
-	width:15%;
+	width:200px;
 	margin:auto;
 	display:flex;
 	overflow:auto;
@@ -21,24 +27,20 @@ app-pdf app-pdf-thumbs {
 	align-items:center;
 	flex-direction:column;
 	padding:30px 0 30px 0;
-	-ms-overflow-style: none;
+	border-right:1px solid #eeeeee;
 }
 
-app-pdf app-pdf-thumbs:before {
+app-pdf app-pdf-icons:before {
 	content:'';
 	margin:auto;
 }
 
-app-pdf app-pdf-thumbs:after {
+app-pdf app-pdf-icons:after {
 	content:'';
 	margin:auto;
 }
 
-app-pdf app-pdf-thumbs::-webkit-scrollbar {
-	width: 0 !important;
-}
-
-app-pdf app-pdf-thumbs app-pdf-thumb {
+app-pdf app-pdf-icons app-pdf-icon {
 	width:70%;
 	height:auto;
 	display:flex;
@@ -54,17 +56,9 @@ app-pdf app-pdf-thumbs app-pdf-thumb {
 	margin:15px auto 15px auto;
 }
 
-app-pdf app-pdf-thumbs app-pdf-thumb img {
+app-pdf app-pdf-icons app-pdf-icon num {
 	margin:0;
-	width:100%;
-	display:block;
-	position:relative;
-	pointer-events:none;
-	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
-}
-
-app-pdf app-pdf-thumbs app-pdf-thumb num {
-	margin:0;
+	z-index:10;
 	display:flex;
 	position:absolute;
 	align-items:center;
@@ -73,122 +67,62 @@ app-pdf app-pdf-thumbs app-pdf-thumb num {
 	justify-content:center;
 }
 
-app-pdf app-pdf-thumbs app-pdf-thumb canvas {
-	display:none;
-}
-
-app-pdf app-pdf-viewer {
-	top:0;
-	right:0;
-	bottom:0;
-	left:15%;
-	margin:auto;
-	display:block;
-	position:absolute;
-}
-
-app-pdf app-pdf-viewer canvas {
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	padding:0;
-	margin:auto;
-	display:none;
-	position:absolute;
-	max-width:calc(100% - 50px);
-	max-height:calc(100% - 50px);
-}
-
-app-pdf app-pdf-viewer img {
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	padding:0;
-	margin:auto;
-	display:block;
-	position:absolute;
-	max-width:calc(100% - 50px);
-	max-height:calc(100% - 50px);
-	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
-}
-
-app-pdf app-pdf-loader {
-	top:35%;
+app-pdf app-pdf-icons app-pdf-icon canvas {
+	margin:0;
+	width:100%;
 	display:block;
 	position:relative;
-	margin-left:-160px;
+	pointer-events:none;
+	box-shadow:0px 0px 5px 0px rgba(0,0,0,0.25);
 }
 
-app-pdf app-pdf-loader > div {
-	top:50%;
-	left:50%;
-	width:160px;
-	height:160px;
+/*
+--------------------------------------------------
+-- Viewer
+--------------------------------------------------
+*/
+
+app-pdf app-pdf-pages {
+	top:0;
+	right:0;
+	bottom:0;
+	left:200px;
+	margin:auto;
+	display:flex;
+	overflow:auto;
+	flex-wrap:nowrap;
 	position:absolute;
-	border-radius:50%;
-	border:2px solid rgba(0, 0, 0, 0.05);
-	border-left:2px solid var(--accent-color, #187aee);
-	-webkit-animation:rotate 1600ms linear infinite;
-	-moz-animation:rotate 1600ms linear infinite;
-	-ms-animation:rotate 1600ms linear infinite;
-	-o-animation:rotate 1600ms linear infinite;
-	animation:rotate 1600ms linear infinite;
+	align-items:center;
+	flex-direction:column;
 }
 
-app-pdf app-pdf-loader > div::before {
-	top:50%;
-	left:50%;
+app-pdf app-pdf-pages:before {
 	content:'';
-	width:140px;
-	height:140px;
-	position:absolute;
-	border-radius:50%;
-	margin:-70px 0 0 -70px;
-	border:2px solid rgba(0, 0, 0, 0.05);
-	border-left:2px solid var(--accent-color, #187aee);
-	-webkit-animation:rotate 1600ms linear infinite;
-	-moz-animation:rotate 1600ms linear infinite;
-	-ms-animation:rotate 1600ms linear infinite;
-	-o-animation:rotate 1600ms linear infinite;
-	animation:rotate 1600ms linear infinite;
+	margin:auto;
 }
 
-app-pdf app-pdf-loader > div::after {
-	top:50%;
-	left:50%;
+app-pdf app-pdf-pages:after {
 	content:'';
-	width:120px;
-	height:120px;
-	position:absolute;
-	border-radius:50%;
-	margin:-60px 0 0 -60px;
-	border:2px solid rgba(0, 0, 0, 0.05);
-	border-left:2px solid var(--accent-color, #187aee);
-	-webkit-animation:rotate 3200ms linear infinite;
-	-moz-animation:rotate 3200ms linear infinite;
-	-ms-animation:rotate 3200ms linear infinite;
-	-o-animation:rotate 3200ms linear infinite;
-	animation:rotate 3200ms linear infinite;
+	margin:auto;
 }
 
-@keyframes rotate {
-	100% { transform: rotate(360deg); }
+app-pdf app-pdf-pages app-pdf-page {
+	display:flex;
+	align-items:center;
+	justify-content:center;
 }
 
-@-o-keyframes rotate {
-	100% { -o-transform: rotate(360deg); }
-}
-
-@-ms-keyframes rotate {
-	100% { -ms-transform: rotate(360deg); }
-}
-
-@-webkit-keyframes rotate {
-	100% { -webkit-transform: rotate(360deg); }
-}
-
-@-moz-keyframes rotate {
-	100% { -moz-transform: rotate(360deg); }
+app-pdf app-pdf-pages app-pdf-page canvas {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	padding:0;
+	margin:auto;
+	display:block;
+	background:white;
+	margin:75px auto 75px auto;
+	max-width:calc(100% - 50px);
+	max-height:calc(100% - 50px);
+	box-shadow:0px 0px 10px 0px rgba(0,0,0,0.25);
 }
