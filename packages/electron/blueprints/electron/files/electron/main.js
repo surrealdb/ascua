@@ -47,18 +47,19 @@ const loadapp = (show) => {
 		webPreferences: {
 			java: false,
 			images: true,
-			plugins: true,
+			plugins: false,
 			affinity: 'app',
 			spellcheck: true,
 			webviewTag: true,
 			webSecurity: true,
-			sharedWorker: true,
+			scrollBounce: true,
 			nodeIntegration: true,
-			overlayScrollbars: true,
+			enableRemoteModule: true,
 			experimentalFeatures: false,
 			textAreasAreResizable: false,
 			allowRunningInsecureContent: false,
 			allowDisplayingInsecureContent: false,
+			devTools: (app.isPackaged === false),
 		}
 	});
 
