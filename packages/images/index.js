@@ -45,8 +45,6 @@ module.exports = {
 
 		if (type !== 'all') return tree;
 
-		if (process.env.EMBER_ENV !== 'production') return tree;
-
 		let out = new Plugin([tree], this.conf, this.opts);
 
 		return new Merger([tree, out], { overwrite: true });

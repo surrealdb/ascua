@@ -43,8 +43,6 @@ module.exports = {
 
 		if (type !== 'all') return tree;
 
-		if (process.env.EMBER_ENV !== 'production') return tree;
-
 		let out = new Plugin([tree], this.conf, this.opts);
 
 		return new Merger([out, tree], { overwrite: true });
@@ -54,8 +52,6 @@ module.exports = {
 	contentFor(type) {
 
 		if (type !== 'head') return;
-
-		if (process.env.EMBER_ENV !== 'production') return;
 
 		return Header(this.conf, this.opts);
 

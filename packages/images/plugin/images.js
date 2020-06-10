@@ -2,25 +2,25 @@
 
 const Plugin = require('broccoli-caching-writer');
 const Sharp = require('sharp');
-const RSVP = require('rsvp');
-const glob = require('glob');
 const path = require('path');
 const fs = require('fs');
 
-const IMAGES = [
-	'**/*.jpeg',
-	'**/*.jpg',
-	'**/*.png',
-	'**/*.tiff',
-	'**/*.webp',
-];
-
 module.exports = class Images extends Plugin {
+
+	cache = {};
 
 	constructor(inputNodes, conf, opts) {
 
 		super(inputNodes, {
 			name: 'Images',
+			cacheInclude: [
+				/[^.]+.(jpeg|jpg|png|tiff|webp)/,
+			],
+			cacheExclude: [
+				/favicon.ico/,
+				/favicon.png/,
+				/static\/webapp\/[^.]+.png/,
+			],
 		});
 
 		this.conf = conf;
@@ -32,26 +32,36 @@ module.exports = class Images extends Plugin {
 
 		const promises = [];
 
-		const images = this.find(IMAGES);
+		// Loop through all of the images
+		// and if they have been modified
+		// then process and compress them.
 
-		images.forEach(image => {
+		this.listEntries().forEach(image => {
 
-			let i = path.join(this.inputPaths[0], image);
-			let o = path.join(this.outputPath, image);
-			let f = path.dirname(o);
-			let e = path.extname(o);
+			if (this.cache[image.relativePath] !== image.mtime) {
 
-			let p = this.sharp(f, i, o, e);
+				this.cache[image.relativePath] = image.mtime;
 
-			promises.push(p);
+				promises.push(this.sharp(image));
+
+			}
 
 		});
 
-		return RSVP.all(promises);
+		// Wait for all of the files to
+		// finished being processed before
+		// processing to the next step.
+
+		return Promise.all(promises);
 
 	}
 
-	sharp(f, i, o, e) {
+	sharp(image) {
+
+		let i = path.join(image.basePath, image.relativePath);
+		let o = path.join(this.outputPath, image.relativePath);
+		let f = path.dirname(o);
+		let e = path.extname(o);
 
 		try {
 			fs.mkdirSync(f, { recursive: true });
@@ -71,24 +81,6 @@ module.exports = class Images extends Plugin {
 		case '.webp':
 			return Sharp(i).webp(this.opts.webp).toFile(o);
 		}
-
-	}
-
-	find(globs) {
-
-		let files = [];
-
-		this.inputPaths.forEach(path => {
-			globs.forEach(patt => {
-				glob.sync(patt, { cwd: path, nodir: true }).forEach(file => {
-					if (files.indexOf(file) === -1) {
-						files.push(file);
-					}
-				});
-			});
-		});
-
-		return files;
 
 	}
 
