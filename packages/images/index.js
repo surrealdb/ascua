@@ -5,12 +5,13 @@ const Merger = require('broccoli-merge-trees');
 
 const defaults = {
 	jpeg: {
-		quality: 80,
-		progressive: false,
+		quality: 85,
+		progressive: true,
 	},
 	png: {
-		progressive: false,
+		progressive: true,
 		compressionLevel: 9,
+		adaptiveFiltering: true,
 	},
 	webp: {
 		quality: 80,
