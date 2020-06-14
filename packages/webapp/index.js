@@ -10,6 +10,7 @@ const defaults = {
 	description: '',
 	display: 'standalone',
 	enabled: true,
+	mask: '#999999',
 	name: '',
 	orientation: 'portrait',
 	scope: '/',

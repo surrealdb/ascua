@@ -19,7 +19,7 @@ module.exports = (conf, opts) => {
 	<meta name="format-detection" content="address=no">
 	<meta name="format-detection" content="telephone=no">
 
-	<link rel="mask-icon" href="${conf.rootURL}static/webapp/icon.svg" color="${opts.color}">
+	<link rel="mask-icon" href="${conf.rootURL}static/webapp/icon.svg" color="${opts.mask}">
 
 	<link rel="shortcut icon" href="${conf.rootURL}favicon.png" type="image/png">
 	<link rel="icon" sizes="16x16" href="${conf.rootURL}static/webapp/icon-16x16.png">
