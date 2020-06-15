@@ -17,6 +17,8 @@ let defaults = {
 		'style-src': [SELF],
 		'script-src': [SELF],
 		'connect-src': [SELF],
+		'connect-src': [SELF],
+		'manifest-src': [SELF],
 		'block-all-mixed-content': null,
 	},
 };
