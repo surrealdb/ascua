@@ -18,15 +18,23 @@ export default class extends Helper {
 			this.elem = this.document;
 		}
 
-		this.elem.removeEventListener(this.name, this.func, this.opts);
+		if (typeof FastBoot === 'undefined') {
 
-		this.elem.addEventListener(this.name, this.func, this.opts);
+			this.elem.removeEventListener(this.name, this.func, this.opts);
+
+			this.elem.addEventListener(this.name, this.func, this.opts);
+
+		}
 
 	}
 
 	willDestroy() {
 
-		this.elem.removeEventListener(this.name, this.func, this.opts);
+		if (typeof FastBoot === 'undefined') {
+
+			this.elem.removeEventListener(this.name, this.func, this.opts);
+
+		}
 
 		super.willDestroy();
 
