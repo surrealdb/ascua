@@ -25,10 +25,6 @@ export default function(keys, func, event) {
 		return true;
 	}
 
-	event.stopPropagation();
-
-	event.preventDefault();
-
 	return func(event);
 
 }
