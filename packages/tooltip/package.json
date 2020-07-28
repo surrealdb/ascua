@@ -1,6 +1,6 @@
 {
   "name": "@ascua/tooltip",
-  "version": "0.0.59",
+  "version": "0.0.60",
   "description": "Small description for @ascua/tooltip goes here",
   "keywords": [
     "ember-addon"
