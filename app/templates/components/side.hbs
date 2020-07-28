@@ -12,20 +12,20 @@
 	{{#if (is-active "guides")}}
 
 		<div>General</div>
-		<section>
+		<section show>
 			<Navigate @route="guides.styling" @name="Styling" />
 			<Navigate @route="guides.electron" @name="Electron" />
 		</section>
 
 		<div>Bigdata</div>
-		<section>
+		<section show>
 			<Navigate @route="guides.bigdata" @name="Intro" />
 			<Navigate @route="guides.bigdata.infinite" @name="Infinite" />
 			<Navigate @route="guides.bigdata.sparse" @name="Sparse" />
 		</section>
 
 		<div>Webapps</div>
-		<section>
+		<section show>
 			<Navigate @route="guides.webapps" @name="Intro" />
 			<Navigate @route="guides.webapps.images" @name="Images" />
 			<Navigate @route="guides.webapps.fastboot" @name="Fastboot" />
@@ -33,7 +33,7 @@
 		</section>
 
 		<div>Tasks</div>
-		<section>
+		<section show>
 			<Navigate @route="guides.tasks" @name="Intro" />
 			<Navigate @route="guides.tasks.defining" @name="Defining tasks" />
 			<Navigate @route="guides.tasks.running" @name="Running tasks" />
@@ -42,7 +42,7 @@
 		</section>
 
 		<div>SurrealDB</div>
-		<section>
+		<section show>
 			<Navigate @route="guides.surreal" @name="Intro" />
 			<Navigate @route="guides.surreal.routing" @name="Routing" />
 			<Navigate @route="guides.surreal.authing" @name="Authentication" />
@@ -55,8 +55,7 @@
 
 	{{#if (is-active "services")}}
 
-		<div>General</div>
-		<section>
+		<section show>
 			<Navigate @route="services.clock" @name="Clock" />
 			<Navigate @route="services.electron" @name="Electron" />
 			<Navigate @route="services.internet" @name="Internet" />
@@ -73,8 +72,7 @@
 
 	{{#if (is-active "elements")}}
 
-		<div>General</div>
-		<section>
+		<section show>
 			<Navigate @route="elements.contextmenu" @name="Contextmenu" />
 			<Navigate @route="elements.dragdrop" @name="Dragdrop" />
 			<Navigate @route="elements.dropdown" @name="Dropdown" />
@@ -100,8 +98,7 @@
 
 	{{#if (is-active "helpers")}}
 
-		<div>General</div>
-		<section>
+		<section show>
 			<Navigate @route="helpers.arrays" @name="Arrays" />
 			<Navigate @route="helpers.dom" @name="Dom" />
 			<Navigate @route="helpers.events" @name="Events" />
@@ -118,85 +115,85 @@
 
 	{{#if (is-active "libraries")}}
 
-		<div>apexcharts.js</div>
-		<section>
+		<Navigate @route="libraries.apexcharts" @name="apexcharts.js" />
+		<section show={{is-active "libraries.apexcharts"}}>
 			<Navigate @route="libraries.apexcharts" @name="Setup" />
 			<Navigate @route="libraries.apexcharts.elements" @name="Elements" />
 		</section>
 
-		<div>chart.js</div>
-		<section>
+		<Navigate @route="libraries.chart" @name="chart.js" />
+		<section show={{is-active "libraries.chart"}}>
 			<Navigate @route="libraries.chart" @name="Setup" />
 			<Navigate @route="libraries.chart.elements" @name="Elements" />
 		</section>
 
-		<div>codemirror.js</div>
-		<section>
+		<Navigate @route="libraries.codemirror" @name="codemirror.js" />
+		<section show={{is-active "libraries.codemirror"}}>
 			<Navigate @route="libraries.codemirror" @name="Setup" />
 			<Navigate @route="libraries.codemirror.elements" @name="Elements" />
 		</section>
 
-		<div>cropper.js</div>
-		<section>
+		<Navigate @route="libraries.cropper" @name="cropper.js" />
+		<section show={{is-active "libraries.cropper"}}>
 			<Navigate @route="libraries.cropper" @name="Setup" />
 			<Navigate @route="libraries.cropper.elements" @name="Elements" />
 		</section>
 
-		<div>jsoneditor.js</div>
-		<section>
+		<Navigate @route="libraries.jsoneditor" @name="jsoneditor.js" />
+		<section show={{is-active "libraries.jsoneditor"}}>
 			<Navigate @route="libraries.jsoneditor" @name="Setup" />
 			<Navigate @route="libraries.jsoneditor.elements" @name="Elements" />
 		</section>
 
-		<div>marked.js</div>
-		<section>
+		<Navigate @route="libraries.marked" @name="marked.js" />
+		<section show={{is-active "libraries.marked"}}>
 			<Navigate @route="libraries.marked" @name="Setup" />
 			<Navigate @route="libraries.marked.helpers" @name="Helpers" />
 		</section>
 
-		<div>mapbox-gl.js</div>
-		<section>
+		<Navigate @route="libraries.mapbox-gl" @name="mapbox-gl.js" />
+		<section show={{is-active "libraries.mapbox-gl"}}>
 			<Navigate @route="libraries.mapbox-gl" @name="Setup" />
 		</section>
 
-		<div>moment.js</div>
-		<section>
+		<Navigate @route="libraries.moment" @name="moment.js" />
+		<section show={{is-active "libraries.moment"}}>
 			<Navigate @route="libraries.moment" @name="Setup" />
 			<Navigate @route="libraries.moment.helpers" @name="Helpers" />
 		</section>
 
-		<div>pdf.js</div>
-		<section>
+		<Navigate @route="libraries.pdf" @name="pdf.js" />
+		<section show={{is-active "libraries.pdf"}}>
 			<Navigate @route="libraries.pdf" @name="Setup" />
 			<Navigate @route="libraries.pdf.elements" @name="Elements" />
 		</section>
 
-		<div>quill.js</div>
-		<section>
+		<Navigate @route="libraries.quill" @name="quill.js" />
+		<section show={{is-active "libraries.quill"}}>
 			<Navigate @route="libraries.quill" @name="Setup" />
 			<Navigate @route="libraries.quill.elements" @name="Elements" />
 			<Navigate @route="libraries.quill.helpers" @name="Helpers" />
 		</section>
 
-		<div>sheet.js</div>
-		<section>
+		<Navigate @route="libraries.sheet" @name="sheet.js" />
+		<section show={{is-active "libraries.sheet"}}>
 			<Navigate @route="libraries.sheet" @name="Setup" />
 		</section>
 
-		<div>sortable.js</div>
-		<section>
+		<Navigate @route="libraries.sortable" @name="sortable.js" />
+		<section show={{is-active "libraries.sortable"}}>
 			<Navigate @route="libraries.sortable" @name="Setup" />
 			<Navigate @route="libraries.sortable.elements" @name="Elements" />
 		</section>
 
-		<div>stripe.js</div>
-		<section>
+		<Navigate @route="libraries.stripe" @name="stripe.js" />
+		<section show={{is-active "libraries.stripe"}}>
 			<Navigate @route="libraries.stripe" @name="Setup" />
 			<Navigate @route="libraries.stripe.elements" @name="Elements" />
 		</section>
 
-		<div>zip.js</div>
-		<section>
+		<Navigate @route="libraries.zip" @name="zip.js" />
+		<section show={{is-active "libraries.zip"}}>
 			<Navigate @route="libraries.zip" @name="Setup" />
 		</section>
 

@@ -186,28 +186,29 @@ section.body {
 
 		nav {
 
-			position:-webkit-sticky;
-			position:sticky;
-			padding-bottom:150px;
 			top:70px;
 			overflow:auto;
 			max-height:100vh;
+			padding:30px 0 150px 0;
+			position:-webkit-sticky;
+			position:sticky;
 
-			div {
-
+			> a, > div {
+				display:block;
 				font-weight:bold;
 				margin-top:0.75rem;
 				margin-bottom:0rem;
-
-				&:first-of-type {
-					margin-top:2rem;
-				}
-
 			}
 
-			section {
+			> section {
 
-				a {
+				display:none;
+
+				&[show] {
+					display:block;
+				}
+
+				> a {
 
 					color:#606f7b;
 					display:block;
