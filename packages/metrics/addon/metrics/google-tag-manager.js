@@ -7,7 +7,9 @@ export default class extends Metric {
 
 	name = 'google-tag-manager';
 
-	load() {
+	init() {
+
+		super.init(...arguments);
 
 		if (window.gt) return;
 
@@ -39,8 +41,6 @@ export default class extends Metric {
 
 	clear() {
 
-		this.load();
-
 		if (!window.gt) return;
 
 		window.gt({ 'event': 'clear' });
@@ -48,8 +48,6 @@ export default class extends Metric {
 	}
 
 	identify(id) {
-
-		this.load();
 
 		if (!window.gt) return;
 
@@ -60,8 +58,6 @@ export default class extends Metric {
 	}
 
 	trackEvent(name, data) {
-
-		this.load();
 
 		if (!window.gt) return;
 

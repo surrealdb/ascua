@@ -10,7 +10,9 @@ export default class extends Metric {
 
 	name = 'google-analytics';
 
-	load() {
+	init() {
+
+		super.init(...arguments);
 
 		if (window.ga) return;
 
@@ -60,8 +62,6 @@ export default class extends Metric {
 
 	clear() {
 
-		this.load();
-
 		if (!window.ga) return;
 
 		window.ga('set', 'userId', null);
@@ -69,8 +69,6 @@ export default class extends Metric {
 	}
 
 	identify(id) {
-
-		this.load();
 
 		if (!window.ga) return;
 
@@ -81,8 +79,6 @@ export default class extends Metric {
 	}
 
 	trackPage(data) {
-
-		this.load();
 
 		if (!window.ga) return;
 
@@ -97,8 +93,6 @@ export default class extends Metric {
 	}
 
 	trackEvent(name, data) {
-
-		this.load();
 
 		if (!window.ga) return;
 

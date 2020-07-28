@@ -7,7 +7,9 @@ export default class extends Metric {
 
 	name = 'facebook-pixel';
 
-	load() {
+	init() {
+
+		super.init(...arguments);
 
 		if (window.fbq) return;
 
@@ -38,8 +40,6 @@ export default class extends Metric {
 
 	clear() {
 
-		this.load();
-
 		if (!window.fbq) return;
 
 		window.fbq('init', this.config.id, { uid: null });
@@ -47,8 +47,6 @@ export default class extends Metric {
 	}
 
 	identify(id, data) {
-
-		this.load();
 
 		if (!window.fbq) return;
 
@@ -62,8 +60,6 @@ export default class extends Metric {
 
 	trackPage(data) {
 
-		this.load();
-
 		if (!window.fbq) return;
 
 		window.fbq('track', 'PageView', data);
@@ -71,8 +67,6 @@ export default class extends Metric {
 	}
 
 	trackEvent(name, data) {
-
-		this.load();
 
 		if (!window.fbq) return;
 

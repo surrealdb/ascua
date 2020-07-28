@@ -7,7 +7,9 @@ export default class extends Metric {
 
 	name = 'raygun';
 
-	load() {
+	init() {
+
+		super.init(...arguments);
 
 		if (window.rg4js) return;
 
@@ -39,8 +41,6 @@ export default class extends Metric {
 
 	clear() {
 
-		this.load();
-
 		if (!window.rg4js) return;
 
 		window.rg4js('setUser', {
@@ -50,8 +50,6 @@ export default class extends Metric {
 	}
 
 	identify(id, data) {
-
-		this.load();
 
 		if (!window.rg4js) return;
 
@@ -66,8 +64,6 @@ export default class extends Metric {
 	}
 
 	trackPage() {
-
-		this.load();
 
 		if (!window.rg4js) return;
 

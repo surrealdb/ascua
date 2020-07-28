@@ -7,7 +7,9 @@ export default class extends Metric {
 
 	name = 'heap';
 
-	load() {
+	init() {
+
+		super.init(...arguments);
 
 		if (window.heap) return;
 
@@ -32,8 +34,6 @@ export default class extends Metric {
 
 	clear() {
 
-		this.load();
-
 		if (!window.heap) return;
 
 		window.heap.resetIdentity();
@@ -41,8 +41,6 @@ export default class extends Metric {
 	}
 
 	identify(id, data) {
-
-		this.load();
 
 		if (!window.heap) return;
 
@@ -55,8 +53,6 @@ export default class extends Metric {
 	}
 
 	trackEvent(name, data) {
-
-		this.load();
 
 		if (!window.heap) return;
 

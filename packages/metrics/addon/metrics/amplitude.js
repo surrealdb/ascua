@@ -7,7 +7,9 @@ export default class extends Metric {
 
 	name = 'amplitude';
 
-	load() {
+	init() {
+
+		super.init(...arguments);
 
 		if (window.amplitude) return;
 
@@ -55,8 +57,6 @@ export default class extends Metric {
 
 	clear() {
 
-		this.load();
-
 		if (!window.amplitude) return;
 
 		window.amplitude.getInstance().clearUserProperties();
@@ -65,11 +65,9 @@ export default class extends Metric {
 
 	identify(id, data) {
 
-		assert(`You must pass an 'id' as the first argument to ${this.toString()}:identify()`, id);
-
-		this.load();
-
 		if (!window.amplitude) return;
+
+		assert(`You must pass an 'id' as the first argument to ${this.toString()}:identify()`, id);
 
 		window.amplitude.getInstance().setUserId(id);
 
@@ -79,8 +77,6 @@ export default class extends Metric {
 
 	trackPage(data) {
 
-		this.load();
-
 		if (!window.amplitude) return;
 
 		window.amplitude.getInstance().logEvent('page', data);
@@ -88,8 +84,6 @@ export default class extends Metric {
 	}
 
 	trackEvent(name, data) {
-
-		this.load();
 
 		if (!window.amplitude) return;
 

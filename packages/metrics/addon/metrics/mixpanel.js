@@ -7,7 +7,9 @@ export default class extends Metric {
 
 	name = 'mixpanel';
 
-	load() {
+	init() {
+
+		super.init(...arguments);
 
 		if (window.mixpanel) return;
 
@@ -34,8 +36,6 @@ export default class extends Metric {
 
 	clear() {
 
-		this.load();
-
 		if (!window.mixpanel) return;
 
 		window.mixpanel.reset();
@@ -43,8 +43,6 @@ export default class extends Metric {
 	}
 
 	identify(id, data) {
-
-		this.load();
 
 		if (!window.mixpanel) return;
 
@@ -58,8 +56,6 @@ export default class extends Metric {
 
 	trackPage(data) {
 
-		this.load();
-
 		if (!window.mixpanel) return;
 
 		window.mixpanel('trackEvent', 'page viewed', data);
@@ -67,8 +63,6 @@ export default class extends Metric {
 	}
 
 	trackEvent(name, data) {
-
-		this.load();
 
 		if (!window.mixpanel) return;
 

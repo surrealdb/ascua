@@ -7,7 +7,9 @@ export default class extends Metric {
 
 	name = 'intercom';
 
-	load() {
+	init() {
+
+		super.init(...arguments);
 
 		if (window.Intercom) return;
 
@@ -36,8 +38,6 @@ export default class extends Metric {
 
 	clear() {
 
-		this.load();
-
 		if (!window.Intercom) return;
 
 		window.Intercom('shutdown');
@@ -46,11 +46,9 @@ export default class extends Metric {
 
 	identify(id, data) {
 
-		assert(`You must pass an 'id' as the first argument to ${this.toString()}:identify()`, id);
-
-		this.load();
-
 		if (!window.Intercom) return;
+
+		assert(`You must pass an 'id' as the first argument to ${this.toString()}:identify()`, id);
 
 		let event = Object.assign({}, data, {
 			user_id: id,
@@ -62,8 +60,6 @@ export default class extends Metric {
 
 	trackPage(data) {
 
-		this.load();
-
 		if (!window.Intercom) return;
 
 		window.Intercom('trackEvent', 'page viewed', data);
@@ -71,8 +67,6 @@ export default class extends Metric {
 	}
 
 	trackEvent(name, data) {
-
-		this.load();
 
 		if (!window.Intercom) return;
 
