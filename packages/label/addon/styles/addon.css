@@ -1,13 +1,16 @@
 app-label {
+	flex:1 0 auto;
 	color:#ffffff;
-	display:inline;
+	padding:0 8px;
 	cursor:default;
 	overflow:hidden;
 	font-size:inherit;
-	line-height:inherit;
 	white-space:nowrap;
+	display:inline-flex;
+	align-items:center;
+	line-height:inherit;
 	vertical-align:middle;
-	padding:2px 8px 2px 8px;
+	justify-content:center;
 	background-color:#BBBBBB;
 }
 
@@ -18,14 +21,14 @@ app-label:empty {
 /**/
 
 app-label[curved] {
-	border-radius:10px;
+	border-radius:25px;
 }
 
 app-label[curved]:before {
-	border-radius:10px 0 0 10px;
+	border-radius:25px 0 0 25px;
 }
 app-label[curved] close {
-	border-radius:0 10px 10px 0;
+	border-radius:0 25px 25px 0;
 }
 
 /**/
@@ -35,12 +38,13 @@ app-label[key] {
 }
 
 app-label[key]:before {
+	flex:1 0 auto;
 	color:#ffffff;
-	display:inline;
 	margin-right:8px;
 	font-size:inherit;
 	content:attr(key);
-	padding:2px 8px 2px 8px;
+	padding:0 8px 0 8px;
+	display:inline-block;
 	background-color:#333333;
 }
 
@@ -51,12 +55,13 @@ app-label[closeable] {
 }
 
 app-label[closeable] close {
+	flex:1 0 auto;
 	color:#4a4a4a;
 	cursor:pointer;
-	display:inline;
 	margin-left:8px;
 	font-size:inherit;
-	padding:2px 8px 2px 8px;
+	padding:0 8px 0 8px;
+	display:inline-block;
 	background-color:#f5f5f5;
 }
 
