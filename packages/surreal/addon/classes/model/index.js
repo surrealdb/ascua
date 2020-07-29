@@ -274,7 +274,7 @@ export default class Model extends Core {
 				await ctx.delay(500);
 				break;
 			case LOADED:
-				await ctx.delay(100);
+				await ctx.delay(500);
 				break;
 			}
 		} catch (e) {
