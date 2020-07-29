@@ -1,13 +1,13 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { inject } from '@ember/service';
 import { action } from '@ember/object';
+import { arg } from '@ascua/decorators';
 
 export default class extends Component {
 
 	@inject('-document') document;
 
-	@tracked value = this.args.value;
+	@arg value = '';
 
 	@action didCreate(element) {
 		this.element = element;
@@ -17,15 +17,12 @@ export default class extends Component {
 	}
 
 	@action didChange(element) {
-		this.value = this.args.value;
-		element.value = this.args.value;
 		element.style.height = 'auto';
 		element.style.overflow = 'hidden';
 		element.style.height = `${element.scrollHeight}px`;
 	}
 
 	@action didInput() {
-		this.element.value = this.element.value;
 		this.element.style.height = 'auto';
 		this.element.style.overflow = 'hidden';
 		this.element.style.height = `${this.element.scrollHeight}px`;
