@@ -44,7 +44,7 @@ app-pdf app-pdf-icons app-pdf-icon {
 	width:70%;
 	height:auto;
 	display:flex;
-	flex:1 0 auto;
+	flex:0 0 auto;
 	max-width:90px;
 	cursor:pointer;
 	font-size:24px;
@@ -109,7 +109,7 @@ app-pdf app-pdf-pages:after {
 
 app-pdf app-pdf-pages app-pdf-page {
 	display:flex;
-	flex:1 0 auto;
+	flex:0 0 auto;
 	align-items:center;
 	justify-content:center;
 }
