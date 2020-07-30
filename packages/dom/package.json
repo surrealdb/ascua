@@ -1,6 +1,6 @@
 {
   "name": "@ascua/dom",
-  "version": "0.0.61",
+  "version": "0.0.62",
   "description": "Small description for @ascua/dom goes here",
   "keywords": [
     "ember-addon"
