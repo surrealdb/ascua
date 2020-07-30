@@ -1,8 +1,3 @@
-<app-masonry-item
-	{{did-insert this.didCreate}}
-	{{did-update this.didChange}}
-	{{did-update this.didReload @item.reload}}
-	...attributes
->
+<app-masonry-item {{did-insert this.didCreate}} ...attributes>
 	{{~yield~}}
 </app-masonry-item>

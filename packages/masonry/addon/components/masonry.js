@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
-import { arg } from '@ascua/decorators';
 import { action } from '@ember/object';
+import { arg } from '@ascua/decorators';
 import Masonry from 'masonry.js';
 
 export default class extends Component {
@@ -17,6 +17,8 @@ export default class extends Component {
 	@arg resize = true;
 	@arg stagger = 0;
 	@arg transitionDuration = 0;
+
+	observer = new MutationObserver(this.reload);
 
 	@action didCreate(element) {
 		this.masonry = new Masonry(element, {

@@ -61,9 +61,11 @@ export default class extends Array {
 
 		try {
 
-			let [ctx] = context.withCancel();
+			if (this.cancel) this.cancel();
 
-			let array = await this.fetch(ctx, rng);
+			[this.ctx, this.cancel] = context.withCancel();
+
+			let array = await this.fetch(this.ctx, rng);
 
 			let items = [].concat(array);
 
