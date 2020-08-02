@@ -61,3 +61,21 @@
 	Stop propagation of event after running an event.
 	{{on (document) "contextmenu" (stop-propagation (console "Clicked before stopPropagation"))}}
 </Example>
+
+<h2>toggle</h2>
+
+<p>Toggle a property on an object. Value is <strong>{{if this.value this.value "false"}}</strong>.</p>
+
+<Example @name="demo-services-events-toggle.hbs">
+	<button type="button" {{on "click" (toggle "value" this)}}>
+		Click me
+	</button>
+</Example>
+
+<p>Toggle a property on an object, by looping through optional values. Value is <strong>{{if this.value this.value "false"}}</strong>.</p>
+
+<Example @name="demo-services-events-toggle-values.hbs">
+	<button type="button" {{on "click" (toggle "value" this "one" "two" "three")}}>
+		Click me
+	</button>
+</Example>
