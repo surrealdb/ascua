@@ -8,19 +8,19 @@ export default class extends Component {
 	@arg src = '';
 	@arg data = {};
 
-	@arg autoCrop = true;
+	@arg autoCrop = false;
 	@arg background = true;
 	@arg center = true;
 	@arg dragMode = 'crop';
 	@arg guides = true;
 	@arg highlight = true;
-	@arg movable = true;
+	@arg movable = false;
 	@arg preview = '';
 	@arg responsive = true;
 	@arg restore = true;
 	@arg rotatable = true;
 	@arg scalable = false;
-	@arg viewMode = 3;
+	@arg viewMode = 2;
 	@arg zoomable = false;
 
 	@action didCreate(element) {
@@ -70,6 +70,14 @@ export default class extends Component {
 		if (!Cropper) return;
 
 		this.instance.replace(this.src);
+
+	}
+
+	@action didModify(element) {
+
+		if (!Cropper) return;
+
+		this.instance.setData(this.data);
 
 	}
 
