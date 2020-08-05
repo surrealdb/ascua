@@ -11,7 +11,7 @@
 
 	<app-dropdown-cover display={{this.display}} visible={{this.visible}} role="button" {{on "click" this.close}} />
 
-	<app-dropdown-front display={{this.display}} visible={{this.visible}} {{style top=this.top left=this.left}}>
+	<app-dropdown-front display={{this.display}} visible={{this.visible}} {{style marginTop=this.top marginLeft=this.left}}>
 
 		{{yield (hash
 			group=(component "ascua/dropdown/group")

@@ -85,32 +85,20 @@ app-dropdown > app-dropdown-front {
 	min-width:100px;
 	max-width:560px;
 	max-height:500px;
-	position:absolute;
+	position:fixed;
 	visibility:hidden;
 	pointer-events:none;
 	padding:4px 0 4px 0;
 	border-radius:5px;
 	border:1px solid #cccccc;
-	background:rgba(255, 255, 255, 0.95);
+	backdrop-filter:blur(20px);
+	-webkit-backdrop-filter:blur(20px);
+	background:rgba(255, 255, 255, 0.6);
 	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	-ms-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	-o-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-app-dropdown > app-dropdown-front:before {
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	z-index:-1;
-	content:'';
-	display:block;
-	border-radius:5px;
-	position:absolute;
-	-webkit-backdrop-filter:blur(20px);
-	backdrop-filter:blur(20px);
 }
 
 app-dropdown > app-dropdown-front[display] {
@@ -124,41 +112,41 @@ app-dropdown > app-dropdown-front[visible] {
 
 body[macos-theme='dark'] app-dropdown > app-dropdown-front {
 	border:1px solid #000000;
-	background:rgba(46, 46, 46, 0.95);
+	background:rgba(0, 0, 0, 0.6);
 }
 
 body[macos-theme='light'] app-dropdown > app-dropdown-front {
 	border:1px solid #cccccc;
-	background:rgba(255, 255, 255, 0.95);
+	background:rgba(255, 255, 255, 0.6);
 }
 
 @media (prefers-color-scheme: dark) {
 	app-dropdown > app-dropdown-front {
 		border:1px solid #000000;
-		background:rgba(46, 46, 46, 0.95);
+		background:rgba(0, 0, 0, 0.6);
 	}
 }
 
 @media (prefers-color-scheme: light) {
 	app-dropdown > app-dropdown-front {
 		border:1px solid #cccccc;
-		background:rgba(255, 255, 255, 0.95);
+		background:rgba(255, 255, 255, 0.6);
 	}
 }
 
 @media not all and (min-resolution:.001dpcm) {
 	@supports (-webkit-appearance:none) {
 		app-dropdown > app-dropdown-front {
-			background:rgba(255, 255, 255, 0.7);
+			background:rgba(255, 255, 255, 0.6);
 		}
 		@media (prefers-color-scheme: dark) {
 			app-dropdown > app-dropdown-front {
-				background:rgba(46, 46, 46, 0.7);
+				background:rgba(0, 0, 0, 0.6);
 			}
 		}
 		@media (prefers-color-scheme: light) {
 			app-dropdown > app-dropdown-front {
-				background:rgba(255, 255, 255, 0.7);
+				background:rgba(255, 255, 255, 0.6);
 			}
 		}
 	}

@@ -69,7 +69,7 @@ export default class extends Component {
 		let t = this.element.children[0].getBoundingClientRect().top - 5;
 		let l = this.element.children[0].getBoundingClientRect().left - 5;
 
-		let [ x, y ] = [ 0, -10 ];
+		let [ x, y ] = [ -20, -30 ];
 
 		while ( l+w > window.innerWidth-30 ) {
 			l--; x--;
