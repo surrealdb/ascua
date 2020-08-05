@@ -162,6 +162,11 @@
 			<Navigate @route="libraries.moment.helpers" @name="Helpers" />
 		</section>
 
+		<Navigate @route="libraries.pdf-lib" @name="pdf-lib.js" />
+		<section show={{is-active "libraries.pdf-lib"}}>
+			<Navigate @route="libraries.pdf-lib" @name="Setup" />
+		</section>
+
 		<Navigate @route="libraries.pdf" @name="pdf.js" />
 		<section show={{is-active "libraries.pdf"}}>
 			<Navigate @route="libraries.pdf" @name="Setup" />

@@ -117,6 +117,7 @@
     "@ascua/modal": "file:packages/modal",
     "@ascua/modifiers": "file:packages/modifiers",
     "@ascua/moment.js": "file:packages/moment.js",
+    "@ascua/pdf-lib.js": "file:packages/pdf-lib.js",
     "@ascua/pdf.js": "file:packages/pdf.js",
     "@ascua/promise": "file:packages/promise",
     "@ascua/proxy": "file:packages/proxy",

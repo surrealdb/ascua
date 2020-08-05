@@ -107,6 +107,7 @@ Router.map(function() {
 		this.route('moment', function() {
 			this.route('helpers');
 		});
+		this.route('pdf-lib');
 		this.route('pdf', function() {
 			this.route('elements');
 		});
