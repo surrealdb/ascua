@@ -191,7 +191,11 @@ export default class extends Component {
 		this.cursor = item ? item.index : null;
 
 		if (this.args.onSelect) {
-			this.args.onSelect(this.conf.a, item.model);
+			if (item.model.content) {
+				this.args.onSelect(this.conf.a, item.model.content);
+			} else {
+				this.args.onSelect(this.conf.a, item.model);
+			}
 		}
 
 	}
@@ -214,7 +218,11 @@ export default class extends Component {
 
 		if (!event.metaKey && !event.altKey && !event.shiftKey) {
 			if (this.args.onClick) {
-				return this.args.onClick(item.model);
+				if (item.model.content) {
+					return this.args.onClick(item.model.content);
+				} else {
+					return this.args.onClick(item.model);
+				}
 			}
 		}
 
@@ -238,7 +246,11 @@ export default class extends Component {
 
 		if (!event.metaKey && !event.altKey && !event.shiftKey) {
 			if (this.args.onDblClick) {
-				return this.args.onDblClick(item.model);
+				if (item.model.content) {
+					return this.args.onDblClick(item.model.content);
+				} else {
+					return this.args.onDblClick(item.model);
+				}
 			}
 		}
 
@@ -249,7 +261,11 @@ export default class extends Component {
 		this.select(item, { single: true });
 
 		if (this.args.onContextMenu) {
-			return this.args.onContextMenu(event, item.model);
+			if (item.model.content) {
+				return this.args.onContextMenu(event, item.model.content);
+			} else {
+				return this.args.onContextMenu(event, item.model);
+			}
 		}
 
 	}
