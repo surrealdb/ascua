@@ -1,15 +1,7 @@
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
 import { action } from '@ember/object';
 
 export default class extends Component {
-
-	@computed('args.{conf.a,conf.a.length,item.id}')
-	get selected() {
-		return !! [].concat(this.args.conf.a).find(id => {
-			return id == this.args.item.id;
-		});
-	}
 
 	@action didCreate(element) {
 		this.position(element);

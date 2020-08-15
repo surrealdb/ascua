@@ -1,7 +1,7 @@
 <app-gridlist-item
 	list={{eq "l" @conf.k}}
 	grid={{eq "g" @conf.k}}
-	selected={{this.selected}}
+	selected={{@selected}}
 	{{did-insert this.didCreate}}
 	{{did-update this.didChange
 		@total
@@ -17,5 +17,5 @@
 	{{on "contextmenu" this.ctxClick}}
 	...attributes
 >
-	{{~yield @item.model~}}
+	{{~yield~}}
 </app-gridlist-item>

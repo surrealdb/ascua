@@ -2,17 +2,20 @@
 	<app-gridlist-view {{on "scroll" this.didScroll}} {{on "click" this.didClick}}>
 		<app-gridlist-area {{style height=this.conf.h}}>
 			{{~#each this.items as |item|~}}
-				<Ascua::Gridlist::Item
-					@item={{item}}
-					@conf={{this.conf}}
-					@total={{this.total}}
-					@onClick={{this.didClick}}
-					@onDblClick={{this.dblClick}}
-					@onCtxClick={{this.ctxClick}}
-					...attributes
-				>
-					{{~yield item.model~}}
-				</Ascua::Gridlist::Item>
+				{{#let (includes item.id this.conf.a) as |selected|}}
+					<Ascua::Gridlist::Item
+						@item={{item}}
+						@conf={{this.conf}}
+						@total={{this.total}}
+						@selected={{selected}}
+						@onClick={{this.didClick}}
+						@onDblClick={{this.dblClick}}
+						@onCtxClick={{this.ctxClick}}
+						...attributes
+					>
+						{{~yield item.model selected~}}
+					</Ascua::Gridlist::Item>
+				{{/let}}
 			{{~/each~}}
 		</app-gridlist-area>
 	</app-gridlist-view>
