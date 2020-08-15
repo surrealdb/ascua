@@ -18,14 +18,22 @@ export function sparse(limit, ...props) {
 	);
 
 	return function(target, key, desc) {
-		desc.initializer = function() {
-			let array = new Sparse(limit, fetch.bind(this));
-			props.forEach(prop => {
-				addObserver(this, prop, array, 'reset');
-			});
-			return array;
-		}
-		return desc;
+
+		let s = Symbol(key);
+
+		return {
+			enumerable: true,
+			configurable: true,
+			get() {
+				if (this[s]) return this[s];
+				this[s] = new Sparse(limit, fetch.bind(this));
+				props.forEach(prop => {
+					addObserver(this, prop, this[s], 'reset');
+				});
+				return this[s];
+			},
+		};
+
 	}
 
 }
@@ -45,14 +53,22 @@ export function infinite(limit, ...props) {
 	);
 
 	return function(target, key, desc) {
-		desc.initializer = function() {
-			let array = new Infinite(limit, fetch.bind(this));
-			props.forEach(prop => {
-				addObserver(this, prop, array, 'reset');
-			});
-			return array;
-		}
-		return desc;
+
+		let s = Symbol(key);
+
+		return {
+			enumerable: true,
+			configurable: true,
+			get() {
+				if (this[s]) return this[s];
+				this[s] = new Infinite(limit, fetch.bind(this));
+				props.forEach(prop => {
+					addObserver(this, prop, this[s], 'reset');
+				});
+				return this[s];
+			},
+		};
+
 	}
 
 }
