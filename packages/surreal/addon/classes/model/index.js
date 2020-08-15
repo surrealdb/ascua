@@ -1,13 +1,14 @@
 import Core from '@ember/object';
 import context from '@ascua/context';
 import { inject } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import { set, setProperties } from '@ember/object';
 import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
 
 const INITIAL = Symbol("Initial");
-const SAVING = Symbol("Saving");
 const LOADED = Symbol("Loaded");
+const SAVING = Symbol("Saving");
 const RESYNC = Symbol("Resync");
 
 export default class Model extends Core {
@@ -51,6 +52,9 @@ export default class Model extends Core {
 
 	// Current remote server promise
 	#promise = undefined;
+
+	// Property for whether the record exists
+	@tracked exists = undefined;
 
 	// The `tb` property can be used
 	// to retrieve the actual table
@@ -132,6 +136,7 @@ export default class Model extends Core {
 
 	init() {
 		super.init(...arguments);
+		this.exists = true;
 		this.#state = LOADED;
 		this.#server = this.json;
 		this.#client = this.json;
@@ -229,6 +234,8 @@ export default class Model extends Core {
 	 */
 
 	async update() {
+		this.exists = true;
+		this.#state = SAVING;
 		this.#client = this.json;
 		try {
 			this.#promise = this.store.update(this);
@@ -246,6 +253,8 @@ export default class Model extends Core {
 	 */
 
 	async delete() {
+		this.exists = false;
+		this.#state = SAVING;
 		this.#client = this.json;
 		try {
 			this.#promise = this.store.delete(this);
@@ -283,11 +292,9 @@ export default class Model extends Core {
 
 		switch (this.#state) {
 		case SAVING:
-			this.#state = SAVING;
 			await this.#promise;
 			return this.looper(ctx);
 		case LOADED:
-			this.#state = SAVING;
 			await this.#promise;
 			return this.update(ctx);
 		}

@@ -387,7 +387,18 @@ export default class Store extends Service {
 		if (status !== 'OK') throw new Error(detail);
 
 		let records = [].concat(result).map(item => {
-			return this.lookup(model).create(item);
+
+			let cached = this.#cache.get(model).findBy('id', item.id);
+
+			if (cached === undefined) {
+				cached = this.lookup(model).create(item);
+				this.#cache.get(model).addObject(cached);
+			} else {
+				cached.ingest(item);
+			}
+
+			return cached;
+
 		});
 
 		return query.limit === 1 ? records[0] : records;

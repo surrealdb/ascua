@@ -29,7 +29,7 @@ module.exports = {
 		app.import('vendor/diffmatchpatch.js');
 
 		app.import('vendor/surreal.js', {
-			exports: { Surreal: ['default'] }
+			exports: { surreal: ['default'] }
 		});
 
 		app.import('vendor/dmp.js', {
