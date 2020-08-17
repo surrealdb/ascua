@@ -1,6 +1,6 @@
 {
   "name": "@ascua/webapp",
-  "version": "0.0.67",
+  "version": "0.0.68",
   "description": "Small description for @ascua/webapp goes here",
   "keywords": [
     "ember-addon"
