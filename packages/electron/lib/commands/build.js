@@ -1,7 +1,14 @@
 'use strict';
 
-const Builder = require("electron-builder");
+const path = require('path')
+const Builder = require('electron-builder');
+const Notarizer = require('electron-notarize');
+const Dmgerizer = require('electron-notarize-dmg');
 const Command = require('ember-cli/lib/commands/build');
+const { log } = require('builder-util');
+
+const APPLE_ID = process.env.APPLE_ID;
+const APPLE_PASSWORD = process.env.APPLE_PASSWORD;
 
 module.exports = Command.extend({
 
@@ -48,6 +55,8 @@ module.exports = Command.extend({
 
 		process.env.EMBER_CLI_ELECTRON = true;
 
+		const appId = this.project.pkg.build.appId;
+
 		return this._super(...arguments).then( () => {
 
 			return Builder.build({
@@ -79,10 +88,56 @@ module.exports = Command.extend({
 					},
 					mac: {
 						darkModeSupport: true,
+						hardenedRuntime: true,
 						icon: 'electron/mac/icon.png',
+						entitlements: 'electron/mac/entitlements.mac.inherit.plist',
 					},
 					win: {
 						icon: 'electron/win/icon.png',
+					},
+					async afterSign(params) {
+
+						if (APPLE_ID && APPLE_PASSWORD) {
+
+							if (appId) {
+
+								let appPath = path.join(params.appOutDir, `${params.packager.appInfo.productFilename}.app`);
+
+								log.info({ appId, appPath }, "notarizing");
+
+								return await Notarizer.notarize({
+									appBundleId: appId,
+									appPath: appPath,
+									appleId: APPLE_ID,
+									appleIdPassword: APPLE_PASSWORD,
+								});
+
+							}
+
+						}
+
+					},
+					async afterAllArtifactBuild(params) {
+
+						if (APPLE_ID && APPLE_PASSWORD) {
+
+							if (appId) {
+
+								let dmgPath = params.artifactPaths.find( p => p.endsWith(".dmg") );
+
+								log.info({ appId, dmgPath }, "notarizing");
+
+								return await Dmgerizer.notarize({
+									appBundleId: appId,
+									dmgPath: dmgPath,
+									appleId: APPLE_ID,
+									appleIdPassword: APPLE_PASSWORD,
+								});
+
+							}
+
+						}
+
 					},
 				},
 			});
