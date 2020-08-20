@@ -1,6 +1,7 @@
 'use strict';
 
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 const Builder = require('electron-builder');
 const Notarizer = require('electron-notarize');
 const Dmgerizer = require('electron-notarize-dmg');
@@ -97,20 +98,24 @@ module.exports = Command.extend({
 					},
 					async afterSign(params) {
 
-						if (APPLE_ID && APPLE_PASSWORD) {
+						if (appId && process.platform === 'darwin') {
 
-							if (appId) {
+							if (APPLE_ID && APPLE_PASSWORD) {
 
 								let appPath = path.join(params.appOutDir, `${params.packager.appInfo.productFilename}.app`);
 
-								log.info({ appId, appPath }, "notarizing");
+								if ( fs.existsSync(appPath) ) {
 
-								return await Notarizer.notarize({
-									appBundleId: appId,
-									appPath: appPath,
-									appleId: APPLE_ID,
-									appleIdPassword: APPLE_PASSWORD,
-								});
+									log.info({ appId, appPath }, "notarizing");
+
+									return await Notarizer.notarize({
+										appBundleId: appId,
+										appPath: appPath,
+										appleId: APPLE_ID,
+										appleIdPassword: APPLE_PASSWORD,
+									});
+
+								}
 
 							}
 
@@ -119,20 +124,24 @@ module.exports = Command.extend({
 					},
 					async afterAllArtifactBuild(params) {
 
-						if (APPLE_ID && APPLE_PASSWORD) {
+						if (appId && process.platform === 'darwin') {
 
-							if (appId) {
+							if (APPLE_ID && APPLE_PASSWORD) {
 
 								let dmgPath = params.artifactPaths.find( p => p.endsWith(".dmg") );
 
-								log.info({ appId, dmgPath }, "notarizing");
+								if ( fs.existsSync(dmgPath) ) {
 
-								return await Dmgerizer.notarize({
-									appBundleId: appId,
-									dmgPath: dmgPath,
-									appleId: APPLE_ID,
-									appleIdPassword: APPLE_PASSWORD,
-								});
+									log.info({ appId, dmgPath }, "notarizing");
+
+									return await Dmgerizer.notarize({
+										appBundleId: appId,
+										dmgPath: dmgPath,
+										appleId: APPLE_ID,
+										appleIdPassword: APPLE_PASSWORD,
+									});
+
+								}
 
 							}
 
