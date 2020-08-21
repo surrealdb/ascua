@@ -54,7 +54,23 @@ export default class extends Component {
 		}
 	}
 
-	@action reload() {
+	@action reload(mutations) {
+		for (let mutation of mutations) {
+			if (mutation.type == 'childList') {
+				[].forEach.call(mutation.addedNodes, child => {
+					if (child.tagName === "IMG") {
+						child.addEventListener('load', () => {
+							this.masonry.reloadItems();
+							this.masonry.layout();
+						});
+						child.addEventListener('error', () => {
+							this.masonry.reloadItems();
+							this.masonry.layout();
+						});
+					}
+				})
+			}
+		}
 		this.masonry.reloadItems();
 		this.masonry.layout();
 	}

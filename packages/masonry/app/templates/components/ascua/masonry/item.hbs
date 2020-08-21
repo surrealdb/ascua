@@ -1,3 +1,5 @@
 <app-masonry-item {{did-insert this.didCreate}} ...attributes>
-	{{~yield~}}
+	{{#if this.display}}
+		{{~yield~}}
+	{{/if}}
 </app-masonry-item>
