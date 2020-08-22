@@ -1,5 +1,4 @@
 <app-dropdown-option
-	uniq={{uniq}}
 	disabled={{@disabled}}
 	selected={{includes @value @dropdown.value}}
 	{{on "click" (fn @dropdown.changed @value)}}

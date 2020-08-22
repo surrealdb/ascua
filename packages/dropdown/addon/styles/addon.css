@@ -85,7 +85,7 @@ app-dropdown > app-dropdown-front {
 	min-width:100px;
 	max-width:560px;
 	max-height:500px;
-	position:fixed;
+	position:absolute;
 	visibility:hidden;
 	pointer-events:none;
 	padding:4px 0 4px 0;
