@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { action } from '@ember/object';
 import position from '../utils/position';
@@ -23,8 +22,6 @@ export default class extends Component {
 	constructor() {
 
 		super(...arguments);
-
-		this.uniq = Math.random().toString(36).substr(2, 10);
 
 		this.openHandler = this.open.bind(this);
 
@@ -83,11 +80,8 @@ export default class extends Component {
 	}
 
 	@action open() {
+		this.visible = false;
 		this.enabled = true;
-		setTimeout( () => {
-			this.style();
-			this.visible = true;
-		});
 	}
 
 	@action close() {
@@ -95,9 +89,7 @@ export default class extends Component {
 		this.enabled = false;
 	}
 
-	@action style() {
-
-		let i = document.getElementById(this.uniq);
+	@action style(element) {
 
 		let e = { // element
 			t: this.target.getBoundingClientRect().top,
@@ -107,16 +99,18 @@ export default class extends Component {
 		};
 
 		let t = { // tooltip
-			w: i.offsetWidth,
-			h: i.offsetHeight,
+			w: element.offsetWidth,
+			h: element.offsetHeight,
 		}
 
 		let p = position(this.side, e, t);
 
-		Object.assign(i.style, {
+		Object.assign(element.style, {
 			top: `${p.t}px`,
 			left: `${p.l}px`,
 		});
+
+		this.visible = true;
 
 	}
 

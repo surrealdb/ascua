@@ -5,7 +5,7 @@
 	{{on-press "escape" this.close}}
 
 	{{#-in-element this.document.body}}
-		<app-tooltip id={{this.uniq}} side={{this.side}} visible={{this.visible}} ...attributes>
+		<app-tooltip {{did-insert this.style}} side={{this.side}} visible={{this.visible}} ...attributes>
 			<arrow></arrow>
 			{{~yield~}}
 		</app-tooltip>
