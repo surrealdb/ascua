@@ -1,6 +1,6 @@
 {
   "name": "@ascua/pdf.js",
-  "version": "0.0.71",
+  "version": "0.0.72",
   "description": "Small description for @ascua/pdf.js goes here",
   "keywords": [
     "ember-addon"
