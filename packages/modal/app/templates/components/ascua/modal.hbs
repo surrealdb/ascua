@@ -1,9 +1,9 @@
 {{on-press "escape" this.didClick}}
 
-{{#-in-element this.document.body}}
+{{#in-element this.document.body insertBefore=null}}
 	<app-modal-cover {{on "click" this.didClick}} role="button" ...attributes>
 		<app-modal-front {{on "click" (stop-propagation)}} ...attributes>
 			{{~yield~}}
 		</app-modal-front>
 	</app-modal-cover>
-{{/-in-element}}
+{{/in-element}}

@@ -4,11 +4,11 @@
 
 	{{on-press "escape" this.close}}
 
-	{{#-in-element this.document.body}}
+	{{#in-element this.document.body insertBefore=null}}
 		<app-tooltip {{did-insert this.style}} side={{this.side}} visible={{this.visible}} ...attributes>
 			<arrow></arrow>
 			{{~yield~}}
 		</app-tooltip>
-	{{/-in-element}}
+	{{/in-element}}
 
 {{/if}}

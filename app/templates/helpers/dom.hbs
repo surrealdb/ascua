@@ -17,9 +17,9 @@
 </Example>
 
 <Example @name="demo-helpers-dom-$.hbs">
-	{{#-in-element ($ "#my-id")}}
+	{{#in-element ($ "#my-id")}}
 		Display somewhere else
-	{{/-in-element}}
+	{{/in-element}}
 </Example>
 
 <h2>document</h2>
@@ -35,9 +35,9 @@
 <p>Selects the document <code>body</code> as a DOM element.</p>
 
 <Example @name="demo-helpers-dom-document-body.hbs" @hide={{true}}>
-	{{#-in-element (document-body)}}
+	{{#in-element (document-body)}}
 		This will go into the body
-	{{/-in-element}}
+	{{/in-element}}
 </Example>
 
 <h2>document-head</h2>
@@ -45,9 +45,9 @@
 <p>Selects the document <code>head</code> as a DOM element.</p>
 
 <Example @name="demo-helpers-dom-document-head.hbs" @hide={{true}}>
-	{{#-in-element (document-head)}}
+	{{#in-element (document-head)}}
 		<meta name="author" content="Abcum">
-	{{/-in-element}}
+	{{/in-element}}
 </Example>
 
 <h2>focus</h2>
@@ -68,9 +68,9 @@
 </Example>
 
 <Example @name="demo-helpers-dom-get-element-by-class.hbs">
-	{{#-in-element (get-element-by-class "by-class")}}
+	{{#in-element (get-element-by-class "by-class")}}
 		Display somewhere else
-	{{/-in-element}}
+	{{/in-element}}
 </Example>
 
 <h2>get-element-by-id</h2>
@@ -82,9 +82,9 @@
 </Example>
 
 <Example @name="demo-helpers-dom-get-element-by-id.hbs">
-	{{#-in-element (get-element-by-id "by-id")}}
+	{{#in-element (get-element-by-id "by-id")}}
 		Display somewhere else
-	{{/-in-element}}
+	{{/in-element}}
 </Example>
 
 <h2>get-element-by-tag</h2>
@@ -96,9 +96,9 @@
 </Example>
 
 <Example @name="demo-helpers-dom-get-element-by-tag.hbs">
-	{{#-in-element (get-element-by-tag "by-tag")}}
+	{{#in-element (get-element-by-tag "by-tag")}}
 		Display somewhere else
-	{{/-in-element}}
+	{{/in-element}}
 </Example>
 
 <h2>scroll-into-view</h2>
