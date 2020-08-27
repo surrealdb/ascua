@@ -1,7 +1,10 @@
 import { helper } from '@ember/component/helper';
 
 export function or(params) {
-	return params.some(p => !!p);
+	for (let param of params) {
+		if (param) return param;
+	}
+	return params[0];
 }
 
 export default helper(or);
