@@ -33,14 +33,18 @@ export default class extends Component {
 		this.element = element;
 	}
 
-	@action register(value, label, el) {
-		let id = el.getAttribute('id');
-		this.options.addObject({ id, el, label, value });
+	@action register(el, value, label) {
+		this.options.addObject({ el, label, value });
 	}
 
-	@action unregister(value, label, el) {
-		let id = el.getAttribute('id');
-		this.options.removeObject( this.options.findBy('id', id) );
+	@action reregister(el, value, label) {
+		let obj = this.options.findBy('el', el);
+		setProperties(obj, { value, label });
+	}
+
+	@action unregister(el, value, label) {
+		let obj = this.options.findBy('el', el);
+		this.options.removeObject(obj);
 	}
 
 	@action changed(value) {
@@ -92,7 +96,7 @@ export default class extends Component {
 		return this.args.value;
 	}
 
-	@computed('args.value', 'options.@each')
+	@computed('args.value', 'options.@each', 'options.@each.{label,value}')
 	get label() {
 
 		let value = [].concat(this.args.value);

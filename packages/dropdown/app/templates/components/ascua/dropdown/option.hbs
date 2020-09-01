@@ -2,8 +2,9 @@
 	disabled={{@disabled}}
 	selected={{includes @value @dropdown.value}}
 	{{on "click" (fn @dropdown.changed @value)}}
-	{{did-insert (fn @dropdown.register @value @label)}}
-	{{will-destroy (fn @dropdown.unregister @value @label)}}
+	{{did-insert (fn @dropdown.register) @value @label}}
+	{{did-update (fn @dropdown.reregister) @value @label}}
+	{{will-destroy (fn @dropdown.unregister) @value @label}}
 	...attributes>
 	{{#if hasBlock}}
 		{{~yield~}}
