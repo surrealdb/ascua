@@ -103,6 +103,8 @@ export default class extends Service {
 
 		this.element = element;
 
+		return false;
+
 	}
 
 	show(element, event, vars, name, model) {
@@ -184,10 +186,12 @@ export default class extends Service {
 			}
 
 			// Display the contextmenu in the window.
-			menu.popup({ window: window });
-
-			// Clear up the contextmenu artifacts.
-			this.hide();
+			menu.popup({
+				window: window,
+				callback: () => {
+					this.hide()
+				},
+			});
 
 		});
 
