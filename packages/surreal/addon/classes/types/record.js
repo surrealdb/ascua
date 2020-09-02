@@ -1,10 +1,16 @@
 import Ember from 'ember';
 import { get, set } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-const { combine, tagFor } = Ember.__loader.require('@glimmer/validator');
-const { CUSTOM_TAG_FOR, getChainTagsForKey } = Ember.__loader.require('@ember/-internals/metal');
+const { combine, updateTag, tagFor, tagMetaFor } = Ember.__loader.require('@glimmer/validator');
+const { CUSTOM_TAG_FOR, tagForObject, tagForProperty } = Ember.__loader.require('@ember/-internals/metal');
 
 // https://github.com/emberjs/ember.js/blob/master/packages/%40ember/-internals/runtime/lib/mixins/-proxy.js
+
+export function contentFor(proxy) {
+	let content = get(proxy, 'content');
+	updateTag(tagForObject(proxy), tagForObject(content));
+	return content;
+}
 
 export default class Remote {
 
@@ -77,13 +83,17 @@ export default class Remote {
 	}
 
 	[CUSTOM_TAG_FOR](key) {
-		let tag = tagFor(this, key);
+		let meta = tagMetaFor(this);
+		let tag = tagFor(this, key, meta);
 		if (key in this) {
 			return tag;
 		} else {
-			return combine([
-				tag, ...getChainTagsForKey(this, `content.${key}`)
-			]);
+			let tags = [tag, tagFor(this, 'content', meta)];
+			let content = contentFor(this);
+			if (content && typeof content === 'object') {
+				tags.push(tagForProperty(content, key));
+			}
+			return combine(tags);
 		}
 	}
 
