@@ -52,10 +52,10 @@ export default class extends Component {
 		if (!this.args.multiple) this.close();
 
 		if (this.args.multiple) {
-			if ( this.selected.includes(value) ) {
-				value = this.selected.removeObject(value);
+			if ( [].concat(this.args.value).includes(value) ) {
+				value = [].concat(this.args.value).removeObject(value);
 			} else {
-				value = this.selected.addObject(value);
+				value = [].concat(this.args.value).addObject(value);
 			}
 		}
 
