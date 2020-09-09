@@ -17,6 +17,7 @@ export default class extends Component {
 	}
 
 	@action didChange(element) {
+		element.value = this.value;
 		element.style.height = 'auto';
 		element.style.overflow = 'hidden';
 		element.style.height = `${element.scrollHeight}px`;
