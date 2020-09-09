@@ -1,6 +1,6 @@
 {
   "name": "@ascua/fetch",
-  "version": "0.0.75",
+  "version": "0.0.76",
   "description": "Small description for @ascua/fetch goes here",
   "keywords": [
     "ember-addon"
