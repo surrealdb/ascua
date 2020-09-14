@@ -40,6 +40,8 @@ export default class extends Service {
 
 		if (enabled() === false) return;
 
+		if (window.ELECTRON === true) return;
+
 		this.config = Object.assign({}, defaults, config.worker);
 
 		if (this.config.enabled === true) {
