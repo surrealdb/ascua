@@ -57,6 +57,15 @@ export default class extends Service {
 
 		this.route = this.owner.lookup('route:application');
 
+		document.addEventListener('contextmenu', (e) => {
+			try {
+				this.prep(document.body, e, {}, 'application/menu');
+				this.show(document.body, e, {}, 'application/menu');
+			} catch (e) {
+				// Ignore
+			}
+		});
+
 		document.addEventListener('mousedown', (e) => {
 			if ( !e.target.matches('context-menu-item') ) {
 				this.hide();
