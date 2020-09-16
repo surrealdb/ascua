@@ -3,7 +3,7 @@
 }
 
 right-click {
-	display:block;
+	display:inline-block;
 }
 
 right-click:after {
