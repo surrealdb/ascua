@@ -3,13 +3,17 @@
 }
 
 right-click {
-	display:inline-block;
+	display:block;
 }
 
 right-click:after {
 	clear:both;
 	content:"";
 	display:table;
+}
+
+right-click[inline] {
+	display:inline-block;
 }
 
 context-menu {
