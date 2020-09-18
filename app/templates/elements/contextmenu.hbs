@@ -14,7 +14,11 @@
 	<Ascua::Render />
 </Example>
 
-<h2>Right click</h2>
+<h2>Default menus</h2>
+
+<p>If you place a menu template in <code>app/templates/application/menu/main.hbs</code> then this menu will be used for the all menus where a specific menu has not been specified. For input boxes and editable text areas, a menu located at <code>app/templates/application/menu/text.hbs</code> will be used, allowing for different editing controls when editing text in an Electron application.</p>
+
+<h2>Specific menus</h2>
 
 <Example @name="demo-elements-rightclick.hbs">
 	<RightClick @menu="application/menu">
@@ -24,13 +28,9 @@
 
 <Example @name="demo-elements-contextmenu.hbs" @hide={{true}}>
 
-	{{#if (is-electron)}}
-		<Ascua::Contextmenu::Item @role="cut" />
-		<Ascua::Contextmenu::Item @role="copy" />
-		<Ascua::Contextmenu::Item @role="paste" />
-		<Ascua::Contextmenu::Item @role="selectall" />
-		<Ascua::Contextmenu::Item @type="separator" />
-	{{/if}}
+	<Ascua::Contextmenu::Item @click={{console}} @label="Do something special" />
+
+	<Ascua::Contextmenu::Item @type="separator" />
 
 	<Ascua::Contextmenu::Item @click={{history-back}} @label="Back" />
 	<Ascua::Contextmenu::Item @click={{history-forward}} @label="Forward" />

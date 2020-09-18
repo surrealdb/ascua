@@ -3,16 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 import Electron from 'electron';
 
-const text = [
-	{ label: 'Undo', role: 'undo' },
-	{ label: 'Redo', role: 'redo' },
-	{ type: 'separator' },
-	{ label: 'Cut', role: 'cut' },
-	{ label: 'Copy', role: 'copy' },
-	{ label: 'Paste', role: 'paste' },
-	{ label: 'Select All', role: 'selectall' }
-];
-
 const list = (item) => {
 	return {
 		role: item.role,
@@ -59,8 +49,20 @@ export default class extends Service {
 
 		document.addEventListener('contextmenu', (e) => {
 			try {
-				this.prep(document.body, e, {}, 'application/menu');
-				this.show(document.body, e, {}, 'application/menu');
+				switch (true) {
+				case e.target.isContentEditable:
+					this.prep(document.body, e, {}, 'application/menu/text');
+					this.show(document.body, e, {}, 'application/menu/text');
+					break;
+				case e.target.matches('input,textarea'):
+					this.prep(document.body, e, {}, 'application/menu/text');
+					this.show(document.body, e, {}, 'application/menu/text');
+					break;
+				default:
+					this.prep(document.body, e, {}, 'application/menu/main');
+					this.show(document.body, e, {}, 'application/menu/main');
+					break;
+				}
 			} catch (e) {
 				// Ignore
 			}
