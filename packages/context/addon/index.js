@@ -5,7 +5,7 @@ const noop = () => {};
 
 export default class Context {
 
-	static Background() {
+	static background() {
 		return new Context(new Promise(() => {}));
 	}
 
@@ -13,7 +13,7 @@ export default class Context {
 		if (parent) {
 			return parent.withCancel();
 		} else {
-			return this.Background().withCancel();
+			return this.background().withCancel();
 		}
 	}
 
@@ -21,7 +21,7 @@ export default class Context {
 		if (parent) {
 			return parent.withTimeout(timeout);
 		} else {
-			return this.Background().withTimeout(timeout);
+			return this.background().withTimeout(timeout);
 		}
 	}
 
