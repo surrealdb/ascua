@@ -1,5 +1,5 @@
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { setProperties } from '@ember/object';
 
 const CANCELLED = new Error("Cancelled task instance");
 
@@ -11,21 +11,19 @@ export default class Task {
 
 	#fnc = undefined;
 
-	task = null;
-
 	tasks = [];
 
-	isIdle = true;
+	@tracked value;
 
-	isRunning = false;
+	@tracked error;
 
-	isFailure = false;
+	@tracked isIdle = true;
 
-	isSuccess = false;
+	@tracked isRunning = false;
 
-	value = undefined;
+	@tracked isFailure = false;
 
-	error = undefined;
+	@tracked isSuccess = false;
 
 	constructor(ctx, fnc, typ = 'task') {
 
@@ -43,14 +41,17 @@ export default class Task {
 		case 'task':
 			break;
 		case 'drop':
-			if (this.isRunning) {
+			if (this.tasks.length) {
 				return;
 			}
 			break;
 		case 'restart':
-			if (this.isRunning && this.task) {
+			if (this.tasks.length) {
 				try {
-					this.task.throw(CANCELLED);
+					let task = this.tasks[this.tasks.length-1];
+					this.tasks.removeObject(task);
+					task.error = CANCELLED;
+					task.throw(CANCELLED);
 				} catch (e) {
 					// Ignore
 				}
@@ -58,88 +59,81 @@ export default class Task {
 			break;
 		}
 
-		let task = this.task = this.#fnc.call(this.#ctx, ...arguments);
-
-		this.tasks.pushObject(task);
-
-		const loop = async (fnc, res) => {
-			try {
-				let item = fnc.next(res);
-				res = await item.value;
-				if (!item.done) {
-					return await loop(fnc, res);
-				}
-				return item;
-			} catch (e) {
-				fnc.throw(e);
-				throw e;
-			}
-		}
+		let task = this.#fnc.call(this.#ctx, ...arguments);
 
 		try {
 
-			if (this.task === task) {
-				if (!this.isDestroyed) {
-					if (!this.isDestroying) {
-						setProperties(this, {
-							isIdle: false,
-							isRunning: true,
-							isSuccess: false,
-							isFailure: false,
-						});
-					}
-				}
+			let res = undefined;
+			let val = undefined;
+
+			// Add the task to the list
+
+			this.tasks.pushObject(task);
+
+			// Set the task to running
+
+			this.isIdle = false;
+			this.isRunning = true;
+			this.isSuccess = false;
+			this.isFailure = false;
+
+			// Execute the task steps
+
+			while (true) {
+				res = task.next(val);
+				val = await res.value;
+				if (res.done) break;
 			}
 
-			let i = await loop(task);
+			// Set the value on the task
 
-			if (this.task === task) {
-				if (!this.isDestroyed) {
-					if (!this.isDestroying) {
-						setProperties(this, {
-							value: i.value,
-							isIdle: true,
-							isRunning: false,
-							isSuccess: true,
-							isFailure: false,
-						});
-					}
-				}
-			}
+			task.value = val;
 
-		} catch (e) {
+		} catch (err) {
 
-			if (this.task === task) {
-				if (!this.isDestroyed) {
-					if (!this.isDestroying) {
-						setProperties(this, {
-							error: e,
-							isIdle: true,
-							isRunning: false,
-							isSuccess: false,
-							isFailure: true,
-						});
-					}
-				}
-			}
+			// Throw the error upwards
+
+			task.throw(err);
+
+			// Set the error on the task
+
+			task.error = err;
 
 		} finally {
 
+			// Remove the task from the list
+
 			this.tasks.removeObject(task);
+
+			// Set the task to idle
+
+			if (task.error === CANCELLED) {
+				if (!this.isDestroyed) {
+					if (!this.isDestroying) {
+						this.isIdle = (this.tasks.length === 0);
+						this.isRunning = (this.tasks.length !== 0);
+					}
+				}
+			}
+
+			if (task.error !== CANCELLED) {
+				if (!this.isDestroyed) {
+					if (!this.isDestroying) {
+						this.value = task.value;
+						this.error = task.error;
+						this.isIdle = (this.tasks.length === 0);
+						this.isRunning = (this.tasks.length !== 0);
+						this.isSuccess = (task.error === undefined);
+						this.isFailure = (task.error !== undefined);
+					}
+				}
+			}
 
 		}
 
 	}
 
 	@action async cancel() {
-		try {
-			this.task.throw(CANCELLED);
-		} catch (e) {
-			// Ignore
-		}
-	}
-
-	@action async cancelAll() {
 		for (const task of this.tasks) {
 			try {
 				task.throw(CANCELLED);

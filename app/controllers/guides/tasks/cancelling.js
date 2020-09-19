@@ -1,10 +1,10 @@
 import Controller from '@ember/controller';
 import { timeout } from '@ascua/tasks';
-import { restart } from '@ascua/tasks';
+import { task } from '@ascua/tasks';
 
 export default class extends Controller {
 
-	@restart * mytask() {
+	@task * mytask() {
 		try {
 			yield timeout(5000);
 			return new Date();

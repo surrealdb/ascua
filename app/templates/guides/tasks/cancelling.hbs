@@ -14,16 +14,10 @@
 
 <h2>Cancel a single task or all tasks</h2>
 
-<p>In order to explicitly cancel a task, or all currently running tasks, use the <code>cancel</code> or <code>cancelAll</code> methods on a task instance.</p>
+<p>In order to explicitly cancel any running tasks, use the <code>cancel</code> method on a task instance.</p>
 
 <Example @name="demo-guides-tasks-cancelling-cancel.hbs">
 	<button type="button" {{on "click" this.mytask.cancel}}>
-		Cancel last task
-	</button>
-</Example>
-
-<Example @name="demo-guides-tasks-cancelling-cancelall.hbs">
-	<button type="button" {{on "click" this.mytask.cancelAll}}>
 		Cancel all tasks
 	</button>
 </Example>
