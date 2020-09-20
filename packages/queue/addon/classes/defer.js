@@ -22,7 +22,7 @@ export default class Defer {
 
 		return new Promise( (resolve, reject) => {
 
-			this.#promise = this.#fnc;
+			this.#promise = this.#fnc.bind(this.#ctx, ...arguments);
 
 			this.#queue.push({
 				resolve,

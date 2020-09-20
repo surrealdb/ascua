@@ -21,7 +21,7 @@ export default class Queue {
 		return new Promise( (resolve, reject) => {
 
 			this.#queue.push({
-				promise: this.#fnc,
+				promise: this.#fnc.bind(this.#ctx, ...arguments),
 				resolve,
 				reject,
 			});
