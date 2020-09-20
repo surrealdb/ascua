@@ -3,13 +3,14 @@ import context from '@ascua/context';
 import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { set, setProperties } from '@ember/object';
+import { defer } from '@ascua/queue';
 import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
 
-const INITIAL = Symbol("Initial");
-const LOADED = Symbol("Loaded");
-const SAVING = Symbol("Saving");
-const RESYNC = Symbol("Resync");
+export const INITIAL = Symbol("INITIAL");
+export const LOADING = Symbol("LOADING");
+export const UPDATED = Symbol("UPDATED");
+export const DELETED = Symbol("DELETED");
 
 export default class Model extends Core {
 
@@ -41,17 +42,11 @@ export default class Model extends Core {
 	// Current record state
 	#state = INITIAL;
 
-	// Context cancel function
-	#cancel = undefined;
-
 	// Last state of sent data
 	#client = undefined;
 
 	// Last state of received data
 	#server = undefined;
-
-	// Current remote server promise
-	#promise = undefined;
 
 	// Property for whether the record exists
 	@tracked exists = undefined;
@@ -112,6 +107,14 @@ export default class Model extends Core {
 		return new Diff(this.#client, this.json).output();
 	}
 
+	// The `state` property enables an
+	// external observer to see which
+	// syncing state the record is in.
+
+	get state() {
+		return this.#state;
+	}
+
 	// When formatted as a string, the
 	// record will output the record
 	// id, with both table and id.
@@ -137,7 +140,6 @@ export default class Model extends Core {
 	init() {
 		super.init(...arguments);
 		this.exists = true;
-		this.#state = LOADED;
 		this.#server = this.json;
 		this.#client = this.json;
 	}
@@ -153,26 +155,43 @@ export default class Model extends Core {
 	}
 
 	/**
-	 * Save the record to the database.
-	 *
-	 * @returns {Promise} Promise object with the saved record.
-	 */
-
-	async save() {
-		if (this.#cancel) this.#cancel();
-		let [ctx, canc] = context.withCancel();
-		this.#cancel = canc;
-		return this.looper(ctx);
-	}
-
-	/**
 	 * Autosaves the record to the database.
 	 *
 	 * @returns {Promise} Promise object with the saved record.
 	 */
 
-	async autosave() {
+	autosave() {
 		// Ignore
+	}
+
+	/**
+	 * Update the record in the database.
+	 *
+	 * @returns {Promise} Promise object with the updated record.
+	 */
+
+	update() {
+		return this._update.queue();
+	}
+
+	/**
+	 * Delete the record in the database.
+	 *
+	 * @returns {Promise} Promise object with the deleted record.
+	 */
+
+	delete() {
+		return this._delete.queue();
+	}
+
+	/**
+	 * Save the record to the database.
+	 *
+	 * @returns {Promise} Promise object with the saved record.
+	 */
+
+	save() {
+		return this._update.queue();
 	}
 
 	/**
@@ -182,11 +201,14 @@ export default class Model extends Core {
 	 */
 
 	rollback() {
+
 		let undo = {};
 		let data = this.#data;
 		let client = this.#client;
 		let server = this.#server;
-		this.#state = RESYNC;
+
+		this.#state = LOADING;
+
 		Object.keys(server).forEach(key => {
 			undo[key] = server[key] || undefined;
 		});
@@ -196,9 +218,13 @@ export default class Model extends Core {
 		Object.keys(data).forEach(key => {
 			undo[key] = server[key] || undefined;
 		});
+
 		setProperties(this, undo);
-		this.#state = LOADED;
+
+		this.#state = UPDATED;
+
 		return
+
 	}
 
 	/**
@@ -209,10 +235,14 @@ export default class Model extends Core {
 	 */
 
 	ingest(data) {
-		this.#state = RESYNC;
+
+		this.#state = LOADING;
+
 		this.#server = data;
+
 		let changes = new Diff(this.#client, this.json).output();
 		let current = new Patch(this.#server, changes).output();
+
 		for (const key in current) {
 			let old = JSON.stringify(this[key]);
 			let now = JSON.stringify(current[key]);
@@ -220,30 +250,37 @@ export default class Model extends Core {
 				set(this, key, current[key]);
 			}
 		}
+
 		this.#client = this.json;
-		this.#state = LOADED;
+
+		this.#state = UPDATED;
+
 		if (changes.length) {
 			this.autosave();
 		}
+
 	}
 
 	/**
 	 * Initiates a record update with the database.
 	 *
-	 * @returns {Promise} Promie object with the updated record.
+	 * @returns {Promise} Promise object with the updated record.
 	 */
 
-	async update() {
+	@defer _update() {
+
 		this.exists = true;
-		this.#state = SAVING;
+		this.#state = LOADING;
 		this.#client = this.json;
+
 		try {
-			this.#promise = this.store.update(this);
-			return await this.#promise;
+			return this.store.update(this);
 		} catch (e) {
-			this.#promise = undefined;
 			throw e;
+		} finally {
+			this.#state = UPDATED;
 		}
+
 	}
 
 	/**
@@ -252,51 +289,18 @@ export default class Model extends Core {
 	 * @returns {Promise} Promise object with the deleted record.
 	 */
 
-	async delete() {
+	@defer _delete() {
+
 		this.exists = false;
-		this.#state = SAVING;
+		this.#state = LOADING;
 		this.#client = this.json;
+
 		try {
-			this.#promise = this.store.delete(this);
-			return await this.#promise;
+			return this.store.delete(this);
 		} catch (e) {
-			this.#promise = undefined;
 			throw e;
-		}
-	}
-
-	/**
-	 * Check to see if an update can be pushed to the
-	 * server. If the record is already saving, then
-	 * the method will wait until it has finished,
-	 * before saving again. If the record is resyncing
-	 * then the save will be ignored.
-	 *
-	 * @returns {undefined} Does not return anything.
-	 */
-
-	async looper(ctx) {
-
-		try {
-			switch (this.#state) {
-			case SAVING:
-				await ctx.delay(500);
-				break;
-			case LOADED:
-				await ctx.delay(500);
-				break;
-			}
-		} catch (e) {
-			return;
-		}
-
-		switch (this.#state) {
-		case SAVING:
-			await this.#promise;
-			return this.looper(ctx);
-		case LOADED:
-			await this.#promise;
-			return this.update(ctx);
+		} finally {
+			this.#state = DELETED;
 		}
 
 	}

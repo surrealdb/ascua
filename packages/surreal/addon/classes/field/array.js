@@ -71,10 +71,9 @@ export default function(type) {
 		set(key, value=[]) {
 
 			if (this.data[key] !== undefined) {
-				value.forEach( async (v, k) => {
+				value.forEach( (v, k) => {
 					switch (true) {
 					case this.data[key][k] !== undefined:
-						await this.data[key][k];
 						setProperties(this.data[key][k], v);
 						break;
 					case this.data[key][k] === undefined:
