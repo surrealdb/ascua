@@ -1,6 +1,6 @@
 {
   "name": "@ascua/electron",
-  "version": "0.0.81",
+  "version": "0.0.82",
   "description": "Small description for @ascua/electron goes here",
   "keywords": [
     "ember-addon"
