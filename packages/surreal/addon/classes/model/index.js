@@ -270,8 +270,6 @@ export default class Model extends Core {
 
 	@defer _modify() {
 
-		console.log('modify')
-
 		let diff = this.diff;
 
 		this.exists = true;
