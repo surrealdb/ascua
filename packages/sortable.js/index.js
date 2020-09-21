@@ -12,7 +12,7 @@ module.exports = {
 
 		this._super.included(...arguments);
 
-		app.import('node_modules/sortablejs/Sortable.js', fastboot);
+		app.import('node_modules/sortablejs/dist/sortable.umd.js', fastboot);
 
 		app.import('vendor/sortable.js', {
 			exports: { sortable: ['default'] }
