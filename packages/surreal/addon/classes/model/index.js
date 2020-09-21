@@ -140,6 +140,7 @@ export default class Model extends Core {
 	init() {
 		super.init(...arguments);
 		this.exists = true;
+		this.#state = UPDATED;
 		this.#server = this.json;
 		this.#client = this.json;
 	}
