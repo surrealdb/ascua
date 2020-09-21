@@ -241,6 +241,36 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the updated record.
 	 */
 
+	async modify(record, diff) {
+
+		assert('You must pass a record to be modified', record instanceof Model);
+
+		try {
+
+			let server = await this.surreal.modify(record.tb, record.id, diff);
+			record.ingest(server);
+			return record;
+
+		} catch (e) {
+
+			record.rollback();
+
+			throw e;
+
+		}
+
+	}
+
+	/**
+	 * Updates all record changes with the database.
+	 * If the update is not successful due to an
+	 * error or permissions failure, then the record
+	 * will be rolled back.
+	 *
+	 * @param {Model} record - A record.
+	 * @returns {Promise} Promise object with the updated record.
+	 */
+
 	async update(record) {
 
 		assert('You must pass a record to be updated', record instanceof Model);

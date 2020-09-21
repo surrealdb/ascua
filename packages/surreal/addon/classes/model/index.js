@@ -192,7 +192,7 @@ export default class Model extends Core {
 	 */
 
 	save() {
-		return this._update.queue();
+		return this._modify.queue();
 	}
 
 	/**
@@ -258,6 +258,32 @@ export default class Model extends Core {
 
 		if (changes.length) {
 			this.autosave();
+		}
+
+	}
+
+	/**
+	 * Initiates a record update with the database.
+	 *
+	 * @returns {Promise} Promise object with the updated record.
+	 */
+
+	@defer _modify() {
+
+		console.log('modify')
+
+		let diff = this.diff;
+
+		this.exists = true;
+		this.#state = LOADING;
+		this.#client = this.json;
+
+		try {
+			return this.store.modify(this, diff);
+		} catch (e) {
+			throw e;
+		} finally {
+			this.#state = UPDATED;
 		}
 
 	}
