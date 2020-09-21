@@ -42,6 +42,12 @@ export default class Model extends Core {
 	// Current record state
 	#state = INITIAL;
 
+	// Current context object
+	#ctx = undefined;
+
+	// Context cancel function
+	#cancel = undefined;
+
 	// Last state of sent data
 	#client = undefined;
 
@@ -172,6 +178,8 @@ export default class Model extends Core {
 	 */
 
 	update() {
+		if (this.#cancel) this.#cancel();
+		[this.#ctx, this.#cancel] = context.withCancel();
 		return this._update.queue();
 	}
 
@@ -182,6 +190,8 @@ export default class Model extends Core {
 	 */
 
 	delete() {
+		if (this.#cancel) this.#cancel();
+		[this.#ctx, this.#cancel] = context.withCancel();
 		return this._delete.queue();
 	}
 
@@ -192,6 +202,8 @@ export default class Model extends Core {
 	 */
 
 	save() {
+		if (this.#cancel) this.#cancel();
+		[this.#ctx, this.#cancel] = context.withCancel();
 		return this._modify.queue();
 	}
 
@@ -268,18 +280,17 @@ export default class Model extends Core {
 	 * @returns {Promise} Promise object with the updated record.
 	 */
 
-	@defer _modify() {
-
-		let diff = this.diff;
-
-		this.exists = true;
-		this.#state = LOADING;
-		this.#client = this.json;
+	@defer async _modify() {
 
 		try {
+			await this.#ctx.delay(250);
+			let diff = this.diff;
+			this.exists = true;
+			this.#state = LOADING;
+			this.#client = this.json;
 			return this.store.modify(this, diff);
 		} catch (e) {
-			throw e;
+			// Ignore
 		} finally {
 			this.#state = UPDATED;
 		}
@@ -292,16 +303,16 @@ export default class Model extends Core {
 	 * @returns {Promise} Promise object with the updated record.
 	 */
 
-	@defer _update() {
-
-		this.exists = true;
-		this.#state = LOADING;
-		this.#client = this.json;
+	@defer async _update() {
 
 		try {
+			await this.#ctx.delay(250);
+			this.exists = true;
+			this.#state = LOADING;
+			this.#client = this.json;
 			return this.store.update(this);
 		} catch (e) {
-			throw e;
+			// Ignore
 		} finally {
 			this.#state = UPDATED;
 		}
@@ -314,16 +325,16 @@ export default class Model extends Core {
 	 * @returns {Promise} Promise object with the deleted record.
 	 */
 
-	@defer _delete() {
-
-		this.exists = false;
-		this.#state = LOADING;
-		this.#client = this.json;
+	@defer async _delete() {
 
 		try {
+			await this.#ctx.delay(250);
+			this.exists = false;
+			this.#state = LOADING;
+			this.#client = this.json;
 			return this.store.delete(this);
 		} catch (e) {
-			throw e;
+			// Ignore
 		} finally {
 			this.#state = DELETED;
 		}
