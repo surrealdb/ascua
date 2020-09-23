@@ -82,6 +82,8 @@ export default class extends Service {
 			this.emit('updatefound');
 		});
 
+		autoUpdater.logger = console;
+
 	}
 
 	// Reset reloads the newer software
