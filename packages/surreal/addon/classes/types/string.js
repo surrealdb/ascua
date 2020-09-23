@@ -1,9 +1,9 @@
 export default (v) => {
 	switch (v) {
 	case undefined:
-		return v;
+		return null;
 	case null:
-		return v;
+		return null;
 	default:
 		return String(v);
 	}
