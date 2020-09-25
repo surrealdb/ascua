@@ -34,6 +34,14 @@ export default class Field extends Core {
 		return this.#data = this.#data || {};
 	}
 
+	// The `json` property returns a
+	// JSON representation copy of the
+	// record's current data snapshot.
+
+	get json() {
+		return JSON.parse(JSON.stringify(this));
+	}
+
 	// The `parent` property can be used
 	// to retrieve the underlying parent
 	// model that owns this record.
