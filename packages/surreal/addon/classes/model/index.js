@@ -253,18 +253,12 @@ export default class Model extends Core {
 
 		this.#server = data;
 
-		let changes = new Diff(this.#client, this.json).output();
+		let changes = this.diff;
 		let current = new Patch(this.#server, changes).output();
 
 		for (const key in current) {
-			let old = JSON.stringify(this[key]);
-			let now = JSON.stringify(current[key]);
-			if (old != now) {
-				set(this, key, current[key]);
-			}
+			this[key] = current[key];
 		}
-
-		this.#client = this.json;
 
 		this.#state = UPDATED;
 
