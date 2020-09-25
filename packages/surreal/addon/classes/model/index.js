@@ -105,14 +105,6 @@ export default class Model extends Core {
 		return JSON.parse(JSON.stringify(this));
 	}
 
-	// The `diff` property returns a
-	// DIFF representation copy of the
-	// record's current data snapshot.
-
-	get diff() {
-		return new Diff(this.#client, this.json).output();
-	}
-
 	// The `state` property enables an
 	// external observer to see which
 	// syncing state the record is in.
@@ -251,10 +243,19 @@ export default class Model extends Core {
 
 		this.#state = LOADING;
 
-		this.#server = data;
+		// Store the current record data from the server
 
-		let changes = this.diff;
-		let current = new Patch(this.#server, changes).output();
+		this.#server = this.store.lookup(this.tb).create(data);
+
+		// Calculate changes while data was in flight
+
+		let changes = new Diff(this.#client, this.json).output();
+
+		// Merge in-flight changes with server changes
+
+		let current = new Patch(this.#server.json, changes).output();
+
+		// Reapply in-flight changes to local record
 
 		for (const key in current) {
 			this[key] = current[key];
@@ -278,11 +279,13 @@ export default class Model extends Core {
 
 		try {
 			await this.#ctx.delay(250);
-			let diff = this.diff;
-			this.exists = true;
-			this.#state = LOADING;
-			this.#client = this.json;
-			return this.store.modify(this, diff);
+			let diff = new Diff(this.#server.json, this.json).output();
+			if (diff.length) {
+				this.exists = true;
+				this.#state = LOADING;
+				this.#client = this.json;
+				return this.store.modify(this, diff);
+			}
 		} catch (e) {
 			// Ignore
 		} finally {
