@@ -14,23 +14,6 @@ export const DELETED = Symbol("DELETED");
 
 export default class Model extends Core {
 
-	static create(data = {}) {
-
-		for (const key in data) {
-			switch (true) {
-			case data[key] === null:
-				delete data[key];
-				break;
-			case data[key] === undefined:
-				delete data[key];
-				break;
-			}
-		}
-
-		return super.create(...arguments);
-
-	}
-
 	@inject store;
 
 	#id = null;
@@ -260,6 +243,8 @@ export default class Model extends Core {
 		for (const key in current) {
 			this[key] = current[key];
 		}
+
+		this.#client = this.#server.json;
 
 		this.#state = UPDATED;
 

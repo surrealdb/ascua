@@ -3,23 +3,6 @@ import { inject } from '@ember/service';
 
 export default class Field extends Core {
 
-	static create(data = {}) {
-
-		for (const key in data) {
-			switch (true) {
-			case data[key] === null:
-				delete data[key];
-				break;
-			case data[key] === undefined:
-				delete data[key];
-				break;
-			}
-		}
-
-		return super.create(...arguments);
-
-	}
-
 	@inject store;
 
 	#data = undefined;
