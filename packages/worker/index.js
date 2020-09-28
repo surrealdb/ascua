@@ -3,7 +3,7 @@
 const Plugin = require('./plugin/worker');
 const Merger = require('broccoli-merge-trees');
 const Rollup = require('broccoli-rollup');
-const uglify = require('broccoli-uglify-sourcemap');
+const Uglify = require('broccoli-uglify-sourcemap');
 
 const defaults = {
 	enabled: false,
@@ -51,7 +51,7 @@ module.exports = {
 			}
 		});
 
-		out = process.env.EMBER_ENV === 'production' ? uglify(out) : out;
+		out = process.env.EMBER_ENV === 'production' ? new Uglify(out) : out;
 
 		return new Merger([tree, out], { overwrite: true });
 
