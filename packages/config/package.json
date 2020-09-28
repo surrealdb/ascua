@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "broccoli-file-creator": "^2.1.1",
-    "ember-cli-babel": "^7.21.0",
-    "ember-cli-htmlbars": "^5.2.0"
+    "ember-cli-babel": "^7.22.1",
+    "ember-cli-htmlbars": "^5.3.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"

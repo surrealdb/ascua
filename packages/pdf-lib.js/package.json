@@ -17,9 +17,9 @@
   "dependencies": {
     "@ascua/transform": "file:../transform",
     "@pdf-lib/fontkit": "^1.0.0",
-    "ember-cli-babel": "^7.21.0",
-    "ember-cli-htmlbars": "^5.2.0",
-    "pdf-lib": "^1.10.0"
+    "ember-cli-babel": "^7.22.1",
+    "ember-cli-htmlbars": "^5.3.1",
+    "pdf-lib": "^1.11.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",

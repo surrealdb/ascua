@@ -8,9 +8,7 @@
 			{{~/if~}}
 		</output>
 
-		<CodeBlock @language={{snippet.language}}>
-			{{~snippet.source~}}
-		</CodeBlock>
+		<CodeBlock @code={{snippet.source}} @language={{snippet.language}} />
 
 	{{/let}}
 

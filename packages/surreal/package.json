@@ -20,8 +20,8 @@
     "@ascua/proxy": "file:../proxy",
     "@ascua/queue": "file:../queue",
     "@ascua/service": "file:../service",
-    "broccoli-persistent-filter": "^3.1.0",
-    "ember-cli-babel": "^7.21.0",
+    "broccoli-persistent-filter": "^3.1.1",
+    "ember-cli-babel": "^7.22.1",
     "surreal.js": "^0.4.12",
     "ws": "^7.3.1"
   },
