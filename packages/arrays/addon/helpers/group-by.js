@@ -19,9 +19,8 @@ export function groupBy([path, value]) {
 	array(value).forEach(item => {
 
 		let value = get(item, path);
-		let group = get(groups, value);
 
-		if ( !isArray(group) ) {
+		if ( !isArray(groups[value]) ) {
 			groups[value] = [];
 		}
 
