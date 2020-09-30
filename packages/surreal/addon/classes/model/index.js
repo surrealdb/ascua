@@ -2,10 +2,12 @@ import Core from '@ember/object';
 import context from '@ascua/context';
 import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { set, setProperties } from '@ember/object';
+import { setProperties } from '@ember/object';
 import { defer } from '@ascua/queue';
 import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
+
+const json = (v) => JSON.stringify(v);
 
 export const INITIAL = Symbol("INITIAL");
 export const LOADING = Symbol("LOADING");
@@ -241,7 +243,9 @@ export default class Model extends Core {
 		// Reapply in-flight changes to local record
 
 		for (const key in current) {
-			this[key] = current[key];
+			let old = json(this[key]);
+			let now = json(current[key]);
+			if (old !== now) this[key] = current[key];
 		}
 
 		this.#client = this.#server.json;

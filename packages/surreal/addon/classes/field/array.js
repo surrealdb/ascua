@@ -9,7 +9,9 @@ import Record from '../types/record';
 import Model from '@ascua/surreal/model';
 import Field from '@ascua/surreal/field';
 import { assert } from '@ember/debug';
-import { setProperties } from '@ember/object';
+import { set } from '@ember/object';
+
+const json = (v) => JSON.stringify(v);
 
 export default function(type) {
 	return Property({
@@ -73,8 +75,10 @@ export default function(type) {
 			if (this.data[key] !== undefined) {
 				value.forEach( (v, k) => {
 					switch (true) {
+					case json(this.data[key][k]) === json(v):
+						break;
 					case this.data[key][k] !== undefined:
-						setProperties(this.data[key][k], v);
+						this.data[key].replace(k, 1, [v]);
 						break;
 					case this.data[key][k] === undefined:
 						this.data[key].pushObject(v);

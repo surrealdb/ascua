@@ -37,4 +37,8 @@ export default class RecordArray extends Array {
 		super.setObjects( [].concat(values).map(this.type) );
 	}
 
+	replace(idx, count, values) {
+		super.replace(idx, count, [].concat(values).map(this.type) );
+	}
+
 }
