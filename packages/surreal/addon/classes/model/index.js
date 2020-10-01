@@ -3,7 +3,7 @@ import context from '@ascua/context';
 import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { setProperties } from '@ember/object';
-import { defer } from '@ascua/queue';
+import { queue, defer } from '@ascua/queue';
 import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
 
@@ -224,7 +224,7 @@ export default class Model extends Core {
 	 * @returns {undefined} Does not return anything.
 	 */
 
-	ingest(data) {
+	@queue ingest(data) {
 
 		this.#state = LOADING;
 
