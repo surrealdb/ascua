@@ -1,6 +1,6 @@
 {
   "name": "@ascua/queue",
-  "version": "0.0.93",
+  "version": "0.0.94",
   "description": "Small description for @ascua/queue goes here",
   "keywords": [
     "ember-addon"
