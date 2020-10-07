@@ -8,12 +8,23 @@ export default class extends Component {
 
 	@inject('-document') document;
 
-	@action didClick(event) {
+	@action didEscape(event) {
 		if (this.args.onClose) {
 			return this.args.onClose();
 		}
 		if (event instanceof Event === false) {
 			dispatch(event, "close");
+		}
+	}
+
+	@action didClick(event) {
+		if ( event.target.matches('app-modal-cover') ) {
+			if (this.args.onClose) {
+				return this.args.onClose();
+			}
+			if (event instanceof Event === false) {
+				dispatch(event, "close");
+			}
 		}
 	}
 
