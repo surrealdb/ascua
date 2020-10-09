@@ -78,14 +78,14 @@ export default class extends Array {
 	}
 
 	prepareObectsAt({ start, limit }) {
-		for (let i = start; i < (start + limit); i++) {
+		for (let i = start; i < (start + limit) && i < this.total; i++) {
 			this[i] = this[i] || Item.create();
 			this[i].setup();
 		}
 	}
 
 	fulfillObjectsAt({ start, limit }, array) {
-		for (let i = start; i < (start + array.length); i++) {
+		for (let i = start; i < (start + limit) && i < this.total; i++) {
 			if (this[i] && typeof this[i].resolve === 'function') {
 				this[i].resolve(array.objectAt(i-start));
 			}
@@ -93,7 +93,7 @@ export default class extends Array {
 	}
 
 	declineObjectsAt({ start, limit }, error) {
-		for (let i = start; i < (start + limit); i++) {
+		for (let i = start; i < (start + limit) && i < this.total; i++) {
 			if (this[i] && typeof this[i].reject === 'function') {
 				this[i].reject(error);
 			}
@@ -110,25 +110,21 @@ export default class extends Array {
 
 			let items = [].concat(array.data);
 
-			this.prepareObectsAt(rng);
-
-			this.fulfillObjectsAt(rng, items);
-
 			this.length = array.total;
 
 			this.total = array.total;
+
+			this.prepareObectsAt(rng);
+
+			this.fulfillObjectsAt(rng, items);
 
 			this.loaded = true;
 
 		} catch (error) {
 
-			if (this.total) {
+			this.prepareObectsAt(rng);
 
-				this.prepareObectsAt(rng);
-
-				this.declineObjectsAt(rng, error);
-
-			}
+			this.declineObjectsAt(rng, error);
 
 		}
 
