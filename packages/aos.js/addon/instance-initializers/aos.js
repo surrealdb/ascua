@@ -11,10 +11,14 @@ export default {
 
 	initialize(instance) {
 
-		AOS.init({
-			...defaults,
-			...config.aos,
-		});
+		if (AOS) {
+
+			AOS.init({
+				...defaults,
+				...config.aos,
+			});
+
+		}
 
 	},
 
