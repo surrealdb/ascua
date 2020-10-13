@@ -85,6 +85,7 @@ Router.map(function() {
 	});
 
 	this.route('libraries', function() {
+		this.route('aos');
 		this.route('apexcharts', function() {
 			this.route('elements');
 		});

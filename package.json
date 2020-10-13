@@ -73,6 +73,7 @@
     "edition": "octane"
   },
   "dependencies": {
+    "@ascua/aos.js": "file:packages/aos.js",
     "@ascua/apexcharts.js": "file:packages/apexcharts.js",
     "@ascua/app": "file:packages/app",
     "@ascua/arrays": "file:packages/arrays",

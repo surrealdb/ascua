@@ -1,0 +1,28 @@
+<h1>aos.js</h1>
+
+<h2>Installation</h2>
+
+<Example @name="demo-libraries-aosjs-install.bash">
+	ember install @ascua/aos.js
+</Example>
+
+<h2>Module</h2>
+
+<Example @name="demo-libraries-aosjs-import.js">
+	import AOS from 'aos.js';
+</Example>
+
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>aos</code> property in <code>config/environment.js</code>.</p>
+
+<Example @name="demo-libraries-aosjs-environment.js">
+	module.exports = function(environment) {
+		let ENV = {
+			aos: {
+				disable: false,
+			}
+		};
+		return ENV;
+	};
+</Example>

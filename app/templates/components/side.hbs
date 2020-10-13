@@ -115,6 +115,11 @@
 
 	{{#if (is-active "libraries")}}
 
+		<Navigate @route="libraries.aos" @name="aos.js" />
+		<section show={{is-active "libraries.aos"}}>
+			<Navigate @route="libraries.aos" @name="Setup" />
+		</section>
+
 		<Navigate @route="libraries.apexcharts" @name="apexcharts.js" />
 		<section show={{is-active "libraries.apexcharts"}}>
 			<Navigate @route="libraries.apexcharts" @name="Setup" />
