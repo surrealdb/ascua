@@ -1,6 +1,6 @@
 {
   "name": "@ascua/stripe.js",
-  "version": "0.0.97",
+  "version": "0.0.98",
   "description": "Small description for @ascua/stripe.js goes here",
   "keywords": [
     "ember-addon"
