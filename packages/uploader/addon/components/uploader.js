@@ -16,13 +16,13 @@ export default class extends Component {
 
 	@tracked dropping = false;
 
-	@action didStop(event) {
-		event.stopPropagation();
+	@action setup(element) {
+		this.element = element;
 	}
 
 	@action didClick(event) {
 		if (this.clickable) {
-			event.target.querySelectorAll('input')[0].click();
+			this.element.querySelectorAll('input')[0].click();
 		}
 	}
 

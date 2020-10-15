@@ -2,6 +2,7 @@
 	waiting={{this.waiting}}
 	loading={{this.loading}}
 	dropping={{this.dropping}}
+	{{did-insert this.setup}}
 	{{on "drop" this.didDrop}}
 	{{on "click" this.didClick}}
 	{{on "dragover" this.didDragOver}}
@@ -14,7 +15,6 @@
 		type="file"
 		tabindex="-1"
 		multiple="true"
-		{{on "click" this.didStop}}
 		{{on "change" this.didInput}}
 	>
 
