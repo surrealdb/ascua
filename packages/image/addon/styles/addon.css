@@ -39,16 +39,10 @@ app-image img {
 	width:100%;
 	height:100%;
 	display:block;
-	transform:scale(1);
 }
 
 app-image[lqip] img:nth-of-type(1) {
 	z-index:1;
-	-webkit-animation:blur(50px);
-	-moz-animation:blur(50px);
-	-ms-animation:blur(50px);
-	-o-animation:blur(50px);
-	filter:blur(50px);
 }
 
 app-image[lqip] img:nth-of-type(2) {
