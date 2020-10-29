@@ -6,6 +6,7 @@ import { assert } from '@ember/debug';
 import Model from '@ascua/surreal/model';
 import count from "../builders/count";
 import table from "../builders/table";
+import Record from '../classes/types/record';
 
 export default class Store extends Service {
 
@@ -13,7 +14,21 @@ export default class Store extends Service {
 
 	#cache = new Cache();
 
+	#proxy = new Object();
+
 	#stack = new Object();
+
+	/**
+	 * When the store is to be destroyed, we
+	 * destroy and clear all of the cached records.
+	 *
+	 * @returns {undefined} Does not return anything.
+	 */
+
+	willDestroy() {
+		super.willDestroy();
+		this.reset();
+	}
 
 	/**
 	 * Reset the store.
@@ -22,8 +37,12 @@ export default class Store extends Service {
 	 */
 
 	reset() {
-		for (const k in this.#cache.data) {
-			this.#cache.get(k).clear();
+		this.#cache.clear();
+		for (let k in this.#proxy) {
+			delete this.#proxy[k];
+		}
+		for (let k in this.#stack) {
+			delete this.#stack[k];
 		}
 	}
 
@@ -35,6 +54,19 @@ export default class Store extends Service {
 
 	lookup(model) {
 		return getOwner(this).factoryFor(`model:${model}`);
+	}
+
+	/**
+	 * Create a new remote proxy record.
+	 *
+	 * @returns {Record} The remote proxy record.
+	 */
+
+	proxy(data) {
+		if (this.#proxy[data.id]) {
+			return this.#proxy[data.id];
+		}
+		return this.#proxy[data.id] = Record.initiate(data);
 	}
 
 	/**

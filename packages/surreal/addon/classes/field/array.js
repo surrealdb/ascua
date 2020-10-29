@@ -50,15 +50,15 @@ export default function(type) {
 						case v instanceof Record:
 							return v;
 						case v instanceof Model:
-							return Record.initiate({
+							return this.store.proxy({
 								id: v.id, promise: Promise.resolve(v)
 							});
 						case v instanceof Object:
-							return Record.initiate({
+							return this.store.proxy({
 								id: v.id, promise: this.store.inject(v)
 							});
 						default:
-							return Record.initiate({
+							return this.store.proxy({
 								id: v, future: () => this.store.select(type, v)
 							});
 						}
@@ -122,15 +122,15 @@ export default function(type) {
 						case v instanceof Record:
 							return v;
 						case v instanceof Model:
-							return Record.initiate({
+							return this.store.proxy({
 								id: v.id, promise: Promise.resolve(v)
 							});
 						case v instanceof Object:
-							return Record.initiate({
+							return this.store.proxy({
 								id: v.id, promise: this.store.inject(v)
 							});
 						default:
-							return Record.initiate({
+							return this.store.proxy({
 								id: v, future: () => this.store.select(type, v)
 							});
 						}
