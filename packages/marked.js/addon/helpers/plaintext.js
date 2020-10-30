@@ -7,7 +7,7 @@ renderer.image = () => '';
 renderer.link = (href, title, text) => text + ` (${href})`;
 renderer.paragraph = (text) => text + '\n';
 renderer.code = () => '';
-renderer.html = () => '';
+renderer.html = (html) => html;
 renderer.strong = (text) => text;
 renderer.em = (text) => text;
 renderer.codespan = (text) => text;
