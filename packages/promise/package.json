@@ -1,6 +1,6 @@
 {
   "name": "@ascua/promise",
-  "version": "0.0.100",
+  "version": "0.0.101",
   "description": "Small description for @ascua/promise goes here",
   "keywords": [
     "ember-addon"
