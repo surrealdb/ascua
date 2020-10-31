@@ -53,6 +53,7 @@ export default class Store extends Service {
 	 */
 
 	lookup(model) {
+		if (this.isDestroyed) return;
 		return getOwner(this).factoryFor(`model:${model}`);
 	}
 
@@ -109,6 +110,8 @@ export default class Store extends Service {
 
 	async remove(ids) {
 
+		if (this.isDestroyed) return;
+
 		return [].concat(ids).map(async id => {
 			return await this.unload(id.split(':')[0], id);
 		});
@@ -124,6 +127,8 @@ export default class Store extends Service {
 	 */
 
 	async inject(items) {
+
+		if (this.isDestroyed) return;
 
 		let records = [].concat(items).map(async item => {
 
@@ -163,6 +168,8 @@ export default class Store extends Service {
 
 	async unload(model, id) {
 
+		if (this.isDestroyed) return;
+
 		assert('The model type must be a string', typeof model === 'string');
 
 		if (id !== undefined) {
@@ -194,6 +201,8 @@ export default class Store extends Service {
 	 */
 
 	async cached(model, id) {
+
+		if (this.isDestroyed) return;
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -229,6 +238,8 @@ export default class Store extends Service {
 
 	async remote(model, id) {
 
+		if (this.isDestroyed) return;
+
 		assert('The model type must be a string', typeof model === 'string');
 
 		let server = await this.surreal.select(model, id);
@@ -249,6 +260,8 @@ export default class Store extends Service {
 	 */
 
 	async create(model, id, data) {
+
+		if (this.isDestroyed) return;
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -274,6 +287,8 @@ export default class Store extends Service {
 	 */
 
 	async modify(record, diff) {
+
+		if (this.isDestroyed) return;
 
 		assert('You must pass a record to be modified', record instanceof Model);
 
@@ -305,6 +320,8 @@ export default class Store extends Service {
 
 	async update(record) {
 
+		if (this.isDestroyed) return;
+
 		assert('You must pass a record to be updated', record instanceof Model);
 
 		try {
@@ -334,6 +351,8 @@ export default class Store extends Service {
 	 */
 
 	async delete(record) {
+
+		if (this.isDestroyed) return;
 
 		assert('You must pass a record to be deleted', record instanceof Model);
 
@@ -368,6 +387,8 @@ export default class Store extends Service {
 	 */
 
 	async select(model, id, opts) {
+
+		if (this.isDestroyed) return;
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -413,6 +434,8 @@ export default class Store extends Service {
 
 	async count(model, query) {
 
+		if (this.isDestroyed) return;
+
 		let { text, vars } = count(model, query);
 
 		let [json] = await this.surreal.query(text, vars);
@@ -439,6 +462,8 @@ export default class Store extends Service {
 	 */
 
 	async search(model, query) {
+
+		if (this.isDestroyed) return;
 
 		let { text, vars } = table(model, query);
 
