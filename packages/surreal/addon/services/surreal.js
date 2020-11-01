@@ -6,6 +6,7 @@ import Database from 'surreal';
 import { tracked } from '@glimmer/tracking';
 import { inject } from '@ember/service';
 import { assert } from '@ember/debug';
+import { cache } from '@ascua/decorators';
 import JWT from '../utils/jwt';
 
 const defaults = {
@@ -67,7 +68,7 @@ export default class Surreal extends Service {
 	// authentication token, so we
 	// can access it when needed.
 
-	get jwt() {
+	@cache get jwt() {
 		return JWT(this.token);
 	}
 

@@ -17,6 +17,7 @@
   "dependencies": {
     "@ascua/config": "file:../config",
     "@ascua/context": "file:../context",
+    "@ascua/decorators": "file:../decorators",
     "@ascua/proxy": "file:../proxy",
     "@ascua/queue": "file:../queue",
     "@ascua/service": "file:../service",
