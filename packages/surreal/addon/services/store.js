@@ -51,9 +51,7 @@ export default class Store extends Service {
 	 *
 	 * @returns {Model} The class for the desired model.
 	 */
-
 	lookup(model) {
-		if (this.isDestroyed) return;
 		return getOwner(this).factoryFor(`model:${model}`);
 	}
 
@@ -110,8 +108,6 @@ export default class Store extends Service {
 
 	async remove(ids) {
 
-		if (this.isDestroyed) return;
-
 		return [].concat(ids).map(async id => {
 			return await this.unload(id.split(':')[0], id);
 		});
@@ -128,20 +124,26 @@ export default class Store extends Service {
 
 	async inject(items) {
 
-		if (this.isDestroyed) return;
-
 		let records = [].concat(items).map(async item => {
 
-			let cached = await this.cached(item.meta.tb, item.id);
+			try {
 
-			if (cached === undefined) {
-				cached = this.lookup(item.meta.tb).create(item);
-				this.#cache.get(item.meta.tb).addObject(cached);
-			} else {
-				cached.ingest.queue(item);
+				let cached = await this.cached(item.meta.tb, item.id);
+
+				if (cached === undefined) {
+					cached = this.lookup(item.meta.tb).create(item);
+					this.#cache.get(item.meta.tb).addObject(cached);
+				} else {
+					cached.ingest.queue(item);
+				}
+
+				return cached;
+
+			} catch (e) {
+
+				throw e;
+
 			}
-
-			return cached;
 
 		});
 
@@ -167,8 +169,6 @@ export default class Store extends Service {
 	 */
 
 	async unload(model, id) {
-
-		if (this.isDestroyed) return;
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -201,8 +201,6 @@ export default class Store extends Service {
 	 */
 
 	async cached(model, id) {
-
-		if (this.isDestroyed) return;
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -238,8 +236,6 @@ export default class Store extends Service {
 
 	async remote(model, id) {
 
-		if (this.isDestroyed) return;
-
 		assert('The model type must be a string', typeof model === 'string');
 
 		let server = await this.surreal.select(model, id);
@@ -261,18 +257,24 @@ export default class Store extends Service {
 
 	async create(model, id, data) {
 
-		if (this.isDestroyed) return;
-
 		assert('The model type must be a string', typeof model === 'string');
 
-		if (arguments.length === 2) {
-			[id, data] = [undefined, id];
-		}
+		try {
 
-		let record = this.lookup(model).create(data);
-		let server = await this.surreal.create(model, id, record.data);
-		await this.inject(server);
-		return this.cached(model, server.id);
+			if (arguments.length === 2) {
+				[id, data] = [undefined, id];
+			}
+
+			let record = this.lookup(model).create(data);
+			let server = await this.surreal.create(model, id, record.data);
+			await this.inject(server);
+			return this.cached(model, server.id);
+
+		} catch (e) {
+
+			throw e;
+
+		}
 
 	}
 
@@ -287,8 +289,6 @@ export default class Store extends Service {
 	 */
 
 	async modify(record, diff) {
-
-		if (this.isDestroyed) return;
 
 		assert('You must pass a record to be modified', record instanceof Model);
 
@@ -320,8 +320,6 @@ export default class Store extends Service {
 
 	async update(record) {
 
-		if (this.isDestroyed) return;
-
 		assert('You must pass a record to be updated', record instanceof Model);
 
 		try {
@@ -351,8 +349,6 @@ export default class Store extends Service {
 	 */
 
 	async delete(record) {
-
-		if (this.isDestroyed) return;
 
 		assert('You must pass a record to be deleted', record instanceof Model);
 
@@ -387,8 +383,6 @@ export default class Store extends Service {
 	 */
 
 	async select(model, id, opts) {
-
-		if (this.isDestroyed) return;
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -434,8 +428,6 @@ export default class Store extends Service {
 
 	async count(model, query) {
 
-		if (this.isDestroyed) return;
-
 		let { text, vars } = count(model, query);
 
 		let [json] = await this.surreal.query(text, vars);
@@ -463,8 +455,6 @@ export default class Store extends Service {
 
 	async search(model, query) {
 
-		if (this.isDestroyed) return;
-
 		let { text, vars } = table(model, query);
 
 		let [json] = await this.surreal.query(text, vars);
@@ -475,16 +465,24 @@ export default class Store extends Service {
 
 		let records = [].concat(result).map(item => {
 
-			let cached = this.#cache.get(model).findBy('id', item.id);
+			try {
 
-			if (cached === undefined) {
-				cached = this.lookup(model).create(item);
-				this.#cache.get(model).addObject(cached);
-			} else {
-				cached.ingest.queue(item);
+				let cached = this.#cache.get(model).findBy('id', item.id);
+
+				if (cached === undefined) {
+					cached = this.lookup(model).create(item);
+					this.#cache.get(model).addObject(cached);
+				} else {
+					cached.ingest.queue(item);
+				}
+
+				return cached;
+
+			} catch (e) {
+
+				throw e;
+
 			}
-
-			return cached;
 
 		});
 
