@@ -1,7 +1,7 @@
 'use strict';
 
 const Filter = require('broccoli-filter');
-const minify = require('html-minifier').minify;
+const minify = require('html-minifier-terser').minify;
 
 module.exports = class Minify extends Filter {
 
