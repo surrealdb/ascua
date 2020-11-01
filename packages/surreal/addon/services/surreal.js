@@ -5,7 +5,6 @@ import unid from '../utils/unid';
 import Database from 'surreal';
 import { tracked } from '@glimmer/tracking';
 import { inject } from '@ember/service';
-import { computed } from '@ember/object';
 import { assert } from '@ember/debug';
 import JWT from '../utils/jwt';
 
@@ -64,11 +63,11 @@ export default class Surreal extends Service {
 
 	@tracked authenticated = false;
 
-	// Add a computed property for
-	// the authentication token so
-	// we can its contents if needed.
+	// Add a property for the parsed
+	// authentication token, so we
+	// can access it when needed.
 
-	@computed('token') get jwt() {
+	get jwt() {
 		return JWT(this.token);
 	}
 

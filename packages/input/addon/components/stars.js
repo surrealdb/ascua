@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { computed } from '@ember/object';
 import { action } from '@ember/object';
 import { arg } from '@ascua/decorators';
 
@@ -14,7 +13,6 @@ export default class extends Component {
 
 	@tracked value = undefined;
 
-	@computed('min', 'max', 'value')
 	get stars() {
 		let b = parseInt(this.min);
 		let e = parseInt(this.max);

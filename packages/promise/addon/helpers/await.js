@@ -1,14 +1,9 @@
 import Helper from '@ember/component/helper';
 import { tracked } from '@glimmer/tracking';
-import { observe } from '@ascua/decorators';
 
 export default class extends Helper {
 
 	@tracked value = undefined;
-
-	@observe('value') changed() {
-		this.recompute();
-	}
 
 	compute([promise]) {
 

@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
 import { action } from '@ember/object';
 import { arg } from '@ascua/decorators';
 import CodeMirror from 'codemirror';

@@ -1,32 +1,28 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { setProperties } from '@ember/object';
-import { computed } from '@ember/object';
 import { action } from '@ember/object';
 
 export default class extends Component {
 
-	options = [];
+	@tracked options = [];
 
-	selected = [];
+	@tracked selected = [];
 
-	display = false;
+	@tracked display = false;
 
-	visible = false;
+	@tracked visible = false;
 
 	@action open() {
-		setProperties(this, {
-			display: true,
-		});
+		this.display = true;
 		setTimeout( () => {
 			this.style();
 		});
 	}
 
 	@action close() {
-		setProperties(this, {
-			display: false,
-			visible: false,
-		});
+		this.display = false;
+		this.visible = false;
 	}
 
 	@action didCreate(element) {
@@ -91,12 +87,10 @@ export default class extends Component {
 
 	}
 
-	@computed('args.value')
 	get value() {
 		return this.args.value;
 	}
 
-	@computed('args.value', 'options.@each', 'options.@each.{label,value}')
 	get label() {
 
 		let value = [].concat(this.args.value);

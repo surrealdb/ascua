@@ -1,16 +1,20 @@
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import Poller from '../classes/poller';
 
 export default class extends Service {
 
-	ticker = null;
-	year = null;
-	month = null;
-	day = null;
-	hour = null;
-	minute = null;
-	second = null;
-	quart = null;
+	@tracked poller;
+
+	@tracked now;
+	@tracked full;
+	@tracked year;
+	@tracked month;
+	@tracked day;
+	@tracked hour;
+	@tracked minute;
+	@tracked second;
+	@tracked quart;
 
 	constructor() {
 
@@ -34,17 +38,15 @@ export default class extends Service {
 
 		const date = new Date();
 
-		this.setProperties({
-			now: date,
-			full: date,
-			year: date.getFullYear(),
-			month: date.getMonth() + 1,
-			day: date.getDate(),
-			hour: date.getHours(),
-			minute: date.getMinutes(),
-			second: date.getSeconds(),
-			quart: Math.ceil( date.getSeconds() / 15 ),
-		});
+		this.now = date;
+		this.full = date;
+		this.year = date.getFullYear();
+		this.month = date.getMonth() + 1;
+		this.day = date.getDate();
+		this.hour = date.getHours();
+		this.minute = date.getMinutes();
+		this.second = date.getSeconds();
+		this.quart = Math.ceil( date.getSeconds() / 15 );
 
 	}
 

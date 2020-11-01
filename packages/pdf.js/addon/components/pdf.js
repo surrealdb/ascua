@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { action } from '@ember/object';
 import { timeout } from '@ascua/tasks';

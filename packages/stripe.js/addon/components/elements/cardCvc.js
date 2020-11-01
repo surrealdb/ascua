@@ -1,11 +1,9 @@
 import Element from './element';
-import { computed } from '@ember/object';
 
 export default class extends Element {
 
 	type = 'cardCvc';
 
-	@computed('args.{classes,style,placeholder,disabled}')
 	get opts() {
 		return {
 			classes: this.args.classes,

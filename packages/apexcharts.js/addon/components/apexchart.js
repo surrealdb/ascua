@@ -1,21 +1,17 @@
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
 import { action } from '@ember/object';
 import Chart from 'apexcharts.js';
 
 export default class extends Component {
 
-	@computed('args.width')
 	get width() {
 		return this.args.width || '100%';
 	}
 
-	@computed('args.height')
 	get height() {
 		return this.args.height || '100%';
 	}
 
-	@computed('args.{data,opts}')
 	get initial() {
 		let data = { series: this.args.data };
 		return Object.assign({}, data, this.args.opts);

@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { action } from '@ember/object';
 import { arg } from '@ascua/decorators';

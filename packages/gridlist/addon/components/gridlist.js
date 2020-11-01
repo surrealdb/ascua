@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { setProperties } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { computed } from '@ember/object';
 import { action } from '@ember/object';
 import Item from '../classes/item';
 

@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { computed } from '@ember/object';
 import { action } from '@ember/object';
 import { arg } from '@ascua/decorators';
 
@@ -16,17 +15,14 @@ export default class extends Component {
 
 	@arg height = '100%';
 
-	@computed('zoom', 'frame')
 	get scale() {
 		return Math.min(1, this.frame / this.zoom);
 	}
 
-	@computed('scale')
 	get perct() {
 		return Math.max(100, (1 / this.scale) * 100) + '%';
 	}
 
-	@computed('scale')
 	get trans() {
 		return `scale(${this.scale})`;
 	}

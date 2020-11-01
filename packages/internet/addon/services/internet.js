@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { equal } from '@ember/object/computed';
 
 function enabled() {
 	try {
@@ -17,9 +16,13 @@ export default class extends Service {
 
 	@tracked status = 'online';
 
-	@equal('status', 'online') online;
+	get online() {
+		return this.status === 'online';
+	}
 
-	@equal('status', 'offline') offline;
+	get offline() {
+		return this.status === 'offline';
+	}
 
 	constructor() {
 
