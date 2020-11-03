@@ -42,7 +42,7 @@ export default {
 					config: metric.config
 				});
 
-				instance.register(n, o);
+				instance.register(n, o, { instantiate: true });
 				instance.inject('service:metrics', n, n);
 
 				m.push(o);

@@ -10,7 +10,7 @@ export default class extends Service {
 		super(...arguments);
 
 		this.router.on('routeDidChange', () => {
-			this.get('metrics').forEach(m => {
+			this.metrics.forEach(m => {
 				m.trackPage();
 			});
 		});
@@ -20,9 +20,11 @@ export default class extends Service {
 	clear(n) {
 		switch (arguments.length) {
 		case 1:
-			return this.get(`metric:${n}`).clear();
+			if (this[`metric:${n}`]) {
+				return this[`metric:${n}`].clear();
+			}
 		case 0:
-			return this.get(`metrics`).forEach(m => {
+			return this.metrics.forEach(m => {
 				m.clear();
 			});
 		}
@@ -31,9 +33,11 @@ export default class extends Service {
 	identify(n, id, data) {
 		switch (arguments.length) {
 		case 3:
-			return this.get(`metric:${n}`).identify(id, data);
+			if (this[`metric:${n}`]) {
+				return this[`metric:${n}`].identify(id, data);
+			}
 		case 2:
-			return this.get(`metrics`).forEach(m => {
+			return this.metrics.forEach(m => {
 				m.identify(...arguments);
 			});
 		}
@@ -42,9 +46,11 @@ export default class extends Service {
 	trackPage(n, data) {
 		switch (arguments.length) {
 		case 2:
-			return this.get(`metric:${n}`).trackPage(data);
+			if (this[`metric:${n}`]) {
+				return this[`metric:${n}`].trackPage(data);
+			}
 		case 1:
-			return this.get(`metrics`).forEach(m => {
+			return this.metrics.forEach(m => {
 				m.trackPage(...arguments);
 			});
 		}
@@ -53,9 +59,11 @@ export default class extends Service {
 	trackEvent(n, name, data) {
 		switch (arguments.length) {
 		case 3:
-			return this.get(`metric:${n}`).trackEvent(name, data);
+			if (this[`metric:${n}`]) {
+				return this[`metric:${n}`].trackEvent(name, data);
+			}
 		case 2:
-			return this.get(`metrics`).forEach(m => {
+			return this.metrics.forEach(m => {
 				m.trackEvent(...arguments);
 			});
 		}
