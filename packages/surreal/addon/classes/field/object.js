@@ -7,30 +7,46 @@ export default function(type) {
 	return Property({
 		get(key) {
 
-			let model = this.store.lookup(type);
+			try {
 
-			if (model && model.class.prototype instanceof Field) {
-				return this.data[key] = this.data[key] || model.create({ parent: this });
+				let model = this.store.lookup(type);
+
+				if (model && model.class.prototype instanceof Field) {
+					return this.data[key] = this.data[key] || model.create({ parent: this });
+				}
+
+				assert('An embedded object must be of type Field');
+
+			} catch (e) {
+
+				// ignore
+
 			}
-
-			assert('An embedded object must be of type Field');
 
 		},
 		set(key, value={}) {
 
-			let model = this.store.lookup(type);
+			try {
 
-			if (model && model.class.prototype instanceof Field) {
-				switch (true) {
-				case this.data[key] !== undefined:
-					setProperties(this.data[key], value);
-					return this.data[key];
-				case this.data[key] === undefined:
-					return this.data[key] = model.create({ ...value, parent: this });
+				let model = this.store.lookup(type);
+
+				if (model && model.class.prototype instanceof Field) {
+					switch (true) {
+					case this.data[key] !== undefined:
+						setProperties(this.data[key], value);
+						return this.data[key];
+					case this.data[key] === undefined:
+						return this.data[key] = model.create({ ...value, parent: this });
+					}
 				}
-			}
 
-			assert('An embedded object must be of type Field');
+				assert('An embedded object must be of type Field');
+
+			} catch (e) {
+
+				// ignore
+
+			}
 
 		},
 	});

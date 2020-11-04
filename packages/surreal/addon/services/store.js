@@ -8,6 +8,13 @@ import count from "../builders/count";
 import table from "../builders/table";
 import Record from '../classes/types/record';
 
+class DestroyedError extends Error {
+	constructor() {
+		super();
+		this.name = "DestroyedError";
+	}
+}
+
 export default class Store extends Service {
 
 	@inject surreal;
@@ -52,7 +59,12 @@ export default class Store extends Service {
 	 * @returns {Model} The class for the desired model.
 	 */
 	lookup(model) {
-		return getOwner(this).factoryFor(`model:${model}`);
+		let owner = getOwner(this);
+		if (owner.isDestroyed) {
+			throw new DestroyedError();
+		} else {
+			return owner.factoryFor(`model:${model}`);
+		}
 	}
 
 	/**
@@ -141,7 +153,11 @@ export default class Store extends Service {
 
 			} catch (e) {
 
-				throw e;
+				if (e instanceof DestroyedError) {
+					// ignore
+				} else {
+					throw e;
+				}
 
 			}
 
@@ -272,7 +288,11 @@ export default class Store extends Service {
 
 		} catch (e) {
 
-			throw e;
+			if (e instanceof DestroyedError) {
+				// ignore
+			} else {
+				throw e;
+			}
 
 		}
 
@@ -480,7 +500,11 @@ export default class Store extends Service {
 
 			} catch (e) {
 
-				throw e;
+				if (e instanceof DestroyedError) {
+					// ignore
+				} else {
+					throw e;
+				}
 
 			}
 

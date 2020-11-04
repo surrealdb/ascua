@@ -32,40 +32,48 @@ export default function(type) {
 
 				let value = this.data[key] || [];
 
-				let model = this.store.lookup(type);
+				try {
 
-				if (model && model.class.prototype instanceof Field) {
-					return this.data[key] = this.data[key] || new Array(this, (v) => {
-						return model.create({ ...v, parent: this });
-					}, ...value);
+					let model = this.store.lookup(type);
+
+					if (model && model.class.prototype instanceof Field) {
+						return this.data[key] = this.data[key] || new Array(this, (v) => {
+							return model.create({ ...v, parent: this });
+						}, ...value);
+					}
+
+					if (model && model.class.prototype instanceof Model) {
+						return this.data[key] = this.data[key] || new Array(this, (v) => {
+							switch (true) {
+							case v === null:
+								return v;
+							case v === undefined:
+								return v;
+							case v instanceof Record:
+								return v;
+							case v instanceof Model:
+								return this.store.proxy({
+									id: v.id, promise: Promise.resolve(v)
+								});
+							case v instanceof Object:
+								return this.store.proxy({
+									id: v.id, promise: this.store.inject(v)
+								});
+							default:
+								return this.store.proxy({
+									id: v, future: () => this.store.select(type, v)
+								});
+							}
+						}, ...value);
+					}
+
+					assert('An embedded object must be of type Model or Field');
+
+				} catch (e) {
+
+					// ignore
+
 				}
-
-				if (model && model.class.prototype instanceof Model) {
-					return this.data[key] = this.data[key] || new Array(this, (v) => {
-						switch (true) {
-						case v === null:
-							return v;
-						case v === undefined:
-							return v;
-						case v instanceof Record:
-							return v;
-						case v instanceof Model:
-							return this.store.proxy({
-								id: v.id, promise: Promise.resolve(v)
-							});
-						case v instanceof Object:
-							return this.store.proxy({
-								id: v.id, promise: this.store.inject(v)
-							});
-						default:
-							return this.store.proxy({
-								id: v, future: () => this.store.select(type, v)
-							});
-						}
-					}, ...value);
-				}
-
-				assert('An embedded object must be of type Model or Field');
 
 			}
 
@@ -104,40 +112,48 @@ export default function(type) {
 				return this.data[key] = new Array(this, Datetime, ...value);
 			default:
 
-				let model = this.store.lookup(type);
+				try {
 
-				if (model && model.class.prototype instanceof Field) {
-					return this.data[key] = new Array(this, (v) => {
-						return model.create({ ...v, parent: this });
-					}, ...value);
+					let model = this.store.lookup(type);
+
+					if (model && model.class.prototype instanceof Field) {
+						return this.data[key] = new Array(this, (v) => {
+							return model.create({ ...v, parent: this });
+						}, ...value);
+					}
+
+					if (model && model.class.prototype instanceof Model) {
+						return this.data[key] = new Array(this, (v) => {
+							switch (true) {
+							case v === null:
+								return v;
+							case v === undefined:
+								return v;
+							case v instanceof Record:
+								return v;
+							case v instanceof Model:
+								return this.store.proxy({
+									id: v.id, promise: Promise.resolve(v)
+								});
+							case v instanceof Object:
+								return this.store.proxy({
+									id: v.id, promise: this.store.inject(v)
+								});
+							default:
+								return this.store.proxy({
+									id: v, future: () => this.store.select(type, v)
+								});
+							}
+						}, ...value);
+					}
+
+					assert('An embedded object must be of type Model or Field');
+
+				} catch (e) {
+
+					// ignore
+
 				}
-
-				if (model && model.class.prototype instanceof Model) {
-					return this.data[key] = new Array(this, (v) => {
-						switch (true) {
-						case v === null:
-							return v;
-						case v === undefined:
-							return v;
-						case v instanceof Record:
-							return v;
-						case v instanceof Model:
-							return this.store.proxy({
-								id: v.id, promise: Promise.resolve(v)
-							});
-						case v instanceof Object:
-							return this.store.proxy({
-								id: v.id, promise: this.store.inject(v)
-							});
-						default:
-							return this.store.proxy({
-								id: v, future: () => this.store.select(type, v)
-							});
-						}
-					}, ...value);
-				}
-
-				assert('An embedded object must be of type Model or Field');
 
 			}
 
