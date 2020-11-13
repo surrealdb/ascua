@@ -1,5 +1,6 @@
 import Core from '@ember/object';
 import { inject } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class Field extends Core {
 
@@ -9,13 +10,8 @@ export default class Field extends Core {
 
 	#parent = undefined;
 
-	// The `data` property can be used
-	// to retrieve the underlying data
-	// that is used with the record.
-
-	get data() {
-		return this.#data = this.#data || {};
-	}
+	// The tracked underlying record data
+	@tracked data = {};
 
 	// The `parent` property can be used
 	// to retrieve the underlying parent
