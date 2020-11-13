@@ -9,7 +9,6 @@ import Record from '../types/record';
 import Model from '@ascua/surreal/model';
 import Field from '@ascua/surreal/field';
 import { assert } from '@ember/debug';
-import { set } from '@ember/object';
 
 const json = (v) => JSON.stringify(v);
 
