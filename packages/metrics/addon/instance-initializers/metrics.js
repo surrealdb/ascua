@@ -28,22 +28,23 @@ export default {
 
 		[].concat(c.metrics).filter(Boolean).forEach(metric => {
 
-			let n = `metric:${metric.name}`;
-
 			// Does the specified metric exist?
-			let f = instance.lookup(n);
+			let f = instance.lookup(`metric:${metric.name}`);
 
 			// Should the metric run in this environment?
 			let e = metric.environments.includes(c.environment);
 
 			if (x && f && e) {
 
+				let n = `metrics:${metric.name}`;
+
 				let o = f.create(instance.ownerInjection(), {
 					config: metric.config
 				});
 
-				instance.register(n, o, { instantiate: true });
-				instance.inject('service:metrics', n, n);
+				instance.register(n, o, { instantiate: false });
+
+				instance.inject('service:metrics', metric.name, n);
 
 				m.push(o);
 

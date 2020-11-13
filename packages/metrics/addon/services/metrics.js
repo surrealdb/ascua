@@ -20,8 +20,8 @@ export default class extends Service {
 	clear(n) {
 		switch (arguments.length) {
 		case 1:
-			if (this[`metric:${n}`]) {
-				return this[`metric:${n}`].clear();
+			if (this[n]) {
+				return this[n].clear();
 			}
 		case 0:
 			return this.metrics.forEach(m => {
@@ -33,8 +33,8 @@ export default class extends Service {
 	identify(n, id, data) {
 		switch (arguments.length) {
 		case 3:
-			if (this[`metric:${n}`]) {
-				return this[`metric:${n}`].identify(id, data);
+			if (this[n]) {
+				return this[n].identify(id, data);
 			}
 		case 2:
 			return this.metrics.forEach(m => {
@@ -46,8 +46,8 @@ export default class extends Service {
 	trackPage(n, data) {
 		switch (arguments.length) {
 		case 2:
-			if (this[`metric:${n}`]) {
-				return this[`metric:${n}`].trackPage(data);
+			if (this[n]) {
+				return this[n].trackPage(data);
 			}
 		case 1:
 			return this.metrics.forEach(m => {
@@ -59,8 +59,8 @@ export default class extends Service {
 	trackEvent(n, name, data) {
 		switch (arguments.length) {
 		case 3:
-			if (this[`metric:${n}`]) {
-				return this[`metric:${n}`].trackEvent(name, data);
+			if (this[n]) {
+				return this[n].trackEvent(name, data);
 			}
 		case 2:
 			return this.metrics.forEach(m => {
