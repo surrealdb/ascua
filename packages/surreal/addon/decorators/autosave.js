@@ -1,4 +1,5 @@
 import Model from '../model';
+import { STATE } from '../model';
 import { UPDATED } from '../model';
 import { assert } from '@ember/debug';
 
@@ -21,7 +22,7 @@ function func(target) {
 	target.reopen({
 
 		autosave() {
-			if (this.state === UPDATED) {
+			if (this[STATE] === UPDATED) {
 				return this.save();
 			}
 		},

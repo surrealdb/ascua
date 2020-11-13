@@ -9,6 +9,7 @@ import Diff from '../dmp/diff';
 
 const json = (v) => JSON.stringify(v);
 
+export const STATE = Symbol("STATE");
 export const INITIAL = Symbol("INITIAL");
 export const LOADING = Symbol("LOADING");
 export const UPDATED = Symbol("UPDATED");
@@ -94,7 +95,7 @@ export default class Model extends Core {
 	// external observer to see which
 	// syncing state the record is in.
 
-	get state() {
+	get [STATE]() {
 		return this.#state;
 	}
 
