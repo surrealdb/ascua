@@ -9,7 +9,7 @@ export function markdown([value=''], { inline = false }) {
 
 	switch (inline) {
 	case true:
-		return htmlSafe(marked.inlineLexer(String(value), {
+		return htmlSafe(marked.parseInline(String(value), {
 			gfm: true, breaks: true, renderer: renderer,
 		}));
 	case false:
