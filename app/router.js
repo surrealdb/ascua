@@ -89,6 +89,8 @@ Router.map(function() {
 		this.route('apexcharts', function() {
 			this.route('elements');
 		});
+		this.route('big');
+		this.route('bignumber');
 		this.route('chart', function() {
 			this.route('elements');
 		});
@@ -98,6 +100,7 @@ Router.map(function() {
 		this.route('cropper', function() {
 			this.route('elements');
 		});
+		this.route('decimal');
 		this.route('jsoneditor', function() {
 			this.route('elements');
 		});

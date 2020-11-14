@@ -1,0 +1,29 @@
+{
+  "name": "@ascua/big.js",
+  "version": "0.0.109",
+  "description": "Small description for @ascua/big.js goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
+  "dependencies": {
+    "big.js": "^6.0.2",
+    "ember-cli-babel": "^7.22.1",
+    "ember-cli-htmlbars": "^5.3.1"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua"
+  },
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@ascua/decimal.js",
+  "version": "0.0.109",
+  "description": "Small description for @ascua/decimal.js goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
+  "dependencies": {
+    "decimal.js": "^10.2.1",
+    "ember-cli-babel": "^7.22.1",
+    "ember-cli-htmlbars": "^5.3.1"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua"
+  },
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
+}

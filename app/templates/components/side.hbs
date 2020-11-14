@@ -126,6 +126,16 @@
 			<Navigate @route="libraries.apexcharts.elements" @name="Elements" />
 		</section>
 
+		<Navigate @route="libraries.big" @name="big.js" />
+		<section show={{is-active "libraries.big"}}>
+			<Navigate @route="libraries.big" @name="Setup" />
+		</section>
+
+		<Navigate @route="libraries.bignumber" @name="bignumber.js" />
+		<section show={{is-active "libraries.bignumber"}}>
+			<Navigate @route="libraries.bignumber" @name="Setup" />
+		</section>
+
 		<Navigate @route="libraries.chart" @name="chart.js" />
 		<section show={{is-active "libraries.chart"}}>
 			<Navigate @route="libraries.chart" @name="Setup" />
@@ -142,6 +152,11 @@
 		<section show={{is-active "libraries.cropper"}}>
 			<Navigate @route="libraries.cropper" @name="Setup" />
 			<Navigate @route="libraries.cropper.elements" @name="Elements" />
+		</section>
+
+		<Navigate @route="libraries.decimal" @name="decimal.js" />
+		<section show={{is-active "libraries.decimal"}}>
+			<Navigate @route="libraries.decimal" @name="Setup" />
 		</section>
 
 		<Navigate @route="libraries.jsoneditor" @name="jsoneditor.js" />
