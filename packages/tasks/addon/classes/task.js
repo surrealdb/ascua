@@ -91,10 +91,6 @@ export default class Task {
 
 		} catch (err) {
 
-			// Throw the error upwards
-
-			task.throw(err);
-
 			// Set the error on the task
 
 			task.error = err;
