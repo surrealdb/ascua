@@ -95,6 +95,14 @@ export default class Task {
 
 			task.error = err;
 
+			// Throw the error upwards
+
+			try {
+				task.throw(err);
+			} catch (err) {
+				task.error = err;
+			}
+
 		} finally {
 
 			// Remove the task from the list
