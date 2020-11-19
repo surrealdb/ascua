@@ -8,10 +8,8 @@ module.exports = {
 
 		this._super.included(...arguments);
 
-		app.import('node_modules/decimal.js/decimal.js');
-
-		app.import('vendor/decimal.js', {
-			exports: { 'decimal.js': ['default'] }
+		app.import('node_modules/decimal.js/decimal.js', {
+			using: [{ transformation: 'amd', as: 'decimal.js' }]
 		});
 
 	},

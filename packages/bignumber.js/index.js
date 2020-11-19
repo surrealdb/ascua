@@ -8,10 +8,8 @@ module.exports = {
 
 		this._super.included(...arguments);
 
-		app.import('node_modules/bignumber.js/bignumber.js');
-
-		app.import('vendor/bignumber.js', {
-			exports: { 'bignumber.js': ['default'] }
+		app.import('node_modules/bignumber.js/bignumber.js', {
+			using: [{ transformation: 'amd', as: 'bignumber.js' }]
 		});
 
 	},
