@@ -129,7 +129,7 @@ export default class Task {
 
 	}
 
-	@action async cancel() {
+	@action cancel() {
 		for (const task of this.tasks) {
 			try {
 				task.throw(CANCELLED);
@@ -137,6 +137,13 @@ export default class Task {
 				// Ignore
 			}
 		}
+	}
+
+	@action reset() {
+		this.isIdle = true;
+		this.isRunning = false;
+		this.isSuccess = false;
+		this.isFailure = false;
 	}
 
 }
