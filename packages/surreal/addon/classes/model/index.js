@@ -17,6 +17,8 @@ export const DELETED = Symbol("DELETED");
 
 export default class Model extends Core {
 
+	@inject surreal;
+
 	@inject store;
 
 	#id = null;
@@ -122,6 +124,14 @@ export default class Model extends Core {
 		this.#state = UPDATED;
 		this.#server = this.json;
 		this.#client = this.json;
+		this.surreal.on('closed', () => {
+			this.#state = UPDATED;
+			this.autosave();
+		});
+		this.surreal.on('opened', () => {
+			this.#state = UPDATED;
+			this.autosave();
+		});
 	}
 
 	/**
