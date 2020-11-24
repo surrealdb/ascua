@@ -9,7 +9,7 @@ export default class extends Object {
 	@tracked model;
 
 	get id() {
-		return this.model.id;
+		return this.model.get('id');
 	}
 
 }
