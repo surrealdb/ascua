@@ -44,7 +44,7 @@ export default class extends Component {
 
 			this.c.getContext('2d').clearRect(0, 0, this.c.width, this.c.height);
 
-			let viewport = page.getViewport({ scale });
+			let viewport = page.getViewport({ scale: scale / pr });
 			this.c.width = viewport.width;
 			this.c.height = viewport.height;
 
