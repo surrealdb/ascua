@@ -36,15 +36,17 @@ export default class extends Component {
 
 			if (!page) return;
 
-			let ww = this.args.w - 15;
-			let wh = this.args.h - 15;
+			yield timeout(500);
+
+			let ww = this.args.w;
+			let wh = this.args.h;
 			let pr = window.devicePixelRatio || 1;
 			let vp = page.getViewport({ scale: 1 });
 			let scale = Math.min(ww/vp.width, wh/vp.height) * pr;
 
 			this.c.getContext('2d').clearRect(0, 0, this.c.width, this.c.height);
 
-			let viewport = page.getViewport({ scale: scale / pr });
+			let viewport = page.getViewport({ scale });
 			this.c.width = viewport.width;
 			this.c.height = viewport.height;
 
