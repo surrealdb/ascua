@@ -11,6 +11,8 @@ export default class extends Component {
 
 	@tracked doc;
 
+	@tracked element;
+
 	@tracked pages = [];
 
 	@tracked page = this.args.page || 1;
