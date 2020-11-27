@@ -65,7 +65,7 @@ export default class Model extends Core {
 	}
 
 	set id(value) {
-		return this.#id = this.#id || value;
+		this.#id = this.#id || value;
 	}
 
 	// The `meta` property stores the
@@ -77,7 +77,7 @@ export default class Model extends Core {
 	}
 
 	set meta(value) {
-		return this.#meta = this.#meta || value;
+		this.#meta = this.#meta || value;
 	}
 
 	// The `json` property returns a

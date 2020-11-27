@@ -22,7 +22,7 @@ export default class Field extends Core {
 	}
 
 	set parent(value) {
-		return this.#parent = this.#parent || value;
+		this.#parent = this.#parent || value;
 	}
 
 	// When formatted as a JSON string,
