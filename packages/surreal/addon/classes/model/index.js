@@ -25,8 +25,6 @@ export default class Model extends Core {
 
 	#meta = undefined;
 
-	#data = undefined;
-
 	// Current record state
 	#state = INITIAL;
 
@@ -41,6 +39,9 @@ export default class Model extends Core {
 
 	// Last state of received data
 	#server = undefined;
+
+	// The tracked underlying record data
+	@tracked data = {};
 
 	// Property for whether the record exists
 	@tracked exists = undefined;
@@ -76,15 +77,6 @@ export default class Model extends Core {
 	set meta(value) {
 		this.#meta = this.#meta || value;
 	}
-
-	// The `data` property can be used
-	// to retrieve the underlying data
-	// that is used with the record.
-
-	get data() {
-		return this.#data = this.#data || {};
-	}
-
 
 	// The `json` property returns a
 	// JSON representation copy of the
@@ -205,7 +197,7 @@ export default class Model extends Core {
 	rollback() {
 
 		let undo = {};
-		let data = this.#data;
+		let data = this.data;
 		let client = this.#client;
 		let server = this.#server;
 
@@ -238,33 +230,43 @@ export default class Model extends Core {
 
 	@queue ingest(data) {
 
+		// Set state to LOADING
+
 		this.#state = LOADING;
-
-		// Store the current record data from the server
-
-		this.#server = this.store.lookup(this.tb).create(data);
 
 		// Calculate changes while data was in flight
 
-		let changes = new Diff(this.#client, this.json).output();
+		let diff = new Diff(this.#client, this.json).output();
 
-		// Merge in-flight changes with server changes
+		// Apply received record data to local record
 
-		let current = new Patch(this.#server.json, changes).output();
-
-		// Reapply in-flight changes to local record
-
-		for (const key in current) {
+		for (const key in data) {
 			let old = json(this[key]);
-			let now = json(current[key]);
-			if (old !== now) this[key] = current[key];
+			let now = json(data[key]);
+			if (old !== now) this[key] = data[key];
 		}
 
-		this.#client = this.#server.json;
+		this.#server = this.json;
+
+		// Calculate what the current record should be
+
+		let info = new Patch(this.json, diff).output();
+
+		// Re-apply the in-flight changes to the record
+
+		for (const key in info) {
+			let old = json(this[key]);
+			let now = json(info[key]);
+			if (old !== now) this[key] = info[key];
+		}
+
+		this.#client = this.json;
+
+		// Set state to UPDATED
 
 		this.#state = UPDATED;
 
-		if (changes.length) {
+		if (diff.length) {
 			this.autosave();
 		}
 
@@ -280,7 +282,7 @@ export default class Model extends Core {
 
 		try {
 			await this.#ctx.delay(250);
-			let diff = new Diff(this.#server.json, this.json).output();
+			let diff = new Diff(this.#server, this.json).output();
 			if (diff.length) {
 				this.exists = true;
 				this.#state = LOADING;

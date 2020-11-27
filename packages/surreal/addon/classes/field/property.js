@@ -1,3 +1,5 @@
+const json = (v) => JSON.stringify(v);
+
 export default function(obj) {
 	return function(target, key, desc) {
 		return {
@@ -8,11 +10,18 @@ export default function(obj) {
 				return obj.get.apply(this, [key]);
 			},
 			set(value) {
-				let old = this.data[key];
-				let now = obj.set.apply(this, [key, value]);
-				if (old !== now) this.notifyPropertyChange(key);
-				if (old !== now) this.autosave();
-				return now;
+
+				let old = json(this.data[key]);
+				let val = obj.set.apply(this, [key, value]);
+				let now = json(val);
+
+				if (old !== now) {
+					this.data = this.data;
+					this.autosave();
+				}
+
+				return val;
+
 			},
 		}
 	}
