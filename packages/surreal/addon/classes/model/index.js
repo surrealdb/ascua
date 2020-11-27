@@ -42,9 +42,6 @@ export default class Model extends Core {
 	// Last state of received data
 	#server = undefined;
 
-	// The tracked underlying record data
-	@tracked data = {};
-
 	// Property for whether the record exists
 	@tracked exists = undefined;
 
@@ -79,6 +76,15 @@ export default class Model extends Core {
 	set meta(value) {
 		this.#meta = this.#meta || value;
 	}
+
+	// The `data` property can be used
+	// to retrieve the underlying data
+	// that is used with the record.
+
+	get data() {
+		return this.#data = this.#data || {};
+	}
+
 
 	// The `json` property returns a
 	// JSON representation copy of the

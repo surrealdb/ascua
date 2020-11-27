@@ -10,7 +10,7 @@ export default function(obj) {
 			set(value) {
 				let old = this.data[key];
 				let now = obj.set.apply(this, [key, value]);
-				if (old !== now) this.data = this.data;
+				if (old !== now) this.notifyPropertyChange(key);
 				if (old !== now) this.autosave();
 				return now;
 			},
