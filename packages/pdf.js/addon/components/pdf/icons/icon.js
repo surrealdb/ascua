@@ -40,7 +40,7 @@ export default class extends Component {
 			let wh = this.args.h;
 			let pr = window.devicePixelRatio || 1;
 			let vp = page.getViewport({ scale: 1 });
-			let scale = Math.min(ww/vp.width, wh/vp.height) * pr;
+			let scale = Math.min(ww/vp.width, wh/vp.height);
 
 			this.c.getContext('2d').clearRect(0, 0, this.c.width, this.c.height);
 
