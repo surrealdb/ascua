@@ -36,8 +36,6 @@ export default class extends Component {
 
 			if (!page) return;
 
-			yield timeout(500);
-
 			let ww = this.args.w;
 			let wh = this.args.h;
 			let pr = window.devicePixelRatio || 1;
