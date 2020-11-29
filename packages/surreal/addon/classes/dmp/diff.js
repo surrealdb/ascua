@@ -113,20 +113,16 @@ export default class Diff {
 			this.val(old[i], now[i], p);
 		}
 
-		for (let j = i; j < now.length; j++) {
-			if (j >= old.length || now !== old) {
-				let p = route(path, j);
-				let v = now[j];
-				this.op('add', p, v);
-			}
+		for (let j = old.length; j < now.length; j++) {
+			let p = route(path, j);
+			let v = now[j];
+			this.op('add', p, v);
 		}
 
-		for (let j = i; j < old.length; j++) {
-			if (j >= now.length || now !== old) {
-				let p = route(path, j);
-				let v = undefined;
-				this.op('remove', p, v);
-			}
+		for (let j = old.length - 1; j >= now.length; j--) {
+			let p = route(path, j);
+			let v = undefined;
+			this.op('remove', p, v);
 		}
 
 	}
