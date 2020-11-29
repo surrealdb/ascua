@@ -7,6 +7,7 @@ import number from './classes/field/number';
 import object from './classes/field/object';
 import record from './classes/field/record';
 import string from './classes/field/string';
+import readonly from './classes/field/readonly';
 
 export default Field;
 
@@ -19,4 +20,5 @@ export {
 	object,
 	record,
 	string,
+	readonly,
 }

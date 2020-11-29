@@ -1,8 +1,24 @@
-import Core from '@ember/object';
+import Ember from 'ember';
 import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import meta from '../meta';
+import json from '../../utils/json';
 
-export default class Field extends Core {
+const { OWNER } = Ember.__loader.require('@ember/-internals/owner');
+
+export default class Field {
+
+	// ------------------------------
+	// Static methods
+	// ------------------------------
+
+	static create(data, shadow) {
+		return new this(data, shadow);
+	}
+
+	// ------------------------------
+	// Instance properties
+	// ------------------------------
 
 	@inject store;
 
@@ -20,7 +36,7 @@ export default class Field extends Core {
 	}
 
 	set parent(value) {
-		this.#parent = this.#parent || value;
+		this.#parent = value;
 	}
 
 	// When formatted as a JSON string,
@@ -31,13 +47,29 @@ export default class Field extends Core {
 		return this.data;
 	}
 
+	get _full() {
+		return json.full(this);
+	}
+
+	get _some() {
+		return json.some(this);
+	}
+
+	// ------------------------------
+	// Instance methods
+	// ------------------------------
+
 	/**
-	 * Enables setting undefined properties.
+	 * Finalizes the record setup.
+	 *
 	 * @returns {undefined} Does not return anything.
 	 */
 
-	setUnknownProperty() {
-		// Ignore
+	constructor(data, shadow) {
+		this[OWNER] = data[OWNER];
+		for (const key in data) {
+			this[key] = data[key];
+		}
 	}
 
 	/**

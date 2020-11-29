@@ -1,9 +1,14 @@
+import meta from '../meta';
+
 const json = (v) => JSON.stringify(v);
 
 export default function(obj) {
 	return function(target, key, desc) {
+
+		meta.set(target, key);
+
 		return {
-			configurable: true,
+			configurable: false,
 			enumerable: true,
 			writeable: false,
 			get() {
@@ -24,5 +29,6 @@ export default function(obj) {
 
 			},
 		}
+
 	}
 }

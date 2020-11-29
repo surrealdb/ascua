@@ -146,7 +146,7 @@ export default class Store extends Service {
 					cached = this.lookup(item.meta.tb).create(item);
 					this.#cache.get(item.meta.tb).addObject(cached);
 				} else {
-					cached.ingest.queue(item);
+					cached.ingest(item);
 				}
 
 				return cached;
@@ -315,7 +315,7 @@ export default class Store extends Service {
 		try {
 
 			let server = await this.surreal.modify(record.tb, record.id, diff);
-			record.ingest.queue(server);
+			record.ingest(server);
 			return record;
 
 		} catch (e) {
@@ -345,7 +345,7 @@ export default class Store extends Service {
 		try {
 
 			let server = await this.surreal.change(record.tb, record.id, record.json);
-			record.ingest.queue(server);
+			record.ingest(server);
 			return record;
 
 		} catch (e) {
@@ -493,7 +493,7 @@ export default class Store extends Service {
 					cached = this.lookup(model).create(item);
 					this.#cache.get(model).addObject(cached);
 				} else {
-					cached.ingest.queue(item);
+					cached.ingest(item);
 				}
 
 				return cached;

@@ -1,6 +1,6 @@
 import Model from '../model';
 import { STATE } from '../model';
-import { UPDATED } from '../model';
+import { LOADED } from '../model';
 import { assert } from '@ember/debug';
 
 export default function(target) {
@@ -19,14 +19,10 @@ export default function(target) {
 
 function func(target) {
 
-	target.reopen({
-
-		autosave() {
-			if (this[STATE] === UPDATED) {
-				return this.save();
-			}
-		},
-
-	});
+	target.prototype.autosave = function() {
+		if (this[STATE] === LOADED) {
+			return this.save();
+		}
+	}
 
 }

@@ -1,21 +1,33 @@
-import Core from '@ember/object';
+import Ember from 'ember';
 import context from '@ascua/context';
 import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { setProperties } from '@ember/object';
-import { queue, defer } from '@ascua/queue';
+import { defer } from '@ascua/queue';
 import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
+import meta from '../meta';
+import json from '../../utils/json';
 
-const json = (v) => JSON.stringify(v);
+const { OWNER } = Ember.__loader.require('@ember/-internals/owner');
 
 export const STATE = Symbol("STATE");
-export const INITIAL = Symbol("INITIAL");
+export const LOADED = Symbol("LOADED");
 export const LOADING = Symbol("LOADING");
-export const UPDATED = Symbol("UPDATED");
 export const DELETED = Symbol("DELETED");
 
-export default class Model extends Core {
+export default class Model {
+
+	// ------------------------------
+	// Static methods
+	// ------------------------------
+
+	static create(data, shadow) {
+		return new this(data, shadow);
+	}
+
+	// ------------------------------
+	// Instance properties
+	// ------------------------------
 
 	@inject surreal;
 
@@ -23,16 +35,22 @@ export default class Model extends Core {
 
 	#id = null;
 
+	#fake = false;
+
+	// Underlying meta data
 	#meta = undefined;
 
 	// Current record state
-	#state = INITIAL;
+	#state = LOADED;
 
 	// Current context object
 	#ctx = undefined;
 
 	// Context cancel function
 	#cancel = undefined;
+
+	// Shadow local record copy
+	#shadow = undefined;
 
 	// Last state of sent data
 	#client = undefined;
@@ -42,9 +60,6 @@ export default class Model extends Core {
 
 	// The tracked underlying record data
 	@tracked data = {};
-
-	// Property for whether the record exists
-	@tracked exists = undefined;
 
 	// The `tb` property can be used
 	// to retrieve the actual table
@@ -63,7 +78,7 @@ export default class Model extends Core {
 	}
 
 	set id(value) {
-		this.#id = this.#id || value;
+		this.#id = value;
 	}
 
 	// The `meta` property stores the
@@ -75,15 +90,7 @@ export default class Model extends Core {
 	}
 
 	set meta(value) {
-		this.#meta = this.#meta || value;
-	}
-
-	// The `json` property returns a
-	// JSON representation copy of the
-	// record's current data snapshot.
-
-	get json() {
-		return JSON.parse(JSON.stringify(this));
+		this.#meta = value;
 	}
 
 	// The `state` property enables an
@@ -92,6 +99,22 @@ export default class Model extends Core {
 
 	get [STATE]() {
 		return this.#state;
+	}
+
+	// The exists property allows us
+	// to detect whether the record
+	// exists or has been deleted.
+
+	get exists() {
+		return this.#state !== DELETED;
+	}
+
+	// The `json` property returns a
+	// JSON representation copy of the
+	// record's current data snapshot.
+
+	get json() {
+		return JSON.parse(JSON.stringify(this));
 	}
 
 	// When formatted as a string, the
@@ -110,36 +133,32 @@ export default class Model extends Core {
 		return this.data;
 	}
 
+	get _full() {
+		return json.full(this);
+	}
+
+	get _some() {
+		return json.some(this);
+	}
+
+	// ------------------------------
+	// Instance methods
+	// ------------------------------
+
 	/**
 	 * Finalizes the record setup.
 	 *
 	 * @returns {undefined} Does not return anything.
 	 */
 
-	init() {
-		super.init(...arguments);
-		this.exists = true;
-		this.#state = UPDATED;
-		this.#server = this.json;
-		this.#client = this.json;
-		this.surreal.on('closed', () => {
-			this.#state = UPDATED;
-			this.autosave();
-		});
-		this.surreal.on('opened', () => {
-			this.#state = UPDATED;
-			this.autosave();
-		});
-	}
-
-	/**
-	 * Enables setting undefined properties.
-	 *
-	 * @returns {undefined} Does not return anything.
-	 */
-
-	setUnknownProperty() {
-		// Ignore
+	constructor(data, shadow) {
+		this[OWNER] = data[OWNER];
+		for (const key in data) {
+			this[key] = data[key];
+		}
+		this.#fake = shadow;
+		this.#server = this._some;
+		this.#client = this._some;
 	}
 
 	/**
@@ -196,28 +215,16 @@ export default class Model extends Core {
 
 	rollback() {
 
-		let undo = {};
-		let data = this.data;
-		let client = this.#client;
-		let server = this.#server;
-
+		// Set state to LOADING
 		this.#state = LOADING;
 
-		Object.keys(server).forEach(key => {
-			undo[key] = server[key] || undefined;
-		});
-		Object.keys(client).forEach(key => {
-			undo[key] = server[key] || undefined;
-		});
-		Object.keys(data).forEach(key => {
-			undo[key] = server[key] || undefined;
-		});
+		// Apply server side changes to local record
+		for (const key in this.#client) {
+			this[key] = this.#client[key];
+		}
 
-		setProperties(this, undo);
-
-		this.#state = UPDATED;
-
-		return
+		// Set state to LOADED
+		this.#state = LOADED;
 
 	}
 
@@ -228,45 +235,33 @@ export default class Model extends Core {
 	 * @returns {undefined} Does not return anything.
 	 */
 
-	@queue ingest(data) {
+	ingest(data) {
 
 		// Set state to LOADING
-
 		this.#state = LOADING;
 
+		// Craeta a new shadow record for the data
+		this.#shadow = this.store.lookup(this.tb).create(data);
+
 		// Calculate changes while data was in flight
+		let changes = new Diff(this.#client, this._some).output();
 
-		let diff = new Diff(this.#client, this.json).output();
+		// Merge in-flight changes with server changes
+		let current = new Patch(this.#shadow._full, changes).output();
 
-		// Apply received record data to local record
-
-		for (const key in data) {
-			let old = json(this[key]);
-			let now = json(data[key]);
-			if (old !== now) this[key] = data[key];
+		// Apply server side changes to local record
+		for (const key in current) {
+			this[key] = current[key];
 		}
 
-		this.#server = this.json;
+		// Store the current client<->server state
+		this.#client = this.#server = this.#shadow._some;
 
-		// Calculate what the current record should be
+		// Set state to LOADED
+		this.#state = LOADED;
 
-		let info = new Patch(this.json, diff).output();
-
-		// Re-apply the in-flight changes to the record
-
-		for (const key in info) {
-			let old = json(this[key]);
-			let now = json(info[key]);
-			if (old !== now) this[key] = info[key];
-		}
-
-		this.#client = this.json;
-
-		// Set state to UPDATED
-
-		this.#state = UPDATED;
-
-		if (diff.length) {
+		// Save any changes
+		if (changes.length) {
 			this.autosave();
 		}
 
@@ -279,22 +274,20 @@ export default class Model extends Core {
 	 */
 
 	@defer async _modify() {
-
+		if (this.#fake) return;
 		try {
-			await this.#ctx.delay(250);
-			let diff = new Diff(this.#server, this.json).output();
+			await this.#ctx.delay(500);
+			let diff = new Diff(this.#client, this._some).output();
 			if (diff.length) {
-				this.exists = true;
 				this.#state = LOADING;
-				this.#client = this.json;
+				this.#client = this._some;
 				return this.store.modify(this, diff);
 			}
 		} catch (e) {
 			// Ignore
 		} finally {
-			this.#state = UPDATED;
+			this.#state = LOADED;
 		}
-
 	}
 
 	/**
@@ -304,19 +297,17 @@ export default class Model extends Core {
 	 */
 
 	@defer async _update() {
-
+		if (this.#fake) return;
 		try {
-			await this.#ctx.delay(250);
-			this.exists = true;
+			await this.#ctx.delay(500);
 			this.#state = LOADING;
-			this.#client = this.json;
+			this.#client = this._some;
 			return this.store.update(this);
 		} catch (e) {
 			// Ignore
 		} finally {
-			this.#state = UPDATED;
+			this.#state = LOADED;
 		}
-
 	}
 
 	/**
@@ -326,19 +317,14 @@ export default class Model extends Core {
 	 */
 
 	@defer async _delete() {
-
+		if (this.#fake) return;
 		try {
-			await this.#ctx.delay(250);
-			this.exists = false;
-			this.#state = LOADING;
-			this.#client = this.json;
 			return this.store.delete(this);
 		} catch (e) {
 			// Ignore
 		} finally {
 			this.#state = DELETED;
 		}
-
 	}
 
 }
