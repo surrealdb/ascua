@@ -9,7 +9,6 @@ export default class Cache {
 	}
 
 	del(model) {
-		this.data[model].forEach( obj => obj.destroy() );
 		this.data[model].clear();
 	}
 
