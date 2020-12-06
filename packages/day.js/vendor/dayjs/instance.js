@@ -2,9 +2,9 @@
 
 	'use strict';
 
-	/* globals moment */
+	/* globals dayjs */
 
-	moment.prototype.instance = function(isoweekday, occurence) {
+	dayjs.prototype.instance = function(isoweekday, occurence) {
 		switch (occurence) {
 		case 1:
 			return this.firstInstanceOf(isoweekday);
@@ -19,7 +19,7 @@
 		}
 	};
 
-	moment.prototype.firstInstanceOf = function(isoweekday) {
+	dayjs.prototype.firstInstanceOf = function(isoweekday) {
 		let val = this.startOf('month');
 		while (val.isoWeekday() !== isoweekday) {
 			val = val.add(1, 'day');
@@ -27,7 +27,7 @@
 		return val;
 	};
 
-	moment.prototype.secondInstanceOf = function(isoweekday) {
+	dayjs.prototype.secondInstanceOf = function(isoweekday) {
 		let val = this.startOf('month').add(1, 'week');
 		while (val.isoWeekday() !== isoweekday) {
 			val = val.add(1, 'day');
@@ -35,7 +35,7 @@
 		return val;
 	};
 
-	moment.prototype.thirdInstanceOf = function(isoweekday) {
+	dayjs.prototype.thirdInstanceOf = function(isoweekday) {
 		let val = this.startOf('month').add(2, 'week');
 		while (val.isoWeekday() !== isoweekday) {
 			val = val.add(1, 'day');
@@ -43,7 +43,7 @@
 		return val;
 	};
 
-	moment.prototype.fourthInstanceOf = function(isoweekday) {
+	dayjs.prototype.fourthInstanceOf = function(isoweekday) {
 		let val = this.startOf('month').add(3, 'week');
 		while (val.isoWeekday() !== isoweekday) {
 			val = val.add(1, 'day');
@@ -51,7 +51,7 @@
 		return val;
 	};
 
-	moment.prototype.lastInstanceOf = function(isoweekday) {
+	dayjs.prototype.lastInstanceOf = function(isoweekday) {
 		let val = this.endOf('month');
 		while (val.isoWeekday() !== isoweekday) {
 			val = val.subtract(1, 'day');

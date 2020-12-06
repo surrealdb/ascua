@@ -88,6 +88,7 @@
     "@ascua/contextmenu": "file:packages/contextmenu",
     "@ascua/core": "file:packages/core",
     "@ascua/cropper.js": "file:packages/cropper.js",
+    "@ascua/day.js": "file:packages/day.js",
     "@ascua/decimal.js": "file:packages/decimal.js",
     "@ascua/decorators": "file:packages/decorators",
     "@ascua/dom": "file:packages/dom",

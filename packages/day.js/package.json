@@ -1,0 +1,31 @@
+{
+  "name": "@ascua/day.js",
+  "version": "0.0.124",
+  "description": "Small description for @ascua/day.js goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
+  "dependencies": {
+    "@ascua/clock": "file:../clock",
+    "@ascua/decorators": "file:../decorators",
+    "ember-cli-babel": "^7.22.1",
+    "ember-cli-htmlbars": "^5.3.1",
+    "dayjs": "^1.9.6"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua"
+  },
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
+}

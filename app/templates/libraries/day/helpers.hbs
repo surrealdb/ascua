@@ -1,8 +1,8 @@
-<h1>moment.js helpers</h1>
+<h1>day.js helpers</h1>
 
 <h2>date</h2>
 
-<Example @name="demo-libraries-momentjs-date.hbs">
+<Example @name="demo-libraries-dayjs-date.hbs">
 	{{date (now)}}
 </Example>
 
@@ -10,11 +10,11 @@
 
 <p>See <a href="https://momentjs.com/docs/#/manipulating/add/" rel="noopener noreferrer" target="_blank">Moment.js add</a> for more information.</p>
 
-<Example @name="demo-libraries-momentjs-date-add.hbs">
+<Example @name="demo-libraries-dayjs-date-add.hbs">
 	{{date-add (now) 2 "days"}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-add-options.hbs">
+<Example @name="demo-libraries-dayjs-date-add-options.hbs">
 	{{date-add (now) days=2 months=1}}
 </Example>
 
@@ -22,15 +22,15 @@
 
 <p>See <a href="https://momentjs.com/docs/#/displaying/calendar-time/" rel="noopener noreferrer" target="_blank">Moment.js calendar time</a> for more information.</p>
 
-<Example @name="demo-libraries-momentjs-date-calendar.hbs">
+<Example @name="demo-libraries-dayjs-date-calendar.hbs">
 	{{date-calendar (now)}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-calendar-reference.hbs">
+<Example @name="demo-libraries-dayjs-date-calendar-reference.hbs">
 	{{date-calendar (date-add (now) 2 "days")}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-calendar-format.hbs">
+<Example @name="demo-libraries-dayjs-date-calendar-format.hbs">
 	{{date-calendar (now) format=(hash sameDay="[Today]")}}
 </Example>
 
@@ -38,15 +38,15 @@
 
 <p>See <a href="https://momentjs.com/docs/#/displaying/difference/" rel="noopener noreferrer" target="_blank">Moment.js difference</a> for more information.</p>
 
-<Example @name="demo-libraries-momentjs-date-diff.hbs">
+<Example @name="demo-libraries-dayjs-date-diff.hbs">
 	{{date-diff (now) "2016-06-21"}} milliseconds
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-diff-precision.hbs">
+<Example @name="demo-libraries-dayjs-date-diff-precision.hbs">
 	{{date-diff (now) "2016-06-21" precision="years"}} years
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-diff-fraction.hbs">
+<Example @name="demo-libraries-dayjs-date-diff-fraction.hbs">
 	{{date-diff (now) "2016-06-21" precision="years" fraction=true}} years
 </Example>
 
@@ -54,29 +54,29 @@
 
 <p>See <a href="https://momentjs.com/docs/#/displaying/format/" rel="noopener noreferrer" target="_blank">Moment.js format</a> for more information.</p>
 
-<Example @name="demo-libraries-momentjs-date-format.hbs">
+<Example @name="demo-libraries-dayjs-date-format.hbs">
 	{{date-format (now)}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-format-simple.hbs">
+<Example @name="demo-libraries-dayjs-date-format-simple.hbs">
 	{{date-format (now) "ddd, hA"}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-format-complex.hbs">
+<Example @name="demo-libraries-dayjs-date-format-complex.hbs">
 	{{date-format (now) "dddd, MMMM Do YYYY, h:mm:ss a"}}
 </Example>
 
 <h2>date-relative</h2>
 
-<Example @name="demo-libraries-momentjs-date-relative.hbs">
+<Example @name="demo-libraries-dayjs-date-relative.hbs">
 	{{date-relative (now)}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-relative-reference.hbs">
+<Example @name="demo-libraries-dayjs-date-relative-reference.hbs">
 	{{date-relative "2016-06-21" (now)}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-relative-suffix.hbs">
+<Example @name="demo-libraries-dayjs-date-relative-suffix.hbs">
 	{{date-relative "2016-06-21" (now) ignoreSuffix=true}}
 </Example>
 
@@ -84,26 +84,26 @@
 
 <p>See <a href="https://momentjs.com/docs/#/manipulating/subtract/" rel="noopener noreferrer" target="_blank">Moment.js subtract</a> for more information.</p>
 
-<Example @name="demo-libraries-momentjs-date-sub.hbs">
+<Example @name="demo-libraries-dayjs-date-sub.hbs">
 	{{date-sub (now) 2 "days"}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-date-sub-options.hbs">
+<Example @name="demo-libraries-dayjs-date-sub-options.hbs">
 	{{date-sub (now) days=2 months=1}}
 </Example>
 
 <h2>now</h2>
 
-<Example @name="demo-libraries-momentjs-now.hbs">
+<Example @name="demo-libraries-dayjs-now.hbs">
 	{{now}}
 </Example>
 
 <h2>utc</h2>
 
-<Example @name="demo-libraries-momentjs-utc.hbs">
+<Example @name="demo-libraries-dayjs-utc.hbs">
 	{{utc}}
 </Example>
 
-<Example @name="demo-libraries-momentjs-utc-now.hbs">
+<Example @name="demo-libraries-dayjs-utc-now.hbs">
 	{{utc (now)}}
 </Example>

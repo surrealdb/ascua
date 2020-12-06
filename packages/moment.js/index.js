@@ -19,7 +19,9 @@ module.exports = {
 			exports: { moment: ['default'] }
 		});
 
-		this.opts = this.project.config(app.env).moment || {};
+		this.opts = this.project.config(app.env).moment || {
+			locales: ['en-gb'],
+		};
 
 		if (this.opts.locales) {
 			[].concat(this.opts.locales).forEach(l => {

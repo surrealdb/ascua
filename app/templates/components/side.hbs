@@ -154,6 +154,12 @@
 			<Navigate @route="libraries.cropper.elements" @name="Elements" />
 		</section>
 
+		<Navigate @route="libraries.day" @name="day.js" />
+		<section show={{is-active "libraries.day"}}>
+			<Navigate @route="libraries.day" @name="Setup" />
+			<Navigate @route="libraries.day.helpers" @name="Helpers" />
+		</section>
+
 		<Navigate @route="libraries.decimal" @name="decimal.js" />
 		<section show={{is-active "libraries.decimal"}}>
 			<Navigate @route="libraries.decimal" @name="Setup" />

@@ -2,23 +2,23 @@
 
 	'use strict';
 
-	/* globals moment */
+	/* globals dayjs */
 
 	const defaultWorkDays = [1, 2, 3, 4, 5];
 
-	moment.prototype.isWeekday = function() {
+	dayjs.prototype.isWeekday = function() {
 		let locale = this.localeData();
 		let days = locale._workDays || defaultWorkDays;
 		return days.includes( this.isoWeekday() ) === true;
 	};
 
-	moment.prototype.isWeekend = function() {
+	dayjs.prototype.isWeekend = function() {
 		let locale = this.localeData();
 		let days = locale._workDays || defaultWorkDays;
 		return days.includes( this.isoWeekday() ) === false;
 	};
 
-	moment.prototype.prevWeekday = function() {
+	dayjs.prototype.prevWeekday = function() {
 		let x = this;
 		while (true) {
 			x = x.subtract(1, 'day');
@@ -26,7 +26,7 @@
 		}
 	};
 
-	moment.prototype.nextWeekday = function() {
+	dayjs.prototype.nextWeekday = function() {
 		let x = this;
 		while (true) {
 			x = x.add(1, 'day');
@@ -34,7 +34,7 @@
 		}
 	};
 
-	moment.prototype.diffWeekdays = function(compare) {
+	dayjs.prototype.diffWeekdays = function(compare) {
 
 		let diff = 0;
 		let d1 = this.clone();
@@ -57,7 +57,7 @@
 
 	};
 
-	moment.prototype.changeWeekday = function(number) {
+	dayjs.prototype.changeWeekday = function(number) {
 		let sign = number < 0 ? -1 : 1;
 		let days = Math.abs(number);
 		let x = this;
@@ -70,11 +70,11 @@
 		return x;
 	};
 
-	moment.prototype.addWeekdays = function(number) {
+	dayjs.prototype.addWeekdays = function(number) {
 		return this.changeWeekday(+number);
 	};
 
-	moment.prototype.subtractWeekdays = function(number) {
+	dayjs.prototype.subtractWeekdays = function(number) {
 		return this.changeWeekday(-number);
 	};
 

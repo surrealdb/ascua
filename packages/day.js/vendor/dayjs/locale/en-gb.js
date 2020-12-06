@@ -2,9 +2,9 @@
 
 	'use strict';
 
-	/* globals moment */
+	/* globals dayjs */
 
-	moment.updateLocale('en-gb', {
+	dayjs.updateLocale('en-gb', {
 		workdays: [1, 2, 3, 4, 5],
 		holidays: [
 			{ value: '01/01', format: 'DD/MM' }, // New Year

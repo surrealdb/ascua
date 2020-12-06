@@ -1,8 +1,8 @@
 import { helper } from '@ember/component/helper';
-import Moment from 'moment';
+import Date from 'dayjs';
 
 export function momentRelative([ value = undefined, reference = undefined ], { ignoreSuffix = false }) {
-	return Moment(value).from(reference, ignoreSuffix);
+	return Date(value).from(reference, ignoreSuffix);
 }
 
 export default helper(momentRelative);

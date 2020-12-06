@@ -2,11 +2,11 @@
 
 	'use strict';
 
-	/* globals moment */
+	/* globals dayjs */
 
-	moment.prototype._add = moment.prototype.add;
+	dayjs.prototype._add = dayjs.prototype.add;
 
-	moment.prototype.add = function(val, period) {
+	dayjs.prototype.add = function(val, period) {
 		switch (period) {
 		case 'weekday':
 		case 'weekdays':
@@ -19,9 +19,9 @@
 		}
 	};
 
-	moment.prototype._subtract = moment.prototype.subtract;
+	dayjs.prototype._subtract = dayjs.prototype.subtract;
 
-	moment.prototype.subtract = function(val, period) {
+	dayjs.prototype.subtract = function(val, period) {
 		switch (period) {
 		case 'weekday':
 		case 'weekdays':

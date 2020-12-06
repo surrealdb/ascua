@@ -2,18 +2,18 @@
 
 	'use strict';
 
-	/* globals moment */
+	/* globals dayjs */
 
 	const defaultWorkDays = [1, 2, 3, 4, 5];
 
-	moment.prototype.isWorkday = function() {
+	dayjs.prototype.isWorkday = function() {
 		let locale = this.localeData();
 		let days = locale._workDays || defaultWorkDays;
 		if (this.isHoliday()) return false;
 		return days.includes( this.isoWeekday() ) === true;
 	};
 
-	moment.prototype.isHoliday = function() {
+	dayjs.prototype.isHoliday = function() {
 		let locale = this.localeData();
 		if (locale._holidays) {
 			for (let i in locale._holidays) {
@@ -31,7 +31,7 @@
 		return false;
 	};
 
-	moment.prototype.prevWorkday = function() {
+	dayjs.prototype.prevWorkday = function() {
 		let x = this;
 		while (true) {
 			x = x.subtract(1, 'day');
@@ -39,7 +39,7 @@
 		}
 	};
 
-	moment.prototype.nextWorkday = function() {
+	dayjs.prototype.nextWorkday = function() {
 		let x = this;
 		while (true) {
 			x = x.add(1, 'day');
@@ -47,7 +47,7 @@
 		}
 	};
 
-	moment.prototype.diffWorkdays = function(compare) {
+	dayjs.prototype.diffWorkdays = function(compare) {
 
 		let diff = 0;
 		let d1 = this.clone();
@@ -70,7 +70,7 @@
 
 	};
 
-	moment.prototype.changeWorkday = function(number) {
+	dayjs.prototype.changeWorkday = function(number) {
 		let sign = number < 0 ? -1 : 1;
 		let days = Math.abs(number);
 		let x = this;
@@ -83,11 +83,11 @@
 		return x;
 	};
 
-	moment.prototype.addWorkdays = function(number) {
+	dayjs.prototype.addWorkdays = function(number) {
 		return this.changeWorkday(+number);
 	};
 
-	moment.prototype.subtractWorkdays = function(number) {
+	dayjs.prototype.subtractWorkdays = function(number) {
 		return this.changeWorkday(-number);
 	};
 

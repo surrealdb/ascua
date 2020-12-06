@@ -100,6 +100,9 @@ Router.map(function() {
 		this.route('cropper', function() {
 			this.route('elements');
 		});
+		this.route('day', function() {
+			this.route('helpers');
+		});
 		this.route('decimal');
 		this.route('jsoneditor', function() {
 			this.route('elements');

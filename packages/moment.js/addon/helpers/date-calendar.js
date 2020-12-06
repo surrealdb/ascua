@@ -1,8 +1,8 @@
 import { helper } from '@ember/component/helper';
-import Moment from 'moment';
+import Date from 'moment';
 
 export function momentCalendar([ value = undefined, reference = undefined ], { format = undefined }) {
-	return Moment(value).calendar(reference, format);
+	return Date(value).calendar(reference, format);
 }
 
 export default helper(momentCalendar);

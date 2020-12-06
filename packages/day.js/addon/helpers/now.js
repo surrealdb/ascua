@@ -1,13 +1,13 @@
 import Helper from '@ember/component/helper';
 import { inject } from '@ember/service';
-import Date from 'moment';
+import Moment from 'moment';
 
 export default class extends Helper {
 
 	@inject clock;
 
 	compute() {
-		return Date(this.clock.now);
+		return Moment(this.clock.now);
 	}
 
 }
