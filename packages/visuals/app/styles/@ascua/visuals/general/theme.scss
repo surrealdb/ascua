@@ -1,0 +1,123 @@
+[hide] {
+	display:none;
+}
+
+[responsive] {
+	display:none;
+}
+
+[theme-light] {
+	display:block;
+	@media (prefers-color-scheme:dark) {
+		display:none;
+	}
+}
+
+[theme-dark] {
+	display:block;
+	@media (prefers-color-scheme:light) {
+		display:none;
+	}
+}
+
+// ------------------------------
+// Fixed breakpoints
+// ------------------------------
+
+@include media(max-width-375) {
+	[max-width-375] { display:block; }
+	tr[max-width-375] { display:table-row; }
+	td[max-width-375] { display:table-cell; }
+}
+
+@include media(min-width-376) {
+	[min-width-375] { display:block; }
+	tr[min-width-375] { display:table-row; }
+	td[min-width-375] { display:table-cell; }
+}
+
+@include media(max-width-450) {
+	[max-width-450] { display:block; }
+	tr[max-width-450] { display:table-row; }
+	td[max-width-450] { display:table-cell; }
+}
+
+@include media(min-width-451) {
+	[min-width-450] { display:block; }
+	tr[min-width-450] { display:table-row; }
+	td[min-width-450] { display:table-cell; }
+}
+
+@include media(max-width-650) {
+	[max-width-650] { display:block; }
+	tr[max-width-650] { display:table-row; }
+	td[max-width-650] { display:table-cell; }
+}
+
+@include media(min-width-651) {
+	[min-width-650] { display:block; }
+	tr[min-width-650] { display:table-row; }
+	td[min-width-650] { display:table-cell; }
+}
+
+@include media(max-width-650) {
+	[max-width-650] { display:block; }
+	tr[max-width-650] { display:table-row; }
+	td[max-width-650] { display:table-cell; }
+}
+
+@include media(min-width-651) {
+	[min-width-650] { display:block; }
+	tr[min-width-650] { display:table-row; }
+	td[min-width-650] { display:table-cell; }
+}
+
+// ------------------------------
+// Named breakpoints
+// ------------------------------
+
+@include media(min-width-200 max-width-767) {
+
+	[mobile] { display:block; }
+	tr[mobile] { display:table-row; }
+	td[mobile] { display:table-cell; }
+
+	@media (orientation:portrait) {
+		[mobile-p] { display:block; }
+		tr[mobile-p] { display:table-row; }
+		td[mobile-p] { display:table-cell; }
+	}
+
+	@media (orientation:landscape) {
+		[mobile-l] { display:block; }
+		tr[mobile-l] { display:table-row; }
+		td[mobile-l] { display:table-cell; }
+	}
+
+}
+
+@include media(min-width-768 max-width-1024) {
+
+	[tablet] { display:block; }
+	tr[tablet] { display:table-row; }
+	td[tablet] { display:table-cell; }
+
+	@media (orientation:portrait) {
+		[tablet-p] { display:block; }
+		tr[tablet-p] { display:table-row; }
+		td[tablet-p] { display:table-cell; }
+	}
+
+	@media (orientation:landscape) {
+		[tablet-l] { display:block; }
+		tr[tablet-l] { display:table-row; }
+		td[tablet-l] { display:table-cell; }
+	}
+
+}
+
+@include media(min-width-1025) {
+	[desktop] { display:block; }
+	tr[desktop] { display:table-row; }
+	td[desktop] { display:table-cell; }
+}

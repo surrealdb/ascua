@@ -1,9 +1,0 @@
-@charset "UTF-8";
-
-@mixin perspective($value: none) {
-	@include prefix(perspective, $value);
-}
-
-@mixin perspective-origin($value: 50% 50%) {
-	@include prefix(perspective-origin, $value);
-}

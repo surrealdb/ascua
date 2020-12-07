@@ -1,7 +1,0 @@
-@charset "UTF-8";
-
-@mixin text-shadow($value: 1px 1px 3px rgba(0,0,0,0.75)) {
-	@include prefix(text-shadow, $value);
-}
-
-

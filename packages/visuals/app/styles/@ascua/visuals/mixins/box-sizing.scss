@@ -1,5 +1,0 @@
-@charset "UTF-8";
-
-@mixin box-sizing($value: border-box) {
-	@include prefix(box-sizing, $value);
-}

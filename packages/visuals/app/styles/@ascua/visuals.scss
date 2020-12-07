@@ -2,7 +2,6 @@
 // FUNCTIONS
 // --------------------------------------------------
 
-@import "visuals/functions/colour.scss";
 @import "visuals/functions/contains.scss";
 @import "visuals/functions/expand.scss";
 @import "visuals/functions/grid-calc.scss";
@@ -21,55 +20,35 @@
 // MIXINS
 // --------------------------------------------------
 
-@import "visuals/mixins/animation.scss";
-@import "visuals/mixins/appearance.scss";
-@import "visuals/mixins/backdrop-filter.scss";
-@import "visuals/mixins/backface-visibility.scss";
-@import "visuals/mixins/border-color.scss";
-@import "visuals/mixins/border-radius.scss";
-@import "visuals/mixins/border-style.scss";
-@import "visuals/mixins/border-width.scss";
-@import "visuals/mixins/box-shadow.scss";
-@import "visuals/mixins/box-sizing.scss";
 @import "visuals/mixins/clearfix.scss";
-@import "visuals/mixins/columns.scss";
 @import "visuals/mixins/ellipsis.scss";
-@import "visuals/mixins/filter.scss";
-@import "visuals/mixins/font-feature-settings.scss";
-@import "visuals/mixins/font-smoothing.scss";
 @import "visuals/mixins/fullscreen.scss";
 @import "visuals/mixins/gradient-horizontal.scss";
 @import "visuals/mixins/gradient-vertical.scss";
 @import "visuals/mixins/grid.scss";
 @import "visuals/mixins/image-rendering.scss";
-@import "visuals/mixins/keyframes.scss";
-@import "visuals/mixins/margin.scss";
 @import "visuals/mixins/media.scss";
-@import "visuals/mixins/opacity.scss";
-@import "visuals/mixins/padding.scss";
-@import "visuals/mixins/perspective.scss";
 @import "visuals/mixins/placeholder.scss";
-@import "visuals/mixins/position.scss";
-@import "visuals/mixins/prefix.scss";
 @import "visuals/mixins/scrollbar.scss";
 @import "visuals/mixins/selection.scss";
 @import "visuals/mixins/table.scss";
-@import "visuals/mixins/text-decoration.scss";
-@import "visuals/mixins/text-shadow.scss";
-@import "visuals/mixins/theme.scss";
-@import "visuals/mixins/transform.scss";
-@import "visuals/mixins/transition.scss";
-@import "visuals/mixins/user-drag.scss";
-@import "visuals/mixins/user-select.scss";
 
 // --------------------------------------------------
 // VARIABLES
 // --------------------------------------------------
 
-@import "visuals/variables/colors.scss";
-@import "visuals/variables/fonts.scss";
 @import "visuals/variables/media.scss";
 @import "visuals/variables/timers.scss";
+
+// --------------------------------------------------
+// GENERAL
+// --------------------------------------------------
+
+@import "visuals/general/clear.scss";
+@import "visuals/general/flex.scss";
+@import "visuals/general/size.scss";
+@import "visuals/general/space.scss";
+@import "visuals/general/theme.scss";
 
 // --------------------------------------------------
 // FONTS
