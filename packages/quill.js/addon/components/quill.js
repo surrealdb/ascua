@@ -44,6 +44,7 @@ export default class extends Component {
 	@arg theme = 'snow';
 	@arg toolbar = toolbar;
 	@arg history = history;
+	@arg clipboard = {};
 	@arg keyboard = {};
 	@arg import = {};
 	@arg resize = {};
@@ -59,6 +60,7 @@ export default class extends Component {
 			debug: this.debug,
 			formats: this.formats,
 			modules: {
+				clipboard: this.clipboard,
 				history: this.history,
 				keyboard: this.keyboard,
 				toolbar: this.toolbar,
