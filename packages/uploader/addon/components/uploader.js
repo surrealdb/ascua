@@ -21,7 +21,10 @@ export default class extends Component {
 
 	@action didClick(event) {
 		if (this.clickable) {
-			this.element.querySelectorAll('input')[0].click();
+			const input = document.createElement('input');
+			input.setAttribute('type', 'file');
+			input.onchange = this.didInput;
+			input.click();
 		}
 	}
 
