@@ -8,6 +8,9 @@ import Quill from 'quill';
 import Import from '../utils/import';
 Quill.register('modules/import', Import);
 
+import Insert from '../utils/insert';
+Quill.register('modules/insert', Insert);
+
 import Resize from '../utils/resize';
 Quill.register('modules/resize', Resize);
 
@@ -47,6 +50,7 @@ export default class extends Component {
 	@arg clipboard = {};
 	@arg keyboard = {};
 	@arg import = {};
+	@arg insert = {};
 	@arg resize = {};
 
 	@action didCreate(element) {
@@ -65,6 +69,7 @@ export default class extends Component {
 				keyboard: this.keyboard,
 				toolbar: this.toolbar,
 				import: this.import,
+				insert: this.insert,
 				resize: this.resize,
 			},
 			placeholder: this.placeholder,

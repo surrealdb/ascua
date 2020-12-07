@@ -5,14 +5,38 @@ export default class Import {
 		this.quill = quill;
 
 		this.didDrop = this.didDrop.bind(this);
+		this.didPaste = this.didPaste.bind(this);
 
 		this.quill.root.addEventListener('drop', this.didDrop, false);
+		this.quill.root.addEventListener('paste', this.didPaste, false);
+		this.quill.getModule('toolbar').addHandler('image', this.didClick);
+
+	}
+
+	didClick(e) {
+
+		const input = document.createElement('input');
+		input.setAttribute('type', 'file');
+		input.onchange = () => {
+			[].forEach.call(input.files, file => {
+				this.quill.getModule('insert').insert(file);
+			});
+		}
+		input.click();
+
+	}
+
+	didPaste(e) {
+
+		if (e.clipboardData && e.clipboardData.files && e.clipboardData.files.length) {
+			[].forEach.call(e.clipboardData.files, file => {
+				this.quill.getModule('insert').insert(file);
+			});
+		}
 
 	}
 
 	didDrop(e) {
-
-		e.preventDefault();
 
 		if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
 
@@ -25,20 +49,7 @@ export default class Import {
 			}
 
 			[].forEach.call(e.dataTransfer.files, file => {
-
-				if (file.type.match(/^image\/(gif|jpg|jpeg|png|apng|svg|webp|bmp)$/i)) {
-
-					const r = new FileReader();
-
-					r.onload = (e) => {
-						const idx = this.quill.getSelection().index;
-						this.quill.insertEmbed(idx, 'image', e.target.result, 'user');
-					};
-
-					r.readAsDataURL(file);
-
-				}
-
+				this.quill.getModule('insert').insert(file);
 			});
 
 		}
