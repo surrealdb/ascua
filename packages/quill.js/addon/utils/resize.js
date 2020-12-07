@@ -58,7 +58,12 @@ export default class Resize {
 	}
 
 	positioning() {
-		const rect = this.img.getBoundingClientRect();
+		const rect = {
+			width: this.img.width,
+			height: this.img.height,
+			left: this.img.offsetLeft,
+			top: this.img.offsetTop,
+		};
 		this.positionBoxes(rect);
 		this.positionSizer(rect);
 	}
@@ -88,11 +93,11 @@ export default class Resize {
 	showSizer() {
 		this.sizer = document.createElement('div');
 		this.sizer.classList.add('ql-dimensions');
-		document.body.appendChild(this.sizer);
+		this.quill.root.parentNode.appendChild(this.sizer);
 	}
 
 	hideSizer() {
-		document.body.removeChild(this.sizer);
+		this.quill.root.parentNode.removeChild(this.sizer);
 		this.sizer = undefined;
 	}
 
@@ -128,7 +133,7 @@ export default class Resize {
 			this.boxes[i].classList.add('ql-resizehandle');
 			this.boxes[i].classList.add(edges[i]);
 			this.boxes[i].addEventListener('mousedown', this.didMousedown, false);
-			document.body.appendChild(this.boxes[i]);
+			this.quill.root.parentNode.appendChild(this.boxes[i]);
 		}
 		document.addEventListener('keyup', this.didKeyUp, true);
 		this.quill.root.addEventListener('input', this.didKeyUp, true);
@@ -137,7 +142,7 @@ export default class Resize {
 	hideBoxes() {
 		document.removeEventListener('keyup', this.didKeyUp);
 		this.quill.root.removeEventListener('input', this.didKeyUp);
-		this.boxes.forEach(e => document.body.removeChild(e));
+		this.boxes.forEach(e => this.quill.root.parentNode.removeChild(e));
 		this.boxes = [];
 	}
 
