@@ -58,16 +58,6 @@ context-menu[enabled] {
 	border-width:1px;
 }
 
-body[macos-theme='dark'] context-menu {
-	border-color:#000000;
-	background:rgba(46, 46, 46, 0.95);
-}
-
-body[macos-theme='light'] context-menu {
-	border-color:#cccccc;
-	background:rgba(255, 255, 255, 0.95);
-}
-
 @media (prefers-color-scheme: dark) {
 	context-menu {
 		border-color:#000000;
@@ -93,14 +83,6 @@ context-menu-item[type='separator'] {
 
 context-menu-item[type='separator'][visible] {
 	display:block;
-}
-
-body[macos-theme='dark'] context-menu-item[type='separator'] {
-	border-bottom:2px solid #444444;
-}
-
-body[macos-theme='light'] context-menu-item[type='separator'] {
-	border-bottom:2px solid #e6e6e6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -163,14 +145,6 @@ context-menu-item[type='radio'][visible] {
 	display:block;
 }
 
-body[macos-theme='dark'] context-menu-item {
-	color:#4f4f4f;
-}
-
-body[macos-theme='light'] context-menu-item {
-	color:#bebebe;
-}
-
 @media (prefers-color-scheme: dark) {
 	context-menu-item {
 		color:#4f4f4f;
@@ -187,14 +161,6 @@ context-menu-item[checked] {
 	background-size:15px auto;
 	background-repeat:no-repeat;
 	background-position:6px 5px;
-	background-image:var(--background-checkmark-d);
-}
-
-body[macos-theme='dark'] context-menu-item[checked] {
-	background-image:var(--background-checkmark-l);
-}
-
-body[macos-theme='light'] context-menu-item[checked] {
 	background-image:var(--background-checkmark-d);
 }
 
@@ -216,14 +182,6 @@ context-menu-item[enabled] {
 
 context-menu-item:not([enabled]) {
 	opacity:0.5;
-}
-
-body[macos-theme='dark'] context-menu-item[enabled] {
-	color:#ffffff;
-}
-
-body[macos-theme='light'] context-menu-item[enabled] {
-	color:#434343;
 }
 
 @media (prefers-color-scheme: dark) {

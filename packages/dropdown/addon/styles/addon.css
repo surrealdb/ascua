@@ -110,16 +110,6 @@ app-dropdown > app-dropdown-front[visible] {
 	pointer-events:auto;
 }
 
-body[macos-theme='dark'] app-dropdown > app-dropdown-front {
-	border:1px solid #000000;
-	background:rgba(0, 0, 0, 0.6);
-}
-
-body[macos-theme='light'] app-dropdown > app-dropdown-front {
-	border:1px solid #cccccc;
-	background:rgba(255, 255, 255, 0.6);
-}
-
 @media (prefers-color-scheme: dark) {
 	app-dropdown > app-dropdown-front {
 		border:1px solid #000000;
@@ -167,14 +157,6 @@ app-dropdown > app-dropdown-front app-dropdown-option {
 	font-family:var(--system-fonts);
 }
 
-body[macos-theme='dark'] app-dropdown > app-dropdown-front app-dropdown-option {
-	color:#ffffff;
-}
-
-body[macos-theme='light'] app-dropdown > app-dropdown-front app-dropdown-option {
-	color:#333333;
-}
-
 @media (prefers-color-scheme: dark) {
 	app-dropdown > app-dropdown-front app-dropdown-option {
 		color:#ffffff;
@@ -190,14 +172,6 @@ body[macos-theme='light'] app-dropdown > app-dropdown-front app-dropdown-option 
 app-dropdown > app-dropdown-front app-dropdown-option:hover {
 	color:#ffffff;
 	cursor:pointer;
-	background-color:var(--accent-color, #187aee);
-}
-
-body[macos-theme='dark'] app-dropdown > app-dropdown-front app-dropdown-option:hover {
-	background-color:var(--accent-color, #187aee);
-}
-
-body[macos-theme='light'] app-dropdown > app-dropdown-front app-dropdown-option:hover {
 	background-color:var(--accent-color, #187aee);
 }
 
@@ -219,14 +193,6 @@ app-dropdown > app-dropdown-front app-dropdown-option[selected] {
 	background-repeat:no-repeat;
 	background-position:6px 5px;
 	background-image:var(--background-checkmark-d);
-}
-
-body[macos-theme='dark'] app-dropdown > app-dropdown-front app-dropdown-option[selected] {
-	background-image:var(--background-checkmark-l);
-}
-
-body[macos-theme='light'] app-dropdown > app-dropdown-front app-dropdown-option[selected] {
-	background-image:var(--background-checkmark-d)
 }
 
 @media (prefers-color-scheme: dark) {
@@ -256,14 +222,6 @@ app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
 	border-top:1px solid rgba(200, 200, 200, 0.6);
 }
 
-body[macos-theme='dark'] app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
-	border-top:1px solid rgba(50, 50, 50, 0.6);
-}
-
-body[macos-theme='light'] app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
-	border-top:1px solid rgba(200, 200, 200, 0.6);
-}
-
 @media (prefers-color-scheme: dark) {
 	app-dropdown > app-dropdown-front app-dropdown-group:not(:first-of-type) {
 		border-top:1px solid rgba(50, 50, 50, 0.6);
@@ -288,14 +246,6 @@ app-dropdown > app-dropdown-front app-dropdown-group > label {
 	text-decoration:none;
 	padding:4px 30px 4px 15px;
 	font-family:var(--system-fonts);
-}
-
-body[macos-theme='dark'] app-dropdown > app-dropdown-front app-dropdown-group > label {
-	color:#969696;
-}
-
-body[macos-theme='light'] app-dropdown > app-dropdown-front app-dropdown-group > label {
-	color:#888888;
 }
 
 @media (prefers-color-scheme: dark) {
