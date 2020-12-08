@@ -79,8 +79,8 @@ export default class extends Component {
 		let ms = [].concat(this.args.mimetypes).filter(Boolean);
 		let es = [].concat(this.args.extensions).filter(Boolean);
 
-		if (this.args.onDrop) {
-			this.args.onDrop(files);
+		if (this.args.onFiles) {
+			this.args.onFiles(files);
 		}
 
 		for (let i=0; i<files.length; i++) {
@@ -96,6 +96,10 @@ export default class extends Component {
 			}
 
 			let r = new FileReader();
+
+			if (this.args.onDrop) {
+				this.args.onDrop(f);
+			}
 
 			if (this.args.onOpen) {
 				this.args.onOpen(f);
