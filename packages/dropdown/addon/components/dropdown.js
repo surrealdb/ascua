@@ -1,9 +1,12 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { setProperties } from '@ember/object';
 import { action } from '@ember/object';
 
 export default class extends Component {
+
+	@tracked top = 0;
+
+	@tracked left = 0;
 
 	@tracked options = [];
 
@@ -30,22 +33,26 @@ export default class extends Component {
 	}
 
 	@action register(el, value, label) {
-		this.options.addObject({ el, label, value });
-	}
-
-	@action reregister(el, value, label) {
-		let obj = this.options.findBy('el', el);
-		setProperties(obj, { value, label });
+		this.options.addObject({
+			el, label, value
+		});
 	}
 
 	@action unregister(el, value, label) {
-		let obj = this.options.findBy('el', el);
-		this.options.removeObject(obj);
+		this.options = this.options.filter(opt => {
+			return opt.el !== el;
+		});
+	}
+
+	@action reregister(el, value, label) {
+		this.options = this.options.map(opt => {
+			return opt.el !== el ? opt : {
+				el, label, value
+			};
+		});
 	}
 
 	@action changed(value) {
-
-		if (!this.args.multiple) this.close();
 
 		if (this.args.multiple) {
 			if ( [].concat(this.args.value).includes(value) ) {
@@ -58,6 +65,8 @@ export default class extends Component {
 		if (this.args.onSelect) {
 			this.args.onSelect(value);
 		}
+
+		this.close();
 
 	}
 
@@ -79,11 +88,9 @@ export default class extends Component {
 			t--; y--;
 		}
 
-		setProperties(this, {
-			top: y,
-			left: x,
-			visible: true,
-		});
+		this.top = y;
+		this.left = x;
+		this.visible = true;
 
 	}
 
