@@ -9,17 +9,41 @@
 		</svg>
 	</label>
 
-	<app-dropdown-cover display={{this.display}} visible={{this.visible}} role="button" {{on "click" this.close}} />
+	{{yield (hash
+		group=(component "ascua/dropdown/blank")
+		option=(component "ascua/dropdown/setup"
+			dropdown=this
+		)
+	)}}
 
-	<app-dropdown-front display={{this.display}} visible={{this.visible}} {{style marginTop=this.top marginLeft=this.left}}>
+	{{#if this.display}}
 
-		{{yield (hash
-			group=(component "ascua/dropdown/group")
-			option=(component "ascua/dropdown/option"
-				dropdown=this
-			)
-		)}}
+		{{#in-element this.document.body insertBefore=null}}
 
-	</app-dropdown-front>
+			<app-dropdown-popup>
+
+				<app-dropdown-cover role="button" {{on "click" this.close}} />
+
+				<app-dropdown-front {{did-insert this.popup}} {{style marginTop=this.top marginLeft=this.left}}>
+
+					{{#if @filter}}
+						<Input @value={{this.search}} @placeholder={{@filter}} size={{@filter.length}} {{did-insert this.focus}} />
+					{{/if}}
+
+					{{yield (hash
+						search=this.search
+						group=(component "ascua/dropdown/group")
+						option=(component "ascua/dropdown/option"
+							dropdown=this
+						)
+					)}}
+
+				</app-dropdown-front>
+
+			</app-dropdown-popup>
+
+		{{/in-element}}
+
+	{{/if}}
 
 </app-dropdown>

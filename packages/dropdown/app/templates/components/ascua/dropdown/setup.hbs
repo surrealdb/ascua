@@ -1,0 +1,5 @@
+<app-dropdown-setup
+	{{did-insert (fn @dropdown.register) @value @label}}
+	{{did-update (fn @dropdown.reregister) @value @label}}
+	{{will-destroy (fn @dropdown.unregister) @value @label}}
+/>

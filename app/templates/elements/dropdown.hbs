@@ -67,7 +67,7 @@
 
 <Example @name="demo-elements-dropdown-custom.hbs">
 	User permissions:
-	<Ascua::Dropdown @value={{this.perm}} @onSelect={{fn (mut this.perm)}} as |dropdown|>
+	<Ascua::Dropdown @value={{this.perm}} @filter="Filter..." @onSelect={{fn (mut this.perm)}} as |dropdown|>
 		<dropdown.option @label="No permissions" />
 		<dropdown.group @label="Reading">
 			<dropdown.option @value="view" @label="Can view posts" />
@@ -76,9 +76,7 @@
 		<dropdown.group @label="Writing">
 			<dropdown.option @value="write" @label="Can write posts" />
 			<dropdown.option @value="alter" @label="Can write and alter other's posts" />
-			<dropdown.option @value="full">
-				<span class="col-r">Can write, alter, and delete posts</span>
-			</dropdown.option>
+			<dropdown.option @value="full" @label="Can write, alter, and delete posts" />
 		</dropdown.group>
 	</Ascua::Dropdown>
 </Example>

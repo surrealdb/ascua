@@ -5,6 +5,7 @@
 }
 
 app-dropdown {
+	max-width:100%;
 	position:relative;
 	display:inline-block;
 }
@@ -12,6 +13,7 @@ app-dropdown {
 app-dropdown > label {
 	overflow:hidden;
 	max-width:inherit;
+	align-items:center;
 	white-space:nowrap;
 	display:inline-block;
 	vertical-align:bottom;
@@ -22,10 +24,7 @@ app-dropdown > label svg {
 	width:14px;
 	height:auto;
 	cursor:pointer;
-	polygon {
-		cursor:pointer;
-		fill:currentColor;
-	}
+	vertical-align:middle;
 }
 
 app-dropdown > label svg polygon {
@@ -47,38 +46,48 @@ app-dropdown > label:hover svg polygon {
 	fill:currentColor;
 }
 
+app-dropdown[minimal] > label svg {
+	display:none;
+}
+
+app-dropdown[multiline] > label {
+	white-space:normal;
+}
+
 app-dropdown[disabled] > label {
 	color:inherit;
 	cursor:default;
 	background:none;
 }
 
-app-dropdown > app-dropdown-cover {
+app-dropdown > app-dropdown-setup {
+	display:none;
+}
+
+app-dropdown-popup {
 	top:0;
 	left:0;
 	right:0;
 	bottom:0;
-	display:none;
-	z-index:11110;
+	position:fixed;
+	z-index:2147483646;
+}
+
+app-dropdown-popup > app-dropdown-cover {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:1;
+	display:block;
 	position:fixed;
 	overflow:visible;
-	visibility:hidden;
-	pointer-events:none;
 }
 
-app-dropdown > app-dropdown-cover[display] {
-	display:block;
-}
-
-app-dropdown > app-dropdown-cover[visible] {
-	visibility:visible;
-	pointer-events:auto;
-}
-
-app-dropdown > app-dropdown-front {
+app-dropdown-popup > app-dropdown-front {
 	margin:0;
-	display:none;
-	z-index:11111;
+	z-index:2;
+	display:block;
 	cursor:pointer;
 	overflow-y:auto;
 	overflow-x:hidden;
@@ -86,8 +95,6 @@ app-dropdown > app-dropdown-front {
 	max-width:560px;
 	max-height:500px;
 	position:absolute;
-	visibility:hidden;
-	pointer-events:none;
 	padding:4px 0 4px 0;
 	border-radius:5px;
 	backdrop-filter:blur(20px);
@@ -101,30 +108,48 @@ app-dropdown > app-dropdown-front {
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-app-dropdown > app-dropdown-front[display] {
-	display:block;
-}
-
-app-dropdown > app-dropdown-front[visible] {
-	visibility:visible;
-	pointer-events:auto;
-}
-
 @media (prefers-color-scheme: dark) {
-	app-dropdown > app-dropdown-front {
+	app-dropdown-popup > app-dropdown-front {
 		background:rgba(50, 50, 50, 0.8);
 		border:1px solid rgba(0, 0, 0, 0.3);
 	}
 }
 
 @media (prefers-color-scheme: light) {
-	app-dropdown > app-dropdown-front {
+	app-dropdown-popup > app-dropdown-front {
 		background:rgba(255, 255, 255, 0.8);
 		border:1px solid rgba(175, 175, 175, 0.3);
 	}
 }
 
-app-dropdown > app-dropdown-front app-dropdown-option {
+app-dropdown-popup > app-dropdown-front input:not([type=checkbox]) {
+	width:100%;
+	border:none;
+	color:#333333;
+	font-size:14px;
+	line-height:1.5;
+	margin-bottom:3px;
+	padding:2px 25px 6px 25px;
+	background-color:transparent;
+	font-family:var(--system-fonts);
+	border-bottom:1px solid rgba(200, 200, 200, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+	app-dropdown-popup > app-dropdown-front input:not([type=checkbox]) {
+		color:#ffffff;
+		border-bottom:1px solid rgba(100, 100, 100, 0.6);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	app-dropdown-popup > app-dropdown-front input:not([type=checkbox]) {
+		color:#333333;
+		border-bottom:1px solid rgba(200, 200, 200, 0.6);
+	}
+}
+
+app-dropdown-popup > app-dropdown-front app-dropdown-option {
 	margin:0;
 	padding:0;
 	color:#333333;
@@ -135,41 +160,41 @@ app-dropdown > app-dropdown-front app-dropdown-option {
 	position:relative;
 	white-space: nowrap;
 	text-decoration:none;
-	padding:2px 30px 2px 25px;
+	padding:2px 25px 2px 25px;
 	font-family:var(--system-fonts);
 }
 
 @media (prefers-color-scheme: dark) {
-	app-dropdown > app-dropdown-front app-dropdown-option {
+	app-dropdown-popup > app-dropdown-front app-dropdown-option {
 		color:#ffffff;
 	}
 }
 
 @media (prefers-color-scheme: light) {
-	app-dropdown > app-dropdown-front app-dropdown-option {
+	app-dropdown-popup > app-dropdown-front app-dropdown-option {
 		color:#333333;
 	}
 }
 
-app-dropdown > app-dropdown-front app-dropdown-option:hover {
+app-dropdown-popup > app-dropdown-front app-dropdown-option:hover {
 	color:#ffffff;
 	cursor:pointer;
 	background-color:var(--accent-color, #187aee);
 }
 
 @media (prefers-color-scheme: dark) {
-	app-dropdown > app-dropdown-front app-dropdown-option:hover {
+	app-dropdown-popup > app-dropdown-front app-dropdown-option:hover {
 		background-color:var(--accent-color, #187aee);
 	}
 }
 
 @media (prefers-color-scheme: light) {
-	app-dropdown > app-dropdown-front app-dropdown-option:hover {
+	app-dropdown-popup > app-dropdown-front app-dropdown-option:hover {
 		background-color:var(--accent-color, #187aee);
 	}
 }
 
-app-dropdown > app-dropdown-front app-dropdown-option[selected] {
+app-dropdown-popup > app-dropdown-front app-dropdown-option[selected] {
 	background-size:15px auto;
 	background-repeat:no-repeat;
 	background-position:5px center;
@@ -178,48 +203,53 @@ app-dropdown > app-dropdown-front app-dropdown-option[selected] {
 }
 
 @media (prefers-color-scheme: dark) {
-	app-dropdown > app-dropdown-front app-dropdown-option[selected] {
+	app-dropdown-popup > app-dropdown-front app-dropdown-option[selected] {
 		background-color:rgba(255,255,255,0.05);
 		background-image:var(--background-checkmark-l);
 	}
 }
 
 @media (prefers-color-scheme: light) {
-	app-dropdown > app-dropdown-front app-dropdown-option[selected] {
+	app-dropdown-popup > app-dropdown-front app-dropdown-option[selected] {
 		background-color:rgba(255,255,255,0.25);
 		background-image:var(--background-checkmark-d);
 	}
 }
 
-app-dropdown > app-dropdown-front app-dropdown-option[selected]:hover {
+app-dropdown-popup > app-dropdown-front app-dropdown-option[selected]:hover {
 	background-color:var(--accent-color, #187aee);
 	background-image:var(--background-checkmark-l);
 }
 
-app-dropdown > app-dropdown-front app-dropdown-group {
+app-dropdown-popup > app-dropdown-front app-dropdown-group {
 	margin:0;
 	padding:0;
 	display:block;
 }
 
-app-dropdown > app-dropdown-front app-dropdown-group:not(:first-child) {
+app-dropdown-popup > app-dropdown-front app-dropdown-group:not(:first-child) {
 	margin-top:4px;
-	border-top:1px solid rgba(185, 185, 185, 0.6);
+	border-top:1px solid rgba(200, 200, 200, 0.6);
 }
 
 @media (prefers-color-scheme: dark) {
-	app-dropdown > app-dropdown-front app-dropdown-group:not(:first-child) {
-		border-top:1px solid rgba(85, 85, 85, 0.6);
+	app-dropdown-popup > app-dropdown-front app-dropdown-group:not(:first-child) {
+		border-top:1px solid rgba(100, 100, 100, 0.6);
 	}
 }
 
 @media (prefers-color-scheme: light) {
-	app-dropdown > app-dropdown-front app-dropdown-group:not(:first-child) {
-		border-top:1px solid rgba(185, 185, 185, 0.6);
+	app-dropdown-popup > app-dropdown-front app-dropdown-group:not(:first-child) {
+		border-top:1px solid rgba(200, 200, 200, 0.6);
 	}
 }
 
-app-dropdown > app-dropdown-front app-dropdown-group > label {
+app-dropdown-popup > app-dropdown-front input + app-dropdown-group:not(:first-child) {
+	margin:0;
+	border:none;
+}
+
+app-dropdown-popup > app-dropdown-front app-dropdown-group > label {
 	margin:0;
 	padding:0;
 	color:#888888;
@@ -229,26 +259,44 @@ app-dropdown > app-dropdown-front app-dropdown-group > label {
 	overflow:hidden;
 	white-space:nowrap;
 	text-decoration:none;
-	padding:4px 30px 4px 15px;
+	padding:4px 30px 4px 25px;
 	font-family:var(--system-fonts);
 }
 
 @media (prefers-color-scheme: dark) {
-	app-dropdown > app-dropdown-front app-dropdown-group > label {
+	app-dropdown-popup > app-dropdown-front app-dropdown-group > label {
 		color:#969696;
 	}
 }
 
 @media (prefers-color-scheme: light) {
-	app-dropdown > app-dropdown-front app-dropdown-group > label {
+	app-dropdown-popup > app-dropdown-front app-dropdown-group > label {
 		color:#888888;
 	}
 }
 
-app-dropdown > app-dropdown-front app-dropdown-group app-dropdown-option {
+app-dropdown-popup > app-dropdown-front app-dropdown-group app-dropdown-option {
 	padding:2px 45px 2px 35px;
 }
 
-app-dropdown > app-dropdown-front app-dropdown-group app-dropdown-option[selected] {
+app-dropdown-popup > app-dropdown-front app-dropdown-group app-dropdown-option[selected] {
 	background-position:10px center;
+}
+
+
+app-dropdown-popup > app-dropdown-front input:not(:placeholder-shown) ~ app-dropdown-option:not([filtered]) {
+	display:none;
+}
+
+app-dropdown-popup > app-dropdown-front input:not(:placeholder-shown) ~ app-dropdown-group {
+	margin:0;
+	border:none;
+}
+
+app-dropdown-popup > app-dropdown-front input:not(:placeholder-shown) ~ app-dropdown-group > label {
+	display:none;
+}
+
+app-dropdown-popup > app-dropdown-front input:not(:placeholder-shown) ~ app-dropdown-group app-dropdown-option:not([filtered]) {
+	display:none;
 }

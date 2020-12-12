@@ -1,12 +1,18 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import { inject } from '@ember/service';
 import { action } from '@ember/object';
+import { get } from '@ember/object';
 
 export default class extends Component {
+
+	@inject('-document') document;
 
 	@tracked top = 0;
 
 	@tracked left = 0;
+
+	@tracked search = '';
 
 	@tracked options = [];
 
@@ -18,14 +24,30 @@ export default class extends Component {
 
 	@action open() {
 		this.display = true;
-		setTimeout( () => {
-			this.style();
-		});
 	}
 
 	@action close() {
 		this.display = false;
-		this.visible = false;
+	}
+
+	@action focus(element) {
+		this.search = '';
+		element.focus();
+	}
+
+	@action popup(element) {
+
+		let w = element.offsetWidth;
+		let h = element.offsetHeight;
+		let t = this.element.getBoundingClientRect().top - 5;
+		let l = this.element.getBoundingClientRect().left - 5;
+
+		while ( l+w > window.innerWidth-30 ) l--;
+
+		while ( t+h > window.innerHeight-30 ) t--;
+
+		this.left = l; this.top = t;
+
 	}
 
 	@action didCreate(element) {
@@ -70,53 +92,34 @@ export default class extends Component {
 
 	}
 
-	style() {
-
-		let f = this.element.children[2];
-		let w = this.element.children[2].offsetWidth;
-		let h = this.element.children[2].offsetHeight;
-		let t = this.element.children[0].getBoundingClientRect().top - 5;
-		let l = this.element.children[0].getBoundingClientRect().left - 5;
-
-		let [ x, y ] = [ -10, -30 ];
-
-		while ( l+w > window.innerWidth-30 ) {
-			l--; x--;
-		}
-
-		while ( t+h > window.innerHeight-30 ) {
-			t--; y--;
-		}
-
-		this.top = y;
-		this.left = x;
-		this.visible = true;
-
-	}
-
 	get value() {
-		return this.args.value;
+
+		return [].concat(this.args.value);
+
 	}
 
 	get label() {
 
-		let value = [].concat(this.args.value);
+		if (this.args.label) {
 
-		let label = this.options.reduce( (a, o, k) => {
+			let label = this.value.filter(Boolean).map(v => {
+				return get(v, this.args.label);
+			});
 
-			if ( value.includes(o.value) ) {
-				if (o.label) {
+			return label.join(', ');
+
+		} else {
+
+			let label = this.options.reduce( (a, o, k) => {
+				if ( this.value.includes(o.value) ) {
 					a.push(o.label);
-				} else {
-					a.push(o.el.innerHTML);
 				}
-			}
+				return a;
+			}, []);
 
-			return a;
+			return label.join(', ');
 
-		}, []);
-
-		return label.join(', ');
+		}
 
 	}
 
