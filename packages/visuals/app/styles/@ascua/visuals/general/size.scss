@@ -6,9 +6,6 @@ $unit:'%';
 
 @for $i from 1 through 20 {
 	[w-#{$i*5}] { width:#{$i*5}#{$unit}; }
-}
-
-@for $i from 1 through 20 {
 	[h-#{$i*5}] { height:#{$i*5}#{$unit}; }
 }
 
@@ -29,7 +26,23 @@ $unit:'vh';
 }
 
 // ------------------------------
-// Margin
+// Pixels sizing
+// ------------------------------
+
+$unit:'px';
+
+@for $i from 1 through 6 {
+	[w-#{$i*5}px] { width:#{$i*5}#{$unit}; }
+	[h-#{$i*5}px] { height:#{$i*5}#{$unit}; }
+}
+
+@for $i from 4 through 25 {
+	[w-#{$i*10}px] { width:#{$i*10}#{$unit}; }
+	[h-#{$i*10}px] { height:#{$i*10}#{$unit}; }
+}
+
+// ------------------------------
+// Pixels margin
 // ------------------------------
 
 $unit:'px';
@@ -51,7 +64,7 @@ $unit:'px';
 }
 
 // ------------------------------
-// Padding
+// Pixels padding
 // ------------------------------
 
 $unit:'px';

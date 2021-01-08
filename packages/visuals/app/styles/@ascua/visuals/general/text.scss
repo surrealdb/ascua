@@ -1,0 +1,22 @@
+[font-bold] {
+	font-weight:bold;
+}
+
+[font-italic] {
+	font-style:italic;
+}
+
+[font-underline] {
+	text-decoration:underline;
+}
+
+// ------------------------------
+// Font size
+// ------------------------------
+
+@for $i from 8 through 30 {
+	[font-#{$i}] { font-size:#{$i}px; }
+	[line-#{$i}] { line-height:#{$i}px; }
+}
+
+
