@@ -52,13 +52,11 @@ clear:after {
 a, a i, a span {
 	cursor:pointer;
 	text-decoration:none;
-	color:var(--link-color);
 }
 
 a:hover, a i:hover, a span:hover {
 	cursor:pointer;
 	text-decoration:none;
-	color:var(--hover-color);
 }
 
 [draggable=true] {
