@@ -1,7 +1,87 @@
+// ------------------------------
+// Float
+// ------------------------------
+
+[float-n], [float-none] {
+	float:none;
+}
+
+[float-l], [float-left] {
+	float:left;
+}
+
+[float-r], [float-right] {
+	float:right;
+}
+
+// ------------------------------
+// Display
+// ------------------------------
+
 [block] {
 	display:block;
 }
 
 [inline] {
+	display:inline;
+}
+
+[inline-block] {
 	display:inline-block;
+}
+
+// ------------------------------
+// Position
+// ------------------------------
+
+[absolute] {
+	position:absolute;
+}
+
+[fixed] {
+	position:fixed;
+}
+
+[relative] {
+	position:relative;
+}
+
+[static] {
+	position:static;
+}
+
+[sticky] {
+	position:sticky;
+}
+
+// ------------------------------
+// Visibility
+// ------------------------------
+
+[visible] {
+	visibility:visible;
+}
+
+[invisible] {
+	visibility:hidden;
+}
+
+// ------------------------------
+// Overflow
+// ------------------------------
+
+[overflow-auto] {
+	overflow:auto;
+}
+
+[overflow-scroll] {
+	overflow:scroll;
+}
+
+[overflow-hidden] {
+	overflow:hidden;
+}
+
+[overflow-visible] {
+	overflow:visible;
 }
