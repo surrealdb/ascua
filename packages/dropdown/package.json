@@ -20,7 +20,7 @@
     "@ascua/keyboard": "file:../keyboard",
     "@ascua/logic": "file:../logic",
     "@ascua/modifiers": "file:../modifiers",
-    "ember-cli-babel": "^7.22.1",
+    "ember-cli-babel": "^7.23.0",
     "ember-cli-htmlbars": "^5.3.1"
   },
   "ember-addon": {

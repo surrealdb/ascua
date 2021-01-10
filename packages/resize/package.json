@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "element-resize-detector": "^1.2.1",
-    "ember-auto-import": "^1.6.0",
-    "ember-cli-babel": "^7.22.1",
+    "ember-auto-import": "^1.10.1",
+    "ember-cli-babel": "^7.23.0",
     "ember-cli-htmlbars": "^5.3.1"
   },
   "ember-addon": {
