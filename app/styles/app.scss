@@ -12,7 +12,9 @@ body {
 }
 
 a {
+	color:var(--link-color);
 	&:hover {
+		color:var(--hover-color);
 		text-decoration:underline;
 	}
 }
