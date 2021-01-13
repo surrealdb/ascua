@@ -104,6 +104,9 @@ Router.map(function() {
 			this.route('helpers');
 		});
 		this.route('decimal');
+		this.route('handsontable', function() {
+			this.route('elements');
+		});
 		this.route('jsoneditor', function() {
 			this.route('elements');
 		});

@@ -111,6 +111,7 @@
     "@ascua/format": "file:packages/format",
     "@ascua/gravatar": "file:packages/gravatar",
     "@ascua/gridlist": "file:packages/gridlist",
+    "@ascua/handsontable.js": "file:packages/handsontable.js",
     "@ascua/iframe": "file:packages/iframe",
     "@ascua/image": "file:packages/image",
     "@ascua/images": "file:packages/images",

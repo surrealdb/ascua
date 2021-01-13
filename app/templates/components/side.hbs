@@ -165,6 +165,12 @@
 			<Navigate @route="libraries.decimal" @name="Setup" />
 		</section>
 
+		<Navigate @route="libraries.handsontable" @name="handsontable.js" />
+		<section show={{is-active "libraries.handsontable"}}>
+			<Navigate @route="libraries.handsontable" @name="Setup" />
+			<Navigate @route="libraries.handsontable.elements" @name="Elements" />
+		</section>
+
 		<Navigate @route="libraries.jsoneditor" @name="jsoneditor.js" />
 		<section show={{is-active "libraries.jsoneditor"}}>
 			<Navigate @route="libraries.jsoneditor" @name="Setup" />

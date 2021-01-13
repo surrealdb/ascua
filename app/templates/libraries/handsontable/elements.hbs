@@ -1,0 +1,21 @@
+<h1>handsontable.js elements</h1>
+
+<h2>Editor</h2>
+
+<p>Create a Handsontable instance, and give it an optional initial value by specifying the <code>json</code> property.</p>
+
+<Example @name="demo-libraries-handsontable-elements-editor.hbs" class="nopad">
+	<div class="h-400">
+		<Ascua::Handsontable @cols={{this.cols}} @rows={{this.rows}} />
+	</div>
+</Example>
+
+<h3>Editor options</h3>
+
+<p>The table can be configured using using individual arguments. These include <code>autoColumnSize</code>, <code>autoWrapRow</code>, <code>columnSorting</code>, <code>colWidths</code>, <code>contextMenu</code>, <code>dropdownMenu</code>, <code>filters</code>, <code>formulas</code>, <code>height</code>, <code>licenseKey</code>, <code>manualColumnMove</code>, <code>manualColumnResize</code>, <code>manualRowMove</code>, <code>manualRowResize</code>, <code>minSpareCols</code>, <code>minSpareRows</code>, <code>multiSelect</code>, <code>readOnly</code>, <code>rowHeaders</code>, <code>rowHeights</code>, <code>startCols</code>, <code>startRows</code>, <code>stretchH</code>, <code>trimWhitespace</code>, <code>width</code>, and <code>wordWrap</code>. For more information view the <a href="https://handsontable.com/docs/Options.html" target="_blank" rel="noopener noreferrer">documentation</a>.</p>
+
+<Example @name="demo-libraries-handsontable-elements-editor-opts.hbs" class="nopad">
+	<div class="h-400">
+		<Ascua::Handsontable @cols={{this.cols}} @rows={{this.rows}} @readOnly={{true}} />
+	</div>
+</Example>
