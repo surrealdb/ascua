@@ -1,3 +1,5 @@
+import { tracked } from '@glimmer/tracking';
+
 export default class Queue {
 
 	#ctx = undefined;
@@ -7,6 +9,8 @@ export default class Queue {
 	#queue = [];
 
 	#working = false;
+
+	@tracked length = 0;
 
 	constructor(ctx, fnc) {
 
@@ -34,6 +38,8 @@ export default class Queue {
 
 	async dequeue() {
 
+		this.length = this.#queue.length;
+
 		if (this.#working) {
 			return false;
 		}
@@ -57,6 +63,7 @@ export default class Queue {
 
 	cancel() {
 		this.#queue = [];
+		this.length = 0;
 	}
 
 }

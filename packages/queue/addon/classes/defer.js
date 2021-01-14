@@ -1,3 +1,5 @@
+import { tracked } from '@glimmer/tracking';
+
 export default class Defer {
 
 	#ctx = undefined;
@@ -9,6 +11,8 @@ export default class Defer {
 	#working = false;
 
 	#promise = undefined;
+
+	@tracked length = 0;
 
 	constructor(ctx, fnc) {
 
@@ -36,6 +40,8 @@ export default class Defer {
 	}
 
 	async dequeue() {
+
+		this.length = this.#queue.length;
 
 		if (this.#working) {
 			return false;
@@ -68,6 +74,7 @@ export default class Defer {
 	cancel() {
 		this.#promise = null;
 		this.#queue = [];
+		this.length = 0;
 	}
 
 }
