@@ -42,7 +42,7 @@ export default class extends Metric {
 
 		if (!window.fbq) return;
 
-		window.fbq('init', this.config.id, { uid: null });
+		window.fbq('init', this.config.id);
 
 	}
 
@@ -52,9 +52,7 @@ export default class extends Metric {
 
 		assert(`You must pass an 'id' as the first argument to ${this.toString()}:identify()`, id);
 
-		window.fbq('init', this.config.id, { uid: id });
-
-		window.fbq('setUserProperties', this.config.id, data);
+		window.fbq('init', this.config.id, { external_id: id, ...data });
 
 	}
 
