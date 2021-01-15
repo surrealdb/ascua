@@ -13,7 +13,7 @@ export default class extends Controller {
 		'Change'
 	];
 
-	rows = [
+	data = [
 		{
 			ID: 1,
 			Country: 'EUR',

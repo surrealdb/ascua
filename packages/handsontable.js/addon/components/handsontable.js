@@ -5,23 +5,41 @@ import Handsontable from 'handsontable';
 
 export default class extends Component {
 
-	@arg autoColumnSize = true;
+	@arg cols = undefined;
+
+	@arg allowRemoveColumn = true;
+	@arg allowRemoveRow = true;
+	@arg autoColumnSize = { syncLimit: 50 };
+	@arg autoRowSize = undefined;
+	@arg autoWrapCol = true;
 	@arg autoWrapRow = true;
-	@arg columnSorting = true;
+	@arg colHeaders = null;
+	@arg collapsibleColumns = undefined;
+	@arg columnHeaderHeight = undefined;
+	@arg columns = undefined;
+	@arg columnSorting = undefined;
 	@arg colWidths = undefined;
-	@arg contextMenu = false;
-	@arg dropdownMenu = false;
-	@arg filters = false;
+	@arg contextMenu = undefined;
+	@arg copyable = true;
+	@arg copyPaste = true;
+	@arg data = undefined;
+	@arg disableVisualSelection = false;
+	@arg dropdownMenu = undefined;
+	@arg enterBeginsEditing = true;
+	@arg fillHandle = true;
+	@arg filters = undefined;
+	@arg fixedColumnsLeft = 0;
+	@arg fixedRowsBottom = 0;
+	@arg fixedRowsTop = 0;
 	@arg formulas = false;
 	@arg height = '100%';
 	@arg licenseKey = 'non-commercial-and-evaluation';
-	@arg manualColumnMove = true;
-	@arg manualColumnResize = true;
-	@arg manualRowMove = true;
-	@arg manualRowResize = true;
+	@arg manualColumnMove = undefined;
+	@arg manualColumnResize = undefined;
+	@arg manualRowMove = undefined;
+	@arg manualRowResize = undefined;
 	@arg minSpareCols = undefined;
 	@arg minSpareRows = undefined;
-	@arg multiSelect = true;
 	@arg readOnly = false;
 	@arg rowHeaders = true;
 	@arg rowHeights = undefined;
@@ -37,13 +55,30 @@ export default class extends Component {
 		if (!Handsontable) return;
 
 		this.instance = new Handsontable(element, {
+			allowRemoveColumn: this.allowRemoveColumn,
+			allowRemoveRow: this.allowRemoveRow,
 			autoColumnSize: this.autoColumnSize,
+			autoRowSize: this.autoRowSize,
+			autoWrapCol: this.autoWrapCol,
 			autoWrapRow: this.autoWrapRow,
+			colHeaders: this.colHeaders || this.cols,
+			collapsibleColumns: this.collapsibleColumns,
+			columnHeaderHeight: this.columnHeaderHeight,
+			columns: this.columns || this.cols.map(c => ({ data:c })),
 			columnSorting: this.columnSorting,
 			colWidths: this.colWidths,
 			contextMenu: this.contextMenu,
+			copyable: this.copyable,
+			copyPaste: this.copyPaste,
+			data: this.data,
+			disableVisualSelection: this.disableVisualSelection,
 			dropdownMenu: this.dropdownMenu,
+			enterBeginsEditing: this.enterBeginsEditing,
+			fillHandle: this.fillHandle,
 			filters: this.filters,
+			fixedColumnsLeft: this.fixedColumnsLeft,
+			fixedRowsBottom: this.fixedRowsBottom,
+			fixedRowsTop: this.fixedRowsTop,
 			formulas: this.formulas,
 			height: this.height,
 			licenseKey: this.licenseKey,
@@ -53,7 +88,6 @@ export default class extends Component {
 			manualRowResize: this.manualRowResize,
 			minSpareCols: this.minSpareCols,
 			minSpareRows: this.minSpareRows,
-			multiSelect: this.multiSelect,
 			readOnly: this.readOnly,
 			rowHeaders: this.rowHeaders,
 			rowHeights: this.rowHeights,
@@ -63,10 +97,6 @@ export default class extends Component {
 			trimWhitespace: this.trimWhitespace,
 			width: this.width,
 			wordWrap: this.wordWrap,
-			data: this.args.rows,
-			colHeaders: (c) => {
-				return this.args.cols[c];
-			},
 		});
 
 		this.rows = this.args.rows;
