@@ -7,6 +7,8 @@ $unit:'%';
 @for $i from 1 through 20 {
 	[w-#{$i*5}] { width:#{$i*5}#{$unit}; }
 	[h-#{$i*5}] { height:#{$i*5}#{$unit}; }
+	[min-w-#{$i*5}] { min-width:#{$i*5}#{$unit}; }
+	[min-h-#{$i*5}] { min-height:#{$i*5}#{$unit}; }
 }
 
 // ------------------------------
@@ -17,12 +19,14 @@ $unit:'vw';
 
 @for $i from 1 through 20 {
 	[w-#{$i*5}vw] { width:#{$i*5}#{$unit}; }
+	[min-w-#{$i*5}vw] { min-width:#{$i*5}#{$unit}; }
 }
 
 $unit:'vh';
 
 @for $i from 1 through 20 {
 	[h-#{$i*5}vh] { height:#{$i*5}#{$unit}; }
+	[min-h-#{$i*5}vh] { min-height:#{$i*5}#{$unit}; }
 }
 
 // ------------------------------
@@ -34,11 +38,15 @@ $unit:'px';
 @for $i from 1 through 6 {
 	[w-#{$i*5}px] { width:#{$i*5}#{$unit}; }
 	[h-#{$i*5}px] { height:#{$i*5}#{$unit}; }
+	[min-w-#{$i*5}px] { min-width:#{$i*5}#{$unit}; }
+	[min-h-#{$i*5}px] { min-height:#{$i*5}#{$unit}; }
 }
 
 @for $i from 4 through 25 {
 	[w-#{$i*10}px] { width:#{$i*10}#{$unit}; }
 	[h-#{$i*10}px] { height:#{$i*10}#{$unit}; }
+	[min-w-#{$i*10}px] { min-width:#{$i*10}#{$unit}; }
+	[min-h-#{$i*10}px] { min-height:#{$i*10}#{$unit}; }
 }
 
 // ------------------------------
