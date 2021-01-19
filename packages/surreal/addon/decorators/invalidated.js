@@ -51,12 +51,15 @@ function func(target) {
 		},
 
 		beforeModel(transition) {
-			// Redirect if connection is authenticated.
-			if (this.surreal.authenticated === true) {
-				return this.transitionTo(this.redirectIfAuthenticated);
-			}
-			// Continue with original hook.
-			return before.apply(this, ...arguments);
+			// Wait for authentication attempt.
+			return this.surreal.wait().then( () => {
+				// Redirect if connection is authenticated.
+				if (this.surreal.authenticated === true) {
+					return this.transitionTo(this.redirectIfAuthenticated);
+				}
+				// Continue with original hook.
+				return before.apply(this, ...arguments);
+			});
 		},
 
 	});

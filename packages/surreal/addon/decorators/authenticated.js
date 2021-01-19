@@ -28,6 +28,8 @@ function func(target) {
 
 		surreal: inject(),
 
+		session: inject(),
+
 		redirectIfInvalidated: 'signin',
 
 		activate() {
@@ -49,12 +51,18 @@ function func(target) {
 		beforeModel(transition) {
 			// Store the current desired route.
 			this.surreal.transition = transition;
-			// Redirect if connection is invalidated.
-			if (this.surreal.authenticated === false) {
-				return this.transitionTo(this.redirectIfInvalidated);
-			}
-			// Continue with original hook.
-			return before.apply(this, ...arguments);
+			// Wait for authentication attempt.
+			return this.surreal.wait().then( () => {
+				// Redirect if connection is invalidated.
+				if (this.surreal.invalidated === true) {
+					return this.transitionTo(this.redirectIfInvalidated);
+				}
+				// Wait for session identification.
+				return this.session.ready.then( () => {
+					// Continue with original hook.
+					return before.apply(this, ...arguments);
+				});
+			});
 		},
 
 	});
