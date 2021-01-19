@@ -1,5 +1,4 @@
 import Service from '@ascua/service/evented';
-import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import config from '@ascua/config';
