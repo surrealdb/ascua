@@ -22,7 +22,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included(...arguments);
+		this._super.included.apply(this, ...arguments);
 
 		app.import('node_modules/surreal.js/dist/main.js');
 

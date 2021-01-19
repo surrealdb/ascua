@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included(...arguments);
+		this._super.included.apply(this, ...arguments);
 
 		app.import('node_modules/pdfjs-dist/build/pdf.js', {
 			outputFile: 'assets/pdfjs.js'

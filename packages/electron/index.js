@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included(...arguments);
+		this._super.included.apply(this, ...arguments);
 
 		// Get the project rootURL
 		this.base = this.project.config(process.env.EMBER_ENV).rootURL;

@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included(...arguments);
+		this._super.included.apply(this, ...arguments);
 
 		// Import ES6 library for Electron
 		app.import('vendor/import.js', {

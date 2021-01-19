@@ -10,7 +10,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included(...arguments);
+		this._super.included.apply(this, ...arguments);
 
 		app.import('node_modules/quill/dist/quill.js', fastboot);
 		app.import('node_modules/quill/dist/quill.snow.css');

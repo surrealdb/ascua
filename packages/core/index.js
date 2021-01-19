@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included(...arguments);
+		this._super.included.apply(this, ...arguments);
 
 		// Don't store app config in meta tag
 		app.options.storeConfigInMeta = false;

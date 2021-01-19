@@ -6,7 +6,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included(...arguments);
+		this._super.included.apply(this, ...arguments);
 
 		app.import('node_modules/big.js/big.js', {
 			using: [{ transformation: 'amd', as: 'big.js' }]

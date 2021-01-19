@@ -10,7 +10,7 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included(...arguments);
+		this._super.included.apply(this, ...arguments);
 
 		this.opts = this.project.config(app.env).codemirror || {};
 
