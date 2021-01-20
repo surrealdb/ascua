@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import context from '@ascua/context';
+import { setOwner } from '@ember/application';
 import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { defer } from '@ascua/queue';
@@ -7,8 +8,6 @@ import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
 import meta from '../meta';
 import json from '../../utils/json';
-
-const { OWNER } = Ember.__loader.require('@ember/-internals/owner');
 
 export const STATE = Symbol("STATE");
 export const LOADED = Symbol("LOADED");
@@ -21,8 +20,8 @@ export default class Model {
 	// Static methods
 	// ------------------------------
 
-	static create(data, shadow) {
-		return new this(data, shadow);
+	static create(owner, data, shadow) {
+		return new this(owner, data, shadow);
 	}
 
 	// ------------------------------
@@ -151,8 +150,8 @@ export default class Model {
 	 * @returns {undefined} Does not return anything.
 	 */
 
-	constructor(data, shadow) {
-		this[OWNER] = data[OWNER];
+	constructor(owner, data, shadow) {
+		setOwner(this, owner);
 		for (const key in data) {
 			this[key] = data[key];
 		}

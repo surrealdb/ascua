@@ -57,7 +57,13 @@ export default class Store extends Service {
 		if (owner.isDestroyed) {
 			throw new DestroyedError();
 		} else {
-			return owner.factoryFor(`model:${model}`);
+			let found = owner.factoryFor(`model:${model}`);
+			return {
+				class: found.class,
+				create() {
+					return found.class.create(owner, ...arguments);
+				}
+			}
 		}
 	}
 

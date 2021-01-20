@@ -1,10 +1,9 @@
 import Ember from 'ember';
+import { setOwner } from '@ember/application';
 import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import meta from '../meta';
 import json from '../../utils/json';
-
-const { OWNER } = Ember.__loader.require('@ember/-internals/owner');
 
 export default class Field {
 
@@ -12,8 +11,8 @@ export default class Field {
 	// Static methods
 	// ------------------------------
 
-	static create(data, shadow) {
-		return new this(data, shadow);
+	static create(owner, data, shadow) {
+		return new this(owner, data, shadow);
 	}
 
 	// ------------------------------
@@ -65,8 +64,8 @@ export default class Field {
 	 * @returns {undefined} Does not return anything.
 	 */
 
-	constructor(data, shadow) {
-		this[OWNER] = data[OWNER];
+	constructor(owner, data, shadow) {
+		setOwner(this, owner);
 		for (const key in data) {
 			this[key] = data[key];
 		}
