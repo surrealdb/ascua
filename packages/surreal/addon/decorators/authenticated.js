@@ -51,17 +51,14 @@ function func(target) {
 		redirect(model, transition) {
 			// Store the current desired route.
 			this.surreal.transition = transition;
-			// Wait for authentication attempt.
-			return this.surreal.wait().then( () => {
-				// Redirect if connection is invalidated.
-				if (this.surreal.invalidated === true) {
-					return this.replaceWith(this.redirectIfInvalidated);
-				}
-				// Wait for session identification.
-				return this.session.ready.then( () => {
-					// Continue with original hook.
-					return redirect.apply(this, ...arguments);
-				});
+			// Redirect if connection is invalidated.
+			if (this.surreal.invalidated === true) {
+				return this.replaceWith(this.redirectIfInvalidated);
+			}
+			// Wait for session identification.
+			return this.session.ready.then( () => {
+				// Continue with original hook.
+				return redirect.apply(this, ...arguments);
 			});
 		},
 
