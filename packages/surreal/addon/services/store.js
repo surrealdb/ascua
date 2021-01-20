@@ -7,13 +7,7 @@ import Model from '@ascua/surreal/model';
 import count from "../builders/count";
 import table from "../builders/table";
 import Record from '../classes/types/record';
-
-class DestroyedError extends Error {
-	constructor() {
-		super();
-		this.name = "DestroyedError";
-	}
-}
+import { DestroyedError } from '../errors';
 
 export default class Store extends Service {
 

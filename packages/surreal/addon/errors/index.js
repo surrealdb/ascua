@@ -8,6 +8,13 @@ export const FieldError = Database.FieldError;
 export const IndexError = Database.IndexError;
 export const TimerError = Database.TimerError;
 
+export class DestroyedError extends Error {
+	constructor() {
+		super();
+		this.name = "DestroyedError";
+	}
+}
+
 export default {
 	ServerError: Database.ServerError,
 	RecordError: Database.RecordError,
@@ -16,4 +23,5 @@ export default {
 	FieldError: Database.FieldError,
 	IndexError: Database.IndexError,
 	TimerError: Database.TimerError,
+	DestroyedError: DestroyedError,
 }

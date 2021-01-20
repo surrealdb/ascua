@@ -9,6 +9,7 @@ import Record from '../types/record';
 import Model from '@ascua/surreal/model';
 import Field from '@ascua/surreal/field';
 import { assert } from '@ember/debug';
+import { DestroyedError } from '@ascua/surreal/errors';
 
 const json = (v) => JSON.stringify(v);
 
@@ -70,7 +71,11 @@ export default function(type) {
 
 				} catch (e) {
 
-					// ignore
+					if (e instanceof DestroyedError) {
+						// ignore
+					} else {
+						throw e;
+					}
 
 				}
 
@@ -150,7 +155,11 @@ export default function(type) {
 
 				} catch (e) {
 
-					// ignore
+					if (e instanceof DestroyedError) {
+						// ignore
+					} else {
+						throw e;
+					}
 
 				}
 

@@ -2,6 +2,7 @@ import Property from './property';
 import Field from '@ascua/surreal/field';
 import { assert } from '@ember/debug';
 import { setProperties } from '@ember/object';
+import { DestroyedError } from '@ascua/surreal/errors';
 
 export default function(type) {
 	return Property({
@@ -19,7 +20,11 @@ export default function(type) {
 
 			} catch (e) {
 
-				// ignore
+				if (e instanceof DestroyedError) {
+					// ignore
+				} else {
+					throw e;
+				}
 
 			}
 
@@ -44,7 +49,11 @@ export default function(type) {
 
 			} catch (e) {
 
-				// ignore
+				if (e instanceof DestroyedError) {
+					// ignore
+				} else {
+					throw e;
+				}
 
 			}
 
