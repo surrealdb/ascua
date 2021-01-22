@@ -22,7 +22,7 @@ function func(target) {
 
 	let leave = target.prototype.deactivate;
 
-	let redirect = target.prototype.redirect;
+	let before = target.prototype.beforeModel;
 
 	target.reopen({
 
@@ -50,13 +50,13 @@ function func(target) {
 			}
 		},
 
-		redirect(model, transition) {
+		beforeModel(transition) {
 			// Redirect if connection is authenticated.
 			if (this.surreal.authenticated === true) {
 				return this.replaceWith(this.redirectIfAuthenticated);
 			}
 			// Continue with original hook.
-			return redirect.apply(this, ...arguments);
+			return before.apply(this, ...arguments);
 		},
 
 	});

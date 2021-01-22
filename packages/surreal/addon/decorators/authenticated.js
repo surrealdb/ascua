@@ -22,7 +22,7 @@ function func(target) {
 
 	let leave = target.prototype.deactivate;
 
-	let redirect = target.prototype.redirect;
+	let before = target.prototype.beforeModel;
 
 	target.reopen({
 
@@ -48,7 +48,7 @@ function func(target) {
 			this.transitionTo(this.redirectIfInvalidated);
 		},
 
-		redirect(model, transition) {
+		beforeModel(transition) {
 			// Store the current desired route.
 			this.surreal.transition = transition;
 			// Redirect if connection is invalidated.
@@ -58,7 +58,7 @@ function func(target) {
 			// Wait for session identification.
 			return this.session.ready.then( () => {
 				// Continue with original hook.
-				return redirect.apply(this, ...arguments);
+				return before.apply(this, ...arguments);
 			});
 		},
 
