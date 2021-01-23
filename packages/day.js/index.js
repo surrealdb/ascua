@@ -9,10 +9,14 @@ module.exports = {
 		this._super.included.apply(this, ...arguments);
 
 		app.import('node_modules/dayjs/dayjs.min.js');
+		app.import('node_modules/dayjs/plugin/calendar.js');
 		app.import('node_modules/dayjs/plugin/isoWeek.js');
 		app.import('node_modules/dayjs/plugin/localeData.js');
 		app.import('node_modules/dayjs/plugin/localizedFormat.js');
+		app.import('node_modules/dayjs/plugin/RelativeTime.js');
 		app.import('node_modules/dayjs/plugin/updateLocale.js');
+		app.import('node_modules/dayjs/plugin/utc.js');
+
 
 		app.import('vendor/dayjs/instance.js');
 		app.import('vendor/dayjs/weekdays.js');

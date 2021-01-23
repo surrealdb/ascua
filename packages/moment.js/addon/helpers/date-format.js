@@ -1,8 +1,8 @@
 import { helper } from '@ember/component/helper';
 import Date from 'moment';
 
-export function momentFormat([ value = undefined, format = undefined ]) {
+export function dateFormat([ value = undefined, format = undefined ]) {
 	return Date(value).format(format);
 }
 
-export default helper(momentFormat);
+export default helper(dateFormat);

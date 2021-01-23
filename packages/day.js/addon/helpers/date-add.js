@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import Date from 'dayjs';
 
-export function momentAdd([ value = undefined, c = undefined, t = undefined ], options = undefined) {
+export function dateAdd([ value = undefined, c = undefined, t = undefined ], options = undefined) {
 	if (options) {
 		return Date(value).add( Object.assign({}, options) );
 	} else {
@@ -9,4 +9,4 @@ export function momentAdd([ value = undefined, c = undefined, t = undefined ], o
 	}
 }
 
-export default helper(momentAdd);
+export default helper(dateAdd);
