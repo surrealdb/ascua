@@ -50,4 +50,12 @@ module.exports = {
 		}
 	},
 
+	contentFor(type) {
+
+		if (type === 'head') {
+			return '<link rel="dns-prefetch" href="//surreal.io/">';
+		}
+
+	},
+
 };
