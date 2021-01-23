@@ -129,6 +129,7 @@ Router.map(function() {
 		this.route('sortable', function() {
 			this.route('elements');
 		});
+		this.route('stackdriver');
 		this.route('stripe', function() {
 			this.route('elements');
 		});
