@@ -56,7 +56,7 @@
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-page-title": "^6.0.3",
-    "ember-prism": "^0.8.2",
+    "ember-prism": "^0.9.0",
     "ember-qunit": "^5.1.1",
     "ember-resolver": "^8.0.2",
     "ember-source": "~3.24.0",
@@ -73,7 +73,7 @@
     "prettier": "^2.2.1",
     "qunit": "^2.13.0",
     "qunit-dom": "^1.6.0",
-    "sass": "^1.26.11"
+    "sass": "^1.32.5"
   },
   "engines": {
     "node": "10.* || >= 12"
