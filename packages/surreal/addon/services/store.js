@@ -23,8 +23,7 @@ export default class Store extends Service {
 	#stash = new Object();
 
 	get fastboot() {
-		let owner = getOwner(this);
-		return owner.lookup('service:fastboot');
+		return getOwner(this).lookup('service:fastboot');
 	}
 
 	constructor() {
@@ -190,10 +189,10 @@ export default class Store extends Service {
 		});
 
 		switch ( Array.isArray(items) ) {
-		case true:
-			return await Promise.all(records);
 		case false:
-			return await records[0];
+			return await Promise.resolve(records[0]);
+		default:
+			return await Promise.all(records);
 		}
 
 	}
@@ -551,7 +550,12 @@ export default class Store extends Service {
 
 		});
 
-		return query.limit === 1 ? records[0] : records;
+		switch (query.limit) {
+		case 1:
+			return await Promise.resolve(records[0]);
+		default:
+			return await Promise.all(records);
+		}
 
 	}
 
