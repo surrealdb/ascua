@@ -41,4 +41,16 @@ export default class RecordArray extends Array {
 		super.replace(idx, count, [].concat(values).map(this.type) );
 	}
 
+	then() {
+		return Promise.all(this).then(...arguments);
+	}
+
+	catch() {
+		return Promise.all(this).catch(...arguments);
+	}
+
+	finally() {
+		return Promise.all(this).finally(...arguments);
+	}
+
 }
