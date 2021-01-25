@@ -125,7 +125,7 @@ export default class Remote {
 					return content;
 				},
 				(failure) => {
-					this.#failure = failure
+					this.#failure = failure;
 					this.#done = true;
 					throw failure;
 				},
