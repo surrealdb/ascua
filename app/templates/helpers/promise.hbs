@@ -89,3 +89,21 @@
 		There are {{data.tags.length}} tags and {{data.comments.length}} comments.
 	{{/with}}
 </Example>
+
+<h2>wait</h2>
+
+<p>Waits for a promise to resolve, whilst deferring rendering on Ember Fastboot, eventually yielding the resolved value of the promise.</p>
+
+<Example @name="demo-helpers-promise-wait.hbs">
+	<Ascua::Wait @promise={{delay 5000}} as |task|>
+		{{#if task.isLoading}}
+			The model is loading.
+		{{/if}}
+		{{#if task.isFailure}}
+			The model has failed.
+		{{/if}}
+		{{#if task.isSuccess}}
+			The model has resolved with {{task.data}}.
+		{{/if}}
+	</Ascua::Wait>
+</Example>
