@@ -30,6 +30,20 @@ export default class extends Component {
 		this.process.run(this.args.page);
 	}
 
+	@action didSelect(element, page) {
+		if (page === this.args.page.pageNumber) {
+			if ('scrollIntoViewIfNeeded' in element) {
+				element.scrollIntoViewIfNeeded();
+			} else {
+				element.scrollIntoView({
+					behavior: 'smooth',
+					inline: 'nearest',
+					block: 'center',
+				});
+			}
+		}
+	}
+
 	@restart * process(page) {
 
 		try {

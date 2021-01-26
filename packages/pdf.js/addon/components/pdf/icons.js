@@ -18,16 +18,4 @@ export default class extends Component {
 		this.h = element.offsetHeight;
 	}
 
-	@action didSelect(element, i) {
-		if ('scrollIntoViewIfNeeded' in element) {
-			element.querySelectorAll('app-pdf-icon')[i-1].scrollIntoViewIfNeeded();
-		} else {
-			element.querySelectorAll('app-pdf-icon')[i-1].scrollIntoView({
-				behavior: 'smooth',
-				inline: 'nearest',
-				block: 'center',
-			});
-		}
-	}
-
 }

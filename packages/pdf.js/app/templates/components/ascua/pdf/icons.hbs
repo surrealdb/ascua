@@ -1,9 +1,10 @@
-<app-pdf-icons tabindex="-1" {{did-resize this.didResize}} {{did-insert this.didCreate}} {{did-update this.didSelect @page}}>
+<app-pdf-icons tabindex="-1" {{did-resize this.didResize}} {{did-insert this.didCreate}}>
 	{{#each @pages as |page|}}
 		<Ascua::pdf::icons::icon
 			@w={{this.w}}
 			@h={{this.h}}
 			@page={{page}}
+			@selected={{@page}}
 			{{on "click" (fn @on-select page.pageNumber)}}
 		/>
 	{{/each}}
