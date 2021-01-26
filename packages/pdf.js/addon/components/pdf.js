@@ -29,6 +29,7 @@ export default class extends Component {
 
 	@action willDelete() {
 		this.cleanup.run();
+		this.destroy.run();
 	}
 
 	@action prev() {
@@ -76,6 +77,14 @@ export default class extends Component {
 		}
 	}
 
+	@restart * destroy() {
+		try {
+			if (this.wkr && this.wkr.destroy) yield this.wkr.destroy();
+		} catch (e) {
+			// Ignore
+		}
+	}
+
 	@restart * process(url) {
 		try {
 
@@ -86,7 +95,8 @@ export default class extends Component {
 			yield this.cleanup.run();
 
 			this.lib = yield this.pdfjs.load();
-			this.xhr = this.lib.getDocument(url);
+			this.wkr = this.wkr || new this.lib.PDFWorker('worker');
+			this.xhr = this.lib.getDocument({ url, worker: this.wkr });
 			this.doc = yield this.xhr.promise;
 
 			for (let i=1; i<=this.doc.numPages; i++) {

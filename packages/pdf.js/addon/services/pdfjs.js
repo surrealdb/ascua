@@ -11,6 +11,7 @@ export default class extends Service {
 		let base = `${this.router.rootURL}/assets`.replace(/\/\/+/g, '/');
 
 		if (this.loader === undefined) {
+
 			this.loader = new Promise( (resolve, reject) => {
 				let script = document.createElement('script');
 				script.onload = resolve;
@@ -18,13 +19,22 @@ export default class extends Service {
 				script.src = `${base}/pdfjs.js`;
 				document.head.appendChild(script);
 			});
+
+			await this.loader;
+
+			pdfjsLib.GlobalWorkerOptions.workerSrc = `${base}/pdfjs-worker.js`;
+
+			return pdfjsLib;
+
 		}
 
-		await this.loader;
+		if (this.loader !== undefined) {
 
-		pdfjsLib.GlobalWorkerOptions.workerSrc = `${base}/pdfjs-worker.js`;
+			await this.loader;
 
-		return pdfjsLib;
+			return pdfjsLib;
+
+		}
 
 	}
 
