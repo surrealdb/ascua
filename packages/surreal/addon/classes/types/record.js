@@ -117,20 +117,32 @@ export default class Remote {
 	}
 
 	setup() {
+
 		if (this.#promise && !this.#done) {
-			this.#promise.then(
-				(content) => {
-					this.content = content;
-					this.#done = true;
-					return content;
-				},
-				(failure) => {
-					this.#failure = failure;
-					this.#done = true;
-					throw failure;
-				},
-			);
+
+			if (this.#promise.then === undefined) {
+				this.content = this.#promise;
+				this.#done = true;
+				return;
+			}
+
+			if (this.#promise.then !== undefined) {
+				this.#promise.then(
+					(content) => {
+						this.content = content;
+						this.#done = true;
+						return content;
+					},
+					(failure) => {
+						this.#failure = failure;
+						this.#done = true;
+						throw failure;
+					},
+				);
+			}
+
 		}
+
 	}
 
 }
