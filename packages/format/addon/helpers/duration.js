@@ -1,5 +1,4 @@
 import { helper } from '@ember/component/helper';
-import { A } from '@ember/array';
 import { assert } from '@ember/debug';
 import format from '../utils/format';
 
@@ -21,7 +20,7 @@ export function duration([val], { input='ns', exact = false, decimals=0 }) {
 
 	let amnt = parseFloat(val) || 0;
 
-	amnt = amnt * ( A(units).find(unit => unit.symbol === input) ).value;
+	amnt = amnt * units.find(unit => unit.symbol === input).value;
 
 	return units.slice(0).reverse().reduce( (str, unit) => {
 
