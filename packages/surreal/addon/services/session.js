@@ -38,12 +38,10 @@ export default class Session extends Service {
 
 		// When authenticated
 
-		this.surreal.on('authenticated', () => {
-			this.surreal.info().then(info => {
-				this.store.inject(info).then(model => {
-					this.#ok(this.model = model);
-				});
-			});
+		this.surreal.on('authenticated', async () => {
+			let info = await this.surreal.info();
+			let sess = await this.store.inject(info);
+			this.#ok(this.model = sess);
 		});
 
 	}

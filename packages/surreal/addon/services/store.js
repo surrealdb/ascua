@@ -143,10 +143,10 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the removed records.
 	 */
 
-	async remove(ids) {
+	remove(ids) {
 
-		return [].concat(ids).map(async id => {
-			return await this.unload(id.split(':')[0], id);
+		return [].concat(ids).map(id => {
+			return this.unload(id.split(':')[0], id);
 		});
 
 	}
@@ -159,13 +159,13 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the removed records.
 	 */
 
-	async inject(items) {
+	inject(items) {
 
-		let records = [].concat(items).map(async item => {
+		let records = [].concat(items).map(item => {
 
 			try {
 
-				let cached = await this.cached(item.meta.tb, item.id);
+				let cached = this.cached(item.meta.tb, item.id);
 
 				if (cached === undefined) {
 					cached = this.lookup(item.meta.tb).create(item);
@@ -188,12 +188,7 @@ export default class Store extends Service {
 
 		});
 
-		switch ( Array.isArray(items) ) {
-		case false:
-			return await Promise.resolve(records[0]);
-		default:
-			return await Promise.all(records);
-		}
+		return Array.isArray(items) ? records : records[0];
 
 	}
 
@@ -209,7 +204,7 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the removed records.
 	 */
 
-	async unload(model, id) {
+	unload(model, id) {
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -241,7 +236,7 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the cached records.
 	 */
 
-	async cached(model, id, opts) {
+	cached(model, id) {
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -275,7 +270,7 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the desired records.
 	 */
 
-	async remote(model, id, opts) {
+	async remote(model, id, opts={}) {
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -315,8 +310,7 @@ export default class Store extends Service {
 
 			let record = this.lookup(model).create(data);
 			let server = await this.surreal.create(model, id, record.data);
-			await this.inject(server);
-			return this.cached(model, server.id);
+			return this.inject(server);
 
 		} catch (e) {
 
@@ -434,7 +428,7 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the desired records.
 	 */
 
-	async select(model, id, opts) {
+	async select(model, id, opts={}) {
 
 		assert('The model type must be a string', typeof model === 'string');
 
@@ -442,22 +436,17 @@ export default class Store extends Service {
 
 		if (this.#stack[id||model] === undefined) {
 
-			this.#stack[id||model] = this.cached(model, id).then(cached => {
+			let cached = this.cached(model, id);
 
-				switch (true) {
-				case cached === undefined || cached.length === 0 || opts.reload === true:
-					return this.remote(model, id, opts).then(result => {
-						delete this.#stack[id||model];
-						return result;
-					});
-				case cached !== undefined && cached.length !== 0 && opts.reload !== true:
-					return this.cached(model, id, opts).then(result => {
-						delete this.#stack[id||model];
-						return result;
-					});
-				}
-
-			});
+			switch (true) {
+			case cached !== undefined && cached.length !== 0 && opts.reload !== true:
+				return cached;
+			case cached === undefined || cached.length === 0 || opts.reload === true:
+				this.#stack[id||model] = this.remote(model, id, opts);
+				let result = await this.#stack[id||model];
+				delete this.#stack[id||model];
+				return result;
+			}
 
 		}
 
@@ -478,7 +467,7 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the total number of records.
 	 */
 
-	async count(model, query) {
+	async count(model, query={}) {
 
 		let { text, vars } = count(model, query);
 
@@ -505,7 +494,7 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the desired matching records.
 	 */
 
-	async search(model, query) {
+	async search(model, query={}) {
 
 		let result;
 
@@ -550,12 +539,7 @@ export default class Store extends Service {
 
 		});
 
-		switch (query.limit) {
-		case 1:
-			return await Promise.resolve(records[0]);
-		default:
-			return await Promise.all(records);
-		}
+		return query.limit !== 1 ? records : records[0];
 
 	}
 
