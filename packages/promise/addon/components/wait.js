@@ -40,11 +40,6 @@ export default class extends Component {
 
 		this.task = new Task();
 
-		if (!this.promise.then) {
-			task.data = this.promise;
-			return task;
-		}
-
 		this.promise.then(
 			(value) => {
 				this.task.data = value;
