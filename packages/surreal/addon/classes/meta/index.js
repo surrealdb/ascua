@@ -13,7 +13,7 @@ export function init(target) {
 
 export function all(target) {
 	init(target);
-	return Object.values(target[META]);
+	return Object.keys(target[META]).map(k => target[META][k]);
 }
 
 export function get(target, name) {
