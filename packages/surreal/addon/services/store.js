@@ -52,8 +52,8 @@ export default class Store extends Service {
 	 */
 
 	willDestroy() {
-		super.willDestroy();
 		this.reset();
+		super.willDestroy(...arguments);
 	}
 
 	/**
@@ -65,9 +65,11 @@ export default class Store extends Service {
 	reset() {
 		this.#cache.clear();
 		for (let k in this.#proxy) {
+			this.#proxy[k] = [];
 			delete this.#proxy[k];
 		}
 		for (let k in this.#stack) {
+			this.#stack[k] = [];
 			delete this.#stack[k];
 		}
 	}
