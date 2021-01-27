@@ -1,16 +1,15 @@
-<app-image
-	lqip={{@lqip}}
-	visible={{this.visible}}
-	{{style width=@width height=@height}}
-	{{did-enter-viewport this.didEnterViewport}}
->
+<app-image lqip={{@lqip}} {{style width=@width height=@height}} {{did-enter-viewport this.didEnterViewport}}>
 
 	{{#if @lqip}}
-		<img width="100%" height="100%" alt={{@alt}} src={{@lqip}}>
+		<img width="100%" height="100%" loading="lazy" alt={{@alt}} src={{@lqip}}>
 	{{/if}}
 
-	{{#if this.visible}}
-		<img width="100%" height="100%" alt={{@alt}} src={{@src}} sizes={{@sizes}} srcset={{@srcset}}>
+	{{#if this.display}}
+		<img width="100%" height="100%" loading="lazy" alt={{@alt}} src={{@src}} sizes={{@sizes}} srcset={{@srcset}} {{did-update this.didRerender @src @sizes @srcset}} {{on "load" this.didFinishLoading}} display>
+	{{else}}
+		{{#if this.visible}}
+			<img width="100%" height="100%" loading="lazy" alt={{@alt}} src={{@src}} sizes={{@sizes}} srcset={{@srcset}} {{did-update this.didRerender @src @sizes @srcset}} {{on "load" this.didFinishLoading}}>
+		{{/if}}
 	{{/if}}
 
 </app-image>
