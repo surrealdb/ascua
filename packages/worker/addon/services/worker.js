@@ -73,6 +73,8 @@ export default class extends Service {
 
 		if (this.timer) clearInterval(this.timer);
 
+		this.removeAllListeners();
+
 		super.willDestroy(...arguments);
 
 	}

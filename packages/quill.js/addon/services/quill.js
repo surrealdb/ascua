@@ -7,6 +7,11 @@ export default class extends Service {
 
 	instances = [];
 
+	willDestroy() {
+		this.removeAllListeners();
+		super.willDestroy(...arguments);
+	}
+
 	register(component) {
 		this.instances.addObject(component);
 	}
