@@ -2,6 +2,7 @@ import on from './on';
 import off from './off';
 import log from './log';
 import arg from './arg';
+import later from './later';
 import cache from './cache';
 import observe from './observe';
 import unobserve from './unobserve';
@@ -12,6 +13,7 @@ export {
 	off,
 	log,
 	arg,
+	later,
 	cache,
 	observe,
 	unobserve,
