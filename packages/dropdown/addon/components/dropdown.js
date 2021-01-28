@@ -20,8 +20,6 @@ export default class extends Component {
 
 	@tracked display = false;
 
-	@tracked visible = false;
-
 	@action open() {
 		this.display = true;
 	}
@@ -35,6 +33,10 @@ export default class extends Component {
 		element.focus();
 	}
 
+	@action place(event) {
+		this.popup(event.target.parentElement);
+	}
+
 	@action popup(element) {
 
 		let w = element.offsetWidth;
@@ -43,10 +45,23 @@ export default class extends Component {
 		let l = this.element.getBoundingClientRect().left - 5;
 
 		while ( l+w > window.innerWidth-30 ) l--;
-
 		while ( t+h > window.innerHeight-30 ) t--;
 
 		this.left = l; this.top = t;
+
+		setTimeout( () => {
+
+			let w = element.offsetWidth;
+			let h = element.offsetHeight;
+			let t = this.element.getBoundingClientRect().top - 5;
+			let l = this.element.getBoundingClientRect().left - 5;
+
+			while ( l+w > window.innerWidth-30 ) l--;
+			while ( t+h > window.innerHeight-30 ) t--;
+
+			this.left = l; this.top = t;
+
+		});
 
 	}
 

@@ -27,7 +27,7 @@
 				<app-dropdown-front {{did-insert this.popup}} {{style marginTop=this.top marginLeft=this.left}}>
 
 					{{#if @filter}}
-						<Input @value={{this.search}} @placeholder={{@filter}} size={{@filter.length}} {{did-insert this.focus}} />
+						<Input @value={{this.search}} @placeholder={{@filter}} size={{@filter.length}} {{did-insert this.focus}} {{on "input" this.place}} />
 					{{/if}}
 
 					{{yield (hash
