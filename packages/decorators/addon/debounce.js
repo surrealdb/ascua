@@ -6,7 +6,7 @@ export default function(duration) {
 	return function(target, key, desc) {
 
 		assert(
-			'The on decorator must be applied to functions',
+			'The @debounce decorator must be applied to a method',
 			desc && typeof desc.value === 'function',
 		);
 

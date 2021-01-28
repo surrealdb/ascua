@@ -11,6 +11,11 @@ export default function(...paths) {
 
 	return function(target, key, desc) {
 
+		assert(
+			'The @unobserve decorator must be applied to a method',
+			desc && typeof desc.value === 'function',
+		);
+
 		for (let path of paths) {
 			expandProperties(path, prop => {
 				removeObserver(target, prop, null, key);

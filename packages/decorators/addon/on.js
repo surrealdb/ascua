@@ -11,7 +11,7 @@ export default function(...events) {
 	return function(target, key, desc) {
 
 		assert(
-			'The on decorator must be applied to functions',
+			'The on decorator must be applied to a method',
 			desc && typeof desc.value === 'function',
 		);
 

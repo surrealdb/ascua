@@ -5,14 +5,14 @@ import { addObserver } from '@ember/object/observers';
 export default function(...paths) {
 
 	assert(
-		'The @unobserve decorator requires `dependentKey` parameters',
+		'The @observe decorator requires `dependentKey` parameters',
 		paths.length > 0 && paths.every(v => typeof v === "string")
 	);
 
 	return function(target, key, desc) {
 
 		assert(
-			'The observe decorator must be applied to functions',
+			'The @observe decorator must be applied to a method',
 			desc && typeof desc.value === 'function',
 		);
 
