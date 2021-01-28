@@ -10,8 +10,10 @@ export default class extends Component {
 	@tracked visible = false;
 
 	@action didRerender(el) {
-		el.removeAttribute('display');
-		el.removeAttribute('visible');
+		if (el.complete !== true) {
+			el.removeAttribute('display');
+			el.removeAttribute('visible');
+		}
 	}
 
 	@action didEnterViewport(el) {
