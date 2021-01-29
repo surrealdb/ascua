@@ -17,7 +17,7 @@
   "dependencies": {
     "ember-cli-babel": "^7.23.0",
     "ember-cli-htmlbars": "^5.3.1",
-    "marked": "^1.2.7"
+    "marked": "^1.2.8"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
