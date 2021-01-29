@@ -1,0 +1,28 @@
+{
+  "name": "@ascua/facebook.js",
+  "version": "0.0.152",
+  "description": "Small description for @ascua/facebook.js goes here",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcum/ascua.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tobie Morgan Hitchcock",
+    "url": "https://abcum.com"
+  },
+  "dependencies": {
+    "ember-cli-babel": "^7.23.0",
+    "ember-cli-htmlbars": "^5.3.1"
+  },
+  "ember-addon": {
+    "demoURL": "https://abcum.github.io/ascua"
+  },
+  "homepage": "https://abcum.github.io/ascua",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,24 @@
+<div
+	class="fb-like"
+	data-action={{this.action}}
+	data-colorscheme={{this.colorscheme}}
+	data-href={{this.href}}
+	data-layout={{this.layout}}
+	data-lazy={{this.lazy}}
+	data-ref={{this.ref}}
+	data-share={{this.share}}
+	data-size={{this.size}}
+	data-width={{this.width}}
+	{{did-insert this.didCreate}}
+	{{did-update this.didChange
+		@action
+		@colorscheme
+		@href
+		@layout
+		@lazy
+		@ref
+		@share
+		@size
+		@width
+	}}
+></div>
