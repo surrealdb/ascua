@@ -3,7 +3,7 @@ import Service from '@ember/service';
 import config from '@ascua/config';
 
 const defaults = {
-	xfbml: 1,
+	xfbml: false,
 	version: 'v9.0',
 	autoLogAppEvents: true,
 	appId: '370958264110114',

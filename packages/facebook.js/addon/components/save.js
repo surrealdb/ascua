@@ -13,12 +13,12 @@ export default class extends Component {
 
 	@action async didCreate(element) {
 		const FB = await this.facebook.load();
-		FB.XFBML.parse();
+		FB.XFBML.parse(element);
 	}
 
-	@action async didChange() {
+	@action async didChange(element) {
 		const FB = await this.facebook.load();
-		FB.XFBML.parse();
+		FB.XFBML.parse(element);
 	}
 
 }

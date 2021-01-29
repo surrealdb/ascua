@@ -1,14 +1,17 @@
-<div class="fb-save" data-uri="https://www.instagram.com/facebook/" data-size="small"></div>
-
 <div
-	class="fb-save"
-	data-lazy={{this.lazy}}
-	data-size={{this.size}}
-	data-uri={{this.uri}}
 	{{did-insert this.didCreate}}
 	{{did-update this.didChange
 		@lazy
 		@size
 		@uri
 	}}
-></div>
+>
+
+	<div
+		class="fb-save"
+		data-lazy={{this.lazy}}
+		data-size={{this.size}}
+		data-uri={{this.uri}}
+	></div>
+
+</div>
