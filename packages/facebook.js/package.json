@@ -15,6 +15,7 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
+    "@ascua/decorators": "file:../decorators",
     "ember-cli-babel": "^7.23.0",
     "ember-cli-htmlbars": "^5.3.1"
   },
