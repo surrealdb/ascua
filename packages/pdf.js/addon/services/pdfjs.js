@@ -8,6 +8,10 @@ export default class extends Service {
 
 	async load() {
 
+		if (typeof FastBoot !== 'undefined') {
+			return Promise.reject();
+		}
+
 		let base = `${this.router.rootURL}/assets`.replace(/\/\/+/g, '/');
 
 		if (this.loader === undefined) {
@@ -22,9 +26,9 @@ export default class extends Service {
 
 			await this.loader;
 
-			pdfjsLib.GlobalWorkerOptions.workerSrc = `${base}/pdfjs-worker.js`;
+			window.pdfjsLib.GlobalWorkerOptions.workerSrc = `${base}/pdfjs-worker.js`;
 
-			return pdfjsLib;
+			return window.pdfjsLib;
 
 		}
 
@@ -32,7 +36,7 @@ export default class extends Service {
 
 			await this.loader;
 
-			return pdfjsLib;
+			return window.pdfjsLib;
 
 		}
 
