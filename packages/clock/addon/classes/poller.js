@@ -10,22 +10,22 @@ function enabled() {
 	}
 }
 
-export default class extends Object {
+export default class Poller {
 
-	timer = null;
+	#timer = null;
 
-	interval = 1000;
+	#interval = 1000;
 
 	constructor(interval) {
 
-		this.interval = interval;
+		this.#interval = interval;
 
 	}
 
 	clear() {
 
 		if (enabled() === true) {
-			clearInterval(this.timer);
+			clearInterval(this.#timer);
 		}
 
 	}
@@ -35,7 +35,7 @@ export default class extends Object {
 		func.apply(ctx, args);
 
 		if (enabled() === true) {
-			this.timer = setInterval(func.bind(ctx, ...args), this.interval);
+			this.#timer = setInterval(func.bind(ctx, ...args), this.#interval);
 		}
 
 	}
