@@ -22,6 +22,10 @@ function enabled() {
 
 export default class extends Service {
 
+	#timer = undefined;
+
+	#config = undefined;
+
 	// Whether an update is available
 	// for the ember app, so that we
 	// can display a notification.
@@ -40,19 +44,19 @@ export default class extends Service {
 
 		if (window.ELECTRON === true) return;
 
-		this.config = Object.assign({}, defaults, config.update);
+		this.#config = Object.assign({}, defaults, config.update);
 
-		if (this.config.enabled === true) {
-			if (this.config.frequency) {
-				this.timer = setInterval(
+		if (this.#config.enabled === true) {
+			if (this.#config.frequency) {
+				this.#timer = setInterval(
 					this.check.bind(this),
-					this.config.frequency,
+					this.#config.frequency,
 				);
 			}
 		}
 
 		this.on('updatefound', () => {
-			switch (this.config.autoupdate) {
+			switch (this.#config.autoupdate) {
 			case false:
 				return this.updatefound = true;
 			case true:
@@ -70,7 +74,7 @@ export default class extends Service {
 
 	willDestroy() {
 
-		if (this.timer) clearInterval(this.timer);
+		if (this.#timer) clearInterval(this.#timer);
 
 		this.removeAllListeners();
 
@@ -94,7 +98,7 @@ export default class extends Service {
 
 	@action check() {
 
-		if (this.config.enabled === true) {
+		if (this.#config.enabled === true) {
 
 			let url = `/version.txt?_=${new Date().getTime()}`;
 

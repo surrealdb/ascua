@@ -12,12 +12,20 @@ function enabled() {
 
 export default class extends Object {
 
+	timer = null;
+
 	interval = 1000;
+
+	constructor(interval) {
+
+		this.interval = interval;
+
+	}
 
 	clear() {
 
 		if (enabled() === true) {
-			clearInterval(this.poller);
+			clearInterval(this.timer);
 		}
 
 	}
@@ -27,7 +35,7 @@ export default class extends Object {
 		func.apply(ctx, args);
 
 		if (enabled() === true) {
-			this.poller = setInterval(func.bind(ctx, ...args), this.interval);
+			this.timer = setInterval(func.bind(ctx, ...args), this.interval);
 		}
 
 	}

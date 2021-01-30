@@ -23,6 +23,10 @@ function enabled() {
 
 export default class extends Service {
 
+	#timer = undefined;
+
+	#config = undefined;
+
 	// Whether an update is available
 	// for the service worker, so that
 	// we can display a notification.
@@ -41,19 +45,19 @@ export default class extends Service {
 
 		if (window.ELECTRON === true) return;
 
-		this.config = Object.assign({}, defaults, config.worker);
+		this.#config = Object.assign({}, defaults, config.worker);
 
-		if (this.config.enabled === true) {
-			if (this.config.frequency) {
-				this.timer = setInterval(
+		if (this.#config.enabled === true) {
+			if (this.#config.frequency) {
+				this.#timer = setInterval(
 					this.check.bind(this),
-					this.config.frequency,
+					this.#config.frequency,
 				);
 			}
 		}
 
 		this.on('updatefound', () => {
-			switch (this.config.autoupdate) {
+			switch (this.#config.autoupdate) {
 			case false:
 				return this.updatefound = true;
 			case true:
@@ -71,7 +75,7 @@ export default class extends Service {
 
 	willDestroy() {
 
-		if (this.timer) clearInterval(this.timer);
+		if (this.#timer) clearInterval(this.#timer);
 
 		this.removeAllListeners();
 
@@ -85,7 +89,7 @@ export default class extends Service {
 
 	setup() {
 
-		if (this.config.enabled === false) {
+		if (this.#config.enabled === false) {
 
 			let sw = window.navigator.serviceWorker;
 
@@ -101,7 +105,7 @@ export default class extends Service {
 
 		}
 
-		if (this.config.enabled === true) {
+		if (this.#config.enabled === true) {
 
 			let sw = window.navigator.serviceWorker;
 

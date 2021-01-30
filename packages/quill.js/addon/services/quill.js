@@ -5,7 +5,7 @@ const Delta = Quill.import('delta');
 
 export default class extends Service {
 
-	instances = [];
+	#instances = [];
 
 	willDestroy() {
 		this.removeAllListeners();
@@ -13,11 +13,11 @@ export default class extends Service {
 	}
 
 	register(component) {
-		this.instances.addObject(component);
+		this.#instances.addObject(component);
 	}
 
 	unregister(component) {
-		this.instances.removeObject(component);
+		this.#instances.removeObject(component);
 	}
 
 	text(name, instance, text, source = 'api') {
@@ -26,7 +26,7 @@ export default class extends Service {
 		let delta = new Delta().insert(text);
 
 		// Ensure all other editors are updated with the changes.
-		this.instances.filterBy('name', name).forEach(q => {
+		this.#instances.filterBy('name', name).forEach(q => {
 			if (q.instance !== instance) {
 				q.instance.setContents(delta, 'silent');
 			}
@@ -39,10 +39,10 @@ export default class extends Service {
 
 	html(name, instance, html, source = 'api') {
 
-		let delta = this.instances[0].instance.clipboard.convert(html);
+		let delta = this.#instances[0].instance.clipboard.convert(html);
 
 		// Ensure all other editors are updated with the changes.
-		this.instances.filterBy('name', name).forEach(q => {
+		this.#instances.filterBy('name', name).forEach(q => {
 			if (q.instance !== instance) {
 				q.instance.setContents(delta, 'silent');
 			}
@@ -59,7 +59,7 @@ export default class extends Service {
 		delta = delta instanceof Delta ? delta : new Delta(delta);
 
 		// Ensure all other editors are updated with the changes.
-		this.instances.filterBy('name', name).forEach(q => {
+		this.#instances.filterBy('name', name).forEach(q => {
 			if (q.instance !== instance) {
 				q.instance.setContents(delta, 'silent');
 			}
@@ -76,7 +76,7 @@ export default class extends Service {
 		delta = delta instanceof Delta ? delta : new Delta(delta);
 
 		// Ensure all other editors are updated with the changes.
-		this.instances.filterBy('name', name).forEach(q => {
+		this.#instances.filterBy('name', name).forEach(q => {
 			if (q.instance !== instance) {
 				q.instance.updateContents(delta, 'silent');
 			}

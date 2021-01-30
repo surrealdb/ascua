@@ -11,6 +11,10 @@ const defaults = {
 
 export default class extends Service {
 
+	#timer = undefined;
+
+	#config = undefined;
+
 	// Whether an update is available
 	// for the ember app, so that we
 	// can display a notification.
@@ -27,17 +31,17 @@ export default class extends Service {
 
 		if (Electron === null) return;
 
-		this.config = Object.assign({}, defaults, config.electron);
+		this.#config = Object.assign({}, defaults, config.electron);
 
-		if (this.config.frequency) {
-			this.timer = setInterval(
+		if (this.#config.frequency) {
+			this.#timer = setInterval(
 				this.check.bind(this),
-				this.config.frequency,
+				this.#config.frequency,
 			);
 		}
 
 		this.on('updatefound', () => {
-			switch (this.config.autoupdate) {
+			switch (this.#config.autoupdate) {
 			case false:
 				return this.updatefound = true;
 			case true:
@@ -57,7 +61,7 @@ export default class extends Service {
 
 	willDestroy() {
 
-		if (this.timer) clearInterval(this.timer);
+		if (this.#timer) clearInterval(this.#timer);
 
 		this.removeAllListeners();
 

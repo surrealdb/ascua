@@ -4,7 +4,7 @@ import Poller from '../classes/poller';
 
 export default class extends Service {
 
-	@tracked poller;
+	#poller = undefined;
 
 	@tracked now;
 	@tracked full;
@@ -20,15 +20,15 @@ export default class extends Service {
 
 		super(...arguments);
 
-		this.poller = new Poller(1000);
+		this.#poller = new Poller(1000);
 
-		this.poller.start(this, this.tick);
+		this.#poller.start(this, this.tick);
 
 	}
 
 	willDestroy() {
 
-		this.poller.clear();
+		this.#poller.clear();
 
 		super.willDestroy(...arguments);
 

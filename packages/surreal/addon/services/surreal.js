@@ -34,6 +34,12 @@ export default class Surreal extends Service {
 
 	#db = Database.Instance;
 
+	// The full configuration info for
+	// SurrealDB, including NS, DB,
+	// and custom endpoint options.
+
+	#config = undefined;
+
 	// The contents of the token
 	// used for authenticating with
 	// the Surreal database;
@@ -162,29 +168,29 @@ export default class Surreal extends Service {
 		// which have been specified in the
 		// app environment config file.
 
-		this.config = Object.assign({}, defaults, config.surreal);
+		this.#config = Object.assign({}, defaults, config.surreal);
 
 		assert(
 			'Set the `surreal.ns` property in your environment config as a string',
-			this.config.ns !== undefined || this.config.NS !== undefined,
+			this.#config.ns !== undefined || this.#config.NS !== undefined,
 		);
 
 		assert(
 			'Set the `surreal.db` property in your environment config as a string',
-			this.config.db !== undefined || this.config.DB !== undefined,
+			this.#config.db !== undefined || this.#config.DB !== undefined,
 		);
 
 		// Open the websocket for the first
 		// time. This will automatically
 		// attempt to reconnect on failure.
 
-		if (this.config.uri) this.config.url = `${this.config.uri}/rpc`;
+		if (this.#config.uri) this.#config.url = `${this.#config.uri}/rpc`;
 
 		// Open the websocket for the first
 		// time. This will automatically
 		// attempt to reconnect on failure.
 
-		this.#db.connect(this.config.url, this.config);
+		this.#db.connect(this.#config.url, this.#config);
 
 	}
 

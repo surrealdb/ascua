@@ -11,11 +11,13 @@ const defaults = {
 
 export default class extends Service {
 
+	#config = undefined;
+
 	constructor() {
 
 		super(...arguments);
 
-		this.config = Object.assign({}, defaults, config.facebook);
+		this.#config = Object.assign({}, defaults, config.facebook);
 
 	}
 
@@ -41,7 +43,7 @@ export default class extends Service {
 
 			await this.loader;
 
-			window.FB.init(this.config);
+			window.FB.init(this.#config);
 
 			return window.FB;
 
