@@ -18,6 +18,12 @@ module.exports = function(environment) {
 			publishableKey: 'pk_test_SWarCDaast79iYO0YdTILYos',
 		},
 
+		stackdriver: {
+			enabled: false,
+			projectId: 'abcum-ltd',
+			key: 'undefined-invalid-api-key',
+		},
+
 		codemirror: {
 			includeTags: true,
 			includeComments: true,
