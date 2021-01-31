@@ -13,6 +13,8 @@ export default class extends Service {
 
 	#config = undefined;
 
+	#loader = undefined;
+
 	constructor() {
 
 		super(...arguments);
@@ -27,9 +29,9 @@ export default class extends Service {
 			return Promise.reject();
 		}
 
-		if (this.loader === undefined) {
+		if (this.#loader === undefined) {
 
-			this.loader = new Promise( (resolve, reject) => {
+			this.#loader = new Promise( (resolve, reject) => {
 				let script = document.createElement('script');
 				script.onload = resolve;
 				script.onerror = reject;
@@ -41,7 +43,7 @@ export default class extends Service {
 				document.head.appendChild(script);
 			});
 
-			await this.loader;
+			await this.#loader;
 
 			window.FB.init(this.#config);
 
@@ -49,9 +51,9 @@ export default class extends Service {
 
 		}
 
-		if (this.loader !== undefined) {
+		if (this.#loader !== undefined) {
 
-			await this.loader;
+			await this.#loader;
 
 			return window.FB;
 

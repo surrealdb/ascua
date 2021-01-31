@@ -4,6 +4,8 @@ import { inject } from '@ember/service';
 
 export default class extends Service {
 
+	#loader = undefined;
+
 	@inject router;
 
 	async load() {
@@ -14,9 +16,9 @@ export default class extends Service {
 
 		let base = `${this.router.rootURL}/assets`.replace(/\/\/+/g, '/');
 
-		if (this.loader === undefined) {
+		if (this.#loader === undefined) {
 
-			this.loader = new Promise( (resolve, reject) => {
+			this.#loader = new Promise( (resolve, reject) => {
 				let script = document.createElement('script');
 				script.onload = resolve;
 				script.onerror = reject;
@@ -24,7 +26,7 @@ export default class extends Service {
 				document.head.appendChild(script);
 			});
 
-			await this.loader;
+			await this.#loader;
 
 			window.pdfjsLib.GlobalWorkerOptions.workerSrc = `${base}/pdfjs-worker.js`;
 
@@ -32,9 +34,9 @@ export default class extends Service {
 
 		}
 
-		if (this.loader !== undefined) {
+		if (this.#loader !== undefined) {
 
-			await this.loader;
+			await this.#loader;
 
 			return window.pdfjsLib;
 
