@@ -28,6 +28,16 @@
 	</Ascua::Stripe::Elements>
 </Example>
 
+<h3>Custom instance</h3>
+
+<p>To render Stripe elements with a custom Stripe instance, pass the desired Stripe instance into the <code>Ascua::Stripe::Elements</code> component using the <code>stripe</code> argument.</p>
+
+<Example @name="demo-libraries-stripejs-elements-custom.hbs">
+	<Ascua::Stripe::Elements @stripe={{this.stripe}} as |elements|>
+		<elements.card />
+	</Ascua::Stripe::Elements>
+</Example>
+
 <h3>Detecting changes</h3>
 
 <p>To subscribe to changes to the element's value, use the <code>onError</code>, <code>onEmpty</code>, and <code>onComplete</code> arguments.</p>

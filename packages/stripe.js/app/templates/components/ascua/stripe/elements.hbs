@@ -1,27 +1,31 @@
-<div>
+<div {{did-insert this.setup}}>
 
-	{{yield (augment this.elements
-		card=(component "ascua/stripe/elements/card"
-			stripe=this.stripe elements=this.elements
-		)
-		cardNumber=(component "ascua/stripe/elements/cardNumber"
-			stripe=this.stripe elements=this.elements
-		)
-		cardExpiry=(component "ascua/stripe/elements/cardExpiry"
-			stripe=this.stripe elements=this.elements
-		)
-		cardCvc=(component "ascua/stripe/elements/cardCvc"
-			stripe=this.stripe elements=this.elements
-		)
-		iban=(component "ascua/stripe/elements/iban"
-			stripe=this.stripe elements=this.elements
-		)
-		idealBank=(component "ascua/stripe/elements/idealBank"
-			stripe=this.stripe elements=this.elements
-		)
-		paymentRequestButton=(component "ascua/stripe/elements/paymentRequestButton"
-			stripe=this.stripe elements=this.elements
-		)
-	)}}
+	{{#if this.elements}}
+
+		{{yield (augment this.elements
+			card=(component "ascua/stripe/elements/card"
+				elements=this.elements
+			)
+			cardNumber=(component "ascua/stripe/elements/cardNumber"
+				elements=this.elements
+			)
+			cardExpiry=(component "ascua/stripe/elements/cardExpiry"
+				elements=this.elements
+			)
+			cardCvc=(component "ascua/stripe/elements/cardCvc"
+				elements=this.elements
+			)
+			iban=(component "ascua/stripe/elements/iban"
+				elements=this.elements
+			)
+			idealBank=(component "ascua/stripe/elements/idealBank"
+				elements=this.elements
+			)
+			paymentRequestButton=(component "ascua/stripe/elements/paymentRequestButton"
+				elements=this.elements
+			)
+		)}}
+
+	{{/if}}
 
 </div>

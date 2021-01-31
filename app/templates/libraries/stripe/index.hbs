@@ -6,18 +6,32 @@
 	ember install @ascua/stripe.js
 </Example>
 
-<h2>Module</h2>
-
-<Example @name="demo-libraries-stripejs-import.js">
-	import Stripe from 'stripe';
-</Example>
-
 <h2>Instance</h2>
 
-<p>In order to use the <a href="https://stripe.com/docs/js" target="_blank" rel="noopener noreferrer">Stripe API</a>, you must instantiate the Stripe module with your API key. Alternatively you can import directly from <code>@ascua/stripe.js</code> to use a pre-instantiated Stripe API object.</p>
+<p>In order to use the <a href="https://stripe.com/docs/js" target="_blank" rel="noopener noreferrer">Stripe API</a>, you must first load the library asynchronously, and wait for it to load.</p>
 
-<Example @name="demo-libraries-stripejs-instance.js">
-	import stripe from '@ascua/stripe.js';
+<Example @name="demo-libraries-stripejs-class.js">
+	import Stripe from '@ascua/stripe.js';
+	// Load the stripe library
+	Stripe.load();
+</Example>
+
+<p>To use Stripe, load the Stripe instance, which is automatically instantiated with your Stripe API key.</p>
+
+<Example @name="demo-libraries-stripejs-class-instance.js">
+	import Stripe from '@ascua/stripe.js';
+	// Get the default Stripe instance
+	const stripe = await Stripe.instance;
+</Example>
+
+<p>If you need to create a custom Stripe instance, then call the static <code>setup</code> method, with your Stripe API key, and any desired options.</p>
+
+<Example @name="demo-libraries-stripejs-class-library.js">
+	import Stripe from '@ascua/stripe.js';
+	// Setup a new custom Stripe instance
+	const stripe = await Stripe.setup('pk_SGryXYpfqh14iYO7YdFKQVhf', {
+		stripeAccount: 'acct_2RN7yJRphyK8hd1q'
+	});
 </Example>
 
 <h2>Configuration</h2>
