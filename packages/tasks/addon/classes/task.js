@@ -133,6 +133,12 @@ export default class Task {
 				}
 			}
 
+			if (task.error !== CANCELLED) {
+				if (task.error) {
+					throw task.error;
+				}
+			}
+
 		}
 
 	}
