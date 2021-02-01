@@ -12,7 +12,7 @@ module.exports = {
 
 		this._super.included.apply(this, ...arguments);
 
-		app.import('node_modules/handsontable/dist/handsontable.full.min.js', fastboot);
+		app.import('node_modules/handsontable/dist/handsontable.full.js', fastboot);
 		app.import('node_modules/handsontable/dist/handsontable.full.css');
 
 		app.import('vendor/handsontable.js', {
