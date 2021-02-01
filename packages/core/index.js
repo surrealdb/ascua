@@ -19,7 +19,8 @@ module.exports = {
 		// Ensure correct file types are fingerprinted
 		app.options.fingerprint = app.options.fingerprint || {};
 		app.options.fingerprint.extensions = app.options.fingerprint.extensions || [];
-		app.options.fingerprint.extensions.push('js', 'css', 'eot', 'otf', 'ttf', 'woff', 'woff2');
+		app.options.fingerprint.extensions.push('js', 'css', 'map');
+		app.options.fingerprint.extensions.push('eot', 'otf', 'ttf', 'woff', 'woff2');
 		app.options.fingerprint.extensions.push('gif', 'jpg', 'jp2', 'png', 'svg', 'tiff', 'webp');
 
 	},
