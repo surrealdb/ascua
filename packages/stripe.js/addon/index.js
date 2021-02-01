@@ -22,7 +22,6 @@ export default class Stripe {
 			script.onerror = reject;
 			script.src = 'https://js.stripe.com/v3/';
 			script.defer = true;
-			script.async = true;
 			document.head.appendChild(script);
 		});
 
