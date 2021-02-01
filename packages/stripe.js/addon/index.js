@@ -6,7 +6,7 @@ export default class Stripe {
 
 	static #instance = undefined;
 
-	static load() {
+	static async load() {
 
 		if (Stripe.#loader) return Stripe.#loader;
 
@@ -28,7 +28,7 @@ export default class Stripe {
 
 	}
 
-	static setup(key, opts) {
+	static async setup(key, opts) {
 		return Stripe.load().then( () => {
 			return window.Stripe(key, opts);
 		});
