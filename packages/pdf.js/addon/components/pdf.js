@@ -69,6 +69,7 @@ export default class extends Component {
 
 	@restart * cleanup() {
 		try {
+			for (let page of this.pages) { yield page.cleanup(); }
 			if (this.doc && this.doc.cleanup) yield this.doc.cleanup();
 			if (this.doc && this.doc.destroy) yield this.doc.destroy();
 			if (this.xhr && this.xhr.destroy) yield this.xhr.destroy();
@@ -86,6 +87,7 @@ export default class extends Component {
 	}
 
 	@restart * process(url) {
+
 		try {
 
 			let pages = [];
@@ -108,8 +110,21 @@ export default class extends Component {
 			this.pages = yield Promise.all(pages);
 
 		} catch (e) {
+
 			// Ignore
+
+		} finally {
+
+			try {
+				for (let page of this.pages) {
+					yield page.cleanup();
+				}
+			} catch (e) {
+				// Ignore
+			}
+
 		}
+
 	}
 
 }
