@@ -77,8 +77,12 @@ export default class extends Component {
 
 		} finally {
 
-			if (this.ren && this.ren.cancel) {
-				yield this.ren.cancel();
+			try {
+				if (this.ren && this.ren.cancel) {
+					yield this.ren.cancel();
+				}
+			} catch (e) {
+				// Ignore
 			}
 
 		}
