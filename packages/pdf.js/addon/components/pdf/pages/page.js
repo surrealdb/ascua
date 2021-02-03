@@ -44,11 +44,21 @@ export default class extends Component {
 		}
 	}
 
+	@restart * cleanup() {
+		try {
+			if (this.ren && this.ren.cancel) yield this.ren.cancel();
+		} catch (e) {
+			// Ignore
+		}
+	}
+
 	@restart * process(page) {
 
 		try {
 
 			if (!page) return;
+
+			yield this.cleanup.run();
 
 			let ww = this.args.w;
 			let wh = this.args.h;
