@@ -18,6 +18,10 @@ export default class extends Service {
 
 		if (this.#loader === undefined) {
 
+			Object.defineProperty(Array.prototype, '_super', {
+				enumerable: false
+			});
+
 			this.#loader = new Promise( (resolve, reject) => {
 				let script = document.createElement('script');
 				script.onload = resolve;
