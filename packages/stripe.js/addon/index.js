@@ -18,9 +18,10 @@ export default class Stripe {
 
 		return Stripe.#loader = new Promise( (resolve, reject) => {
 			let script = document.createElement('script');
+			script.src = 'https://js.stripe.com/v3/';
 			script.onload = resolve;
 			script.onerror = reject;
-			script.src = 'https://js.stripe.com/v3/';
+			script.async = false;
 			script.defer = true;
 			document.head.appendChild(script);
 		});

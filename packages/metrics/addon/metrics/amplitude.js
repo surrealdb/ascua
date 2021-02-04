@@ -19,7 +19,9 @@ export default class extends Metric {
 		(function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
 		;r.type="text/javascript"
 		;r.integrity="sha384-RsEu4WZflrqYcEacpfoGSib3qaSvdYwT4D+DrWqeBuDarSzjwUQR1jO8gDiXZd0E"
-		;r.crossOrigin="anonymous";r.defer=true
+		;r.crossOrigin="anonymous"
+		;r.async=false
+		;r.defer=true
 		;r.src="https://cdn.amplitude.com/libs/amplitude-6.2.0-min.gz.js"
 		;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
 		console.log("[Amplitude] Error: could not load SDK")}}
