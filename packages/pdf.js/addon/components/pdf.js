@@ -113,16 +113,6 @@ export default class extends Component {
 
 			// Ignore
 
-		} finally {
-
-			try {
-				for (let page of this.pages) {
-					yield page.cleanup();
-				}
-			} catch (e) {
-				// Ignore
-			}
-
 		}
 
 	}
