@@ -6,7 +6,7 @@ export default class Stripe {
 
 	static #instance = undefined;
 
-	static async load() {
+	static load() {
 
 		if (Stripe.#loader) return Stripe.#loader;
 
@@ -17,18 +17,20 @@ export default class Stripe {
 		if (window && window.Stripe) return window.Stripe;
 
 		return Stripe.#loader = new Promise( (resolve, reject) => {
-			let script = document.createElement('script');
-			script.src = 'https://js.stripe.com/v3/';
-			script.onload = resolve;
-			script.onerror = reject;
-			script.async = false;
-			script.defer = true;
-			document.head.appendChild(script);
+			window.addEventListener('load', function() {
+				let script = document.createElement('script');
+				script.src = 'https://js.stripe.com/v3/';
+				script.onload = resolve;
+				script.onerror = reject;
+				script.async = false;
+				script.defer = true;
+				document.head.appendChild(script);
+			});
 		});
 
 	}
 
-	static async setup(key, opts) {
+	static setup(key, opts) {
 		return Stripe.load().then( () => {
 			return window.Stripe(key, opts);
 		});
