@@ -88,7 +88,7 @@ module.exports = class Webapp extends Plugin {
 			},
 		}).end();
 
-		fs.writeFileSync(path.join(this.outputPath, 'browserconfig.xml'), browser);
+		fs.writeFileSync(path.join(this.outputPath, 'static/browserconfig.xml'), browser);
 
 		// Write the module content to the
 		// virtual config.js file so it can
@@ -112,7 +112,7 @@ module.exports = class Webapp extends Plugin {
 			]
 		});
 
-		fs.writeFileSync(path.join(this.outputPath, 'manifest.json'), manifest);
+		fs.writeFileSync(path.join(this.outputPath, 'static/manifest.json'), manifest);
 
 		// Wait for all of the files to
 		// finished being processed before

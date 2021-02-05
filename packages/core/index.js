@@ -13,13 +13,18 @@ module.exports = {
 
 		// Ensure correct file types are converted
 		app.options.fingerprint = app.options.fingerprint || {};
+		app.options.fingerprint.exclude = app.options.fingerprint.exclude || [];
+		app.options.fingerprint.exclude.push('package.json');
+
+		// Ensure correct file types are converted
+		app.options.fingerprint = app.options.fingerprint || {};
 		app.options.fingerprint.replaceExtensions = app.options.fingerprint.replaceExtensions || [];
 		app.options.fingerprint.replaceExtensions.push('html', 'css', 'js', 'json', 'xml');
 
 		// Ensure correct file types are fingerprinted
 		app.options.fingerprint = app.options.fingerprint || {};
 		app.options.fingerprint.extensions = app.options.fingerprint.extensions || [];
-		app.options.fingerprint.extensions.push('js', 'css', 'map');
+		app.options.fingerprint.extensions.push('js', 'css', 'map', 'xml', 'json');
 		app.options.fingerprint.extensions.push('eot', 'otf', 'ttf', 'woff', 'woff2');
 		app.options.fingerprint.extensions.push('gif', 'jpg', 'jp2', 'png', 'svg', 'tiff', 'webp');
 

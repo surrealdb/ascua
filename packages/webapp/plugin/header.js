@@ -3,21 +3,21 @@
 module.exports = (conf, opts) => {
 
 	return `
-	<link rel="manifest" href="${conf.rootURL}manifest.json">
-
-	<meta name="msapplication-config" content="${conf.rootURL}browserconfig.xml">
-
-	<meta name="theme-color" content="${opts.color}">
-	<meta name="msapplication-TileColor" content="${opts.color}">
-
-	<meta name="apple-mobile-web-app-title" content="${opts.name}">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="${opts.style}">
-
 	<meta name="format-detection" content="date=no">
 	<meta name="format-detection" content="email=no">
 	<meta name="format-detection" content="address=no">
 	<meta name="format-detection" content="telephone=no">
+
+	<meta name="theme-color" content="${opts.color}">
+	<meta name="msapplication-TileColor" content="${opts.color}">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="${opts.name}">
+	<meta name="apple-mobile-web-app-status-bar-style" content="${opts.style}">
+
+	<link rel="manifest" href="${conf.rootURL}static/manifest.json">
+
+	<meta name="msapplication-config" content="${conf.rootURL}static/browserconfig.xml">
 
 	<link rel="mask-icon" href="${conf.rootURL}static/webapp/icon.svg" color="${opts.mask}">
 
