@@ -1,5 +1,6 @@
 import Metric from './base';
 import { assert } from '@ember/debug';
+import script from '@ascua/metrics/utils/google-tag-manager';
 
 const src = 'script[src*="googletagmanager"]';
 
@@ -15,13 +16,14 @@ export default class extends Metric {
 
 		if (!this.config.id) return;
 
-		/* eslint-disable */
-		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=false;j.defer=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer',this.config.id);
-		/* eslint-enable */
+		switch (this.config.optimised) {
+		case true:
+			script.optimised();
+			break;
+		default:
+			script.original();
+			break;
+		}
 
 		window.gt = function(data) { window.dataLayer.push(data); };
 
