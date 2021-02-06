@@ -1,4 +1,3 @@
-/* globals pdfjsLib */
 import Service from '@ember/service';
 import { inject } from '@ember/service';
 

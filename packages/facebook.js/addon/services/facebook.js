@@ -1,4 +1,3 @@
-/* globals FB */
 import Service from '@ember/service';
 import config from '@ascua/config';
 
