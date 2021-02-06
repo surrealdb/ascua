@@ -171,7 +171,7 @@ export default class Store extends Service {
 
 				if (cached === undefined) {
 					cached = this.lookup(item.meta.tb).create(item);
-					this.#cache.get(item.meta.tb).put(item.id, cached);
+					this.#cache.get(item.meta.tb).addObject(cached);
 				} else {
 					cached.ingest(item);
 				}
@@ -213,11 +213,9 @@ export default class Store extends Service {
 		if (id !== undefined) {
 
 			if (Array.isArray(id)) {
-				return id.forEach(v => {
-					delete this.#cache.get(model).get(v);
-				});
+				return this.#cache.get(model).remove( v => id.includes(v) );
 			} else {
-				return delete this.#cache.get(model).get(id);
+				return this.#cache.get(model).removeBy('id', id);
 			}
 
 		} else {
@@ -247,11 +245,9 @@ export default class Store extends Service {
 		if (id !== undefined) {
 
 			if (Array.isArray(id)) {
-				return id.forEach(v => {
-					return this.#cache.get(model).get(v);
-				});
+				return this.#cache.get(model).filter( v => id.includes(v) );
 			} else {
-				return this.#cache.get(model).get(id);
+				return this.#cache.get(model).findBy('id', id);
 			}
 
 		} else {
@@ -522,11 +518,11 @@ export default class Store extends Service {
 
 			try {
 
-				let cached = this.#cache.get(model).get(item.id);
+				let cached = this.#cache.get(model).findBy('id', item.id);
 
 				if (cached === undefined) {
 					cached = this.lookup(model).create(item);
-					this.#cache.get(model).put(item.id, cached);
+					this.#cache.get(model).addObject(cached);
 				} else {
 					cached.ingest(item);
 				}

@@ -1,45 +1,21 @@
-class Group {
+import Array from './array';
 
-	#data = new Object();
+export default class Cache {
 
-	[Symbol.iterator]() {
-		return this.#data;
-	}
-
-	put(key, val) {
-		return this.#data[key] = val;
-	}
-
-	get(key) {
-		return this.#data[key];
-	}
-
-	del(key) {
-		delete this.#data[key];
-	}
-
-}
-
-class Cache {
-
-	#data = new Object();
+	data = {};
 
 	get(model) {
-		return this.#data[model] = this.#data[model] || new Group();
+		return this.data[model] = this.data[model] || new Array();
 	}
 
 	del(model) {
-		for (const k in this.#data[model]) {
-			delete this.#data[model][k];
-		}
+		this.data[model].clear();
 	}
 
 	clear() {
-		for (const k in this.#data) {
+		for (const k in this.data) {
 			this.del(k);
 		}
 	}
 
 }
-
-export default Cache;
