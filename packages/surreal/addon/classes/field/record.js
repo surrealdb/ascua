@@ -16,9 +16,16 @@ export default function(type) {
 			case value instanceof Record:
 				return this.data[key];
 			default:
-				return this.data[key] = this.store.proxy({
-					id: value, future: () => this.store.select(type, value)
-				});
+				let cached = this.store.cached(type, value);
+				if (cached) {
+					return this.data[key] = this.store.proxy({
+						id: value, promise: Promise.resolve(cached),
+					});
+				} else {
+					return this.data[key] = this.store.proxy({
+						id: value, future: () => this.store.select(type, value)
+					});
+				}
 			}
 
 		},
@@ -42,9 +49,16 @@ export default function(type) {
 					id: value.id, promise: this.store.inject(value),
 				});
 			default:
-				return this.data[key] = this.store.proxy({
-					id: value, future: () => this.store.select(type, value)
-				});
+				let cached = this.store.cached(type, value);
+				if (cached) {
+					return this.data[key] = this.store.proxy({
+						id: value, promise: Promise.resolve(cached),
+					});
+				} else {
+					return this.data[key] = this.store.proxy({
+						id: value, future: () => this.store.select(type, value)
+					});
+				}
 			}
 
 		},

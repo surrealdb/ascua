@@ -60,9 +60,16 @@ export default function(type) {
 									id: v.id, promise: this.store.inject(v)
 								});
 							default:
-								return this.store.proxy({
-									id: v, future: () => this.store.select(type, v)
-								});
+								let cached = this.store.cached(type, v);
+								if (cached) {
+									return this.data[key] = this.store.proxy({
+										id: v, promise: Promise.resolve(cached),
+									});
+								} else {
+									return this.data[key] = this.store.proxy({
+										id: v, future: () => this.store.select(type, v)
+									});
+								}
 							}
 						}, ...value);
 					}
@@ -144,9 +151,16 @@ export default function(type) {
 									id: v.id, promise: this.store.inject(v)
 								});
 							default:
-								return this.store.proxy({
-									id: v, future: () => this.store.select(type, v)
-								});
+								let cached = this.store.cached(type, v);
+								if (cached) {
+									return this.data[key] = this.store.proxy({
+										id: v, promise: Promise.resolve(cached),
+									});
+								} else {
+									return this.data[key] = this.store.proxy({
+										id: v, future: () => this.store.select(type, v)
+									});
+								}
 							}
 						}, ...value);
 					}
