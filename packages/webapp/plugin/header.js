@@ -25,12 +25,16 @@ module.exports = (conf, opts) => {
 
 	<link rel="icon" sizes="16x16" href="${conf.rootURL}static/webapp/icon-16x16.png">
 	<link rel="icon" sizes="32x32" href="${conf.rootURL}static/webapp/icon-32x32.png">
+	<link rel="icon" sizes="96x96" href="${conf.rootURL}static/webapp/icon-96x96.png">
 	<link rel="icon" sizes="128x128" href="${conf.rootURL}static/webapp/icon-128x128.png">
 	<link rel="icon" sizes="192x192" href="${conf.rootURL}static/webapp/icon-192x192.png">
 
 	<link rel="apple-touch-icon" sizes="57x57" href="${conf.rootURL}static/webapp/icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="${conf.rootURL}static/webapp/icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="76x76" href="${conf.rootURL}static/webapp/icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="${conf.rootURL}static/webapp/icon-114x114.png">
 	<link rel="apple-touch-icon" sizes="120x120" href="${conf.rootURL}static/webapp/icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="${conf.rootURL}static/webapp/icon-144x144.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="${conf.rootURL}static/webapp/icon-152x152.png">
 	<link rel="apple-touch-icon" sizes="167x167" href="${conf.rootURL}static/webapp/icon-167x167.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="${conf.rootURL}static/webapp/icon-180x180.png">

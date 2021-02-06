@@ -56,9 +56,13 @@ module.exports = class Webapp extends Plugin {
 					promises.push(this.sharp(image, '/static/webapp/icon-16x16.png', 16));
 					promises.push(this.sharp(image, '/static/webapp/icon-32x32.png', 32));
 					promises.push(this.sharp(image, '/static/webapp/icon-57x57.png', 57));
+					promises.push(this.sharp(image, '/static/webapp/icon-72x72.png', 72));
 					promises.push(this.sharp(image, '/static/webapp/icon-76x76.png', 76));
+					promises.push(this.sharp(image, '/static/webapp/icon-96x96.png', 96));
+					promises.push(this.sharp(image, '/static/webapp/icon-114x114.png', 114));
 					promises.push(this.sharp(image, '/static/webapp/icon-120x120.png', 120));
 					promises.push(this.sharp(image, '/static/webapp/icon-128x128.png', 128));
+					promises.push(this.sharp(image, '/static/webapp/icon-144x144.png', 144));
 					promises.push(this.sharp(image, '/static/webapp/icon-152x152.png', 152));
 					promises.push(this.sharp(image, '/static/webapp/icon-167x167.png', 167));
 					promises.push(this.sharp(image, '/static/webapp/icon-180x180.png', 180));
