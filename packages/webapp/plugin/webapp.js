@@ -42,7 +42,7 @@ module.exports = class Webapp extends Plugin {
 
 				if (image.relativePath === 'favicon.png') {
 					promises.push(this.sharp(image, '/favicon.ico', 16));
-					promises.push(this.sharp(image, '/favicon.png', 32));
+					promises.push(this.sharp(image, '/static/webapp/favicon.png', 32));
 				}
 
 				if (image.relativePath === 'static/webapp/tile.png') {

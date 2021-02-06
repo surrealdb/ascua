@@ -21,7 +21,8 @@ module.exports = (conf, opts) => {
 
 	<link rel="mask-icon" href="${conf.rootURL}static/webapp/icon.svg" color="${opts.mask}">
 
-	<link rel="shortcut icon" href="${conf.rootURL}favicon.png" type="image/png">
+	<link rel="shortcut icon" href="${conf.rootURL}static/webapp/favicon.png" type="image/png">
+
 	<link rel="icon" sizes="16x16" href="${conf.rootURL}static/webapp/icon-16x16.png">
 	<link rel="icon" sizes="32x32" href="${conf.rootURL}static/webapp/icon-32x32.png">
 	<link rel="icon" sizes="128x128" href="${conf.rootURL}static/webapp/icon-128x128.png">
