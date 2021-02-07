@@ -1,19 +1,18 @@
 import Service from '@ember/service';
-import { inject } from '@ember/service';
+import config from '@ascua/config';
+
+const SCRIPT = config.rootURL + 'assets/pdfjs.js';
+const WORKER = config.rootURL + 'assets/pdfjs-worker.js';
 
 export default class extends Service {
 
 	#loader = undefined;
-
-	@inject router;
 
 	async load() {
 
 		if (typeof FastBoot !== 'undefined') {
 			return Promise.reject();
 		}
-
-		let base = `${this.router.rootURL}/assets`.replace(/\/\/+/g, '/');
 
 		if (this.#loader === undefined) {
 
@@ -25,13 +24,13 @@ export default class extends Service {
 				let script = document.createElement('script');
 				script.onload = resolve;
 				script.onerror = reject;
-				script.src = `${base}/pdfjs.js`;
+				script.src = SCRIPT;
 				document.head.appendChild(script);
 			});
 
 			await this.#loader;
 
-			window.pdfjsLib.GlobalWorkerOptions.workerSrc = `${base}/pdfjs-worker.js`;
+			window.pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER;
 
 			return window.pdfjsLib;
 
