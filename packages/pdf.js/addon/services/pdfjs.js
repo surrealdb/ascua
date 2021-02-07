@@ -1,6 +1,8 @@
 import Service from '@ember/service';
 import config from '@ascua/config';
 
+const VERSION = 1612738243;
+
 const SCRIPT = config.rootURL + 'assets/pdfjs.js';
 const WORKER = config.rootURL + 'assets/pdfjs-worker.js';
 
