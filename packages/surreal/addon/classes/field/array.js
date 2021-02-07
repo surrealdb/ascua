@@ -62,11 +62,11 @@ export default function(type) {
 							default:
 								let cached = this.store.cached(type, v);
 								if (cached) {
-									return this.data[key] = this.store.proxy({
+									return this.store.proxy({
 										id: v, promise: Promise.resolve(cached),
 									});
 								} else {
-									return this.data[key] = this.store.proxy({
+									return this.store.proxy({
 										id: v, future: () => this.store.select(type, v)
 									});
 								}
@@ -153,11 +153,11 @@ export default function(type) {
 							default:
 								let cached = this.store.cached(type, v);
 								if (cached) {
-									return this.data[key] = this.store.proxy({
+									return this.store.proxy({
 										id: v, promise: Promise.resolve(cached),
 									});
 								} else {
-									return this.data[key] = this.store.proxy({
+									return this.store.proxy({
 										id: v, future: () => this.store.select(type, v)
 									});
 								}
