@@ -1,8 +1,6 @@
 import Service from '@ember/service';
 import config from '@ascua/config';
 
-const VERSION = 1612738243;
-
 const SCRIPT = config.rootURL + 'assets/pdfjs.js';
 const WORKER = config.rootURL + 'assets/pdfjs-worker.js';
 
@@ -17,10 +15,6 @@ export default class extends Service {
 		}
 
 		if (this.#loader === undefined) {
-
-			Object.defineProperty(Array.prototype, '_super', {
-				enumerable: false
-			});
 
 			this.#loader = new Promise( (resolve, reject) => {
 				let script = document.createElement('script');
