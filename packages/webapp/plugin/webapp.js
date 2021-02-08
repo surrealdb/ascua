@@ -40,11 +40,6 @@ module.exports = class Webapp extends Plugin {
 
 				this.cache[image.relativePath] = image.mtime;
 
-				if (image.relativePath === 'favicon.png') {
-					promises.push(this.sharp(image, '/favicon.ico', 16));
-					promises.push(this.sharp(image, '/static/webapp/favicon.png', 32));
-				}
-
 				if (image.relativePath === 'static/webapp/tile.png') {
 					promises.push(this.sharp(image, '/static/webapp/tile-70x70.png', 70));
 					promises.push(this.sharp(image, '/static/webapp/tile-144x144.png', 144));
@@ -53,6 +48,8 @@ module.exports = class Webapp extends Plugin {
 				}
 
 				if (image.relativePath === 'static/webapp/icon.png') {
+					promises.push(this.sharp(image, '/favicon.ico', 16));
+					promises.push(this.sharp(image, '/static/webapp/favicon.png', 32));
 					promises.push(this.sharp(image, '/static/webapp/icon-16x16.png', 16));
 					promises.push(this.sharp(image, '/static/webapp/icon-32x32.png', 32));
 					promises.push(this.sharp(image, '/static/webapp/icon-57x57.png', 57));
