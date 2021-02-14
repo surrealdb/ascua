@@ -9,14 +9,6 @@ export default class extends Object {
 		return `metric:${this.name}`;
 	}
 
-	load() {
-		assert(`${this.toString()} must implement the load hook!`);
-	}
-
-	willDestroy() {
-		assert(`${this.toString()} must implement the willDestroy hook!`);
-	}
-
 	clear() {}
 
 	identify(/*id, data*/) {}
