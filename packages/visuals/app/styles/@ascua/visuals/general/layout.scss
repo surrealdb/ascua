@@ -2,15 +2,15 @@
 // Float
 // ------------------------------
 
-[float-n], [float-none] {
+.float-n, [float-n], [float-none] {
 	float:none;
 }
 
-[float-l], [float-left] {
+.float-l, [float-l], [float-left] {
 	float:left;
 }
 
-[float-r], [float-right] {
+.float-r, [float-r], [float-right] {
 	float:right;
 }
 
@@ -18,15 +18,15 @@
 // Display
 // ------------------------------
 
-[block] {
+.block, [block] {
 	display:block;
 }
 
-[inline] {
+.inline, [inline] {
 	display:inline;
 }
 
-[inline-block] {
+.inline-block, [inline-block] {
 	display:inline-block;
 }
 
@@ -34,23 +34,23 @@
 // Position
 // ------------------------------
 
-[absolute] {
+.absolute, [absolute] {
 	position:absolute;
 }
 
-[fixed] {
+.fixed, [fixed] {
 	position:fixed;
 }
 
-[relative] {
+.relative, [relative] {
 	position:relative;
 }
 
-[static] {
+.static, [static] {
 	position:static;
 }
 
-[sticky] {
+.sticky, [sticky] {
 	position:sticky;
 }
 
@@ -58,11 +58,11 @@
 // Visibility
 // ------------------------------
 
-[visible] {
+.visible, [visible] {
 	visibility:visible;
 }
 
-[invisible] {
+.invisible, [invisible] {
 	visibility:hidden;
 }
 
@@ -70,18 +70,18 @@
 // Overflow
 // ------------------------------
 
-[overflow-auto] {
+.overflow-auto, [overflow-auto] {
 	overflow:auto;
 }
 
-[overflow-scroll] {
+.overflow-scroll, [overflow-scroll] {
 	overflow:scroll;
 }
 
-[overflow-hidden] {
+.overflow-hidden, [overflow-hidden] {
 	overflow:hidden;
 }
 
-[overflow-visible] {
+.overflow-visible, [overflow-visible] {
 	overflow:visible;
 }

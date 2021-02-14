@@ -5,10 +5,10 @@
 $unit:'%';
 
 @for $i from 1 through 20 {
-	[w-#{$i*5}] { width:#{$i*5}#{$unit}; }
-	[h-#{$i*5}] { height:#{$i*5}#{$unit}; }
-	[min-w-#{$i*5}] { min-width:#{$i*5}#{$unit}; }
-	[min-h-#{$i*5}] { min-height:#{$i*5}#{$unit}; }
+	.w-#{$i*5}, [w-#{$i*5}] { width:#{$i*5}#{$unit}; }
+	.h-#{$i*5}, [h-#{$i*5}] { height:#{$i*5}#{$unit}; }
+	.min-w-#{$i*5}, [min-w-#{$i*5}] { min-width:#{$i*5}#{$unit}; }
+	.min-h-#{$i*5}, [min-h-#{$i*5}] { min-height:#{$i*5}#{$unit}; }
 }
 
 // ------------------------------
@@ -18,15 +18,15 @@ $unit:'%';
 $unit:'vw';
 
 @for $i from 1 through 20 {
-	[w-#{$i*5}vw] { width:#{$i*5}#{$unit}; }
-	[min-w-#{$i*5}vw] { min-width:#{$i*5}#{$unit}; }
+	.w-#{$i*5}vw, [w-#{$i*5}vw] { width:#{$i*5}#{$unit}; }
+	.min-w-#{$i*5}vw, [min-w-#{$i*5}vw] { min-width:#{$i*5}#{$unit}; }
 }
 
 $unit:'vh';
 
 @for $i from 1 through 20 {
-	[h-#{$i*5}vh] { height:#{$i*5}#{$unit}; }
-	[min-h-#{$i*5}vh] { min-height:#{$i*5}#{$unit}; }
+	.h-#{$i*5}vh, [h-#{$i*5}vh] { height:#{$i*5}#{$unit}; }
+	.min-h-#{$i*5}vh, [min-h-#{$i*5}vh] { min-height:#{$i*5}#{$unit}; }
 }
 
 // ------------------------------
@@ -36,17 +36,17 @@ $unit:'vh';
 $unit:'px';
 
 @for $i from 1 through 6 {
-	[w-#{$i*5}px] { width:#{$i*5}#{$unit}; }
-	[h-#{$i*5}px] { height:#{$i*5}#{$unit}; }
-	[min-w-#{$i*5}px] { min-width:#{$i*5}#{$unit}; }
-	[min-h-#{$i*5}px] { min-height:#{$i*5}#{$unit}; }
+	.w-#{$i*5}px, [w-#{$i*5}px] { width:#{$i*5}#{$unit}; }
+	.h-#{$i*5}px, [h-#{$i*5}px] { height:#{$i*5}#{$unit}; }
+	.min-w-#{$i*5}px, [min-w-#{$i*5}px] { min-width:#{$i*5}#{$unit}; }
+	.min-h-#{$i*5}px, [min-h-#{$i*5}px] { min-height:#{$i*5}#{$unit}; }
 }
 
 @for $i from 4 through 25 {
-	[w-#{$i*10}px] { width:#{$i*10}#{$unit}; }
-	[h-#{$i*10}px] { height:#{$i*10}#{$unit}; }
-	[min-w-#{$i*10}px] { min-width:#{$i*10}#{$unit}; }
-	[min-h-#{$i*10}px] { min-height:#{$i*10}#{$unit}; }
+	.w-#{$i*10}px, [w-#{$i*10}px] { width:#{$i*10}#{$unit}; }
+	.h-#{$i*10}px, [h-#{$i*10}px] { height:#{$i*10}#{$unit}; }
+	.min-w-#{$i*10}px, [min-w-#{$i*10}px] { min-width:#{$i*10}#{$unit}; }
+	.min-h-#{$i*10}px, [min-h-#{$i*10}px] { min-height:#{$i*10}#{$unit}; }
 }
 
 // ------------------------------
@@ -56,19 +56,19 @@ $unit:'px';
 $unit:'px';
 
 @for $i from 1 through 6 {
-	[m-#{$i*5}] { margin:#{$i*5}#{$unit}; }
-	[m-l-#{$i*5}] { margin-left:#{$i*5}#{$unit}; }
-	[m-r-#{$i*5}] { margin-right:#{$i*5}#{$unit}; }
-	[m-t-#{$i*5}] { margin-top:#{$i*5}#{$unit}; }
-	[m-b-#{$i*5}] { margin-bottom:#{$i*5}#{$unit}; }
+	.m-#{$i*5}, [m-#{$i*5}] { margin:#{$i*5}#{$unit}; }
+	.m-l-#{$i*5}, [m-l-#{$i*5}] { margin-left:#{$i*5}#{$unit}; }
+	.m-r-#{$i*5}, [m-r-#{$i*5}] { margin-right:#{$i*5}#{$unit}; }
+	.m-t-#{$i*5}, [m-t-#{$i*5}] { margin-top:#{$i*5}#{$unit}; }
+	.m-b-#{$i*5}, [m-b-#{$i*5}] { margin-bottom:#{$i*5}#{$unit}; }
 }
 
 @for $i from 4 through 10 {
-	[m-#{$i*10}] { margin:#{$i*10}#{$unit}; }
-	[m-l-#{$i*10}] { margin-left:#{$i*10}#{$unit}; }
-	[m-r-#{$i*10}] { margin-right:#{$i*10}#{$unit}; }
-	[m-t-#{$i*10}] { margin-top:#{$i*10}#{$unit}; }
-	[m-b-#{$i*10}] { margin-bottom:#{$i*10}#{$unit}; }
+	.m-#{$i*10}, [m-#{$i*10}] { margin:#{$i*10}#{$unit}; }
+	.m-l-#{$i*10}, [m-l-#{$i*10}] { margin-left:#{$i*10}#{$unit}; }
+	.m-r-#{$i*10}, [m-r-#{$i*10}] { margin-right:#{$i*10}#{$unit}; }
+	.m-t-#{$i*10}, [m-t-#{$i*10}] { margin-top:#{$i*10}#{$unit}; }
+	.m-b-#{$i*10}, [m-b-#{$i*10}] { margin-bottom:#{$i*10}#{$unit}; }
 }
 
 // ------------------------------
@@ -78,17 +78,17 @@ $unit:'px';
 $unit:'px';
 
 @for $i from 1 through 6 {
-	[p-#{$i*5}] { padding:#{$i*5}#{$unit}; }
-	[p-l-#{$i*5}] { padding-left:#{$i*5}#{$unit}; }
-	[p-r-#{$i*5}] { padding-right:#{$i*5}#{$unit}; }
-	[p-t-#{$i*5}] { padding-top:#{$i*5}#{$unit}; }
-	[p-b-#{$i*5}] { padding-bottom:#{$i*5}#{$unit}; }
+	.p-#{$i*5}, [p-#{$i*5}] { padding:#{$i*5}#{$unit}; }
+	.p-l-#{$i*5}, [p-l-#{$i*5}] { padding-left:#{$i*5}#{$unit}; }
+	.p-r-#{$i*5}, [p-r-#{$i*5}] { padding-right:#{$i*5}#{$unit}; }
+	.p-t-#{$i*5}, [p-t-#{$i*5}] { padding-top:#{$i*5}#{$unit}; }
+	.p-b-#{$i*5}, [p-b-#{$i*5}] { padding-bottom:#{$i*5}#{$unit}; }
 }
 
 @for $i from 4 through 10 {
-	[p-#{$i*10}] { padding:#{$i*10}#{$unit}; }
-	[p-l-#{$i*10}] { padding-left:#{$i*10}#{$unit}; }
-	[p-r-#{$i*10}] { padding-right:#{$i*10}#{$unit}; }
-	[p-t-#{$i*10}] { padding-top:#{$i*10}#{$unit}; }
-	[p-b-#{$i*10}] { padding-bottom:#{$i*10}#{$unit}; }
+	.p-#{$i*10}, [p-#{$i*10}] { padding:#{$i*10}#{$unit}; }
+	.p-l-#{$i*10}, [p-l-#{$i*10}] { padding-left:#{$i*10}#{$unit}; }
+	.p-r-#{$i*10}, [p-r-#{$i*10}] { padding-right:#{$i*10}#{$unit}; }
+	.p-t-#{$i*10}, [p-t-#{$i*10}] { padding-top:#{$i*10}#{$unit}; }
+	.p-b-#{$i*10}, [p-b-#{$i*10}] { padding-bottom:#{$i*10}#{$unit}; }
 }

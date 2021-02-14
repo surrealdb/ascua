@@ -1,33 +1,65 @@
 // ------------------------------
+// Alignment
+// ------------------------------
+
+.text-l, [text-l], [text-left] {
+	text-align:left;
+}
+
+.text-c, [text-c], [text-center] {
+	text-align:center;
+}
+
+.text-r, [text-r], [text-right] {
+	text-align:right;
+}
+
+// ------------------------------
 // Style
 // ------------------------------
 
-[font-bold] {
-	font-weight:bold;
-}
-
-[font-italic] {
+.text-italic, [text-italic] {
 	font-style:italic;
 }
 
-[font-underline] {
+.text-lowercase, [text-lowercase] {
+	text-transform:lowercase;
+}
+
+.text-uppercase, [text-uppercase] {
+	text-transform:uppercase;
+}
+
+.text-capitalize, [text-capitalize] {
+	text-transform:capitalize;
+}
+
+.text-underline, [text-underline] {
 	text-decoration:underline;
 }
 
 // ------------------------------
-// Alignment
+// Weight
 // ------------------------------
 
-[text-l], [text-left] {
-	text-align:left;
+.font-light, [font-light] {
+	font-weight:300;
 }
 
-[text-c], [text-center], [text-centre] {
-	text-align:center;
+.font-normal, [font-normal] {
+	font-weight:400;
 }
 
-[text-r], [text-right] {
-	text-align:right;
+.font-medium, [font-medium] {
+	font-weight:500;
+}
+
+.font-semibold, [font-semibold] {
+	font-weight:600;
+}
+
+.font-bold, [font-bold] {
+	font-weight:700;
 }
 
 // ------------------------------
@@ -35,8 +67,6 @@
 // ------------------------------
 
 @for $i from 8 through 30 {
-	[font-#{$i}] { font-size:#{$i}px; }
-	[line-#{$i}] { line-height:#{$i}px; }
+	.font-#{$i}, [font-#{$i}] { font-size:#{$i}px; }
+	.line-#{$i}, [line-#{$i}] { line-height:#{$i}px; }
 }
-
-
