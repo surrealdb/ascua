@@ -18,10 +18,10 @@ export default class extends Metric {
 
 		switch (this.config.optimised) {
 		case true:
-			script.optimised();
+			script.optimised(this.config);
 			break;
 		default:
-			script.original();
+			script.original(this.config);
 			break;
 		}
 
