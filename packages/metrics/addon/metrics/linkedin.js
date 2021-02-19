@@ -8,8 +8,9 @@ export default class extends Metric {
 
 		if (!this.config.id) return;
 
+		const now = Date.now();
 		const img = new Image();
-		img.src = `https://dc.ads.linkedin.com/collect/?pid=${this.config.id}&fmt=gif`;
+		img.src = `https://px.ads.linkedin.com/collect/?pid=${this.config.id}&time=${now}&fmt=gif`;
 
 	}
 
@@ -19,8 +20,9 @@ export default class extends Metric {
 
 		if (!this.config.id) return;
 
+		const now = Date.now();
 		const img = new Image();
-		img.src = `https://dc.ads.linkedin.com/collect/?pid=${this.config.id}&conversionId=${id}&fmt=gif`;
+		img.src = `https://px.ads.linkedin.com/collect/?pid=${this.config.id}&conversionId=${id}&time=${now}&fmt=gif`;
 
 	}
 
