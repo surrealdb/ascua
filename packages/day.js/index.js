@@ -1,5 +1,9 @@
 'use strict';
 
+const transform = {
+	using: [{ transformation: 'babel' }]
+};
+
 module.exports = {
 
 	name: require('./package').name,
@@ -17,10 +21,10 @@ module.exports = {
 		app.import('node_modules/dayjs/plugin/updateLocale.js');
 		app.import('node_modules/dayjs/plugin/utc.js');
 
-		app.import('vendor/dayjs/instance.js');
-		app.import('vendor/dayjs/weekdays.js');
-		app.import('vendor/dayjs/workdays.js');
-		app.import('vendor/dayjs/override.js');
+		app.import('vendor/dayjs/instance.js', transform);
+		app.import('vendor/dayjs/weekdays.js', transform);
+		app.import('vendor/dayjs/workdays.js', transform);
+		app.import('vendor/dayjs/override.js', transform);
 
 		app.import('vendor/dayjs.js', {
 			exports: { moment: ['default'] }
@@ -32,8 +36,8 @@ module.exports = {
 
 		if (this.opts.locales) {
 			[].concat(this.opts.locales).forEach(l => {
-				app.import('node_modules/dayjs/locale/'+l+'.js');
-				app.import('vendor/dayjs/locale/'+l+'.js');
+				app.import('node_modules/dayjs/locale/'+l+'.js', transform);
+				app.import('vendor/dayjs/locale/'+l+'.js', transform);
 			});
 		}
 
