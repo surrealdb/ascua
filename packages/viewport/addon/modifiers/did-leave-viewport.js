@@ -25,8 +25,6 @@ export default setModifierManager(
 					() => {},
 					() => fn(element, rest, args.named),
 				);
-			} else {
-				fn(element, rest, args.named);
 			}
 
 		},
