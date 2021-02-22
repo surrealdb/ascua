@@ -33,13 +33,9 @@ export default class extends Component {
 	@action didSelect(element, page) {
 		if (page === this.args.page.pageNumber) {
 			if ('scrollIntoViewIfNeeded' in element) {
-				element.scrollIntoViewIfNeeded();
+				element.scrollIntoViewIfNeeded(true);
 			} else {
-				element.scrollIntoView({
-					behavior: 'smooth',
-					inline: 'nearest',
-					block: 'center',
-				});
+				element.scrollIntoView();
 			}
 		}
 	}
