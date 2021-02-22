@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import config from '@ascua/config';
 
-const VERSID = 1614029730;
+const VERSID = 1614030116;
 const SCRIPT = config.rootURL + 'assets/pdfjs.js';
 const WORKER = config.rootURL + 'assets/pdfjs-worker.js';
 
