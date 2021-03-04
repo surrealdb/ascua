@@ -69,34 +69,16 @@ export default class extends Array {
 		let start = index * limit;
 		let props = { start, limit };
 
-		let range = this.range(props);
-
 		this.fetcher(props);
 
 		return this[idx];
 
 	}
 
-	prepareObectsAt({ start, limit }) {
-		for (let i = start; i < (start + limit) && i < this.total; i++) {
-			this[i] = this[i] || Item.create();
-			this[i].setup();
-		}
-	}
-
 	fulfillObjectsAt({ start, limit }, array) {
 		for (let i = start; i < (start + limit) && i < this.total; i++) {
-			if (this[i] && typeof this[i].resolve === 'function') {
-				this[i].resolve(array.objectAt(i-start));
-			}
-		}
-	}
-
-	declineObjectsAt({ start, limit }, error) {
-		for (let i = start; i < (start + limit) && i < this.total; i++) {
-			if (this[i] && typeof this[i].reject === 'function') {
-				this[i].reject(error);
-			}
+			this[i] = this[i] || Item.create();
+			this[i].resolve(array.objectAt(i-start));
 		}
 	}
 
@@ -114,17 +96,13 @@ export default class extends Array {
 
 			this.total = array.total;
 
-			this.prepareObectsAt(rng);
-
 			this.fulfillObjectsAt(rng, items);
 
 			this.loaded = true;
 
 		} catch (error) {
 
-			this.prepareObectsAt(rng);
-
-			this.declineObjectsAt(rng, error);
+			// Ignore
 
 		}
 

@@ -38,6 +38,7 @@ export default class extends Component {
 		this.conf.e.h = element.clientHeight;
 		this.conf.i.w = parseInt(this.args.colWidth);
 		this.conf.i.h = parseInt(this.args.rowHeight);
+		this.conf.a = [].concat(this.args.selection);
 		this.setup(true);
 	}
 
@@ -51,7 +52,12 @@ export default class extends Component {
 		this.conf.e.h = element.clientHeight;
 		this.conf.i.w = parseInt(this.args.colWidth);
 		this.conf.i.h = parseInt(this.args.rowHeight);
+		this.conf.a = [].concat(this.args.selection);
 		this.setup(true);
+	}
+
+	@action didSelect(element) {
+		this.conf.a = [].concat(this.args.selection);
 	}
 
 	@action didResize(element) {
@@ -182,8 +188,16 @@ export default class extends Component {
 		}
 
 		if (item && options.range) {
-			// let idx = range(item.index, this.cursor);
-			// this.conf.a.addObjects(idx);
+			let min = Math.min(item.index, this.cursor);
+			let max = Math.max(item.index, this.cursor);
+			for (let i=min; i<=max; i++) {
+				this.args.model.objectAt(i, true).then(item => {
+					this.conf.a.addObject(item.id);
+					if (this.args.onSelect) {
+						this.args.onSelect(this.conf.a);
+					}
+				});
+			}
 		}
 
 		if (item && options.single) {
@@ -198,11 +212,7 @@ export default class extends Component {
 		this.cursor = item ? item.index : null;
 
 		if (this.args.onSelect) {
-			if (item.model.content) {
-				this.args.onSelect(this.conf.a, item.model.content);
-			} else {
-				this.args.onSelect(this.conf.a, item.model);
-			}
+			this.args.onSelect(this.conf.a);
 		}
 
 	}

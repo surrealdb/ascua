@@ -8,28 +8,34 @@ export default ObjectProxy.extend({
 
 	resolve: noop,
 
+	promise: null,
+
 	content: null,
 
-	async setup() {
+	init() {
 
-		try {
+		this._super(...arguments);
 
-			let content = await new Promise( (res, rej) => {
-				this.resolve = res; this.reject = rej;
-			});
+		this.promise = new Promise( (res, rej) => {
+			this.resolve = res; this.reject = rej;
+		});
 
+		this.promise.then(content => {
 			this.set('content', content);
+		});
 
-		} catch (e) {
+	},
 
-			// Ignore
+	then() {
+		return this.promise.then(...arguments);
+	},
 
-		} finally {
+	catch() {
+		return this.promise.catch(...arguments);
+	},
 
-			this.reject();
-
-		}
-
-	}
+	finally() {
+		return this.promise.finally(...arguments);
+	},
 
 });
