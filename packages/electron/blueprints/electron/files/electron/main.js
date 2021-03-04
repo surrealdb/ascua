@@ -4,6 +4,8 @@ const { app, BrowserWindow } = require('electron');
 
 const location = require('@ascua/app');
 
+app.setName('My App');
+
 app.once('ready', () => {
 	loadapp(false);
 });
