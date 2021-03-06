@@ -1,7 +1,9 @@
 import { helper } from '@ember/component/helper';
 
 export function historyForward() {
-	return () => {
+	return (e) => {
+		e.preventDefault();
+		e.stopPropagation();
 		window.history.forward();
 	};
 }

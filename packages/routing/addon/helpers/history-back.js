@@ -1,7 +1,9 @@
 import { helper } from '@ember/component/helper';
 
 export function historyBack() {
-	return () => {
+	return (e) => {
+		e.preventDefault();
+		e.stopPropagation();
 		window.history.back();
 	};
 }
