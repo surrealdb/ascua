@@ -18,9 +18,9 @@
     "@ascua/decorators": "file:../decorators",
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/transform": "file:../transform",
-    "ember-cli-babel": "^7.23.0",
-    "ember-cli-htmlbars": "^5.3.1",
-    "handsontable": "^8.3.0"
+    "ember-cli-babel": "^7.23.1",
+    "ember-cli-htmlbars": "^5.3.2",
+    "handsontable": "^8.3.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"

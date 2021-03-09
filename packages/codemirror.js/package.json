@@ -19,9 +19,9 @@
     "@ascua/events": "file:../events",
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/transform": "file:../transform",
-    "codemirror": "^5.59.2",
-    "ember-cli-babel": "^7.23.0",
-    "ember-cli-htmlbars": "^5.3.1"
+    "codemirror": "^5.59.4",
+    "ember-cli-babel": "^7.23.1",
+    "ember-cli-htmlbars": "^5.3.2"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",

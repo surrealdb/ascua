@@ -17,11 +17,11 @@
   "dependencies": {
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/transform": "file:../transform",
-    "@mapbox/mapbox-gl-draw": "^1.2.1",
+    "@mapbox/mapbox-gl-draw": "^1.2.2",
     "@mapbox/mapbox-gl-geocoder": "^4.7.0",
-    "ember-cli-babel": "^7.23.0",
-    "ember-cli-htmlbars": "^5.3.1",
-    "mapbox-gl": "^2.1.0"
+    "ember-cli-babel": "^7.23.1",
+    "ember-cli-htmlbars": "^5.3.2",
+    "mapbox-gl": "^2.1.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",

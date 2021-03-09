@@ -19,8 +19,8 @@
     "@ascua/logic": "file:../logic",
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/resize": "file:../resize",
-    "ember-cli-babel": "^7.23.0",
-    "ember-cli-htmlbars": "^5.3.1"
+    "ember-cli-babel": "^7.23.1",
+    "ember-cli-htmlbars": "^5.3.2"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
