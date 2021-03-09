@@ -2,8 +2,8 @@ import { helper } from '@ember/component/helper';
 
 export function historyForward() {
 	return (e) => {
-		e.preventDefault();
-		e.stopPropagation();
+		if (e) e.preventDefault();
+		if (e) e.stopPropagation();
 		window.history.forward();
 	};
 }
