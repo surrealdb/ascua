@@ -56,6 +56,7 @@ const loadapp = (show) => {
 			webSecurity: true,
 			scrollBounce: true,
 			nodeIntegration: true,
+			contextIsolation: false,
 			enableRemoteModule: true,
 			experimentalFeatures: false,
 			textAreasAreResizable: false,
