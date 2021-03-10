@@ -20,6 +20,34 @@ module.exports = Command.extend({
 	init() {
 
 		this.availableOptions.push({
+			name: 'ia32',
+			type: Boolean,
+			default: false,
+			description: 'Build for ia32 architecture (see https://www.electron.build/cli)',
+		});
+
+		this.availableOptions.push({
+			name: 'x64',
+			type: Boolean,
+			default: false,
+			description: 'Build for x64 architecture (see https://www.electron.build/cli)',
+		});
+
+		this.availableOptions.push({
+			name: 'arm64',
+			type: Boolean,
+			default: false,
+			description: 'Build for arm64 architecture (see https://www.electron.build/cli)',
+		});
+
+		this.availableOptions.push({
+			name: 'universal',
+			type: Boolean,
+			default: false,
+			description: 'Build for universal binary architecture (see https://www.electron.build/cli)',
+		});
+
+		this.availableOptions.push({
 			name: 'mac',
 			type: Array,
 			default: undefined,
@@ -38,13 +66,6 @@ module.exports = Command.extend({
 			type: Array,
 			default: undefined,
 			description: 'Build targets for Linux, accepts target list (see https://www.electron.build/configuration/linux)',
-		});
-
-		this.availableOptions.push({
-			name: 'arch',
-			type: Array,
-			default: undefined,
-			description: 'Build architectures, accepts multiple architectures (see https://www.electron.build/cli)',
 		});
 
 		this.availableOptions.push({
@@ -67,11 +88,22 @@ module.exports = Command.extend({
 
 		return this._super(...arguments).then( () => {
 
-			return Builder.build({
+			const arch = {
+				x64: options.x64,
+				arm64: options.arm64,
+				universal: options.universal,
+			};
+
+			const opts = {
 				mac: options.mac,
 				win: options.win,
 				linux: options.linux,
 				publish: options.publish,
+			};
+
+			return Builder.build({
+				...arch,
+				...opts,
 				config: {
 					asar: true,
 					directories: {
@@ -95,24 +127,15 @@ module.exports = Command.extend({
 						],
 					},
 					mac: {
-						target: options.mac?.map(v => {
-							return { target: v, arch: options.arch };
-						}),
 						darkModeSupport: true,
 						hardenedRuntime: true,
 						icon: 'electron/mac/icon.png',
 						entitlements: 'electron/mac/entitlements.mac.inherit.plist',
 					},
 					win: {
-						target: options.win?.map(v => {
-							return { target: v, arch: options.arch };
-						}),
 						icon: 'electron/win/icon.png',
 					},
 					linux: {
-						target: options.linux?.map(v => {
-							return { target: v, arch: options.arch };
-						}),
 						icon: 'electron/win/icon.png',
 					},
 					async afterSign(params) {
