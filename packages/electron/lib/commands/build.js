@@ -23,21 +23,28 @@ module.exports = Command.extend({
 			name: 'mac',
 			type: Array,
 			default: undefined,
-			description: 'Build targets for macOS, accepts target list (see https://goo.gl/5uHuzj)',
+			description: 'Build targets for macOS, accepts target list (see https://www.electron.build/configuration/mac)',
 		});
 
 		this.availableOptions.push({
 			name: 'win',
 			type: Array,
 			default: undefined,
-			description: 'Build targets for Windows, accepts target list (see https://goo.gl/jYsTEJ)',
+			description: 'Build targets for Windows, accepts target list (see https://www.electron.build/configuration/win)',
 		});
 
 		this.availableOptions.push({
 			name: 'linux',
 			type: Array,
 			default: undefined,
-			description: 'Build targets for Linux, accepts target list (see https://goo.gl/4vwQad)',
+			description: 'Build targets for Linux, accepts target list (see https://www.electron.build/configuration/linux)',
+		});
+
+		this.availableOptions.push({
+			name: 'arch',
+			type: Array,
+			default: undefined,
+			description: 'Build architectures, accepts multiple architectures (see https://www.electron.build/cli)',
 		});
 
 		this.availableOptions.push({
@@ -88,12 +95,24 @@ module.exports = Command.extend({
 						],
 					},
 					mac: {
+						target: options.mac?.map(v => {
+							return { target: v, arch: options.arch };
+						}),
 						darkModeSupport: true,
 						hardenedRuntime: true,
 						icon: 'electron/mac/icon.png',
 						entitlements: 'electron/mac/entitlements.mac.inherit.plist',
 					},
 					win: {
+						target: options.win?.map(v => {
+							return { target: v, arch: options.arch };
+						}),
+						icon: 'electron/win/icon.png',
+					},
+					linux: {
+						target: options.linux?.map(v => {
+							return { target: v, arch: options.arch };
+						}),
 						icon: 'electron/win/icon.png',
 					},
 					async afterSign(params) {
