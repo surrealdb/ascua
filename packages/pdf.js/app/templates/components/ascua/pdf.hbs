@@ -5,8 +5,8 @@
 
 <app-pdf {{did-insert this.didCreate}} {{did-update this.didChange @url @time}} {{will-destroy this.willDelete}}>
 
-	<Ascua::pdf::pages @pages={{this.pages}} @page={{this.page}} @on-select={{this.select}} />
+	<Ascua::pdf::pages @pdf={{this}} @pages={{this.pages}} @page={{this.page}} @on-select={{this.select}} />
 
-	<Ascua::pdf::icons @pages={{this.pages}} @page={{this.page}} @on-select={{this.select}} />
+	<Ascua::pdf::icons @pdf={{this}} @pages={{this.pages}} @page={{this.page}} @on-select={{this.select}} />
 
 </app-pdf>

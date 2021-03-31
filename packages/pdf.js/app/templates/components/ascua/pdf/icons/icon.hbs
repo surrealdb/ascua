@@ -4,9 +4,10 @@
 	{{did-insert this.didCreate}}
 	{{did-update this.didChange @w @h @doc @page this.visible}}
 	{{did-update this.didSelect @selected}}
+	{{will-destroy this.willDelete}}
 	...attributes
 >
 
-	<num>{{@page.pageNumber}}</num> <canvas></canvas>
+	<num>{{@page.pageNumber}}</num>
 
 </app-pdf-icon>

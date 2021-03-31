@@ -3,6 +3,7 @@
 		<Ascua::pdf::icons::icon
 			@w={{this.w}}
 			@h={{this.h}}
+			@pdf={{@pdf}}
 			@page={{page}}
 			@selected={{@page}}
 			{{on "click" (fn @on-select page.pageNumber)}}

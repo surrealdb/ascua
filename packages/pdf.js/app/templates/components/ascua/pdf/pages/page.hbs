@@ -4,9 +4,6 @@
 	{{did-insert this.didCreate}}
 	{{did-update this.didChange @w @h @doc @page this.visible}}
 	{{did-update this.didSelect @selected}}
+	{{will-destroy this.willDelete}}
 	...attributes
->
-
-	<canvas></canvas>
-
-</app-pdf-page>
+/>

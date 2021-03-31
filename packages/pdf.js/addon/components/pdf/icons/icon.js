@@ -16,17 +16,17 @@ export default class extends Component {
 
 	@action didLeave(element) {
 		if (this.visible === true) {
-			this.visible = false;
+			// Ignore
 		}
 	}
 
 	@action didCreate(element) {
-		this.c = element.querySelectorAll('canvas')[0];
+		this.e = element;
 		this.process.run(this.args.page);
 	}
 
 	@action didChange(element) {
-		this.c = element.querySelectorAll('canvas')[0];
+		this.e = element;
 		this.process.run(this.args.page);
 	}
 
@@ -34,10 +34,20 @@ export default class extends Component {
 		if (page === this.args.page.pageNumber) {
 			if ('scrollIntoViewIfNeeded' in element) {
 				element.scrollIntoViewIfNeeded(true);
+				if (this.visible === false) {
+					this.visible = true;
+				}
 			} else {
 				element.scrollIntoView();
+				if (this.visible === false) {
+					this.visible = true;
+				}
 			}
 		}
+	}
+
+	@action willDelete() {
+		this.cleanup.run();
 	}
 
 	@restart * cleanup() {
@@ -50,30 +60,39 @@ export default class extends Component {
 
 	@restart * process(page) {
 
+		yield page;
+
 		try {
 
-			if (!page) return;
-
-			yield this.cleanup.run();
+			if (this.c) this.e.removeChild(this.c);
+			this.c = document.createElement('canvas');
+			this.e.appendChild(this.c);
 
 			let ww = this.args.w;
 			let wh = this.args.h;
 			let pr = window.devicePixelRatio || 1;
-			let vp = page.getViewport({ scale: 1 });
-			let scale = Math.min(ww/vp.width, wh/vp.height);
+			let pv = page.getViewport({ scale: pr });
+			let sc = Math.min(ww/pv.width, wh/pv.height);
+			let vp = page.getViewport({ scale: sc * pr });
 
-			this.c.getContext('2d').clearRect(0, 0, this.c.width, this.c.height);
+			this.c.getContext('2d').scale(pr, pr);
 
-			let viewport = page.getViewport({ scale });
-			this.c.width = viewport.width;
-			this.c.height = viewport.height;
+			this.c.width = vp.width;
+			this.c.height = vp.height;
 
 			if (!this.visible) return;
 
+			if (this.args.pdf.renders[page.pageNumber]) {
+				yield this.args.pdf.renders[page.pageNumber];
+			}
+
 			this.ren = page.render({
 				canvasContext: this.c.getContext('2d'),
-				viewport: viewport,
+				enableWebGL: true,
+				viewport: vp,
 			});
+
+			this.args.pdf.renders[page.pageNumber] = this.ren.promise;
 
 			yield this.ren.promise;
 
@@ -83,13 +102,7 @@ export default class extends Component {
 
 		} finally {
 
-			try {
-				if (this.ren && this.ren.cancel) {
-					yield this.ren.cancel();
-				}
-			} catch (e) {
-				// Ignore
-			}
+			yield this.cleanup.run();
 
 		}
 

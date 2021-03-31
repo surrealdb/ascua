@@ -15,6 +15,8 @@ export default class extends Component {
 
 	@tracked pages = [];
 
+	@tracked renders = {};
+
 	@tracked page = this.args.page || 1;
 
 	@action didCreate(element) {
@@ -98,13 +100,15 @@ export default class extends Component {
 
 			this.lib = yield this.pdfjs.load();
 			this.wkr = this.wkr || new this.lib.PDFWorker('worker');
-			this.xhr = this.lib.getDocument({ url, worker: this.wkr });
+			this.xhr = this.lib.getDocument({
+				url: url,
+				worker: this.wkr,
+				isEvalSupported: false,
+			});
 			this.doc = yield this.xhr.promise;
 
 			for (let i=1; i<=this.doc.numPages; i++) {
-				pages.pushObject(
-					this.doc.getPage(i)
-				);
+				pages.pushObject( this.doc.getPage(i) );
 			}
 
 			this.pages = yield Promise.all(pages);
