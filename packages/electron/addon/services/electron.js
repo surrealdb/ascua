@@ -113,6 +113,8 @@ export default class extends Service {
 
 	@action check() {
 
+		if (this.updatefound) return;
+
 		if (Electron === null) return;
 
 		if (Electron.remote.app.isPackaged === false) return;

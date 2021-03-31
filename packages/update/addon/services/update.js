@@ -98,6 +98,8 @@ export default class extends Service {
 
 	@action check() {
 
+		if (this.updatefound) return;
+
 		if (this.#config.enabled === true) {
 
 			let url = `/version.txt?_=${new Date().getTime()}`;
