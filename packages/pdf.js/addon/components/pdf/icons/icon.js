@@ -16,7 +16,7 @@ export default class extends Component {
 
 	@action didLeave(element) {
 		if (this.visible === true) {
-			// Ignore
+			// this.visible = false;
 		}
 	}
 
@@ -99,10 +99,6 @@ export default class extends Component {
 		} catch (e) {
 
 			throw e;
-
-		} finally {
-
-			yield this.cleanup.run();
 
 		}
 
