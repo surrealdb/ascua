@@ -66,9 +66,9 @@ export default class extends Component {
 
 	get value() {
 		switch (true) {
-		case this.args.value !== undefined && this.args.value instanceof Date === true:
+		case this.args.value && this.args.value instanceof Date === true:
 			return this.args.value;
-		case this.args.value !== undefined && this.args.value instanceof Date === false:
+		case this.args.value && this.args.value instanceof Date === false:
 			return new Date(this.args.value);
 		default:
 			return undefined;
