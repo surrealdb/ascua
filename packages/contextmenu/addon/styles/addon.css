@@ -1,5 +1,5 @@
 :root {
-	--system-fonts: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--system-font:ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Ubuntu', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 right-click {
@@ -26,7 +26,7 @@ context-menu {
 	border-style:solid;
 	padding:5px 0 5px 0;
 	border-color:#cccccc;
-	font-family:var(--system-fonts);
+	font-family:var(--system-font);
 	background-color:rgba(255, 255, 255, 0.95);
 	-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
