@@ -1,0 +1,36 @@
+<h1>Calendar</h1>
+
+<p>The <code>Ascua::Calendar</code> component adds functionality for adding custom datetime selection input popups. Caneldnars can support custom styling, ranges, and multi-select.</p>
+
+<h2>Installation</h2>
+
+<Example @name="demo-elements-calendar-install.bash">
+	ember install @ascua/calendar
+</Example>
+
+<h2>Basic menu</h2>
+
+<p>Create a basic calendar date selector menu. Specify a <code>value</code> with any selected date if desired. The <code>value</code> option can be a Javascript Date object, or a ISO 8601 formatted string.</p>
+
+<Example @name="demo-elements-calendar-basic.hbs">
+	Start date:
+	<Ascua::Calendar @value={{this.value}} @onSelect={{fn (mut this.value)}} />
+</Example>
+
+<h2>Default text</h2>
+
+<p>To change the default message when no date is selected, specify the <code>default</code> option.</p>
+
+<Example @name="demo-elements-calendar-default.hbs">
+	Start date:
+	<Ascua::Calendar @default="Select a future date" @value={{this.value}} @onSelect={{fn (mut this.value)}} />
+</Example>
+
+<h2>Formatted text</h2>
+
+<p>To specify a format for the text, when a date has been selected, use the <code>format</code> option.</p>
+
+<Example @name="demo-elements-calendar-format.hbs">
+	Start date:
+	<Ascua::Calendar @format="dddd, MMMM Do YYYY, h:mm:ss a" @value={{this.value}} @onSelect={{fn (mut this.value)}} />
+</Example>

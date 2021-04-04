@@ -1,0 +1,276 @@
+:root {
+	--system-font:ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Ubuntu', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+app-calendar {
+	max-width:100%;
+	position:relative;
+	display:inline-block;
+}
+
+app-calendar > label {
+	overflow:hidden;
+	max-width:inherit;
+	align-items:center;
+	white-space:nowrap;
+	display:inline-block;
+	vertical-align:bottom;
+	text-overflow:ellipsis;
+}
+
+app-calendar > label svg {
+	width:14px;
+	height:auto;
+	cursor:pointer;
+	vertical-align:middle;
+}
+
+app-calendar > label svg polygon {
+	cursor:pointer;
+	fill:currentColor;
+}
+
+app-calendar > label:hover {
+	cursor:pointer;
+	color:var(--hover-color, #00BFFF);
+}
+
+app-calendar > label:hover svg {
+	cursor:pointer;
+	fill:currentColor;
+}
+
+app-calendar > label:hover svg polygon {
+	fill:currentColor;
+}
+
+app-calendar[minimal] > label svg {
+	display:none;
+}
+
+app-calendar[multiline] > label {
+	white-space:normal;
+}
+
+app-calendar[disabled] > label {
+	color:inherit;
+	cursor:default;
+	background:none;
+}
+
+app-calendar-popup {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:fixed;
+	z-index:2147483646;
+}
+
+app-calendar-popup > app-calendar-cover {
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:1;
+	display:block;
+	position:fixed;
+	overflow:visible;
+}
+
+app-calendar-popup > app-calendar-front {
+	margin:0;
+	z-index:2;
+	display:block;
+	cursor:pointer;
+	overflow-y:auto;
+	overflow-x:hidden;
+	min-width:250px;
+	max-width:560px;
+	max-height:500px;
+	position:absolute;
+	padding:4px 0 4px 0;
+	border-radius:5px;
+	backdrop-filter:blur(20px);
+	-webkit-backdrop-filter:blur(20px);
+	background:rgba(255, 255, 255, 0.6);
+	border:1px solid rgba(175, 175, 175, 0.3);
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-ms-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-o-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+	app-calendar-popup > app-calendar-front {
+		background:rgba(50, 50, 50, 0.8);
+		border:1px solid rgba(0, 0, 0, 0.3);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	app-calendar-popup > app-calendar-front {
+		background:rgba(255, 255, 255, 0.8);
+		border:1px solid rgba(175, 175, 175, 0.3);
+	}
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-navs {
+	width:100%;
+	border:none;
+	display:flex;
+	color:#333333;
+	font-size:14px;
+	line-height:1.5;
+	margin-bottom:3px;
+	align-items:center;
+	padding:2px 25px 6px 25px;
+	background-color:transparent;
+	justify-content:space-between;
+	font-family:var(--system-fonts);
+	border-bottom:1px solid rgba(200, 200, 200, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+	app-calendar-popup > app-calendar-front > app-calendar-navs {
+		color:#ffffff;
+		border-bottom:1px solid rgba(100, 100, 100, 0.6);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	app-calendar-popup > app-calendar-front > app-calendar-navs {
+		color:#333333;
+		border-bottom:1px solid rgba(200, 200, 200, 0.6);
+	}
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-navs > div:nth-of-type(1) {
+	font-size:20px;
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-navs > div:nth-of-type(3) {
+	font-size:20px;
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-navs > div:nth-of-type(1):hover {
+	cursor:pointer;
+	color:var(--accent-color, #187aee);
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-navs > div:nth-of-type(3):hover {
+	cursor:pointer;
+	color:var(--accent-color, #187aee);
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-names {
+	width:100%;
+	border:none;
+	display:flex;
+	font-size:12px;
+	line-height:1.5;
+	margin-bottom:3px;
+	align-items:center;
+	padding:2px 8px 6px 8px;
+	color:rgba(0, 0, 0, 0.5);
+	background-color:transparent;
+	justify-content:space-between;
+	font-family:var(--system-fonts);
+	border-bottom:1px solid rgba(200, 200, 200, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+	app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-names {
+		color:rgba(255, 255, 255, 0.5);
+		border-bottom:1px solid rgba(100, 100, 100, 0.6);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-names {
+		color:rgba(0, 0, 0, 0.5);
+		border-bottom:1px solid rgba(200, 200, 200, 0.6);
+	}
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-names div {
+	width:100%;
+	text-align:center;
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week {
+	width:100%;
+	border:none;
+	display:flex;
+	color:#333333;
+	font-size:12px;
+	line-height:1.5;
+	align-items:center;
+	padding:0px 8px 0px 8px;
+	background-color:transparent;
+	justify-content:space-between;
+	font-family:var(--system-fonts);
+}
+
+@media (prefers-color-scheme: dark) {
+	app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week {
+		color:#ffffff;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week {
+		color:#333333;
+	}
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div {
+	width:100%;
+	text-align:center;
+	padding:4px 0px 4px 0px;
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div:hover {
+	color:#ffffff;
+	cursor:pointer;
+	background-color:var(--accent-color, #187aee);
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div[today] {
+	color:rgba(255, 0, 0);
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div[faint] {
+	color:rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+	app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div[faint] {
+		color:rgba(255, 255, 255, 0.5);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div[faint] {
+		color:rgba(0, 0, 0, 0.5);
+	}
+}
+
+app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div[picked] {
+	font-weight:bold;
+	color:var(--accent-color, #187aee);
+	background-color:rgba(200, 200, 200, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+	app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div[picked] {
+		background-color:rgba(100, 100, 100, 0.6);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	app-calendar-popup > app-calendar-front > app-calendar-days > app-calendar-days-weeks > app-calendar-days-week div[picked] {
+		background-color:rgba(200, 200, 200, 0.6);
+	}
+}

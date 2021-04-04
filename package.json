@@ -89,6 +89,7 @@
     "@ascua/big.js": "file:packages/big.js",
     "@ascua/bigdata": "file:packages/bigdata",
     "@ascua/bignumber.js": "file:packages/bignumber.js",
+    "@ascua/calendar": "file:packages/calendar",
     "@ascua/chart.js": "file:packages/chart.js",
     "@ascua/clock": "file:packages/clock",
     "@ascua/codemirror.js": "file:packages/codemirror.js",

@@ -49,6 +49,7 @@ Router.map(function() {
 	});
 
 	this.route('elements', function() {
+		this.route('calendar');
 		this.route('codemirror');
 		this.route('contextmenu');
 		this.route('dragdrop');

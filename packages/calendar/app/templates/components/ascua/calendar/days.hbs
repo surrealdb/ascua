@@ -1,0 +1,18 @@
+<app-calendar-days>
+	<app-calendar-days-names>
+		{{#each this.names as |name|}}
+			<div>{{name}}</div>
+		{{/each}}
+	</app-calendar-days-names>
+	<app-calendar-days-weeks>
+		{{#each this.weeks as |week|}}
+			<app-calendar-days-week>
+				{{#each week.days as |day|}}
+					<div role="button" today={{day.today}} faint={{day.faint}} picked={{day.picked}} {{on "click" (fn this.click day)}}>
+						{{day.count}}
+					</div>
+				{{/each}}
+			</app-calendar-days-week>
+		{{/each}}
+	</app-calendar-days-weeks>
+</app-calendar-days>

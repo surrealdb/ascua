@@ -1,0 +1,7 @@
+<app-calendar-navs>
+	<div role="button" {{on "click" this.prev}}>«</div>
+	<div role="button" {{on "click" this.reset}}>
+		{{date-format @calendar.pivot "MMMM YYYY"}}
+	</div>
+	<div role="button" {{on "click" this.next}}>»</div>
+</app-calendar-navs>
