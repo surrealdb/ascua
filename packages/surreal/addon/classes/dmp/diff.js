@@ -1,6 +1,8 @@
 import { typeOf } from '@ember/utils';
 import DMP from 'dmp';
 
+const regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+
 function route(path, part) {
 	if (path.length === 0) {
 		return '/' + part;
@@ -48,7 +50,12 @@ export default class Diff {
 
 		switch (typeof old) {
 		case 'string':
-			this.txt(old, now, path);
+			let v = regex.exec(now);
+			if (v) {
+				this.op('replace', path, now);
+			} else {
+				this.txt(old, now, path);
+			}
 			return;
 		case 'object':
 			if (old.constructor === Array) {
