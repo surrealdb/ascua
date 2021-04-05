@@ -311,7 +311,7 @@ export default class Store extends Service {
 			}
 
 			let record = this.lookup(model).create(data);
-			let server = await this.surreal.create(model, id, record.data);
+			let server = await this.surreal.create(model, id, record.json);
 			return this.inject(server);
 
 		} catch (e) {

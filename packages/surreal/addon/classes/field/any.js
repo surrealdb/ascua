@@ -1,11 +1,12 @@
 import Property from './property';
 import Any from '../types/any';
+import { RECORD } from '../model';
 
 export default Property({
 	get(key) {
-		return Any(this.data[key]);
+		return Any(this[RECORD].data[key]);
 	},
 	set(key, value) {
-		return this.data[key] = Any(value);
+		return this[RECORD].data[key] = Any(value);
 	},
 });

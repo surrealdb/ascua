@@ -4,6 +4,7 @@ import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import meta from '../meta';
 import json from '../../utils/json';
+import { RECORD } from '../model';
 
 export default class Field {
 
@@ -23,8 +24,10 @@ export default class Field {
 
 	#parent = undefined;
 
-	// The tracked underlying record data
-	@tracked data = {};
+	// The current underlying record state
+	[RECORD] = {
+		@tracked data: {},
+	}
 
 	// The `parent` property can be used
 	// to retrieve the underlying parent
@@ -43,7 +46,7 @@ export default class Field {
 	// be used for serlialization.
 
 	toJSON() {
-		return this.data;
+		return this[RECORD].data;
 	}
 
 	get _full() {

@@ -10,6 +10,7 @@ import Model from '@ascua/surreal/model';
 import Field from '@ascua/surreal/field';
 import { assert } from '@ember/debug';
 import { DestroyedError } from '@ascua/surreal/errors';
+import { RECORD } from '../model';
 
 const json = (v) => JSON.stringify(v);
 
@@ -19,31 +20,31 @@ export default function(type) {
 
 			switch (type) {
 			case undefined:
-				return this.data[key] = this.data[key] || new Array(this, Any);
+				return this[RECORD].data[key] = this[RECORD].data[key] || new Array(this, Any);
 			case 'string':
-				return this.data[key] = this.data[key] || new Array(this, String);
+				return this[RECORD].data[key] = this[RECORD].data[key] || new Array(this, String);
 			case 'number':
-				return this.data[key] = this.data[key] || new Array(this, Number);
+				return this[RECORD].data[key] = this[RECORD].data[key] || new Array(this, Number);
 			case 'boolean':
-				return this.data[key] = this.data[key] || new Array(this, Boolean);
+				return this[RECORD].data[key] = this[RECORD].data[key] || new Array(this, Boolean);
 			case 'datetime':
-				return this.data[key] = this.data[key] || new Array(this, Datetime);
+				return this[RECORD].data[key] = this[RECORD].data[key] || new Array(this, Datetime);
 			default:
 
-				let value = this.data[key] || [];
+				let value = this[RECORD].data[key] || [];
 
 				try {
 
 					let model = this.store.lookup(type);
 
 					if (model && model.class.prototype instanceof Field) {
-						return this.data[key] = this.data[key] || new Array(this, (v) => {
+						return this[RECORD].data[key] = this[RECORD].data[key] || new Array(this, (v) => {
 							return model.create({ ...v, parent: this });
 						}, ...value);
 					}
 
 					if (model && model.class.prototype instanceof Model) {
-						return this.data[key] = this.data[key] || new Array(this, (v) => {
+						return this[RECORD].data[key] = this[RECORD].data[key] || new Array(this, (v) => {
 							switch (true) {
 							case v === null:
 								return v;
@@ -91,36 +92,36 @@ export default function(type) {
 		},
 		set(key, value=[]) {
 
-			if (this.data[key] !== undefined) {
+			if (this[RECORD].data[key] !== undefined) {
 				value.forEach( (v, k) => {
 					switch (true) {
-					case json(this.data[key][k]) === json(v):
+					case json(this[RECORD].data[key][k]) === json(v):
 						break;
-					case this.data[key][k] !== undefined:
-						this.data[key].replace(k, 1, [v]);
+					case this[RECORD].data[key][k] !== undefined:
+						this[RECORD].data[key].replace(k, 1, [v]);
 						break;
-					case this.data[key][k] === undefined:
-						this.data[key].pushObject(v);
+					case this[RECORD].data[key][k] === undefined:
+						this[RECORD].data[key].pushObject(v);
 						break;
 					}
 				});
-				for (let i=this.data[key].length; i>value.length; i--) {
-					this.data[key].popObject();
+				for (let i=this[RECORD].data[key].length; i>value.length; i--) {
+					this[RECORD].data[key].popObject();
 				}
-				return this.data[key];
+				return this[RECORD].data[key];
 			}
 
 			switch (type) {
 			case undefined:
-				return this.data[key] = new Array(this, Any, ...value);
+				return this[RECORD].data[key] = new Array(this, Any, ...value);
 			case 'string':
-				return this.data[key] = new Array(this, String, ...value);
+				return this[RECORD].data[key] = new Array(this, String, ...value);
 			case 'number':
-				return this.data[key] = new Array(this, Number, ...value);
+				return this[RECORD].data[key] = new Array(this, Number, ...value);
 			case 'boolean':
-				return this.data[key] = new Array(this, Boolean, ...value);
+				return this[RECORD].data[key] = new Array(this, Boolean, ...value);
 			case 'datetime':
-				return this.data[key] = new Array(this, Datetime, ...value);
+				return this[RECORD].data[key] = new Array(this, Datetime, ...value);
 			default:
 
 				try {
@@ -128,13 +129,13 @@ export default function(type) {
 					let model = this.store.lookup(type);
 
 					if (model && model.class.prototype instanceof Field) {
-						return this.data[key] = new Array(this, (v) => {
+						return this[RECORD].data[key] = new Array(this, (v) => {
 							return model.create({ ...v, parent: this });
 						}, ...value);
 					}
 
 					if (model && model.class.prototype instanceof Model) {
-						return this.data[key] = new Array(this, (v) => {
+						return this[RECORD].data[key] = new Array(this, (v) => {
 							switch (true) {
 							case v === null:
 								return v;

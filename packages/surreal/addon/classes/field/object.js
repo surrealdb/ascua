@@ -3,6 +3,7 @@ import Field from '@ascua/surreal/field';
 import { assert } from '@ember/debug';
 import { setProperties } from '@ember/object';
 import { DestroyedError } from '@ascua/surreal/errors';
+import { RECORD } from '../model';
 
 export default function(type) {
 	return Property({
@@ -13,7 +14,7 @@ export default function(type) {
 				let model = this.store.lookup(type);
 
 				if (model && model.class.prototype instanceof Field) {
-					return this.data[key] = this.data[key] || model.create({ parent: this });
+					return this[RECORD].data[key] = this[RECORD].data[key] || model.create({ parent: this });
 				}
 
 				assert('An embedded object must be of type Field');
@@ -37,11 +38,11 @@ export default function(type) {
 
 				if (model && model.class.prototype instanceof Field) {
 					switch (true) {
-					case this.data[key] !== undefined:
-						setProperties(this.data[key], value);
-						return this.data[key];
-					case this.data[key] === undefined:
-						return this.data[key] = model.create({ ...value, parent: this });
+					case this[RECORD].data[key] !== undefined:
+						setProperties(this[RECORD].data[key], value);
+						return this[RECORD].data[key];
+					case this[RECORD].data[key] === undefined:
+						return this[RECORD].data[key] = model.create({ ...value, parent: this });
 					}
 				}
 

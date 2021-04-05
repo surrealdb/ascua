@@ -1,5 +1,5 @@
 import Model from '../model';
-import { STATE } from '../model';
+import { RECORD } from '../model';
 import { LOADED } from '../model';
 import { assert } from '@ember/debug';
 
@@ -20,7 +20,7 @@ export default function(target) {
 function func(target) {
 
 	target.prototype.autosave = function() {
-		if (this[STATE] === LOADED) {
+		if (this[RECORD].state === LOADED) {
 			return this.save();
 		}
 	}

@@ -9,7 +9,7 @@ import Diff from '../dmp/diff';
 import meta from '../meta';
 import json from '../../utils/json';
 
-export const STATE = Symbol("STATE");
+export const RECORD = Symbol("RECORD");
 export const LOADED = Symbol("LOADED");
 export const LOADING = Symbol("LOADING");
 export const DELETED = Symbol("DELETED");
@@ -39,9 +39,6 @@ export default class Model {
 	// Underlying meta data
 	#meta = undefined;
 
-	// Current record state
-	#state = LOADED;
-
 	// Current context object
 	#ctx = undefined;
 
@@ -57,8 +54,11 @@ export default class Model {
 	// Last state of received data
 	#server = undefined;
 
-	// The tracked underlying record data
-	@tracked data = {};
+	// The current underlying record state
+	[RECORD] = {
+		@tracked data: {},
+		@tracked state: LOADED,
+	}
 
 	// The `tb` property can be used
 	// to retrieve the actual table
@@ -92,20 +92,12 @@ export default class Model {
 		this.#meta = value;
 	}
 
-	// The `state` property enables an
-	// external observer to see which
-	// syncing state the record is in.
-
-	get [STATE]() {
-		return this.#state;
-	}
-
 	// The exists property allows us
 	// to detect whether the record
 	// exists or has been deleted.
 
 	get exists() {
-		return this.#state !== DELETED;
+		return this[RECORD].state !== DELETED;
 	}
 
 	// The `json` property returns a
@@ -129,7 +121,7 @@ export default class Model {
 	// be used for serlialization.
 
 	toJSON() {
-		return this.data;
+		return this[RECORD].data;
 	}
 
 	get _full() {
@@ -215,7 +207,7 @@ export default class Model {
 	rollback() {
 
 		// Set state to LOADING
-		this.#state = LOADING;
+		this[RECORD].state = LOADING;
 
 		// Apply server side changes to local record
 		for (const key in this.#client) {
@@ -223,7 +215,7 @@ export default class Model {
 		}
 
 		// Set state to LOADED
-		this.#state = LOADED;
+		this[RECORD].state = LOADED;
 
 	}
 
@@ -237,7 +229,7 @@ export default class Model {
 	ingest(data) {
 
 		// Set state to LOADING
-		this.#state = LOADING;
+		this[RECORD].state = LOADING;
 
 		// Craeta a new shadow record for the data
 		this.#shadow = this.store.lookup(this.tb).create(data);
@@ -257,7 +249,7 @@ export default class Model {
 		this.#client = this.#server = this.#shadow._some;
 
 		// Set state to LOADED
-		this.#state = LOADED;
+		this[RECORD].state = LOADED;
 
 		// Save any changes
 		if (changes.length) {
@@ -278,14 +270,14 @@ export default class Model {
 			await this.#ctx.delay(500);
 			let diff = new Diff(this.#client, this._some).output();
 			if (diff.length) {
-				this.#state = LOADING;
+				this[RECORD].state = LOADING;
 				this.#client = this._some;
 				return this.store.modify(this, diff);
 			}
 		} catch (e) {
 			// Ignore
 		} finally {
-			this.#state = LOADED;
+			this[RECORD].state = LOADED;
 		}
 	}
 
@@ -299,13 +291,13 @@ export default class Model {
 		if (this.#fake) return;
 		try {
 			await this.#ctx.delay(500);
-			this.#state = LOADING;
+			this[RECORD].state = LOADING;
 			this.#client = this._some;
 			return this.store.update(this);
 		} catch (e) {
 			// Ignore
 		} finally {
-			this.#state = LOADED;
+			this[RECORD].state = LOADED;
 		}
 	}
 
@@ -322,7 +314,7 @@ export default class Model {
 		} catch (e) {
 			// Ignore
 		} finally {
-			this.#state = DELETED;
+			this[RECORD].state = DELETED;
 		}
 	}
 
