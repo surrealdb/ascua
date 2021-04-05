@@ -138,22 +138,6 @@ export default class Store extends Service {
 	}
 
 	/**
-	 * Remove records from the local record cache.
-	 *
-	 * @param {string} model - The model type.
-	 * @param {undefined|string|Array} id - A specific record id.
-	 * @returns {Promise} Promise object with the removed records.
-	 */
-
-	remove(ids) {
-
-		return [].concat(ids).map(id => {
-			return this.unload(id.split(':')[0], id);
-		});
-
-	}
-
-	/**
 	 * Inject records into the local record cache.
 	 *
 	 * @param {string} model - The model type.
@@ -196,10 +180,32 @@ export default class Store extends Service {
 
 	/**
 	 * Remove records from the local record cache.
+	 *
+	 * @param {string} model - The model type.
+	 * @param {undefined|string|Array} id - A specific record id.
+	 * @returns {Promise} Promise object with the removed records.
+	 */
+
+	remove(ids) {
+
+		return [].concat(ids).map(id => {
+
+			let model = id.split(':')[0];
+
+			this.cached(model, id).remove();
+
+			this.unload(model, id);
+
+		});
+
+	}
+
+	/**
+	 * Unload records from the local record cache.
 	 * The second argument can be a single id, an
 	 * array of ids, or undefined. If no id is
 	 * specified, then all records of the specified
-	 * type will be removed from the cache.
+	 * type will be unloaded from the cache.
 	 *
 	 * @param {string} model - The model type.
 	 * @param {undefined|string|Array} id - A specific record id.

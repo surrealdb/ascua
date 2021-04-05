@@ -163,6 +163,16 @@ export default class Model {
 	}
 
 	/**
+	 * Mark the record as deleted o the remote store.
+	 *
+	 * @returns {undefined} Does not return anything.
+	 */
+
+	remove() {
+		this[RECORD].state = DELETED;
+	}
+
+	/**
 	 * Update the record in the database.
 	 *
 	 * @returns {Promise} Promise object with the updated record.
