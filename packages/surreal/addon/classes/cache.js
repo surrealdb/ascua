@@ -2,18 +2,18 @@ import Array from './array';
 
 export default class Cache {
 
-	data = {};
+	#data = {};
 
 	get(model) {
-		return this.data[model] = this.data[model] || new Array();
+		return this.#data[model] = this.#data[model] || new Array();
 	}
 
 	del(model) {
-		this.data[model].clear();
+		this.#data[model].clear();
 	}
 
 	clear() {
-		for (const k in this.data) {
+		for (const k in this.#data) {
 			this.del(k);
 		}
 	}

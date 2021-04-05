@@ -4,14 +4,14 @@ const enabled = test();
 
 export default class Storage {
 
-	data = {};
+	#data = {};
 
 	set(id, val) {
 		switch (enabled) {
 		case true:
 			return window.localStorage.setItem(id, val);
 		case false:
-			return this.data[id] = val || undefined;
+			return this.#data[id] = val || undefined;
 		}
 	}
 
@@ -20,7 +20,7 @@ export default class Storage {
 		case true:
 			return window.localStorage.getItem(id);
 		case false:
-			return this.data[id] || undefined;
+			return this.#data[id] || undefined;
 		}
 	}
 
@@ -29,7 +29,7 @@ export default class Storage {
 		case true:
 			return window.localStorage.removeItem(id);
 		case false:
-			return delete this.data[id];
+			return delete this.#data[id];
 		}
 	}
 
@@ -38,7 +38,7 @@ export default class Storage {
 		case true:
 			return window.localStorage.clear();
 		case false:
-			return this.data = {};
+			return this.#data = {};
 		}
 	}
 
