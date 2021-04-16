@@ -1,6 +1,6 @@
 {
   "name": "@ascua/mapbox-gl.js",
-  "version": "0.0.186",
+  "version": "0.0.187",
   "description": "Small description for @ascua/mapbox-gl.js goes here",
   "keywords": [
     "ember-addon"
