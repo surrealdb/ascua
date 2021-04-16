@@ -234,6 +234,10 @@ export default class Surreal extends Service {
 		return this.#db.info(...arguments);
 	}
 
+	let() {
+		return this.#db.let(...arguments);
+	}
+
 	query() {
 		return this.#db.query(...arguments);
 	}
