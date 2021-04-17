@@ -7,7 +7,7 @@ const viewport = Viewport.Instance;
 export default setModifierManager(
 	() => ({
 
-		capabilities: capabilities('3.13', { disableAutoTracking: true }),
+		capabilities: capabilities('3.22', { disableAutoTracking: true }),
 
 		createModifier() {
 			return { element: null };
