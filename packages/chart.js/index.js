@@ -12,7 +12,7 @@ module.exports = {
 
 		this._super.included.apply(this, ...arguments);
 
-		app.import('node_modules/chart.js/dist/Chart.js', fastboot);
+		app.import('node_modules/chart.js/dist/chart.js', fastboot);
 
 		app.import('vendor/chart.js', {
 			exports: { Chart: ['default'] }
