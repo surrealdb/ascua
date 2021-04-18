@@ -89,18 +89,20 @@ export default class extends Component {
 		});
 	}
 
-	@action changed(value) {
+	@action async changed(value) {
+
+		let selected = await Promise.all(this.value);
 
 		if (this.args.multiple) {
-			if ( [].concat(this.args.value).includes(value) ) {
-				value = [].concat(this.args.value).removeObject(value);
+			if ( selected.includes(value) ) {
+				selected.removeObject(value);
 			} else {
-				value = [].concat(this.args.value).addObject(value);
+				selected.addObject(value);
 			}
 		}
 
 		if (this.args.onSelect) {
-			this.args.onSelect(value);
+			this.args.onSelect(selected);
 		}
 
 		this.close();
@@ -109,7 +111,7 @@ export default class extends Component {
 
 	get value() {
 
-		return [].concat(this.args.value);
+		return Array.isArray(this.args.value) ? this.args.value : [].concat(this.args.value);
 
 	}
 
