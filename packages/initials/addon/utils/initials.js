@@ -4,7 +4,7 @@ function letter(word) {
 
 export default function(value) {
 
-	let name = value ? String(value).trim() : '';
+	let name = value ? String(value).trim() : '?';
 	let part = name.split(' ');
 
 	if (part.length > 1) {
