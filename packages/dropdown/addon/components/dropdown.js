@@ -70,22 +70,28 @@ export default class extends Component {
 	}
 
 	@action register(el, value, label) {
-		this.options.addObject({
-			el, label, value
+		setTimeout( () => {
+			this.options.addObject({
+				el, label, value
+			});
 		});
 	}
 
 	@action unregister(el, value, label) {
-		this.options = this.options.filter(opt => {
-			return opt.el !== el;
+		setTimeout( () => {
+			this.options = this.options.filter(opt => {
+				return opt.el !== el;
+			});
 		});
 	}
 
 	@action reregister(el, value, label) {
-		this.options = this.options.map(opt => {
-			return opt.el !== el ? opt : {
-				el, label, value
-			};
+		setTimeout( () => {
+			this.options = this.options.map(opt => {
+				return opt.el !== el ? opt : {
+					el, label, value
+				};
+			});
 		});
 	}
 
@@ -95,14 +101,14 @@ export default class extends Component {
 
 		if (this.args.multiple) {
 			if ( selected.includes(value) ) {
-				selected.removeObject(value);
+				value = selected.removeObject(value);
 			} else {
-				selected.addObject(value);
+				value = selected.addObject(value);
 			}
 		}
 
 		if (this.args.onSelect) {
-			this.args.onSelect(selected);
+			this.args.onSelect(value);
 		}
 
 		this.close();
