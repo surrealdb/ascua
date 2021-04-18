@@ -14,6 +14,8 @@ export default class extends Component {
 
 	@tracked search = '';
 
+	@tracked value = [];
+
 	@tracked options = [];
 
 	@tracked selected = [];
@@ -65,45 +67,61 @@ export default class extends Component {
 
 	}
 
-	@action didCreate(element) {
+	@action didEnter(element) {
 		this.element = element;
+	}
+
+	@action didValue() {
+		if ( Array.isArray(this.args.value) ) {
+			Promise.all(this.args.value).then(v => {
+				this.value = v;
+			});
+		} else {
+			Promise.resolve(this.args.value).then(v => {
+				this.value = [v];
+			});
+		}
 	}
 
 	@action register(el, value, label) {
 		setTimeout( () => {
-			this.options.addObject({
-				el, label, value
+			Promise.resolve(value).then(value => {
+				this.options.addObject({
+					el, label, value,
+				});
 			});
 		});
 	}
 
 	@action unregister(el, value, label) {
 		setTimeout( () => {
-			this.options = this.options.filter(opt => {
-				return opt.el !== el;
+			Promise.resolve(value).then(value => {
+				this.options = this.options.filter(opt => {
+					return opt.el !== el;
+				});
 			});
 		});
 	}
 
 	@action reregister(el, value, label) {
 		setTimeout( () => {
-			this.options = this.options.map(opt => {
-				return opt.el !== el ? opt : {
-					el, label, value
-				};
+			Promise.resolve(value).then(value => {
+				this.options = this.options.map(opt => {
+					return opt.el !== el ? opt : {
+						el, label, value,
+					};
+				});
 			});
 		});
 	}
 
 	@action async changed(value) {
 
-		let selected = await Promise.all(this.value);
-
 		if (this.args.multiple) {
-			if ( selected.includes(value) ) {
-				value = selected.removeObject(value);
+			if ( this.value.includes(value) ) {
+				value = this.value.removeObject(value);
 			} else {
-				value = selected.addObject(value);
+				value = this.value.addObject(value);
 			}
 		}
 
@@ -112,12 +130,6 @@ export default class extends Component {
 		}
 
 		this.close();
-
-	}
-
-	get value() {
-
-		return Array.isArray(this.args.value) ? this.args.value : [].concat(this.args.value);
 
 	}
 
