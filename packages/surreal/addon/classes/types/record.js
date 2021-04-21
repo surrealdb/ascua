@@ -94,19 +94,19 @@ export default class Remote {
 	then() {
 		this.fetch();
 		this.setup();
-		return this.#promise.then(...arguments);
+		return Promise.resolve(this.#promise).then(...arguments);
 	}
 
 	catch() {
 		this.fetch();
 		this.setup();
-		return this.#promise.catch(...arguments);
+		return Promise.resolve(this.#promise).catch(...arguments);
 	}
 
 	finally() {
 		this.fetch();
 		this.setup();
-		return this.#promise.finally(...arguments);
+		return Promise.resolve(this.#promise).finally(...arguments);
 	}
 
 	fetch() {
