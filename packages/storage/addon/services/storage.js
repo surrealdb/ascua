@@ -23,6 +23,10 @@ export default class extends Service {
 
 		let val = this.#ls.get(key) || undefined;
 
+		if ( val === 'null' ) {
+			return null
+		}
+
 		if ( val === 'true' ) {
 			return Boolean(true);
 		}
@@ -45,8 +49,13 @@ export default class extends Service {
 
 	setUnknownProperty(key, val) {
 
-		if (val === null) {
+		if (val === undefined) {
 			this.#ls.del(key);
+			return this.notifyPropertyChange(key);
+		}
+
+		if (val === null) {
+			this.#ls.set(key, val);
 			return this.notifyPropertyChange(key);
 		}
 
