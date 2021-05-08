@@ -2,20 +2,23 @@ const func = (v) => v;
 
 export default class RecordArray extends Array {
 
-	constructor(owner, type = func, ...values) {
-
-		super( ...values.map(type) );
-
-		this.type = type;
-
-		if (owner) {
-			this.addArrayObserver(owner, {
-				willChange: 'autosave',
-				didChange: 'autosave',
-			});
-		}
-
+	static create(owner, type = func, ...values) {
+		let v = values.map(type);
+		let a = new this(...v);
+		a.type = type;
+		return new Proxy(a, {
+			get() {
+				return Reflect.get(...arguments);
+			},
+			set() {
+				let val = Reflect.set(...arguments);
+				if (owner) owner.autosave();
+				return val;
+			}
+		});
 	}
+
+	type = func;
 
 	addObject(value) {
 		super.addObject( this.type(value) );
