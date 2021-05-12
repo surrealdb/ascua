@@ -169,7 +169,7 @@ export default class Model {
 	 * @returns {Promise} Promise object with the updated record.
 	 */
 
-	update() {
+	async update() {
 		if (this.#cancel) this.#cancel();
 		[this.#ctx, this.#cancel] = context.withCancel();
 		return this._update.queue();
@@ -181,7 +181,7 @@ export default class Model {
 	 * @returns {Promise} Promise object with the deleted record.
 	 */
 
-	delete() {
+	async delete() {
 		if (this.#cancel) this.#cancel();
 		[this.#ctx, this.#cancel] = context.withCancel();
 		return this._delete.queue();
@@ -193,10 +193,15 @@ export default class Model {
 	 * @returns {Promise} Promise object with the saved record.
 	 */
 
-	save() {
+	async save() {
 		if (this.#cancel) this.#cancel();
 		[this.#ctx, this.#cancel] = context.withCancel();
-		return this._modify.queue();
+		try {
+			await this.#ctx.delay(500);
+			return this._modify.queue();
+		} catch (e) {
+			// Ignore
+		}
 	}
 
 	/**
@@ -232,7 +237,7 @@ export default class Model {
 		// Set state to LOADING
 		this[RECORD].state = LOADING;
 
-		// Craeta a new shadow record for the data
+		// Create a new shadow record for the data
 		this.#shadow = this.store.lookup(this.tb).create(data);
 
 		// Calculate changes while data was in flight
@@ -268,7 +273,6 @@ export default class Model {
 	@defer async _modify() {
 		if (this.#fake) return;
 		try {
-			await this.#ctx.delay(500);
 			let diff = new Diff(this.#client, this._some).output();
 			if (diff.length) {
 				this[RECORD].state = LOADING;
@@ -291,7 +295,6 @@ export default class Model {
 	@defer async _update() {
 		if (this.#fake) return;
 		try {
-			await this.#ctx.delay(500);
 			this[RECORD].state = LOADING;
 			this.#client = this._some;
 			return this.store.update(this);
