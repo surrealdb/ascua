@@ -4,6 +4,8 @@ export function full(object) {
 
 	let json = {};
 
+	json.id = object.id;
+
 	meta.all(object).forEach(p => {
 		switch (true) {
 		case typeof object[p.name] === 'object' && object[p.name] !== null && '_full' in object[p.name]:
@@ -20,6 +22,8 @@ export function full(object) {
 export function some(object) {
 
 	let json = {};
+
+	json.id = object.id;
 
 	meta.all(object).forEach(p => {
 		switch (true) {

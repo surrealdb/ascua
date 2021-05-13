@@ -3,7 +3,6 @@ import context from '@ascua/context';
 import { setOwner } from '@ember/application';
 import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { string } from '@ascua/surreal/field';
 import { defer } from '@ascua/queue';
 import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
@@ -32,8 +31,6 @@ export default class Model {
 	@inject surreal;
 
 	@inject store;
-
-	@string id;
 
 	#id = null;
 
@@ -69,6 +66,18 @@ export default class Model {
 
 	get tb() {
 		return this.#meta.tb;
+	}
+
+	// The `id` property can be used
+	// to retrieve the actual thing
+	// id for this Surreal record.
+
+	get id() {
+		return this.#id;
+	}
+
+	set id(value) {
+		this.#id = value;
 	}
 
 	// The `meta` property stores the
@@ -112,7 +121,9 @@ export default class Model {
 	// be used for serlialization.
 
 	toJSON() {
-		return this[RECORD].data;
+		return Object.assign(this[RECORD].data, {
+			id: this.id,
+		});
 	}
 
 	get _full() {
