@@ -15,10 +15,11 @@ export default {
 
 	initialize(instance) {
 
-		let m = [];
-
 		// Check if browser
 		let x = enabled();
+
+		// Get the metrics service
+		let s = instance.lookup('service:metrics');
 
 		// Get the current environment
 		let c = instance.resolveRegistration('config:environment');
@@ -36,30 +37,17 @@ export default {
 
 			if (x && f && e) {
 
-				let n = `metrics:${metric.name}`;
-
 				let o = f.create(instance.ownerInjection(), {
 					config: metric.config
 				});
 
-				instance.register(n, o, { instantiate: false });
+				s.platforms.push(o);
 
-				instance.inject('service:metrics', metric.name, n);
-
-				m.push(o);
+				s[metric.name] = o;
 
 			}
 
 		});
-
-		// Register the defined metrics as 'all'
-		instance.register('metrics:all', m, { instantiate: false });
-
-		// Push the defined metrics into the service
-		instance.inject('service:metrics', 'metrics', 'metrics:all');
-
-		// Load the metric service
-		instance.lookup('service:metrics');
 
 	},
 

@@ -18,13 +18,27 @@ export function optimised(config) {
 	n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];}(window);
 	/* eslint-enable */
 
-	window.addEventListener('load', function() {
+	if (document.readyState === 'complete') {
+
 		let script = document.createElement('script');
 		script.src = 'https://connect.facebook.net/en_US/fbevents.js';
 		script.async = false;
 		script.defer = true;
 		document.head.appendChild(script);
-	});
+
+	} else {
+
+		document.addEventListener('readystatechange', function(event) {
+			if (event.target.readyState === 'complete') {
+				let script = document.createElement('script');
+				script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+				script.async = false;
+				script.defer = true;
+				document.head.appendChild(script);
+			}
+		});
+
+	}
 
 }
 

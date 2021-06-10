@@ -5,12 +5,14 @@ export default class extends Service {
 
 	@inject router;
 
+	platforms = [];
+
 	constructor() {
 
 		super(...arguments);
 
 		this.router.on('routeDidChange', () => {
-			this.metrics.forEach(m => {
+			this.platforms.forEach(m => {
 				m.trackPage();
 			});
 		});
@@ -24,7 +26,7 @@ export default class extends Service {
 				return this[n].clear();
 			}
 		case 0:
-			return this.metrics.forEach(m => {
+			return this.platforms.forEach(m => {
 				m.clear();
 			});
 		}
@@ -37,7 +39,7 @@ export default class extends Service {
 				return this[n].identify(id, data);
 			}
 		case 2:
-			return this.metrics.forEach(m => {
+			return this.platforms.forEach(m => {
 				m.identify(...arguments);
 			});
 		}
@@ -50,7 +52,7 @@ export default class extends Service {
 				return this[n].trackPage(data);
 			}
 		case 1:
-			return this.metrics.forEach(m => {
+			return this.platforms.forEach(m => {
 				m.trackPage(...arguments);
 			});
 		}
@@ -63,7 +65,7 @@ export default class extends Service {
 				return this[n].trackEvent(name, data);
 			}
 		case 2:
-			return this.metrics.forEach(m => {
+			return this.platforms.forEach(m => {
 				m.trackEvent(...arguments);
 			});
 		}

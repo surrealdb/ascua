@@ -19,13 +19,27 @@ export function optimised(config) {
 	e:g})}}(window,"rg4js");
 	/* eslint-enable */
 
-	window.addEventListener('load', function() {
+	if (document.readyState === 'complete') {
+
 		let script = document.createElement('script');
 		script.src = '//cdn.raygun.io/raygun4js/raygun.min.js';
 		script.async = false;
 		script.defer = true;
 		document.head.appendChild(script);
-	});
+
+	} else {
+
+		document.addEventListener('readystatechange', function(event) {
+			if (event.target.readyState === 'complete') {
+				let script = document.createElement('script');
+				script.src = '//cdn.raygun.io/raygun4js/raygun.min.js';
+				script.async = false;
+				script.defer = true;
+				document.head.appendChild(script);
+			}
+		});
+
+	}
 
 }
 

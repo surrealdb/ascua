@@ -18,13 +18,27 @@ export function optimised(config) {
 	})(window,'dataLayer');
 	/* eslint-enable */
 
-	window.addEventListener('load', function() {
+	if (document.readyState === 'complete') {
+
 		let script = document.createElement('script');
 		script.src = `https://www.googletagmanager.com/gtm.js?id=${config.id}`;
 		script.async = false;
 		script.defer = true;
 		document.head.appendChild(script);
-	});
+
+	} else {
+
+		document.addEventListener('readystatechange', function(event) {
+			if (event.target.readyState === 'complete') {
+				let script = document.createElement('script');
+				script.src = `https://www.googletagmanager.com/gtm.js?id=${config.id}`;
+				script.async = false;
+				script.defer = true;
+				document.head.appendChild(script);
+			}
+		});
+
+	}
 
 }
 
