@@ -19,7 +19,7 @@
     "ember-cli-babel": "^7.23.1",
     "ember-cli-htmlbars": "^5.3.2",
     "file-saver": "^2.0.5",
-    "xlsx": "^0.16.9"
+    "xlsx": "^0.17.0"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",

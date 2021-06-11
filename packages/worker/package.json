@@ -19,11 +19,11 @@
     "@ascua/service": "file:../service",
     "broccoli-caching-writer": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
-    "broccoli-rollup": "^4.1.1",
+    "broccoli-rollup": "^5.0.0",
     "broccoli-uglify-sourcemap": "^4.0.0",
     "ember-cli-babel": "^7.23.1",
     "ember-cli-htmlbars": "^5.3.2",
-    "glob": "^7.1.6"
+    "glob": "^7.1.7"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"

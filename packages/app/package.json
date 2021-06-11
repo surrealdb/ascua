@@ -12,7 +12,7 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
-    "electron-updater": "^4.3.8"
+    "electron-updater": "^4.3.9"
   },
   "publishConfig": {
     "access": "public"
