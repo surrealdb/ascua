@@ -154,8 +154,9 @@ export default class Store extends Service {
 				let cached = this.cached(item.meta.tb, item.id);
 
 				if (cached === undefined) {
-					cached = this.lookup(item.meta.tb).create(item);
+					cached = this.lookup(item.meta.tb).create({ id: item.id, meta: item.meta });
 					this.#cache.get(item.meta.tb).addObject(cached);
+					cached.ingest(item);
 				} else {
 					cached.ingest(item);
 				}
@@ -259,6 +260,46 @@ export default class Store extends Service {
 		} else {
 
 			return this.#cache.get(model);
+
+		}
+
+	}
+
+	/**
+	 * Select records from the remote database server
+	 * or from the local record cache if cached. The
+	 * second argument can be a single id, an array
+	 * of ids, or undefined. If no id is specified,
+	 * then all records of the specified type will be
+	 * retrieved from the database. This method will
+	 * update the local record cache.
+	 *
+	 * @param {string} model - The model type.
+	 * @param {undefined|string|Array} id - A specific record id.
+	 * @param {Object} opts - Select options object.
+	 * @returns {Promise} Promise object with the desired records.
+	 */
+
+	select(model, id, opts={}) {
+
+		assert('The model type must be a string', typeof model === 'string');
+
+		opts = Object.assign({}, { reload: false }, opts);
+
+		if (this.#stack[id||model] === undefined) {
+
+			let cached = this.cached(model, id);
+
+			switch (true) {
+			case cached !== undefined && cached.length !== 0 && opts.reload !== true:
+				return cached;
+			case cached === undefined || cached.length === 0 || opts.reload === true:
+				this.#stack[id||model] = this.remote(model, id, opts);
+				return this.#stack[id||model].then(result => {
+					delete this.#stack[id||model];
+					return result;
+				});
+			}
 
 		}
 
@@ -422,47 +463,6 @@ export default class Store extends Service {
 	}
 
 	/**
-	 * Select records from the remote database server
-	 * or from the local record cache if cached. The
-	 * second argument can be a single id, an array
-	 * of ids, or undefined. If no id is specified,
-	 * then all records of the specified type will be
-	 * retrieved from the database. This method will
-	 * update the local record cache.
-	 *
-	 * @param {string} model - The model type.
-	 * @param {undefined|string|Array} id - A specific record id.
-	 * @param {Object} opts - Select options object.
-	 * @returns {Promise} Promise object with the desired records.
-	 */
-
-	async select(model, id, opts={}) {
-
-		assert('The model type must be a string', typeof model === 'string');
-
-		opts = Object.assign({}, { reload: false }, opts);
-
-		if (this.#stack[id||model] === undefined) {
-
-			let cached = this.cached(model, id);
-
-			switch (true) {
-			case cached !== undefined && cached.length !== 0 && opts.reload !== true:
-				return cached;
-			case cached === undefined || cached.length === 0 || opts.reload === true:
-				this.#stack[id||model] = this.remote(model, id, opts);
-				let result = await this.#stack[id||model];
-				delete this.#stack[id||model];
-				return result;
-			}
-
-		}
-
-		return await this.#stack[id||model];
-
-	}
-
-	/**
 	 * Count the total number of records within the
 	 * remote database server, for the given search
 	 * query paramaters. The second argument is an
@@ -527,8 +527,9 @@ export default class Store extends Service {
 				let cached = this.#cache.get(model).findBy('id', item.id);
 
 				if (cached === undefined) {
-					cached = this.lookup(model).create(item);
+					cached = this.lookup(model).create({ id: item.id, meta: item.meta });
 					this.#cache.get(model).addObject(cached);
+					cached.ingest(item);
 				} else {
 					cached.ingest(item);
 				}

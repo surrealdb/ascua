@@ -54,7 +54,7 @@ export default function(type) {
 								return v;
 							case v instanceof Model:
 								return this.store.proxy({
-									id: v.id, promise: Promise.resolve(v)
+									id: v.id, promise: v
 								});
 							case v instanceof Object:
 								return this.store.proxy({
@@ -64,7 +64,7 @@ export default function(type) {
 								let cached = this.store.cached(type, v);
 								if (cached) {
 									return this.store.proxy({
-										id: v, promise: Promise.resolve(cached),
+										id: v, promise: cached,
 									});
 								} else {
 									return this.store.proxy({
@@ -145,7 +145,7 @@ export default function(type) {
 								return v;
 							case v instanceof Model:
 								return this.store.proxy({
-									id: v.id, promise: Promise.resolve(v)
+									id: v.id, promise: v
 								});
 							case v instanceof Object:
 								return this.store.proxy({
@@ -155,7 +155,7 @@ export default function(type) {
 								let cached = this.store.cached(type, v);
 								if (cached) {
 									return this.store.proxy({
-										id: v, promise: Promise.resolve(cached),
+										id: v, promise: cached,
 									});
 								} else {
 									return this.store.proxy({

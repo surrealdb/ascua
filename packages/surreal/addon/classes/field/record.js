@@ -20,7 +20,7 @@ export default function(type) {
 				let cached = this.store.cached(type, value);
 				if (cached) {
 					return this[RECORD].data[key] = this.store.proxy({
-						id: value, promise: Promise.resolve(cached),
+						id: value, promise: cached,
 					});
 				} else {
 					return this[RECORD].data[key] = this.store.proxy({
@@ -43,7 +43,7 @@ export default function(type) {
 				return this[RECORD].data[key] = this[RECORD].data[key];
 			case value instanceof Model:
 				return this[RECORD].data[key] = this.store.proxy({
-					id: value.id, promise: Promise.resolve(value),
+					id: value.id, promise: value,
 				});
 			case value instanceof Object:
 				return this[RECORD].data[key] = this.store.proxy({
@@ -53,7 +53,7 @@ export default function(type) {
 				let cached = this.store.cached(type, value);
 				if (cached) {
 					return this[RECORD].data[key] = this.store.proxy({
-						id: value, promise: Promise.resolve(cached),
+						id: value, promise: cached,
 					});
 				} else {
 					return this[RECORD].data[key] = this.store.proxy({
