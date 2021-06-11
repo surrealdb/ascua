@@ -303,6 +303,8 @@ export default class Store extends Service {
 
 		}
 
+		return this.#stack[id||model];
+
 	}
 
 	/**
