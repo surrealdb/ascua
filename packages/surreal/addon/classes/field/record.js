@@ -20,11 +20,11 @@ export default function(type) {
 				let cached = this.store.cached(type, value);
 				if (cached) {
 					return this[RECORD].data[key] = this.store.proxy({
-						id: value, promise: cached,
+						id: value, content: cached,
 					});
 				} else {
 					return this[RECORD].data[key] = this.store.proxy({
-						id: value, future: () => this.store.select(type, value)
+						id: value, promise: () => this.store.select(type, value)
 					});
 				}
 			}
@@ -43,21 +43,21 @@ export default function(type) {
 				return this[RECORD].data[key] = this[RECORD].data[key];
 			case value instanceof Model:
 				return this[RECORD].data[key] = this.store.proxy({
-					id: value.id, promise: value,
+					id: value.id, content: value,
 				});
 			case value instanceof Object:
 				return this[RECORD].data[key] = this.store.proxy({
-					id: value.id, promise: this.store.inject(value),
+					id: value.id, content: this.store.inject(value),
 				});
 			default:
 				let cached = this.store.cached(type, value);
 				if (cached) {
 					return this[RECORD].data[key] = this.store.proxy({
-						id: value, promise: cached,
+						id: value, content: cached,
 					});
 				} else {
 					return this[RECORD].data[key] = this.store.proxy({
-						id: value, future: () => this.store.select(type, value)
+						id: value, promise: () => this.store.select(type, value)
 					});
 				}
 			}

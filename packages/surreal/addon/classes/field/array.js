@@ -54,21 +54,21 @@ export default function(type) {
 								return v;
 							case v instanceof Model:
 								return this.store.proxy({
-									id: v.id, promise: v
+									id: v.id, content: v
 								});
 							case v instanceof Object:
 								return this.store.proxy({
-									id: v.id, promise: this.store.inject(v)
+									id: v.id, content: this.store.inject(v)
 								});
 							default:
 								let cached = this.store.cached(type, v);
 								if (cached) {
 									return this.store.proxy({
-										id: v, promise: cached,
+										id: v, content: cached,
 									});
 								} else {
 									return this.store.proxy({
-										id: v, future: () => this.store.select(type, v)
+										id: v, promise: () => this.store.select(type, v)
 									});
 								}
 							}
@@ -145,21 +145,21 @@ export default function(type) {
 								return v;
 							case v instanceof Model:
 								return this.store.proxy({
-									id: v.id, promise: v
+									id: v.id, content: v
 								});
 							case v instanceof Object:
 								return this.store.proxy({
-									id: v.id, promise: this.store.inject(v)
+									id: v.id, content: this.store.inject(v)
 								});
 							default:
 								let cached = this.store.cached(type, v);
 								if (cached) {
 									return this.store.proxy({
-										id: v, promise: cached,
+										id: v, content: cached,
 									});
 								} else {
 									return this.store.proxy({
-										id: v, future: () => this.store.select(type, v)
+										id: v, promise: () => this.store.select(type, v)
 									});
 								}
 							}

@@ -28,7 +28,6 @@ export default class Remote {
 				case target.content && typeof target.content[key] === 'function':
 					return target.content[key].bind(target.content);
 				default:
-					target.fetch();
 					target.setup();
 					return get(target, `content.${key}`);
 				}
@@ -39,7 +38,6 @@ export default class Remote {
 					target[key] = val;
 					return true;
 				default:
-					target.fetch();
 					target.setup();
 					set(target, `content.${key}`, val);
 					return true;
@@ -51,15 +49,11 @@ export default class Remote {
 
 	#id = undefined;
 
-	#done = false;
-
-	#future = undefined;
+	#content = undefined;
 
 	#promise = undefined;
 
-	#failure = undefined;
-
-	@tracked content = {};
+	@tracked content = undefined;
 
 	toJSON() {
 		return this.#id;
@@ -71,9 +65,9 @@ export default class Remote {
 
 	constructor(params) {
 		this.#id = params.id;
-		this.#future = params.future;
+		this.content = params.content;
+		this.#content = params.content;
 		this.#promise = params.promise;
-		this.setup();
 	}
 
 	[CUSTOM_TAG_FOR](key) {
@@ -92,54 +86,36 @@ export default class Remote {
 	}
 
 	then() {
-		this.fetch();
 		this.setup();
-		return Promise.resolve(this.#promise).then(...arguments);
+		return Promise.resolve(this.#promise || this.#content).then(...arguments);
 	}
 
 	catch() {
-		this.fetch();
 		this.setup();
-		return Promise.resolve(this.#promise).catch(...arguments);
+		return Promise.resolve(this.#promise || this.#content).catch(...arguments);
 	}
 
 	finally() {
-		this.fetch();
 		this.setup();
-		return Promise.resolve(this.#promise).finally(...arguments);
-	}
-
-	fetch() {
-		if (this.#future && !this.#done) {
-			this.#promise = this.#future();
-			this.#future = undefined;
-		}
+		return Promise.resolve(this.#promise || this.#content).finally(...arguments);
 	}
 
 	setup() {
 
-		if (this.#promise && !this.#done) {
+		if (this.#promise && this.#promise instanceof Function) {
 
-			if (this.#promise.then === undefined) {
-				this.content = this.#promise;
-				this.#done = true;
-				return;
-			}
+			this.#promise = this.#promise();
 
-			if (this.#promise.then !== undefined) {
-				this.#promise.then(
-					(content) => {
-						this.content = content;
-						this.#done = true;
-						return content;
-					},
-					(failure) => {
-						this.#failure = failure;
-						this.#done = true;
-						throw failure;
-					},
-				);
-			}
+			Promise.resolve(this.#promise).then(
+				(content) => {
+					this.content = content;
+					return content;
+				},
+				(failure) => {
+					this.failure = failure;
+					throw failure;
+				},
+			);
 
 		}
 
