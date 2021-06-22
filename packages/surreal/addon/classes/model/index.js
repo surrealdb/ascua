@@ -226,10 +226,16 @@ export default class Model {
 		// Set state to LOADING
 		this[RECORD].state = LOADING;
 
+		// Get the local record state
+		let local = this.#shadow._full;
+
 		// Apply server side changes to local record
-		for (const key in this.#client) {
-			this[key] = this.#client[key];
+		for (const key in local) {
+			this[key] = local[key];
 		}
+
+		// Store the current client<->server state
+		this.#client = this.#server = this.#shadow._some;
 
 		// Set state to LOADED
 		this[RECORD].state = LOADED;
