@@ -23,7 +23,7 @@
     "@ascua/service": "file:../service",
     "broccoli-persistent-filter": "^3.1.2",
     "ember-cli-babel": "^7.23.1",
-    "surreal.js": "^0.4.19",
+    "surreal.js": "^0.4.20",
     "ws": "^7.4.6"
   },
   "fastbootDependencies": [
