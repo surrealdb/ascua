@@ -1,7 +1,15 @@
 <app-calendar-navs>
 	<div role="button" {{on "click" this.prev}}>«</div>
-	<div role="button" {{on "click" this.reset}}>
-		{{date-format @calendar.pivot "MMMM YYYY"}}
+	<div>
+		<div role="button" {{on "click" this.reset}}>
+			{{date-format @calendar.pivot "MMMM"}}
+		</div>
+		&nbsp;
+		<Ascua::Dropdown @value={{date-format @calendar.pivot "YYYY"}} @onSelect={{this.year}} as |input|>
+			{{#each this.years as |year|}}
+				<input.option @value={{year}} @label={{year}} />
+			{{/each}}
+		</Ascua::Dropdown>
 	</div>
 	<div role="button" {{on "click" this.next}}>»</div>
 </app-calendar-navs>
