@@ -135,10 +135,10 @@ export default class extends Component {
 
 	get label() {
 
-		if (this.args.label) {
+		if (this.args.label !== undefined) {
 
 			let label = this.value.filter(Boolean).map(v => {
-				return get(v, this.args.label);
+				return this.args.label ? get(v, this.args.label) : v;
 			});
 
 			return label.join(', ');
