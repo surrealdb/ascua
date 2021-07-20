@@ -12,6 +12,7 @@
 		&[bottom] { align-items:flex-end; }
 		&[middle] { align-items:center; }
 		&[stretch] { align-items:stretch; }
+		&[baseline] { align-items:baseline; }
 
 		&[left] { justify-content:flex-start; }
 		&[right] { justify-content:flex-end; }
@@ -29,6 +30,7 @@
 		&[right] { align-items:flex-end; }
 		&[center] { align-items:center; }
 		&[stretch] { align-items:stretch; }
+		&[baseline] { align-items:baseline; }
 
 		&[top] { justify-content:flex-start; }
 		&[bottom] { justify-content:flex-end; }
