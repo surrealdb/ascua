@@ -79,6 +79,8 @@ export default class extends Service {
 
 		document.body.setAttribute('electron', true);
 
+		document.body.setAttribute('platform', this.platform);
+
 		if (Electron.remote.app.isPackaged === false) return;
 
 		const { autoUpdater } = Electron.remote.require('electron-updater');
@@ -122,6 +124,30 @@ export default class extends Service {
 		const { autoUpdater } = Electron.remote.require('electron-updater');
 
 		autoUpdater.checkForUpdates().catch(() => {});
+
+	}
+
+	// When running as an Electron app,
+	// then we can detect the platform
+	// on which the app is running.
+
+	get platform() {
+
+		if (Electron === null) return;
+
+		return Electron.remote.require('os').platform();
+
+	}
+
+	// When running as an Electron app,
+	// then we can get the main focused
+	// browser window for the app.
+
+	get window() {
+
+		if (Electron === null) return;
+
+		return Electron.remote.BrowserWindow.getFocusedWindow();
 
 	}
 
