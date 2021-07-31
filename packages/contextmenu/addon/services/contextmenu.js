@@ -161,8 +161,7 @@ export default class extends Service {
 			// Fetch remote variables
 			const remote = Electron.remote;
 			const window = remote.getCurrentWindow();
-			const webcont = window.webContents;
-			const session = webcont.session;
+			const session = window.webContents.session;
 
 			// Build the menu from the template.
 			let menu = remote.Menu.buildFromTemplate( this.items.map(list) );
@@ -190,7 +189,7 @@ export default class extends Service {
 				for (const [i, v] of vars.dictionarySuggestions.entries()) {
 					menu.insert(i, new remote.MenuItem({
 						label: v,
-						click: () => webcont.replaceMisspelling(v)
+						click: () => window.webContents.replaceMisspelling(v)
 					}));
 				}
 
