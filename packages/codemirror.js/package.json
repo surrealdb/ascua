@@ -20,8 +20,8 @@
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/transform": "file:../transform",
     "codemirror": "^5.61.1",
-    "ember-cli-babel": "^7.23.1",
-    "ember-cli-htmlbars": "^5.3.2"
+    "ember-cli-babel": "^7.26.6",
+    "ember-cli-htmlbars": "^5.7.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",
