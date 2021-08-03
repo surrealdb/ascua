@@ -18,7 +18,7 @@
     "@ascua/decorators": "file:../decorators",
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/transform": "file:../transform",
-    "cropperjs": "^1.5.11",
+    "cropperjs": "^1.5.12",
     "ember-cli-babel": "^7.23.1",
     "ember-cli-htmlbars": "^5.3.2"
   },
