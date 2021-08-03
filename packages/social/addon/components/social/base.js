@@ -21,11 +21,7 @@ export default class extends Component {
 		var l = (screen.width / 2) - (this.width / 2);
 		var t = (screen.height / 2) - (this.height / 2);
 
-		if (typeof Electron !== 'undefined') {
-			Electron.remote.shell.openExternal(this.href);
-		} else {
-			window.open(this.href, null, `status=no, titlebar=no, toolbar=no, width=${this.width}, height=${this.height}, top=${t}, left=${l}`);
-		}
+		window.open(this.href, null, `status=no, titlebar=no, toolbar=no, width=${this.width}, height=${this.height}, top=${t}, left=${l}`);
 
 		return false;
 

@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
+import Remote from '@electron/remote';
 import Electron from 'electron';
 
 const list = (item) => {
@@ -159,35 +160,34 @@ export default class extends Service {
 		setTimeout( () => {
 
 			// Fetch remote variables
-			const remote = Electron.remote;
-			const window = remote.getCurrentWindow();
+			const window = Remote.getCurrentWindow();
 			const session = window.webContents.session;
 
 			// Build the menu from the template.
-			let menu = remote.Menu.buildFromTemplate( this.items.map(list) );
+			let menu = Remote.Menu.buildFromTemplate( this.items.map(list) );
 
 			// Check to see if there are dictionary suggestions
 			if (vars.dictionarySuggestions && vars.dictionarySuggestions.length > 0) {
 
 				// Add a separator at the top of the menu.
-				menu.insert(0, new remote.MenuItem({
+				menu.insert(0, new Remote.MenuItem({
 					type: 'separator',
 				}));
 
 				// Enable add-to-dictionary for misspelling.
 				if (vars.misspelledWord) {
-					menu.insert(0, new remote.MenuItem({
+					menu.insert(0, new Remote.MenuItem({
 						label: 'Add to dictionary',
 						click: () => session.addWordToSpellCheckerDictionary(vars.misspelledWord)
 					}));
-					menu.insert(0, new remote.MenuItem({
+					menu.insert(0, new Remote.MenuItem({
 						type: 'separator',
 					}));
 				}
 
 				// List spelling suggestions at top of menu.
 				for (const [i, v] of vars.dictionarySuggestions.entries()) {
-					menu.insert(i, new remote.MenuItem({
+					menu.insert(i, new Remote.MenuItem({
 						label: v,
 						click: () => window.webContents.replaceMisspelling(v)
 					}));

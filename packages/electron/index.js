@@ -26,6 +26,11 @@ module.exports = {
 			exports: { Electron: ['default'] }
 		});
 
+		// Import ES6 library for Remote
+		app.import('vendor/remote.js', {
+			exports: { Remote: ['default'] }
+		});
+
 	},
 
 	contentFor(type) {

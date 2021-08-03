@@ -30,7 +30,7 @@ export default class extends Service {
 	// for the ember app, so that we
 	// can display a notification.
 
-	@tracked updatefound = false;
+	@tracked updateready = false;
 
 	// Setup the Version service if the
 	// feature is supported, and check
@@ -55,10 +55,10 @@ export default class extends Service {
 			}
 		}
 
-		this.on('updatefound', () => {
+		this.on('updateready', () => {
 			switch (this.#config.autoupdate) {
 			case false:
-				return this.updatefound = true;
+				return this.updateready = true;
 			case true:
 				return this.reset();
 			}
@@ -98,7 +98,7 @@ export default class extends Service {
 
 	@action check() {
 
-		if (this.updatefound) return;
+		if (this.updateready) return;
 
 		if (this.#config.enabled === true) {
 
@@ -110,7 +110,7 @@ export default class extends Service {
 				if (this.version === undefined) {
 					this.version = xhr.responseText;
 				} else if (this.version != xhr.responseText) {
-					this.emit('updatefound');
+					this.emit('updateready');
 				}
 			};
 			xhr.send();

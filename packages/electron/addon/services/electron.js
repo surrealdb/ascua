@@ -2,6 +2,7 @@ import Service from '@ascua/service/evented';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import config from '@ascua/config';
+import Remote from '@electron/remote';
 import Electron from 'electron';
 
 const defaults = {
@@ -20,6 +21,12 @@ export default class extends Service {
 	// can display a notification.
 
 	@tracked updatefound = false;
+
+	// Whether an update is available
+	// for the ember app, so that we
+	// can display a notification.
+
+	@tracked updateready = false;
 
 	// Setup the Electron service if the
 	// feature is supported, and check
@@ -40,13 +47,17 @@ export default class extends Service {
 			);
 		}
 
-		this.on('updatefound', () => {
+		this.on('updateready', () => {
 			switch (this.#config.autoupdate) {
 			case false:
-				return this.updatefound = true;
+				return this.updateready = true;
 			case true:
 				return this.reset();
 			}
+		});
+
+		this.on('updatefound', () => {
+			return this.updatefound = true;
 		});
 
 		this.setup();
@@ -81,12 +92,14 @@ export default class extends Service {
 
 		document.body.setAttribute('platform', this.platform);
 
-		if (Electron.remote.app.isPackaged === false) return;
+		const { autoUpdater } = Remote.require('electron-updater');
 
-		const { autoUpdater } = Electron.remote.require('electron-updater');
+		autoUpdater.on('update-available', () => {
+			this.emit('updatefound');
+		});
 
 		autoUpdater.on('update-downloaded', () => {
-			this.emit('updatefound');
+			this.emit('updateready');
 		});
 
 		autoUpdater.logger = console;
@@ -101,9 +114,9 @@ export default class extends Service {
 
 		if (Electron === null) return;
 
-		if (Electron.remote.app.isPackaged === false) return;
+		if (Remote.app.isPackaged === false) return;
 
-		const { autoUpdater } = Electron.remote.require('electron-updater');
+		const { autoUpdater } = Remote.require('electron-updater');
 
 		autoUpdater.quitAndInstall({ isSilent: true, isForceRunAfter: true });
 
@@ -117,11 +130,13 @@ export default class extends Service {
 
 		if (this.updatefound) return;
 
+		if (this.updateready) return;
+
 		if (Electron === null) return;
 
-		if (Electron.remote.app.isPackaged === false) return;
+		if (Remote.app.isPackaged === false) return;
 
-		const { autoUpdater } = Electron.remote.require('electron-updater');
+		const { autoUpdater } = Remote.require('electron-updater');
 
 		autoUpdater.checkForUpdates().catch(() => {});
 
@@ -135,7 +150,7 @@ export default class extends Service {
 
 		if (Electron === null) return;
 
-		return Electron.remote.require('os').platform();
+		return Remote.require('os').platform();
 
 	}
 
@@ -147,7 +162,7 @@ export default class extends Service {
 
 		if (Electron === null) return;
 
-		return Electron.remote.BrowserWindow.getFocusedWindow();
+		return Remote.BrowserWindow.getFocusedWindow();
 
 	}
 

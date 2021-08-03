@@ -31,7 +31,7 @@ export default class extends Service {
 	// for the service worker, so that
 	// we can display a notification.
 
-	@tracked updatefound = false;
+	@tracked updateready = false;
 
 	// Setup the Worker service if the
 	// feature is supported, and check
@@ -56,10 +56,10 @@ export default class extends Service {
 			}
 		}
 
-		this.on('updatefound', () => {
+		this.on('updateready', () => {
 			switch (this.#config.autoupdate) {
 			case false:
-				return this.updatefound = true;
+				return this.updateready = true;
 			case true:
 				return this.reset();
 			}
@@ -130,21 +130,21 @@ export default class extends Service {
 				// immediately activate it and reload.
 
 				if (reg.waiting) {
-					this.emit('updatefound');
+					this.emit('updateready');
 				}
 
 				// If an updated service worker is
 				// found, then wait for it to install
-				// and trigger an 'updatefound' event.
+				// and trigger an 'updateready' event.
 
-				reg.addEventListener('updatefound', (e) => {
+				reg.addEventListener('updateready', (e) => {
 					e.target.installing.addEventListener('statechange', (e) => {
 						if (e.target.state === 'installed') {
 
 							this.active = this.worker.active;
 
 							if (this.active) {
-								return this.emit('updatefound');
+								return this.emit('updateready');
 							} else {
 								return this.worker.waiting.postMessage('skipWaiting');
 							}

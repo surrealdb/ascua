@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { inject } from '@ember/service';
 import { action } from '@ember/object';
 import { arg } from '@ascua/decorators';
+import Remote from '@electron/remote';
 import Electron from 'electron';
 
 export default class extends Component {
@@ -17,7 +18,7 @@ export default class extends Component {
 		super(...arguments);
 
 		if (Electron) {
-			Electron.remote.getCurrentWindow().webContents.on('context-menu', (event, vars) => {
+			Remote.getCurrentWindow().webContents.on('context-menu', (event, vars) => {
 				return this.contextmenu.show(this, event, vars, this.menu, this.model);
 			});
 		}

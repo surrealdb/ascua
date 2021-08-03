@@ -2,9 +2,15 @@
 
 const { app, BrowserWindow } = require('electron');
 
+const remote = require('@electron/remote/main');
+
 const location = require('@ascua/app');
 
+const os = require('os');
+
 app.setName('My App');
+
+remote.initialize();
 
 app.once('ready', () => {
 	loadapp(false);
@@ -34,11 +40,12 @@ app.once('will-finish-launching', () => {
 
 const loadapp = (show) => {
 
+	let platform = os.platform();
+
 	let window = new BrowserWindow({
 		width: 1600,
 		height: 1100,
 		show: show,
-		frame: true,
 		center: true,
 		minWidth: 1024,
 		minHeight: 768,
@@ -46,6 +53,7 @@ const loadapp = (show) => {
 		backgroundColor: '#ffffff',
 		tabbingIdentifier: 'default',
 		disableAutoHideCursor: true,
+		frame: platform === 'darwin' ? true : false,
 		webPreferences: {
 			java: false,
 			images: true,

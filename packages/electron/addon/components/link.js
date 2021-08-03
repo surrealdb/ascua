@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import Remote from '@electron/remote';
 import Electron from 'electron';
 
 export default class extends Component {
@@ -9,9 +10,9 @@ export default class extends Component {
 		if (!Electron) return;
 
 		if (this.args.download) {
-			Electron.remote.getCurrentWebContents().downloadURL(this.args.url);
+			Remote.getCurrentWebContents().downloadURL(this.args.url);
 		} else {
-			Electron.remote.shell.openExternal(this.args.url);
+			Remote.shell.openExternal(this.args.url);
 		}
 
 		event.stopPropagation();
