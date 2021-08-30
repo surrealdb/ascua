@@ -33,10 +33,10 @@ export default class extends Component {
 		});
 
 		this.#events.forEach(name => {
-			const fn = this.args[name];
+			const fn = this.args.options[name];
 			if (typeof fn === 'function') {
 				this.instance.option(name, (...args) => {
-					fn(...args, this.instance);
+					fn(this.instance, ...args);
 				});
 			}
 		});
