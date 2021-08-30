@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ascua/transform": "file:../transform",
-    "element-resize-detector": "^1.2.2",
+    "element-resize-detector": "^1.2.3",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1"
   },
