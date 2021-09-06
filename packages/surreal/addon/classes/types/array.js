@@ -21,27 +21,27 @@ export default class RecordArray extends Array {
 	type = func;
 
 	addObject(value) {
-		super.addObject( this.type(value) );
+		return super.addObject( this.type(value) );
 	}
 
 	addObjects(values) {
-		super.addObjects( [].concat(values).map(this.type) );
+		return super.addObjects( [].concat(values).map(this.type) );
 	}
 
 	pushObject(value) {
-		super.pushObject( this.type(value) );
+		return super.pushObject( this.type(value) );
 	}
 
 	pushObjects(values) {
-		super.pushObjects( [].concat(values).map(this.type) );
+		return super.pushObjects( [].concat(values).map(this.type) );
 	}
 
 	setObjects(values) {
-		super.setObjects( [].concat(values).map(this.type) );
+		return super.setObjects( [].concat(values).map(this.type) );
 	}
 
 	replace(idx, count, values) {
-		super.replace(idx, count, [].concat(values).map(this.type) );
+		return super.replace(idx, count, [].concat(values).map(this.type) );
 	}
 
 	then() {
