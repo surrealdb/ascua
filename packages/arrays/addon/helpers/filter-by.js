@@ -19,7 +19,7 @@ export function filterBy([param, value, array]) {
 
 	switch (true) {
 	case typeof param === 'function':
-		return array.reject(param);
+		return array.filter(param);
 	case value === undefined:
 		return array.filterBy(param);
 	default:
