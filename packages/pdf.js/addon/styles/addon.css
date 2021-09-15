@@ -22,7 +22,6 @@ app-pdf app-pdf-icons {
 	margin:auto;
 	display:flex;
 	overflow:auto;
-	flex-wrap:nowrap;
 	position:absolute;
 	align-items:center;
 	flex-direction:column;
@@ -30,31 +29,22 @@ app-pdf app-pdf-icons {
 	border-right:1px solid #eeeeee;
 }
 
-app-pdf app-pdf-icons:before {
-	content:'';
-	margin:auto;
-}
-
-app-pdf app-pdf-icons:after {
-	content:'';
-	margin:auto;
+@media only screen and (max-width: 1200px) {
+	app-pdf app-pdf-icons {
+		width:150px;
+	}
 }
 
 app-pdf app-pdf-icons app-pdf-icon {
 	width:70%;
 	height:auto;
-	display:flex;
-	flex:0 0 auto;
-	max-width:90px;
+	display:block;
 	cursor:pointer;
 	font-size:30px;
 	font-weight:700;
 	position:relative;
-	align-items:center;
-	flex-direction:column;
-	justify-content:center;
 	border:1px solid #eeeeee;
-	margin:15px auto 15px auto;
+	margin:0 auto 30px auto;
 }
 
 app-pdf app-pdf-icons app-pdf-icon num {
@@ -93,43 +83,52 @@ app-pdf app-pdf-pages {
 	bottom:0;
 	left:200px;
 	margin:auto;
-	display:flex;
 	overflow:auto;
-	flex-wrap:nowrap;
 	position:absolute;
-	align-items:center;
-	flex-direction:column;
 	padding:30px 30px 30px 30px;
 }
 
-app-pdf app-pdf-pages:before {
-	content:'';
-	margin:auto;
-}
-
-app-pdf app-pdf-pages:after {
-	content:'';
-	margin:auto;
+@media only screen and (max-width: 1200px) {
+	app-pdf app-pdf-pages {
+		left:150px;
+	}
 }
 
 app-pdf app-pdf-pages app-pdf-page {
-	display:flex;
-	flex:0 0 auto;
-	align-items:center;
-	justify-content:center;
+	display:block;
+	overflow:hidden;
+	position:relative;
+	margin:0 auto 30px auto;
+}
+
+app-pdf app-pdf-pages app-pdf-page:first-of-type {
+	margin-top:0;
+}
+
+app-pdf app-pdf-pages app-pdf-page:last-of-type {
+	margin-bottom:0;
+}
+
+app-pdf app-pdf-pages app-pdf-page text {
+	display:block;
+	position:absolute;
+	background:transparent;
+}
+
+app-pdf app-pdf-pages app-pdf-page text * {
+	cursor:text;
+	white-space:pre;
+	user-select:text;
+	color:transparent;
+	position:absolute;
+	transform-origin:0% 0%;
 }
 
 app-pdf app-pdf-pages app-pdf-page canvas {
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
 	padding:0;
 	margin:auto;
 	display:block;
+	max-width:100%;
 	background:white;
-	margin:75px auto 75px auto;
-	max-width:calc(100% - 50px);
-	max-height:calc(100% - 50px);
 	box-shadow:0px 0px 10px 0px rgba(0,0,0,0.25);
 }

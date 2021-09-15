@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { timeout } from '@ascua/tasks';
 import { restart } from '@ascua/tasks';
+import { drop } from '@ascua/tasks';
 
 export default class extends Component {
 
@@ -16,7 +17,7 @@ export default class extends Component {
 
 	@action didLeave(element) {
 		if (this.visible === true) {
-			// this.visible = false;
+			this.visible = false;
 		}
 	}
 
@@ -34,14 +35,8 @@ export default class extends Component {
 		if (page === this.args.page.pageNumber) {
 			if ('scrollIntoViewIfNeeded' in element) {
 				element.scrollIntoViewIfNeeded(true);
-				if (this.visible === false) {
-					this.visible = true;
-				}
 			} else {
 				element.scrollIntoView();
-				if (this.visible === false) {
-					this.visible = true;
-				}
 			}
 		}
 	}
@@ -50,7 +45,7 @@ export default class extends Component {
 		this.cleanup.run();
 	}
 
-	@restart * cleanup() {
+	@drop * cleanup() {
 		try {
 			if (this.ren && this.ren.cancel) yield this.ren.cancel();
 		} catch (e) {
@@ -94,11 +89,26 @@ export default class extends Component {
 
 			this.args.pdf.renders[page.pageNumber] = this.ren.promise;
 
-			yield this.ren.promise;
+			let rend = yield this.ren.promise;
+
+			let text = yield page.getTextContent();
+
+			let view = this.e.querySelector('text');
+			view.style.left = this.c.offsetLeft + 'px';
+			view.style.top = this.c.offsetTop + 'px';
+			view.style.height = this.c.offsetHeight + 'px';
+			view.style.width = this.c.offsetWidth + 'px';
+
+			pdfjsLib.renderTextLayer({
+				textContent: text,
+				container: view,
+				viewport: vp,
+				textDivs: [],
+			});
 
 		} catch (e) {
 
-			throw e;
+			// Ignore
 
 		}
 
