@@ -20,7 +20,7 @@
  * Javascript code in this page
  */
 (function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define("pdfjs-dist/build/pdf",[],t):"object"==typeof exports?exports["pdfjs-dist/build/pdf"]=t():e["pdfjs-dist/build/pdf"]=e.pdfjsLib=t()})(this,(function(){return(()=>{var __webpack_modules__=[,(e,t,r)=>{"use strict"
-function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.addLinkAttributes=function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.url,n=t.target,a=t.rel,i=t.enabled,s=void 0===i||i;(0,o.assert)(r&&"string"==typeof r,'addLinkAttributes: A valid "url" parameter must provided.')
+function n(e){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},n(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.addLinkAttributes=function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.url,n=t.target,a=t.rel,i=t.enabled,s=void 0===i||i;(0,o.assert)(r&&"string"==typeof r,'addLinkAttributes: A valid "url" parameter must provided.')
 var l=(0,o.removeNullCharacters)(r)
 s?e.href=e.title=l:(e.href="",e.title="Disabled: ".concat(l),e.onclick=function(){return!1})
 var u=""
@@ -55,7 +55,7 @@ for(var r=0,n=new Array(t);r<t;r++)n[r]=e[r]
 return n}function u(e,t,r,n,a,i,o){try{var s=e[i](o),l=s.value}catch(u){return void r(u)}s.done?t(l):Promise.resolve(l).then(n,a)}function c(e){return function(){var t=this,r=arguments
 return new Promise((function(n,a){var i=e.apply(t,r)
 function o(e){u(i,n,a,o,s,"next",e)}function s(e){u(i,n,a,o,s,"throw",e)}o(void 0)}))}}function f(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&d(e,t)}function d(e,t){return(d=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function h(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&d(e,t)}function d(e,t){return d=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},d(e,t)}function h(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
@@ -63,7 +63,7 @@ return function(){var r,n=v(e)
 if(t){var a=v(this).constructor
 r=Reflect.construct(n,arguments,a)}else r=n.apply(this,arguments)
 return p(this,r)}}function p(e,t){return!t||"object"!==n(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}(e):t}function v(e){return(v=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function y(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function g(e,t){for(var r=0;r<t.length;r++){var n=t[r]
+return e}(e):t}function v(e){return v=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},v(e)}function y(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function g(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function m(e,t,r){return t&&g(e.prototype,t),r&&g(e,r),e}var b="noopener noreferrer nofollow"
 t.DEFAULT_LINK_REL=b
 var _="http://www.w3.org/2000/svg",A=function(){function e(){y(this,e),this.constructor===e&&(0,o.unreachable)("Cannot initialize BaseCanvasFactory.")}return m(e,[{key:"create",value:function(e,t){(0,o.unreachable)("Abstract method `create` called.")}},{key:"reset",value:function(e,t,r){if(!e.canvas)throw new Error("Canvas is not specified")
@@ -161,7 +161,7 @@ var f=parseInt(t[9],10)||0
 return f=f>=0&&f<=59?f:0,"-"===u?(i+=c,s+=f):"+"===u&&(i-=c,s-=f),new Date(Date.UTC(r,n,a,i,s,l))}}]),e}()
 t.PDFDateString=M},(e,t,r)=>{"use strict"
 e.exports=r(3)},(e,t,r)=>{"use strict"
-function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}var a=function(e){var t,r=Object.prototype,a=r.hasOwnProperty,i="function"==typeof Symbol?Symbol:{},o=i.iterator||"@@iterator",s=i.asyncIterator||"@@asyncIterator",l=i.toStringTag||"@@toStringTag"
+function n(e){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},n(e)}var a=function(e){var t,r=Object.prototype,a=r.hasOwnProperty,i="function"==typeof Symbol?Symbol:{},o=i.iterator||"@@iterator",s=i.asyncIterator||"@@asyncIterator",l=i.toStringTag||"@@toStringTag"
 function u(e,t,r){return Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}),e[t]}try{u({},"")}catch(F){u=function(e,t,r){return e[t]=r}}function c(e,t,r,n){var a=t&&t.prototype instanceof g?t:g,i=Object.create(a.prototype),o=new R(n||[])
 return i._invoke=function(e,t,r){var n=d
 return function(a,i){if(n===p)throw new Error("Generator is already running")
@@ -229,8 +229,8 @@ n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Obj
 var r=Object.prototype.toString.call(e).slice(8,-1)
 return"Object"===r&&e.constructor&&(r=e.constructor.name),"Map"===r||"Set"===r?Array.from(e):"Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)?i(e,t):void 0}}function i(e,t){(null==t||t>e.length)&&(t=e.length)
 for(var r=0,n=new Array(t);r<t;r++)n[r]=e[r]
-return n}function o(e){return(o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function s(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function l(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&u(e,t)}function u(e,t){return(u=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function c(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+return n}function o(e){return o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},o(e)}function s(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function l(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&u(e,t)}function u(e,t){return u=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},u(e,t)}function c(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
@@ -238,7 +238,7 @@ return function(){var r,n=d(e)
 if(t){var a=d(this).constructor
 r=Reflect.construct(n,arguments,a)}else r=n.apply(this,arguments)
 return f(this,r)}}function f(e,t){return!t||"object"!==o(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}(e):t}function d(e){return(d=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.arrayByteLength=R,t.arraysToBytes=function(e){var t=e.length
+return e}(e):t}function d(e){return d=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},d(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.arrayByteLength=R,t.arraysToBytes=function(e){var t=e.length
 if(1===t&&e[0]instanceof Uint8Array)return e[0]
 for(var r=0,n=0;n<t;n++)r+=R(e[n])
 for(var a=0,i=new Uint8Array(r),o=0;o<t;o++){var s=e[o]
@@ -359,7 +359,7 @@ var L=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,728,711,710,729,733,731,7
 var n=r(6)
 "undefined"!=typeof globalThis&&globalThis._pdfjsCompatibilityChecked||("undefined"!=typeof globalThis&&globalThis.Math===Math||(globalThis=r(7)),globalThis._pdfjsCompatibilityChecked=!0,!globalThis.btoa&&n.isNodeJS&&(globalThis.btoa=function(e){return Buffer.from(e,"binary").toString("base64")}),!globalThis.atob&&n.isNodeJS&&(globalThis.atob=function(e){return Buffer.from(e,"base64").toString("binary")}),Object.fromEntries||r(53),globalThis.Promise.allSettled||(globalThis.Promise=r(84)),function(){var e=!1
 if("undefined"!=typeof ReadableStream)try{new ReadableStream({start:function(e){e.close()}}),e=!0}catch(t){}e||(globalThis.ReadableStream=r(112).ReadableStream)}())},(e,t)=>{"use strict"
-function r(e){return(r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.isNodeJS=void 0
+function r(e){return r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},r(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.isNodeJS=void 0
 var n=!("object"!==("undefined"==typeof process?"undefined":r(process))||process+""!="[object process]"||process.versions.nw||process.versions.electron&&process.type&&"browser"!==process.type)
 t.isNodeJS=n},(e,t,r)=>{r(8),e.exports=r(10)},(e,t,r)=>{r(9)({global:!0},{globalThis:r(10)})},(e,t,r)=>{var n=r(10),a=r(11).f,i=r(26),o=r(29),s=r(30),l=r(40),u=r(52)
 e.exports=function(e,t){var r,c,f,d,h,p=e.target,v=e.global,y=e.stat
@@ -587,7 +587,8 @@ return a>=r.length?{value:void 0,done:!0}:(e=n(r,a),t.index+=e.length,{value:e,d
 return l<0||l>=u?e?"":void 0:(i=s.charCodeAt(l))<55296||i>56319||l+1===u||(o=s.charCodeAt(l+1))<56320||o>57343?e?s.charAt(l):i:e?s.slice(l,l+2):o-56320+(i-55296<<10)+65536}}
 e.exports={codeAt:i(!1),charAt:i(!0)}},(e,t,r)=>{var n=r(10),a=r(111),i=r(54),o=r(26),s=r(56),l=s("iterator"),u=s("toStringTag"),c=i.values
 for(var f in a){var d=n[f],h=d&&d.prototype
-if(h){if(h[l]!==c)try{o(h,l,c)}catch(v){h[l]=c}if(h[u]||o(h,u,f),a[f])for(var p in i)if(h[p]!==i[p])try{o(h,p,i[p])}catch(v){h[p]=i[p]}}}},e=>{e.exports={CSSRuleList:0,CSSStyleDeclaration:0,CSSValueList:0,ClientRectList:0,DOMRectList:0,DOMStringList:0,DOMTokenList:1,DataTransferItemList:0,FileList:0,HTMLAllCollection:0,HTMLCollection:0,HTMLFormElement:0,HTMLSelectElement:0,MediaList:0,MimeTypeArray:0,NamedNodeMap:0,NodeList:1,PaintRequestList:0,Plugin:0,PluginArray:0,SVGLengthList:0,SVGNumberList:0,SVGPathSegList:0,SVGPointList:0,SVGStringList:0,SVGTransformList:0,SourceBufferList:0,StyleSheetList:0,TextTrackCueList:0,TextTrackList:0,TouchList:0}},function(e,t){(function(e){"use strict"
+if(h){if(h[l]!==c)try{o(h,l,c)}catch(v){h[l]=c}if(h[u]||o(h,u,f),a[f])for(var p in i)if(h[p]!==i[p])try{o(h,p,i[p])}catch(v){h[p]=i[p]}}}},e=>{e.exports={CSSRuleList:0,CSSStyleDeclaration:0,CSSValueList:0,ClientRectList:0,DOMRectList:0,DOMStringList:0,DOMTokenList:1,DataTransferItemList:0,FileList:0,HTMLAllCollection:0,HTMLCollection:0,HTMLFormElement:0,HTMLSelectElement:0,MediaList:0,MimeTypeArray:0,NamedNodeMap:0,NodeList:1,PaintRequestList:0,Plugin:0,PluginArray:0,SVGLengthList:0,SVGNumberList:0,SVGPathSegList:0,SVGPointList:0,SVGStringList:0,SVGTransformList:0,SourceBufferList:0,StyleSheetList:0,TextTrackCueList:0,TextTrackList:0,TouchList:0}},function(e,t){var r
+r=function(e){"use strict"
 var t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?Symbol:function(e){return"Symbol("+e+")"}
 function r(){}var n="undefined"!=typeof self?self:"undefined"!=typeof window?window:"undefined"!=typeof global?global:void 0
 function a(e){return"object"==typeof e&&null!==e||"function"==typeof e}var i=r,o=Promise,s=Promise.prototype.then,l=Promise.resolve.bind(o),u=Promise.reject.bind(o)
@@ -673,8 +674,9 @@ e._chunkSteps(n)}else{var a=this._autoAllocateChunkSize
 if(void 0!==a){var i=void 0
 try{i=new ArrayBuffer(a)}catch(s){return void e._errorSteps(s)}var o={buffer:i,byteOffset:0,byteLength:a,bytesFilled:0,elementSize:1,viewConstructor:Uint8Array,readerType:"default"}
 this._pendingPullIntos.push(o)}Y(t,e),ge(this)}},e}()
-function ve(e){return!!a(e)&&!!Object.prototype.hasOwnProperty.call(e,"_controlledReadableByteStream")}function ye(e){return!!a(e)&&!!Object.prototype.hasOwnProperty.call(e,"_associatedReadableByteStreamController")}function ge(e){(function(e){var t=e._controlledReadableByteStream
-return"readable"===t._state&&(!e._closeRequested&&(!!e._started&&(!!(K(t)&&Q(t)>0)||(!!(je(t)&&Le(t)>0)||Ee(e)>0))))})(e)&&(e._pulling?e._pullAgain=!0:(e._pulling=!0,p(e._pullAlgorithm(),(function(){e._pulling=!1,e._pullAgain&&(e._pullAgain=!1,ge(e))}),(function(t){Re(e,t)}))))}function me(e,t){var r=!1
+function ve(e){return!!a(e)&&!!Object.prototype.hasOwnProperty.call(e,"_controlledReadableByteStream")}function ye(e){return!!a(e)&&!!Object.prototype.hasOwnProperty.call(e,"_associatedReadableByteStreamController")}function ge(e){var t=function(e){var t=e._controlledReadableByteStream
+return"readable"===t._state&&(!e._closeRequested&&(!!e._started&&(!!(K(t)&&Q(t)>0)||(!!(je(t)&&Le(t)>0)||Ee(e)>0))))}(e)
+t&&(e._pulling?e._pullAgain=!0:(e._pulling=!0,p(e._pullAlgorithm(),(function(){e._pulling=!1,e._pullAgain&&(e._pullAgain=!1,ge(e))}),(function(t){Re(e,t)}))))}function me(e,t){var r=!1
 "closed"===e._state&&(r=!0)
 var n=be(t)
 "default"===t.readerType?X(e,n,r):function(e,t,r){var n=e._reader._readIntoRequests.shift()
@@ -914,7 +916,8 @@ var r=new TypeError("TransformStream terminated")
 Tr(t,r)})(this)},e}()
 function Or(e){return!!a(e)&&!!Object.prototype.hasOwnProperty.call(e,"_controlledTransformStream")}function Fr(e){e._transformAlgorithm=void 0,e._flushAlgorithm=void 0}function Ir(e,t){var r=e._controlledTransformStream,n=r._readable._readableStreamController
 if(!Qt(n))throw new TypeError("Readable side is not in a state that permits enqueue")
-try{Vt(n,t)}catch(a){throw Tr(r,a),r._readable._storedError}(function(e){return!Gt(e)})(n)!==r._backpressure&&Rr(r,!0)}function Mr(e,t){return g(e._transformAlgorithm(t),void 0,(function(t){throw Pr(e._controlledTransformStream,t),t}))}function Lr(e){return new TypeError("TransformStreamDefaultController.prototype."+e+" can only be used on a TransformStreamDefaultController")}function jr(e){return new TypeError("TransformStream.prototype."+e+" can only be used on a TransformStream")}Object.defineProperties(Er.prototype,{enqueue:{enumerable:!0},error:{enumerable:!0},terminate:{enumerable:!0},desiredSize:{enumerable:!0}}),"symbol"==typeof t.toStringTag&&Object.defineProperty(Er.prototype,t.toStringTag,{value:"TransformStreamDefaultController",configurable:!0}),e.ByteLengthQueuingStrategy=vr,e.CountQueuingStrategy=br,e.ReadableByteStreamController=pe,e.ReadableStream=ar,e.ReadableStreamBYOBReader=De,e.ReadableStreamBYOBRequest=he,e.ReadableStreamDefaultController=Wt,e.ReadableStreamDefaultReader=Z,e.TransformStream=xr,e.TransformStreamDefaultController=Er,e.WritableStream=Qe,e.WritableStreamDefaultController=yt,e.WritableStreamDefaultWriter=lt,Object.defineProperty(e,"__esModule",{value:!0})})(t)},(__unused_webpack_module,exports,__w_pdfjs_require__)=>{"use strict"
+try{Vt(n,t)}catch(i){throw Tr(r,i),r._readable._storedError}var a=function(e){return!Gt(e)}(n)
+a!==r._backpressure&&Rr(r,!0)}function Mr(e,t){return g(e._transformAlgorithm(t),void 0,(function(t){throw Pr(e._controlledTransformStream,t),t}))}function Lr(e){return new TypeError("TransformStreamDefaultController.prototype."+e+" can only be used on a TransformStreamDefaultController")}function jr(e){return new TypeError("TransformStream.prototype."+e+" can only be used on a TransformStream")}Object.defineProperties(Er.prototype,{enqueue:{enumerable:!0},error:{enumerable:!0},terminate:{enumerable:!0},desiredSize:{enumerable:!0}}),"symbol"==typeof t.toStringTag&&Object.defineProperty(Er.prototype,t.toStringTag,{value:"TransformStreamDefaultController",configurable:!0}),e.ByteLengthQueuingStrategy=vr,e.CountQueuingStrategy=br,e.ReadableByteStreamController=pe,e.ReadableStream=ar,e.ReadableStreamBYOBReader=De,e.ReadableStreamBYOBRequest=he,e.ReadableStreamDefaultController=Wt,e.ReadableStreamDefaultReader=Z,e.TransformStream=xr,e.TransformStreamDefaultController=Er,e.WritableStream=Qe,e.WritableStreamDefaultController=yt,e.WritableStreamDefaultWriter=lt,Object.defineProperty(e,"__esModule",{value:!0})},r(t)},(__unused_webpack_module,exports,__w_pdfjs_require__)=>{"use strict"
 Object.defineProperty(exports,"__esModule",{value:!0}),exports.getDocument=getDocument,exports.setPDFNetworkStreamFactory=setPDFNetworkStreamFactory,exports.version=exports.PDFWorker=exports.PDFPageProxy=exports.PDFDocumentProxy=exports.PDFDataRangeTransport=exports.LoopbackPort=exports.DefaultCMapReaderFactory=exports.DefaultCanvasFactory=exports.build=void 0
 var _regenerator=_interopRequireDefault(__w_pdfjs_require__(2)),_util=__w_pdfjs_require__(4),_display_utils=__w_pdfjs_require__(1),_font_loader=__w_pdfjs_require__(114),_node_utils=__w_pdfjs_require__(115),_annotation_storage=__w_pdfjs_require__(116),_api_compatibility=__w_pdfjs_require__(117),_canvas=__w_pdfjs_require__(118),_worker_options=__w_pdfjs_require__(120),_is_node=__w_pdfjs_require__(6),_message_handler=__w_pdfjs_require__(121),_metadata=__w_pdfjs_require__(122),_optional_content_config=__w_pdfjs_require__(123),_transport_stream=__w_pdfjs_require__(124)
 function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}function asyncGeneratorStep(e,t,r,n,a,i,o){try{var s=e[i](o),l=s.value}catch(u){return void r(u)}s.done?t(l):Promise.resolve(l).then(n,a)}function _asyncToGenerator(e){return function(){var t=this,r=arguments
@@ -931,7 +934,7 @@ return"Object"===r&&e.constructor&&(r=e.constructor.name),"Map"===r||"Set"===r?A
 for(var r=0,n=new Array(t);r<t;r++)n[r]=e[r]
 return n}function _iterableToArrayLimit(e,t){var r=e&&("undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"])
 if(null!=r){var n,a,i=[],o=!0,s=!1
-try{for(r=r.call(e);!(o=(n=r.next()).done)&&(i.push(n.value),!t||i.length!==t);o=!0);}catch(l){s=!0,a=l}finally{try{o||null==r.return||r.return()}finally{if(s)throw a}}return i}}function _arrayWithHoles(e){if(Array.isArray(e))return e}function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}var DEFAULT_RANGE_CHUNK_SIZE=65536,RENDERING_CANCELLED_TIMEOUT=100,DefaultCanvasFactory=_is_node.isNodeJS?_node_utils.NodeCanvasFactory:_display_utils.DOMCanvasFactory
+try{for(r=r.call(e);!(o=(n=r.next()).done)&&(i.push(n.value),!t||i.length!==t);o=!0);}catch(l){s=!0,a=l}finally{try{o||null==r.return||r.return()}finally{if(s)throw a}}return i}}function _arrayWithHoles(e){if(Array.isArray(e))return e}function _typeof(e){return _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeof(e)}var DEFAULT_RANGE_CHUNK_SIZE=65536,RENDERING_CANCELLED_TIMEOUT=100,DefaultCanvasFactory=_is_node.isNodeJS?_node_utils.NodeCanvasFactory:_display_utils.DOMCanvasFactory
 exports.DefaultCanvasFactory=DefaultCanvasFactory
 var DefaultCMapReaderFactory=_is_node.isNodeJS?_node_utils.NodeCMapReaderFactory:_display_utils.DOMCMapReaderFactory,createPDFNetworkStream
 function setPDFNetworkStreamFactory(e){createPDFNetworkStream=e}function getDocument(e){var t,r=new PDFDocumentLoadingTask
@@ -1123,9 +1126,8 @@ case"FontPath":case"Image":e.commonObjs.resolve(i,s)
 break
 default:throw new Error("Got unknown common object type ".concat(o))}}})),t.on("obj",(function(t){var r
 if(!e.destroyed){var n=_slicedToArray(t,4),a=n[0],i=n[1],o=n[2],s=n[3],l=e.pageCache[i]
-if(!l.objs.has(a))switch(o){case"Image":l.objs.resolve(a,s);(null==s||null===(r=s.data)||void 0===r?void 0:r.length)>8e6&&(l.cleanupAfterRender=!0)
-break
-default:throw new Error("Got unknown object type ".concat(o))}}})),t.on("DocProgress",(function(t){e.destroyed||r.onProgress&&r.onProgress({loaded:t.loaded,total:t.total})})),t.on("UnsupportedFeature",this._onUnsupportedFeature.bind(this)),t.on("FetchBuiltInCMap",(function(t,r){if(e.destroyed)r.error(new Error("Worker was destroyed"))
+if(!l.objs.has(a)){if("Image"!==o)throw new Error("Got unknown object type ".concat(o))
+l.objs.resolve(a,s);(null==s||null===(r=s.data)||void 0===r?void 0:r.length)>8e6&&(l.cleanupAfterRender=!0)}}})),t.on("DocProgress",(function(t){e.destroyed||r.onProgress&&r.onProgress({loaded:t.loaded,total:t.total})})),t.on("UnsupportedFeature",this._onUnsupportedFeature.bind(this)),t.on("FetchBuiltInCMap",(function(t,r){if(e.destroyed)r.error(new Error("Worker was destroyed"))
 else{var n=!1
 r.onPull=function(){n?r.close():(n=!0,e.CMapReaderFactory.fetch(t).then((function(e){r.enqueue(e,1,[e.cMapData.buffer])})).catch((function(e){r.error(e)})))}}}))}},{key:"_onUnsupportedFeature",value:function(e){var t=e.featureId
 this.destroyed||this.loadingTask.onUnsupportedFeature&&this.loadingTask.onUnsupportedFeature(t)}},{key:"getData",value:function(){return this.messageHandler.sendWithPromise("GetData",null)}},{key:"getPage",value:function(e){var t=this
@@ -1158,24 +1160,25 @@ var r=this._objs[e]
 if(!r||!r.resolved)throw new Error("Requesting object that isn't resolved yet ".concat(e,"."))
 return r.data}},{key:"has",value:function(e){var t=this._objs[e]
 return(null==t?void 0:t.resolved)||!1}},{key:"resolve",value:function(e,t){var r=this._ensureObj(e)
-r.resolved=!0,r.data=t,r.capability.resolve(t)}},{key:"clear",value:function(){this._objs=Object.create(null)}}]),e}(),RenderTask=function(){function e(t){_classCallCheck(this,e),this._internalRenderTask=t,this.onContinue=null}return _createClass(e,[{key:"promise",get:function(){return this._internalRenderTask.capability.promise}},{key:"cancel",value:function(){this._internalRenderTask.cancel()}}]),e}(),InternalRenderTask=(canvasInRendering=new WeakSet,function(){function e(t){var r=t.callback,n=t.params,a=t.objs,i=t.commonObjs,o=t.operatorList,s=t.pageIndex,l=t.canvasFactory,u=t.useRequestAnimationFrame,c=void 0!==u&&u,f=t.pdfBug,d=void 0!==f&&f
-_classCallCheck(this,e),this.callback=r,this.params=n,this.objs=a,this.commonObjs=i,this.operatorListIdx=null,this.operatorList=o,this._pageIndex=s,this.canvasFactory=l,this._pdfBug=d,this.running=!1,this.graphicsReadyCallback=null,this.graphicsReady=!1,this._useRequestAnimationFrame=!0===c&&"undefined"!=typeof window,this.cancelled=!1,this.capability=(0,_util.createPromiseCapability)(),this.task=new RenderTask(this),this._cancelBound=this.cancel.bind(this),this._continueBound=this._continue.bind(this),this._scheduleNextBound=this._scheduleNext.bind(this),this._nextBound=this._next.bind(this),this._canvas=n.canvasContext.canvas}var t
-return _createClass(e,[{key:"completed",get:function(){return this.capability.promise.catch((function(){}))}},{key:"initializeGraphics",value:function(e){var t,r=e.transparency,n=void 0!==r&&r,a=e.optionalContentConfig
-if(!this.cancelled){if(this._canvas){if(canvasInRendering.has(this._canvas))throw new Error("Cannot use the same canvas during multiple render() operations. Use different canvas or ensure previous operations were cancelled or completed.")
-canvasInRendering.add(this._canvas)}this._pdfBug&&null!==(t=globalThis.StepperManager)&&void 0!==t&&t.enabled&&(this.stepper=globalThis.StepperManager.create(this._pageIndex),this.stepper.init(this.operatorList),this.stepper.nextBreakPoint=this.stepper.getNextBreakPoint())
-var i=this.params,o=i.canvasContext,s=i.viewport,l=i.transform,u=i.imageLayer,c=i.background
-this.gfx=new _canvas.CanvasGraphics(o,this.commonObjs,this.objs,this.canvasFactory,u,a),this.gfx.beginDrawing({transform:l,viewport:s,transparency:n,background:c}),this.operatorListIdx=0,this.graphicsReady=!0,this.graphicsReadyCallback&&this.graphicsReadyCallback()}}},{key:"cancel",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null
-this.running=!1,this.cancelled=!0,this.gfx&&this.gfx.endDrawing(),this._canvas&&canvasInRendering.delete(this._canvas),this.callback(e||new _display_utils.RenderingCancelledException("Rendering cancelled, page ".concat(this._pageIndex+1),"canvas"))}},{key:"operatorListChanged",value:function(){this.graphicsReady?(this.stepper&&this.stepper.updateOperatorList(this.operatorList),this.running||this._continue()):this.graphicsReadyCallback||(this.graphicsReadyCallback=this._continueBound)}},{key:"_continue",value:function(){this.running=!0,this.cancelled||(this.task.onContinue?this.task.onContinue(this._scheduleNextBound):this._scheduleNext())}},{key:"_scheduleNext",value:function(){var e=this
-this._useRequestAnimationFrame?window.requestAnimationFrame((function(){e._nextBound().catch(e._cancelBound)})):Promise.resolve().then(this._nextBound).catch(this._cancelBound)}},{key:"_next",value:(t=_asyncToGenerator(_regenerator.default.mark((function e(){return _regenerator.default.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:if(!this.cancelled){e.next=2
-break}return e.abrupt("return")
-case 2:this.operatorListIdx=this.gfx.executeOperatorList(this.operatorList,this.operatorListIdx,this._continueBound,this.stepper),this.operatorListIdx===this.operatorList.argsArray.length&&(this.running=!1,this.operatorList.lastChunk&&(this.gfx.endDrawing(),this._canvas&&canvasInRendering.delete(this._canvas),this.callback()))
-case 4:case"end":return e.stop()}}),e,this)}))),function(){return t.apply(this,arguments)})}]),e}()),canvasInRendering,version="2.9.359"
+r.resolved=!0,r.data=t,r.capability.resolve(t)}},{key:"clear",value:function(){this._objs=Object.create(null)}}]),e}(),RenderTask=function(){function e(t){_classCallCheck(this,e),this._internalRenderTask=t,this.onContinue=null}return _createClass(e,[{key:"promise",get:function(){return this._internalRenderTask.capability.promise}},{key:"cancel",value:function(){this._internalRenderTask.cancel()}}]),e}(),InternalRenderTask=function(){var e=new WeakSet,t=function(){function t(e){var r=e.callback,n=e.params,a=e.objs,i=e.commonObjs,o=e.operatorList,s=e.pageIndex,l=e.canvasFactory,u=e.useRequestAnimationFrame,c=void 0!==u&&u,f=e.pdfBug,d=void 0!==f&&f
+_classCallCheck(this,t),this.callback=r,this.params=n,this.objs=a,this.commonObjs=i,this.operatorListIdx=null,this.operatorList=o,this._pageIndex=s,this.canvasFactory=l,this._pdfBug=d,this.running=!1,this.graphicsReadyCallback=null,this.graphicsReady=!1,this._useRequestAnimationFrame=!0===c&&"undefined"!=typeof window,this.cancelled=!1,this.capability=(0,_util.createPromiseCapability)(),this.task=new RenderTask(this),this._cancelBound=this.cancel.bind(this),this._continueBound=this._continue.bind(this),this._scheduleNextBound=this._scheduleNext.bind(this),this._nextBound=this._next.bind(this),this._canvas=n.canvasContext.canvas}var r
+return _createClass(t,[{key:"completed",get:function(){return this.capability.promise.catch((function(){}))}},{key:"initializeGraphics",value:function(t){var r,n=t.transparency,a=void 0!==n&&n,i=t.optionalContentConfig
+if(!this.cancelled){if(this._canvas){if(e.has(this._canvas))throw new Error("Cannot use the same canvas during multiple render() operations. Use different canvas or ensure previous operations were cancelled or completed.")
+e.add(this._canvas)}this._pdfBug&&null!==(r=globalThis.StepperManager)&&void 0!==r&&r.enabled&&(this.stepper=globalThis.StepperManager.create(this._pageIndex),this.stepper.init(this.operatorList),this.stepper.nextBreakPoint=this.stepper.getNextBreakPoint())
+var o=this.params,s=o.canvasContext,l=o.viewport,u=o.transform,c=o.imageLayer,f=o.background
+this.gfx=new _canvas.CanvasGraphics(s,this.commonObjs,this.objs,this.canvasFactory,c,i),this.gfx.beginDrawing({transform:u,viewport:l,transparency:a,background:f}),this.operatorListIdx=0,this.graphicsReady=!0,this.graphicsReadyCallback&&this.graphicsReadyCallback()}}},{key:"cancel",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null
+this.running=!1,this.cancelled=!0,this.gfx&&this.gfx.endDrawing(),this._canvas&&e.delete(this._canvas),this.callback(t||new _display_utils.RenderingCancelledException("Rendering cancelled, page ".concat(this._pageIndex+1),"canvas"))}},{key:"operatorListChanged",value:function(){this.graphicsReady?(this.stepper&&this.stepper.updateOperatorList(this.operatorList),this.running||this._continue()):this.graphicsReadyCallback||(this.graphicsReadyCallback=this._continueBound)}},{key:"_continue",value:function(){this.running=!0,this.cancelled||(this.task.onContinue?this.task.onContinue(this._scheduleNextBound):this._scheduleNext())}},{key:"_scheduleNext",value:function(){var e=this
+this._useRequestAnimationFrame?window.requestAnimationFrame((function(){e._nextBound().catch(e._cancelBound)})):Promise.resolve().then(this._nextBound).catch(this._cancelBound)}},{key:"_next",value:(r=_asyncToGenerator(_regenerator.default.mark((function t(){return _regenerator.default.wrap((function(t){for(;;)switch(t.prev=t.next){case 0:if(!this.cancelled){t.next=2
+break}return t.abrupt("return")
+case 2:this.operatorListIdx=this.gfx.executeOperatorList(this.operatorList,this.operatorListIdx,this._continueBound,this.stepper),this.operatorListIdx===this.operatorList.argsArray.length&&(this.running=!1,this.operatorList.lastChunk&&(this.gfx.endDrawing(),this._canvas&&e.delete(this._canvas),this.callback()))
+case 4:case"end":return t.stop()}}),t,this)}))),function(){return r.apply(this,arguments)})}]),t}()
+return t}(),version="2.9.359"
 exports.version=version
 var build="e667c8cbc"
 exports.build=build},(e,t,r)=>{"use strict"
-function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.FontLoader=t.FontFaceObject=void 0
+function n(e){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},n(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.FontLoader=t.FontFaceObject=void 0
 var a,i=(a=r(2))&&a.__esModule?a:{default:a},o=r(4)
-function s(e,t){return(s=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function l(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+function s(e,t){return s=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},s(e,t)}function l(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
@@ -1183,7 +1186,7 @@ return function(){var r,n=c(e)
 if(t){var a=c(this).constructor
 r=Reflect.construct(n,arguments,a)}else r=n.apply(this,arguments)
 return u(this,r)}}function u(e,t){return!t||"object"!==n(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}(e):t}function c(e){return(c=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function f(e,t,r,n,a,i,o){try{var s=e[i](o),l=s.value}catch(u){return void r(u)}s.done?t(l):Promise.resolve(l).then(n,a)}function d(e,t){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
+return e}(e):t}function c(e){return c=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},c(e)}function f(e,t,r,n,a,i,o){try{var s=e[i](o),l=s.value}catch(u){return void r(u)}s.done?t(l):Promise.resolve(l).then(n,a)}function d(e,t){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
 if(!r){if(Array.isArray(e)||(r=function(e,t){if(!e)return
 if("string"==typeof e)return h(e,t)
 var r=Object.prototype.toString.call(e).slice(8,-1)
@@ -1266,11 +1269,11 @@ a.push("c.",s.cmd,"(",l,");\n")}}catch(c){i.e(c)}finally{i.f()}return this.compi
 try{for(a.s();!(n=a.n()).done;){var i=n.value
 "scale"===i.cmd&&(i.args=[t,-t]),e[i.cmd].apply(e,i.args)}}catch(c){a.e(c)}finally{a.f()}}}}]),e}()
 t.FontFaceObject=b},(e,t,r)=>{"use strict"
-function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.NodeCMapReaderFactory=t.NodeCanvasFactory=void 0
+function n(e){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},n(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.NodeCMapReaderFactory=t.NodeCanvasFactory=void 0
 var a=r(1),i=r(6),o=r(4)
 function s(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function l(e,t,r){return t&&s(e.prototype,t),r&&s(e,r),e}function u(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&c(e,t)}function c(e,t){return(c=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function f(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&c(e,t)}function c(e,t){return c=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},c(e,t)}function f(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
@@ -1278,7 +1281,7 @@ return function(){var r,n=h(e)
 if(t){var a=h(this).constructor
 r=Reflect.construct(n,arguments,a)}else r=n.apply(this,arguments)
 return d(this,r)}}function d(e,t){return!t||"object"!==n(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}(e):t}function h(e){return(h=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function p(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var v=function e(){p(this,e),(0,o.unreachable)("Not implemented: NodeCanvasFactory")}
+return e}(e):t}function h(e){return h=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},h(e)}function p(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var v=function e(){p(this,e),(0,o.unreachable)("Not implemented: NodeCanvasFactory")}
 t.NodeCanvasFactory=v
 var y=function e(){p(this,e),(0,o.unreachable)("Not implemented: NodeCMapReaderFactory")}
 t.NodeCMapReaderFactory=y,i.isNodeJS&&(t.NodeCanvasFactory=v=function(e){u(r,e)
@@ -1315,7 +1318,7 @@ var i=Object.freeze(a)
 t.apiCompatibilityParams=i},(e,t,r)=>{"use strict"
 Object.defineProperty(t,"__esModule",{value:!0}),t.CanvasGraphics=void 0
 var n=r(4),a=r(119)
-function i(e){return(i="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function o(e,t){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
+function i(e){return i="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},i(e)}function o(e,t){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
 if(!r){if(Array.isArray(e)||(r=f(e))||t&&e&&"number"==typeof e.length){r&&(e=r)
 var n=0,a=function(){}
 return{s:a,n:function(){return n>=e.length?{done:!0}:{done:!1,value:e[n++]}},e:function(e){throw e},f:a}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,o=!0,s=!1
@@ -1548,7 +1551,7 @@ return!0}}]),c}()
 for(var w in n.OPS)k.prototype[n.OPS[w]]=k.prototype[w]
 return k}()
 t.CanvasGraphics=m},(e,t,r)=>{"use strict"
-function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.getShadingPattern=function(e){switch(e[0]){case"RadialAxial":return new b(e)
+function n(e){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},n(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.getShadingPattern=function(e){switch(e[0]){case"RadialAxial":return new b(e)
 case"Mesh":return new S(e)
 case"Dummy":return new k}throw new Error("Unknown IR type: ".concat(e[0]))},t.TilingPattern=void 0
 var a,i=r(4)
@@ -1565,7 +1568,7 @@ return{s:function(){r=r.call(e)},n:function(){var e=r.next()
 return o=e.done,e},e:function(e){l=!0,i=e},f:function(){try{o||null==r.return||r.return()}finally{if(l)throw i}}}}function s(e,t){(null==t||t>e.length)&&(t=e.length)
 for(var r=0,n=new Array(t);r<t;r++)n[r]=e[r]
 return n}function l(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&u(e,t)}function u(e,t){return(u=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function c(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&u(e,t)}function u(e,t){return u=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},u(e,t)}function c(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
@@ -1573,7 +1576,7 @@ return function(){var r,n=d(e)
 if(t){var a=d(this).constructor
 r=Reflect.construct(n,arguments,a)}else r=n.apply(this,arguments)
 return f(this,r)}}function f(e,t){return!t||"object"!==n(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}(e):t}function d(e){return(d=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function h(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function p(e,t){for(var r=0;r<t.length;r++){var n=t[r]
+return e}(e):t}function d(e){return d=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},d(e)}function h(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function p(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function v(e,t,r){return t&&p(e.prototype,t),r&&p(e,r),e}function y(e){return"undefined"!=typeof DOMMatrix?new DOMMatrix(e):(a||(a=document.createElementNS("http://www.w3.org/2000/svg","svg")),a.createSVGMatrix(e))}function g(e,t){if(t&&"undefined"!=typeof Path2D){var r=t[2]-t[0],n=t[3]-t[1],a=new Path2D
 a.rect(t[0],t[1],r,n),e.clip(a)}}var m=function(){function e(){h(this,e),this.constructor===e&&(0,i.unreachable)("Cannot initialize BaseShadingPattern.")}return v(e,[{key:"getPattern",value:function(){(0,i.unreachable)("Abstract method `getPattern` called.")}}]),e}(),b=function(e){l(r,e)
 var t=c(r)
@@ -1636,7 +1639,7 @@ t.GlobalWorkerOptions=r,r.workerPort=void 0===r.workerPort?null:r.workerPort,r.w
 Object.defineProperty(t,"__esModule",{value:!0}),t.MessageHandler=void 0
 var n,a=(n=r(2))&&n.__esModule?n:{default:n},i=r(4)
 function o(e,t,r,n,a,i,o){try{var s=e[i](o),l=s.value}catch(u){return void r(u)}s.done?t(l):Promise.resolve(l).then(n,a)}function s(e,t){for(var r=0;r<t.length;r++){var n=t[r]
-n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function l(e){return(l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}var u=1,c=2,f=1,d=2,h=3,p=4,v=5,y=6,g=7,m=8
+n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function l(e){return l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},l(e)}var u=1,c=2,f=1,d=2,h=3,p=4,v=5,y=6,g=7,m=8
 function b(e){if("object"!==l(e)||null===e)return e
 switch(e.name){case"AbortException":return new i.AbortException(e.message)
 case"MissingPDFException":return new i.MissingPDFException(e.message)
@@ -1652,7 +1655,7 @@ i.reject(b(t.reason))}}else{var o=a.actionHandler[t.action]
 if(!o)throw new Error("Unknown action from worker: ".concat(t.action))
 if(t.callbackId){var s=a.sourceName,l=t.sourceName
 new Promise((function(e){e(o(t.data))})).then((function(e){n.postMessage({sourceName:s,targetName:l,callback:u,callbackId:t.callbackId,data:e})}),(function(e){n.postMessage({sourceName:s,targetName:l,callback:c,callbackId:t.callbackId,reason:b(e)})}))}else t.streamId?a._createStreamSink(t):o(t.data)}},n.addEventListener("message",this._onComObjOnMessage)}var t,r,n,l,_
-return t=e,(r=[{key:"on",value:function(e,t){var r=this.actionHandler
+return t=e,r=[{key:"on",value:function(e,t){var r=this.actionHandler
 if(r[e])throw new Error('There is already an actionName called "'.concat(e,'"'))
 r[e]=t}},{key:"send",value:function(e,t,r){this._postMessage({sourceName:this.sourceName,targetName:this.targetName,action:e,data:t},r)}},{key:"sendWithPromise",value:function(e,t,r){var n=this.callbackId++,a=(0,i.createPromiseCapability)()
 this.callbackCapabilities[n]=a
@@ -1692,7 +1695,7 @@ default:throw new Error("Unexpected stream case")}}},{key:"_deleteStreamControll
 case 2:delete this.streamControllers[t]
 case 3:case"end":return e.stop()}}),e,this)})),_=function(){var e=this,t=arguments
 return new Promise((function(r,n){var a=l.apply(e,t)
-function i(e){o(a,r,n,i,s,"next",e)}function s(e){o(a,r,n,i,s,"throw",e)}i(void 0)}))},function(e){return _.apply(this,arguments)})},{key:"_postMessage",value:function(e,t){t&&this.postMessageTransfers?this.comObj.postMessage(e,t):this.comObj.postMessage(e)}},{key:"destroy",value:function(){this.comObj.removeEventListener("message",this._onComObjOnMessage)}}])&&s(t.prototype,r),n&&s(t,n),e}()
+function i(e){o(a,r,n,i,s,"next",e)}function s(e){o(a,r,n,i,s,"throw",e)}i(void 0)}))},function(e){return _.apply(this,arguments)})},{key:"_postMessage",value:function(e,t){t&&this.postMessageTransfers?this.comObj.postMessage(e,t):this.comObj.postMessage(e)}},{key:"destroy",value:function(){this.comObj.removeEventListener("message",this._onComObjOnMessage)}}],r&&s(t.prototype,r),n&&s(t,n),e}()
 t.MessageHandler=_},(e,t,r)=>{"use strict"
 Object.defineProperty(t,"__esModule",{value:!0}),t.Metadata=void 0
 var n=r(4)
@@ -1725,7 +1728,7 @@ try{for(f.s();!(c=f.n()).done;){var d=c.value
 this._groups.get(d).visible=!0}}catch(y){f.e(y)}finally{f.f()}var h,p=a(t.off)
 try{for(p.s();!(h=p.n()).done;){var v=h.value
 this._groups.get(v).visible=!1}}catch(y){p.e(y)}finally{p.f()}}}var t,r,i
-return t=e,(r=[{key:"_evaluateVisibilityExpression",value:function(e){var t=e.length
+return t=e,r=[{key:"_evaluateVisibilityExpression",value:function(e){var t=e.length
 if(t<2)return!0
 for(var r=e[0],a=1;a<t;a++){var i=e[a],o=void 0
 if(Array.isArray(i))o=this._evaluateVisibilityExpression(i)
@@ -1750,7 +1753,7 @@ if(!this._groups.get(f).visible)return!0}}catch(v){c.e(v)}finally{c.f()}return!1
 try{for(h.s();!(d=h.n()).done;){var p=d.value
 if(!this._groups.has(p))return(0,n.warn)("Optional content group not found: ".concat(p)),!0
 if(this._groups.get(p).visible)return!1}}catch(v){h.e(v)}finally{h.f()}return!0}return(0,n.warn)("Unknown optional content policy ".concat(e.policy,".")),!0}return(0,n.warn)("Unknown group type ".concat(e.type,".")),!0}},{key:"setVisibility",value:function(e){var t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1]
-this._groups.has(e)?this._groups.get(e).visible=!!t:(0,n.warn)("Optional content group not found: ".concat(e))}},{key:"getOrder",value:function(){return this._groups.size?this._order?this._order.slice():Array.from(this._groups.keys()):null}},{key:"getGroups",value:function(){return this._groups.size>0?(0,n.objectFromMap)(this._groups):null}},{key:"getGroup",value:function(e){return this._groups.get(e)||null}}])&&o(t.prototype,r),i&&o(t,i),e}()
+this._groups.has(e)?this._groups.get(e).visible=!!t:(0,n.warn)("Optional content group not found: ".concat(e))}},{key:"getOrder",value:function(){return this._groups.size?this._order?this._order.slice():Array.from(this._groups.keys()):null}},{key:"getGroups",value:function(){return this._groups.size>0?(0,n.objectFromMap)(this._groups):null}},{key:"getGroup",value:function(e){return this._groups.get(e)||null}}],r&&o(t.prototype,r),i&&o(t,i),e}()
 t.OptionalContentConfig=u},(e,t,r)=>{"use strict"
 Object.defineProperty(t,"__esModule",{value:!0}),t.PDFDataTransportStream=void 0
 var n,a=(n=r(2))&&n.__esModule?n:{default:n},i=r(4),o=r(1)
@@ -1815,15 +1818,15 @@ case 6:return r=(0,i.createPromiseCapability)(),this._requests.push(r),e.abrupt(
 case 9:case"end":return e.stop()}}),e,this)}))),function(){return t.apply(this,arguments)})},{key:"cancel",value:function(e){this._done=!0
 var t,r=u(this._requests)
 try{for(r.s();!(t=r.n()).done;){t.value.resolve({value:void 0,done:!0})}}catch(n){r.e(n)}finally{r.f()}this._requests.length=0,this._stream._removeRangeReader(this)}}]),e}()},(e,t,r)=>{"use strict"
-function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.AnnotationLayer=void 0
+function n(e){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},n(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.AnnotationLayer=void 0
 var a=r(1),i=r(4),o=r(116),s=r(126)
-function l(e,t,r){return(l="undefined"!=typeof Reflect&&Reflect.get?Reflect.get:function(e,t,r){var n=function(e,t){for(;!Object.prototype.hasOwnProperty.call(e,t)&&null!==(e=v(e)););return e}(e,t)
+function l(e,t,r){return l="undefined"!=typeof Reflect&&Reflect.get?Reflect.get:function(e,t,r){var n=function(e,t){for(;!Object.prototype.hasOwnProperty.call(e,t)&&null!==(e=v(e)););return e}(e,t)
 if(n){var a=Object.getOwnPropertyDescriptor(n,t)
-return a.get?a.get.call(r):a.value}})(e,t,r||e)}function u(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var r=e&&("undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"])
+return a.get?a.get.call(r):a.value}},l(e,t,r||e)}function u(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var r=e&&("undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"])
 if(null==r)return
 var n,a,i=[],o=!0,s=!1
 try{for(r=r.call(e);!(o=(n=r.next()).done)&&(i.push(n.value),!t||i.length!==t);o=!0);}catch(l){s=!0,a=l}finally{try{o||null==r.return||r.return()}finally{if(s)throw a}}return i}(e,t)||g(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function c(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&f(e,t)}function f(e,t){return(f=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function d(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&f(e,t)}function f(e,t){return f=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},f(e,t)}function d(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
@@ -1831,7 +1834,7 @@ return function(){var r,n=v(e)
 if(t){var a=v(this).constructor
 r=Reflect.construct(n,arguments,a)}else r=n.apply(this,arguments)
 return h(this,r)}}function h(e,t){return!t||"object"!==n(t)&&"function"!=typeof t?p(e):t}function p(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}function v(e){return(v=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function y(e,t){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
+return e}function v(e){return v=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},v(e)}function y(e,t){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
 if(!r){if(Array.isArray(e)||(r=g(e))||t&&e&&"number"==typeof e.length){r&&(e=r)
 var n=0,a=function(){}
 return{s:a,n:function(){return n>=e.length?{done:!0}:{done:!1,value:e[n++]}},e:function(e){throw e},f:a}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,o=!0,s=!1
@@ -1980,8 +1983,8 @@ s.textContent=o.displayValue,s.value=o.exportValue,this.data.fieldValue.includes
 return e.target.multiple?Array.prototype.filter.call(n,(function(e){return e.selected})).map((function(e){return e[r]})):-1===n.selectedIndex?null:n[n.selectedIndex][r]},u=function(e){var t=e.target.options
 return Array.prototype.map.call(t,(function(e){return{displayValue:e.textContent,exportValue:e.value}}))}
 return this.enableScripting&&this.hasJSActions?(n.addEventListener("updatefromsandbox",(function(a){var i={value:function(e){var a=n.options,i=e.detail.value,o=new Set(Array.isArray(i)?i:[i])
-Array.prototype.forEach.call(a,(function(e){e.selected=o.has(e.value)})),t.setValue(r,{value:l(e,!0)})},multipleSelection:function(e){n.multiple=!0},remove:function(e){var a=n.options,i=e.detail.remove;(a[i].selected=!1,n.remove(i),a.length>0)&&(-1===Array.prototype.findIndex.call(a,(function(e){return e.selected}))&&(a[0].selected=!0))
-t.setValue(r,{value:l(e,!0),items:u(e)})},clear:function(e){for(;0!==n.length;)n.remove(0)
+Array.prototype.forEach.call(a,(function(e){e.selected=o.has(e.value)})),t.setValue(r,{value:l(e,!0)})},multipleSelection:function(e){n.multiple=!0},remove:function(e){var a=n.options,i=e.detail.remove
+if(a[i].selected=!1,n.remove(i),a.length>0){var o=Array.prototype.findIndex.call(a,(function(e){return e.selected}));-1===o&&(a[0].selected=!0)}t.setValue(r,{value:l(e,!0),items:u(e)})},clear:function(e){for(;0!==n.length;)n.remove(0)
 t.setValue(r,{value:null,items:[]})},insert:function(e){var a=e.detail.insert,i=a.index,o=a.displayValue,s=a.exportValue,c=document.createElement("option")
 c.textContent=o,c.value=s,n.insertBefore(c,n.children[i]),t.setValue(r,{value:l(e,!0),items:u(e)})},items:function(e){for(var a=e.detail.items;0!==n.length;)n.remove(0)
 var i,o=y(a)
@@ -2198,7 +2201,7 @@ for(d=l+1;!m&&d<n.length&&n[d].end<=c.y2;d++)m=n[d].boundary===c
 for(d=0;!m&&d<v.length;d++)m=v[d].boundary===c
 m||(c.x2New=h)}Array.prototype.splice.apply(n,[s,l-s+1].concat(v))}}catch(S){a.e(S)}finally{a.f()}for(var b=0,_=n;b<_.length;b++){var A=_[b].boundary
 void 0===A.x2New&&(A.x2New=Math.max(e,A.x2))}}var v=function(){function e(t){var r,a=this,i=t.textContent,o=t.textContentStream,s=t.container,l=t.viewport,u=t.textDivs,c=t.textContentItemsStr,f=t.enhanceTextSelection;(function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")})(this,e),this._textContent=i,this._textContentStream=o,this._container=s,this._document=s.ownerDocument,this._viewport=l,this._textDivs=u||[],this._textContentItemsStr=c||[],this._enhanceTextSelection=!!f,this._fontInspectorEnabled=!(null===(r=globalThis.FontInspector)||void 0===r||!r.enabled),this._reader=null,this._layoutTextLastFontSize=null,this._layoutTextLastFontFamily=null,this._layoutTextCtx=null,this._textDivProperties=new WeakMap,this._renderingDone=!1,this._canceled=!1,this._capability=(0,n.createPromiseCapability)(),this._renderTimer=null,this._bounds=[],this._capability.promise.finally((function(){a._layoutTextCtx&&(a._layoutTextCtx.canvas.width=0,a._layoutTextCtx.canvas.height=0,a._layoutTextCtx=null)})).catch((function(){}))}var t,r,i
-return t=e,(r=[{key:"promise",get:function(){return this._capability.promise}},{key:"cancel",value:function(){this._canceled=!0,this._reader&&(this._reader.cancel(new n.AbortException("TextLayer task cancelled.")),this._reader=null),null!==this._renderTimer&&(clearTimeout(this._renderTimer),this._renderTimer=null),this._capability.reject(new Error("TextLayer task cancelled."))}},{key:"_processItems",value:function(e,t){for(var r=0,n=e.length;r<n;r++)if(void 0!==e[r].str)this._textContentItemsStr.push(e[r].str),c(this,e[r],t,this._layoutTextCtx)
+return t=e,r=[{key:"promise",get:function(){return this._capability.promise}},{key:"cancel",value:function(){this._canceled=!0,this._reader&&(this._reader.cancel(new n.AbortException("TextLayer task cancelled.")),this._reader=null),null!==this._renderTimer&&(clearTimeout(this._renderTimer),this._renderTimer=null),this._capability.reject(new Error("TextLayer task cancelled."))}},{key:"_processItems",value:function(e,t){for(var r=0,n=e.length;r<n;r++)if(void 0!==e[r].str)this._textContentItemsStr.push(e[r].str),c(this,e[r],t,this._layoutTextCtx)
 else if("beginMarkedContentProps"===e[r].type||"beginMarkedContent"===e[r].type){var a=this._container
 this._container=document.createElement("span"),this._container.classList.add("markedContent"),null!==e[r].id&&this._container.setAttribute("id","".concat(e[r].id)),a.appendChild(this._container)}else"endMarkedContent"===e[r].type&&(this._container=this._container.parentNode)}},{key:"_layoutText",value:function(e){var t=this._textDivProperties.get(e),r=""
 if(0!==t.canvasWidth&&t.hasText){var n=e.style,a=n.fontSize,i=n.fontFamily
@@ -2213,7 +2216,7 @@ n.done?r.resolve():(Object.assign(a,i.styles),e._processItems(i.items,a),t())}),
 this._reader=this._textContentStream.getReader(),u()}r.promise.then((function(){a=null,t?e._renderTimer=setTimeout((function(){f(e),e._renderTimer=null}),t):f(e)}),this._capability.reject)}},{key:"expandTextDivs",value:function(){var e=arguments.length>0&&void 0!==arguments[0]&&arguments[0]
 if(this._enhanceTextSelection&&this._renderingDone){null!==this._bounds&&(h(this),this._bounds=null)
 for(var t=[],r=[],n=0,a=this._textDivs.length;n<a;n++){var i=this._textDivs[n],o=this._textDivProperties.get(i)
-o.hasText&&(e?(t.length=0,r.length=0,o.originalTransform&&t.push(o.originalTransform),o.paddingTop>0?(r.push("".concat(o.paddingTop,"px")),t.push("translateY(".concat(-o.paddingTop,"px)"))):r.push(0),o.paddingRight>0?r.push("".concat(o.paddingRight/o.scale,"px")):r.push(0),o.paddingBottom>0?r.push("".concat(o.paddingBottom,"px")):r.push(0),o.paddingLeft>0?(r.push("".concat(o.paddingLeft/o.scale,"px")),t.push("translateX(".concat(-o.paddingLeft/o.scale,"px)"))):r.push(0),i.style.padding=r.join(" "),t.length&&(i.style.transform=t.join(" "))):(i.style.padding=null,i.style.transform=o.originalTransform))}}}}])&&a(t.prototype,r),i&&a(t,i),e}()},(e,t,r)=>{"use strict"
+o.hasText&&(e?(t.length=0,r.length=0,o.originalTransform&&t.push(o.originalTransform),o.paddingTop>0?(r.push("".concat(o.paddingTop,"px")),t.push("translateY(".concat(-o.paddingTop,"px)"))):r.push(0),o.paddingRight>0?r.push("".concat(o.paddingRight/o.scale,"px")):r.push(0),o.paddingBottom>0?r.push("".concat(o.paddingBottom,"px")):r.push(0),o.paddingLeft>0?(r.push("".concat(o.paddingLeft/o.scale,"px")),t.push("translateX(".concat(-o.paddingLeft/o.scale,"px)"))):r.push(0),i.style.padding=r.join(" "),t.length&&(i.style.transform=t.join(" "))):(i.style.padding=null,i.style.transform=o.originalTransform))}}}}],r&&a(t.prototype,r),i&&a(t,i),e}()},(e,t,r)=>{"use strict"
 Object.defineProperty(t,"__esModule",{value:!0}),t.SVGGraphics=void 0
 var n=r(4),a=r(1),i=r(6)
 function o(e){return function(e){if(Array.isArray(e))return c(e)}(e)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(e)||u(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function s(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var r=e&&("undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"])
@@ -2521,10 +2524,10 @@ if("#text"!==h){var p=document.createElement(h)
 f.appendChild(p),d.attributes&&this.setAttributes(p,d,t),d.children&&d.children.length>0?i.push([d,-1,p]):d.value&&p.appendChild(document.createTextNode(d.value))}else f.appendChild(document.createTextNode(d.value))}}else i.pop()}}},{key:"update",value:function(e){var t="matrix(".concat(e.viewport.transform.join(","),")")
 e.div.style.transform=t,e.div.hidden=!1}}],(a=null)&&o(t.prototype,a),i&&o(t,i),e}()
 t.XfaLayer=s},(e,t,r)=>{"use strict"
-function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.PDFNodeStream=void 0
+function n(e){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},n(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.PDFNodeStream=void 0
 var a,i=(a=r(2))&&a.__esModule?a:{default:a},o=r(4),s=r(131)
 function l(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&u(e,t)}function u(e,t){return(u=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function c(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&u(e,t)}function u(e,t){return u=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},u(e,t)}function c(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
@@ -2532,7 +2535,7 @@ return function(){var r,n=d(e)
 if(t){var a=d(this).constructor
 r=Reflect.construct(n,arguments,a)}else r=n.apply(this,arguments)
 return f(this,r)}}function f(e,t){return!t||"object"!==n(t)&&"function"!=typeof t?function(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}(e):t}function d(e){return(d=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function h(e,t,r,n,a,i,o){try{var s=e[i](o),l=s.value}catch(u){return void r(u)}s.done?t(l):Promise.resolve(l).then(n,a)}function p(e){return function(){var t=this,r=arguments
+return e}(e):t}function d(e){return d=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},d(e)}function h(e,t,r,n,a,i,o){try{var s=e[i](o),l=s.value}catch(u){return void r(u)}s.done?t(l):Promise.resolve(l).then(n,a)}function p(e){return function(){var t=this,r=arguments
 return new Promise((function(n,a){var i=e.apply(t,r)
 function o(e){h(i,n,a,o,s,"next",e)}function s(e){h(i,n,a,o,s,"throw",e)}o(void 0)}))}}function v(e,t){var r="undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
 if(!r){if(Array.isArray(e)||(r=function(e,t){if(!e)return
