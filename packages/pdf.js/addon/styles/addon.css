@@ -96,7 +96,7 @@ app-pdf app-pdf-pages {
 
 app-pdf app-pdf-pages app-pdf-page {
 	display:block;
-	overflow:hidden;
+	overflow:visible;
 	position:relative;
 	margin:0 auto 30px auto;
 }
