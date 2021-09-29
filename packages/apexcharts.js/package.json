@@ -17,7 +17,7 @@
   "dependencies": {
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/transform": "file:../transform",
-    "apexcharts": "^3.28.1",
+    "apexcharts": "^3.28.3",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1"
   },
