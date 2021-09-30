@@ -125,6 +125,9 @@ Router.map(function() {
 		this.route('pdf', function() {
 			this.route('elements');
 		});
+		this.route('prism', function() {
+			this.route('elements');
+		});
 		this.route('quill', function() {
 			this.route('elements');
 			this.route('helpers');

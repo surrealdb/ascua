@@ -1,0 +1,23 @@
+<h1>prism.js</h1>
+
+<h2>Installation</h2>
+
+<Example @name="demo-libraries-prismjs-install.bash">
+	ember install @ascua/prism.js
+</Example>
+
+<h2>Configuration</h2>
+
+<p>The module can be configured by specifying a <code>prism</code> property in <code>ember-cli-build.js</code>.</p>
+
+<Example @name="demo-libraries-prismjs-build.js">
+	module.exports = function (defaults) {
+		let app = new EmberApp(defaults, {
+			prism: {
+				theme: 'okidai',
+				languages: ['sql', 'json', 'javascript'],
+			}
+		});
+		return app.toTree();
+  	};
+</Example>

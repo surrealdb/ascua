@@ -1,0 +1,17 @@
+<h1>prism.js elements</h1>
+
+<h2>Inline code</h2>
+
+<p>To create an inline highlighted code area, use the <code>Inline</code> component, and specify the <code>code</code> and <code>language</code> attributes.</p>
+
+<Example @name="demo-libraries-prismjs-elements-inline.hbs">
+	This inline bash snippet <Ascua::Prism::Inline @code="ls -la" @language="bash" /> will display both visble and invisible files.
+</Example>
+
+<h2>Code block</h2>
+
+<p>To create an highlighted code block area, use the <code>Block</code> component, and specify the <code>code</code> and <code>language</code> attributes.</p>
+
+<Example @name="demo-libraries-prismjs-elements-block.hbs" class="nopad">
+	<Ascua::Prism::Block @code={{this.value}} @language="javascript" />
+</Example>

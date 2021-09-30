@@ -212,6 +212,12 @@
 			<Navigate @route="libraries.pdf.elements" @name="Elements" />
 		</section>
 
+		<Navigate @route="libraries.prism" @name="prism.js" />
+		<section show={{is-active "libraries.prism"}}>
+			<Navigate @route="libraries.prism" @name="Setup" />
+			<Navigate @route="libraries.prism.elements" @name="Elements" />
+		</section>
+
 		<Navigate @route="libraries.quill" @name="quill.js" />
 		<section show={{is-active "libraries.quill"}}>
 			<Navigate @route="libraries.quill" @name="Setup" />

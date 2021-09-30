@@ -136,6 +136,7 @@
     "@ascua/moment.js": "file:packages/moment.js",
     "@ascua/pdf-lib.js": "file:packages/pdf-lib.js",
     "@ascua/pdf.js": "file:packages/pdf.js",
+    "@ascua/prism.js": "file:packages/prism.js",
     "@ascua/promise": "file:packages/promise",
     "@ascua/proxy": "file:packages/proxy",
     "@ascua/queue": "file:packages/queue",
