@@ -1,9 +1,5 @@
 'use strict';
 
-const fastboot = {
-	using: [{ transformation: 'fastboot'}]
-};
-
 module.exports = {
 
 	name: require('./package').name,
@@ -14,11 +10,7 @@ module.exports = {
 
 		this.opts = app.options.prism || {};
 
-		this.theme = 'themes/prism.css';
-
-		if (this.opts.theme) {
-			this.theme = `prism-${this.opts.theme}.css`;
-		}
+		app.import(`node_modules/prismjs/prism.js`);
 
 		if (this.opts.languages) {
 			[].concat(this.opts.languages).forEach( (l) => {
@@ -26,9 +18,15 @@ module.exports = {
 			});
 		}
 
-		app.import(`node_modules/prismjs/themes/${this.theme}`);
+		if (this.opts.theme) {
+			app.import(`node_modules/prismjs/themes/prism-${this.opts.theme}.css`);
+		} else {
+			app.import(`node_modules/prismjs/themes/prism.css`);
+		}
 
-		app.import('vendor/prism.js');
+		app.import('vendor/prism.js', {
+			exports: { prism: ['default'] }
+		});
 
 	},
 
