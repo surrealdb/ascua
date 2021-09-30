@@ -10,7 +10,7 @@
 	}
 
 	generateModule('handsontable', {
-		'default': typeof Handsontable === 'handsontable' ? null : Handsontable,
+		'default': typeof Handsontable === 'undefined' ? null : Handsontable,
 	});
 
 })();
