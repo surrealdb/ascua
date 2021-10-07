@@ -11,7 +11,7 @@ export default function(value, inline) {
 			gfm: true, breaks: true, renderer: renderer,
 		});
 	case false:
-		return marked(String(value), {
+		return marked.parse(String(value), {
 			gfm: true, breaks: true,
 		});
 	}

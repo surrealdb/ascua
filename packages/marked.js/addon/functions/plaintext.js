@@ -14,7 +14,7 @@ renderer.br = () => '\n';
 
 export default function(value) {
 
-	return marked(String(value), {
+	return marked.parse(String(value), {
 		renderer: renderer,
 	}).replace(/&#(\d+);/g, (m, dec) => {
 		return String.fromCharCode(dec);
