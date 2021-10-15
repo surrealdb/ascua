@@ -118,7 +118,7 @@ export default class extends Service {
 
 		const { autoUpdater } = Remote.require('electron-updater');
 
-		autoUpdater.quitAndInstall({ isSilent: true, isForceRunAfter: true });
+		autoUpdater.quitAndInstall(true, true);
 
 	}
 
