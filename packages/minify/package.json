@@ -1,6 +1,6 @@
 {
   "name": "@ascua/minify",
-  "version": "0.0.221",
+  "version": "0.0.222",
   "description": "Small description for @ascua/minify goes here",
   "keywords": [
     "ember-addon"
