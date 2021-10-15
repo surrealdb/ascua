@@ -20,7 +20,7 @@
     "@ascua/viewport": "file:../viewport",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
-    "pdfjs-dist": "^2.9.359"
+    "pdfjs-dist": "^2.10.377"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
