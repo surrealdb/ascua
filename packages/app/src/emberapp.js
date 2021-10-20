@@ -47,6 +47,14 @@ app.on('window-all-closed', () => {
 	}
 });
 
+app.on('web-contents-created', (e, contents) => {
+	if (contents.getType() === 'webview') {
+		contents.on('new-window', (e, url) => {
+			e.preventDefault();
+		});
+	}
+});
+
 app.on('browser-window-created', (e, window) => {
 
 	window.on('focus', () => {
