@@ -38,7 +38,7 @@ export default class extends Component {
 	@arg delta = null;
 	@arg value = null;
 
-	@arg bounds = 10;
+	@arg bounds = null;
 	@arg debug = 'warn';
 	@arg formats = true;
 	@arg placeholder = '';
