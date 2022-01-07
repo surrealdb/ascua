@@ -75,17 +75,13 @@ export default class Viewport {
 
 		entries.forEach(entry => {
 
-			const isEnter = entry.isIntersecting == true;
-			const isLeave = entry.intersectionRatio <= 0;
 			const filter = w => w.element === entry.target;
 
-			if (isEnter) {
+			if (entry.isIntersecting) {
 				ref.watchers.filter(filter).forEach(w => {
 					w.onEnter();
 				});
-			}
-
-			if (isLeave) {
+			} else {
 				ref.watchers.filter(filter).forEach(w => {
 					w.onLeave();
 				});
