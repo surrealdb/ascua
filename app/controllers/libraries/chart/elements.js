@@ -69,6 +69,7 @@ export default class extends Controller {
 			}]
 		},
 		opts: {
+			maintainAspectRatio: false,
 			legend: {
 				display: true,
 				position: 'right',
