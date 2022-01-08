@@ -85,9 +85,9 @@
 <p>Returns a new promise which is fulfilled when all the given promises have been fulfilled, or rejected if any of them become rejected. The returned promise is fulfilled with a hash that has the same key names as the promises object argument.</p>
 
 <Example @name="demo-helpers-promise-rsvp-hash.hbs">
-	{{#with (await (rsvp-hash tags=this.model.tags comments=this.model.comments)) as |data|}}
+	{{#let (await (rsvp-hash tags=this.model.tags comments=this.model.comments)) as |data|}}
 		There are {{data.tags.length}} tags and {{data.comments.length}} comments.
-	{{/with}}
+	{{/let}}
 </Example>
 
 <h2>wait</h2>

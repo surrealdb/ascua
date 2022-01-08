@@ -107,25 +107,25 @@
 <p>Returns the first entry matching the given value from the given array.</p>
 
 <Example @name="demo-helpers-arrays-findby.hbs">
-	{{#with (find-by "isAdult" this.people) as |person|}}
+	{{#let (find-by "isAdult" this.people) as |person|}}
 		{{person.name}}
-	{{/with}}
+	{{/let}}
 </Example>
 
 <p>Returns the first entry matching the given value from the given array.</p>
 
 <Example @name="demo-helpers-arrays-findby-value.hbs">
-	{{#with (find-by "isChild" false this.people) as |person|}}
+	{{#let (find-by "isChild" false this.people) as |person|}}
 		{{person.name}}
-	{{/with}}
+	{{/let}}
 </Example>
 
 <p>You can also pass an action as second argument.</p>
 
 <Example @name="demo-helpers-arrays-findby-function.hbs">
-	{{#with (find-by this.func this.people) as |person|}}
+	{{#let (find-by this.func this.people) as |person|}}
 		{{person.name}}
-	{{/with}}
+	{{/let}}
 </Example>
 
 <h2>first</h2>
@@ -133,9 +133,9 @@
 <p>Returns the first object of the given array.</p>
 
 <Example @name="demo-helpers-arrays-first.hbs">
-	{{#with (first this.people) as |person|}}
+	{{#let (first this.people) as |person|}}
 		{{person.name}}
-	{{/with}}
+	{{/let}}
 </Example>
 
 <h2>flatten</h2>
@@ -203,9 +203,9 @@
 <p>Returns the last object of the given array.</p>
 
 <Example @name="demo-helpers-arrays-last.hbs">
-	{{#with (last this.people) as |person|}}
+	{{#let (last this.people) as |person|}}
 		{{person.name}}
-	{{/with}}
+	{{/let}}
 </Example>
 
 <h2>length</h2>
@@ -231,9 +231,9 @@
 <p>Returns the object at the given <code>index</code> of an array.</p>
 
 <Example @name="demo-helpers-arrays-objectat.hbs">
-	{{#with (object-at 1 this.people) as |person|}}
+	{{#let (object-at 1 this.people) as |person|}}
 		{{person.name}}
-	{{/with}}
+	{{/let}}
 </Example>
 
 <h2>objects-at</h2>
