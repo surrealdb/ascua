@@ -1,6 +1,6 @@
 {
   "name": "@ascua/marked.js",
-  "version": "0.0.225",
+  "version": "0.0.226",
   "description": "Small description for @ascua/marked.js goes here",
   "keywords": [
     "ember-addon"
@@ -17,7 +17,7 @@
   "dependencies": {
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
-    "marked": "^3.0.6"
+    "marked": "^3.0.8"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"

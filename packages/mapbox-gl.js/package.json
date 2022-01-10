@@ -1,6 +1,6 @@
 {
   "name": "@ascua/mapbox-gl.js",
-  "version": "0.0.225",
+  "version": "0.0.226",
   "description": "Small description for @ascua/mapbox-gl.js goes here",
   "keywords": [
     "ember-addon"
@@ -21,7 +21,7 @@
     "@mapbox/mapbox-gl-geocoder": "^4.7.4",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
-    "mapbox-gl": "^2.5.1"
+    "mapbox-gl": "^2.6.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",

@@ -1,6 +1,6 @@
 {
   "name": "@ascua/resize",
-  "version": "0.0.225",
+  "version": "0.0.226",
   "description": "Small description for @ascua/resize goes here",
   "keywords": [
     "ember-addon"
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ascua/transform": "file:../transform",
-    "element-resize-detector": "^1.2.3",
+    "element-resize-detector": "^1.2.4",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1"
   },

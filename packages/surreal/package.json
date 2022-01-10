@@ -1,6 +1,6 @@
 {
   "name": "@ascua/surreal",
-  "version": "0.0.225",
+  "version": "0.0.226",
   "description": "Small description for @ascua/surreal goes here",
   "keywords": [
     "ember-addon"
@@ -24,7 +24,7 @@
     "broccoli-persistent-filter": "^3.1.2",
     "ember-cli-babel": "^7.26.6",
     "surreal.js": "^0.4.20",
-    "ws": "^8.2.2"
+    "ws": "^8.4.0"
   },
   "fastbootDependencies": [
     "ws"

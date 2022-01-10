@@ -1,6 +1,6 @@
 {
   "name": "@ascua/app",
-  "version": "0.0.225",
+  "version": "0.0.226",
   "description": "Small description for @ascua/app goes here",
   "repository": {
     "type": "git",
@@ -12,8 +12,8 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
-    "@electron/remote": "^2.0.0",
-    "electron-updater": "^4.3.9"
+    "@electron/remote": "^2.0.1",
+    "electron-updater": "^4.6.1"
   },
   "publishConfig": {
     "access": "public"

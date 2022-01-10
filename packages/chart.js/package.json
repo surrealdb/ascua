@@ -1,6 +1,6 @@
 {
   "name": "@ascua/chart.js",
-  "version": "0.0.225",
+  "version": "0.0.226",
   "description": "Small description for @ascua/chart.js goes here",
   "keywords": [
     "ember-addon"
@@ -17,7 +17,7 @@
   "dependencies": {
     "@ascua/modifiers": "file:../modifiers",
     "@ascua/transform": "file:../transform",
-    "chart.js": "^3.5.1",
+    "chart.js": "^3.7.0",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1"
   },
