@@ -18,7 +18,7 @@
     "@ascua/config": "file:../config",
     "@ascua/service": "file:../service",
     "builder-util": "^22.14.7",
-    "electron": "^17.1.0",
+    "electron": "17.1.0",
     "electron-builder": "^22.14.13",
     "electron-notarize": "^1.1.1",
     "electron-notarize-dmg": "^1.0.0",
