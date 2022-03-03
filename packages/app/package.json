@@ -12,8 +12,8 @@
     "url": "https://abcum.com"
   },
   "dependencies": {
-    "@electron/remote": "^2.0.1",
-    "electron-updater": "^4.6.1"
+    "@electron/remote": "^2.0.5",
+    "electron-updater": "^4.6.5"
   },
   "publishConfig": {
     "access": "public"
