@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "express": "^4.17.3",
-    "fastboot": "^3.2.0"
+    "fastboot": "^3.3.0"
   },
   "publishConfig": {
     "access": "public"
