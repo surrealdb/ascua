@@ -12,7 +12,14 @@ import { assert } from '@ember/debug';
 import { DestroyedError } from '@ascua/surreal/errors';
 import { RECORD } from '../model';
 
-const json = (v) => JSON.stringify(v);
+const json = (v) => {
+	try {
+		let o = JSON.parse(JSON.stringify(v));
+		return JSON.stringify(o, Object.keys(o).sort());
+	} catch (e) {
+		return JSON.stringify(v);
+	}
+}
 
 export default function(type) {
 	return Property({
