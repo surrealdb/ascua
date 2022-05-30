@@ -61,7 +61,7 @@ export default class extends Metric {
 
 		if (!window.mixpanel) return;
 
-		window.mixpanel('trackEvent', 'page viewed', data);
+		window.mixpanel.track('Page view', data);
 
 	}
 
@@ -71,7 +71,7 @@ export default class extends Metric {
 
 		assert(`You must pass a 'name' as the first argument to ${this.toString()}:trackEvent()`, name);
 
-		window.mixpanel('trackEvent', name, data);
+		window.mixpanel.track(name, data);
 
 	}
 
