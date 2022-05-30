@@ -61,7 +61,11 @@ export default class extends Metric {
 
 		if (!window.mixpanel) return;
 
-		window.mixpanel.track('Page view', data);
+		let event = Object.assign({}, data, {
+			Path: location.pathname,
+		});
+
+		window.mixpanel.track('Page view', event);
 
 	}
 
