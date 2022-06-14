@@ -102,14 +102,19 @@ export default function(type) {
 			if (this[RECORD].data[key] !== undefined) {
 				value.forEach( (v, k) => {
 					switch (true) {
-					case json(this[RECORD].data[key][k]) === json(v):
-						break;
-					case this[RECORD].data[key][k] !== undefined:
-						this[RECORD].data[key].replace(k, 1, [v]);
-						break;
-					case this[RECORD].data[key][k] === undefined:
-						this[RECORD].data[key].pushObject(v);
-						break;
+						case this[RECORD].data[key][k] === undefined: {
+							this[RECORD].data[key].pushObject(v);
+						}
+						case this[RECORD].data[key][k] !== undefined: {
+							switch (true) {
+							case this[RECORD].data[key][k].constructor == Object:
+								this[RECORD].data[key].replace(k, 1, [v]);
+								break;
+							case json(this[RECORD].data[key][k]) !== json(v):
+								this[RECORD].data[key].replace(k, 1, [v]);
+								break;
+							}
+						}
 					}
 				});
 				for (let i=this[RECORD].data[key].length; i>value.length; i--) {
