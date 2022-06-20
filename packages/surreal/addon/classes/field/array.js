@@ -107,7 +107,10 @@ export default function(type) {
 						}
 						case this[RECORD].data[key][k] !== undefined: {
 							switch (true) {
-							case this[RECORD].data[key][k].constructor == Object:
+							case this[RECORD].data[key][k] === null:
+								this[RECORD].data[key].replace(k, 1, [v]);
+								break;
+							case this[RECORD].data[key][k].constructor === Object:
 								this[RECORD].data[key].replace(k, 1, [v]);
 								break;
 							case json(this[RECORD].data[key][k]) !== json(v):
