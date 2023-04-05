@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { arg } from '@ascua/decorators';
 import Masonry from 'masonry.js';
@@ -6,6 +7,8 @@ import Masonry from 'masonry.js';
 export default class extends Component {
 
 	masonry = undefined;
+
+	@tracked observer = undefined;
 
 	@arg columnWidth = undefined;
 	@arg fitWidth = false;
@@ -18,9 +21,10 @@ export default class extends Component {
 	@arg stagger = 0;
 	@arg transitionDuration = 0;
 
-	observer = new MutationObserver(this.reload);
-
 	@action didCreate(element) {
+
+		this.observer = new MutationObserver(this.reload);
+
 		this.masonry = new Masonry(element, {
 			itemSelector: 'app-masonry-item',
 			columnWidth: this.columnWidth,
@@ -34,27 +38,45 @@ export default class extends Component {
 			stagger: this.stagger,
 			transitionDuration: this.transitionDuration,
 		});
+
 	}
 
 	@action didChange(element) {
+
+		if (!this.masonry) return;
+
 		this.masonry.reloadItems();
+
 		this.masonry.layout();
+
 	}
 
 	@action willDestroy() {
+
+		if (!this.masonry) return;
+
 		this.masonry.destroy();
+
 	}
 
 	@action didScroll(element) {
+
+		if (!this.masonry) return;
+
 		let el = element.target;
+
 		if (el.scrollHeight - el.scrollTop - el.offsetHeight < 1) {
 			if (typeof this.args.model.loadmore === 'function') {
 				this.args.model.loadmore(this.args.model.length);
 			}
 		}
+
 	}
 
 	@action reload(mutations) {
+
+		if (!this.masonry) return;
+
 		for (let mutation of mutations) {
 			if (mutation.type == 'childList') {
 				[].forEach.call(mutation.addedNodes, child => {
@@ -71,8 +93,11 @@ export default class extends Component {
 				})
 			}
 		}
+
 		this.masonry.reloadItems();
+
 		this.masonry.layout();
+
 	}
 
 }

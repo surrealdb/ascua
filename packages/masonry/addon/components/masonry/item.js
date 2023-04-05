@@ -4,16 +4,14 @@ import { action } from '@ember/object';
 
 export default class extends Component {
 
-	@tracked display = false;
-
 	@action didCreate(el) {
+
+		if (!this.args.observer) return;
 
 		this.args.observer.observe(el, {
 			childList: true,
 			subtree: true,
 		});
-
-		this.display = true;
 
 	}
 
