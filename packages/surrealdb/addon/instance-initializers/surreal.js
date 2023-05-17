@@ -1,8 +1,8 @@
 export default {
-	name: 'surreal',
+  name: 'surreal',
 
-	initialize(instance) {
-		// Instantiate the surreal service
-		instance.lookup('service:surreal');
-	},
+  initialize(instance) {
+    // Instantiate the surreal service
+    instance.lookup('service:surreal');
+  },
 };

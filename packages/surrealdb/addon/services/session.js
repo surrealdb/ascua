@@ -3,43 +3,43 @@ import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class Session extends Service {
-	#ok = null;
+  #ok = null;
 
-	@inject store;
+  @inject store;
 
-	@inject surreal;
+  @inject surreal;
 
-	@tracked model = {};
+  @tracked model = {};
 
-	constructor() {
-		super(...arguments);
+  constructor() {
+    super(...arguments);
 
-		this.ready = new Promise((r) => (this.#ok = r));
+    this.ready = new Promise((r) => (this.#ok = r));
 
-		// Reset the model data when invalidated
+    // Reset the model data when invalidated
 
-		this.surreal.on('invalidated', () => {
-			this.model = {};
-		});
+    this.surreal.on('invalidated', () => {
+      this.model = {};
+    });
 
-		// Reset the store data when invalidated
+    // Reset the store data when invalidated
 
-		this.surreal.on('invalidated', () => {
-			this.store.reset();
-		});
+    this.surreal.on('invalidated', () => {
+      this.store.reset();
+    });
 
-		// Start a new promise object when invalidated
+    // Start a new promise object when invalidated
 
-		this.surreal.on('invalidated', () => {
-			this.ready = new Promise((r) => (this.#ok = r));
-		});
+    this.surreal.on('invalidated', () => {
+      this.ready = new Promise((r) => (this.#ok = r));
+    });
 
-		// When authenticated
+    // When authenticated
 
-		this.surreal.on('authenticated', async () => {
-			let info = await this.surreal.info();
-			let sess = await this.store.inject(info);
-			this.#ok((this.model = sess));
-		});
-	}
+    this.surreal.on('authenticated', async () => {
+      let info = await this.surreal.info();
+      let sess = await this.store.inject(info);
+      this.#ok((this.model = sess));
+    });
+  }
 }

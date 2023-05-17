@@ -1,8 +1,8 @@
 export default {
-	name: 'session',
+  name: 'session',
 
-	initialize(instance) {
-		// Instantiate the session service
-		instance.lookup('service:session');
-	},
+  initialize(instance) {
+    // Instantiate the session service
+    instance.lookup('service:session');
+  },
 };

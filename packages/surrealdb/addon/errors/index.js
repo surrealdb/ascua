@@ -9,19 +9,19 @@ export const IndexError = Database.IndexError;
 export const TimerError = Database.TimerError;
 
 export class DestroyedError extends Error {
-	constructor() {
-		super();
-		this.name = 'DestroyedError';
-	}
+  constructor() {
+    super();
+    this.name = 'DestroyedError';
+  }
 }
 
 export default {
-	ServerError: Database.ServerError,
-	RecordError: Database.RecordError,
-	PermsError: Database.PermsError,
-	ExistError: Database.ExistError,
-	FieldError: Database.FieldError,
-	IndexError: Database.IndexError,
-	TimerError: Database.TimerError,
-	DestroyedError: DestroyedError,
+  ServerError: Database.ServerError,
+  RecordError: Database.RecordError,
+  PermsError: Database.PermsError,
+  ExistError: Database.ExistError,
+  FieldError: Database.FieldError,
+  IndexError: Database.IndexError,
+  TimerError: Database.TimerError,
+  DestroyedError: DestroyedError,
 };

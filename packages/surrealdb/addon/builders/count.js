@@ -1,21 +1,21 @@
 export default function (table, options = {}) {
-	let bits = [];
+  let bits = [];
 
-	let vars = options.param || {};
+  let vars = options.param || {};
 
-	vars.tb = table;
+  vars.tb = table;
 
-	bits.push('SELECT');
+  bits.push('SELECT');
 
-	bits.push('count(*) AS count');
+  bits.push('count(*) AS count');
 
-	bits.push('FROM table($tb)');
+  bits.push('FROM table($tb)');
 
-	if (options.where && options.where.length) {
-		bits.push(`WHERE ${options.where.join(' AND ')}`);
-	}
+  if (options.where && options.where.length) {
+    bits.push(`WHERE ${options.where.join(' AND ')}`);
+  }
 
-	bits.push(`GROUP BY all`);
+  bits.push(`GROUP BY all`);
 
-	return { text: bits.join(' '), vars };
+  return { text: bits.join(' '), vars };
 }

@@ -12,13 +12,13 @@ import readonly from './classes/field/readonly';
 export default Field;
 
 export {
-	any,
-	array,
-	boolean,
-	datetime,
-	number,
-	object,
-	record,
-	string,
-	readonly,
+  any,
+  array,
+  boolean,
+  datetime,
+  number,
+  object,
+  record,
+  string,
+  readonly,
 };

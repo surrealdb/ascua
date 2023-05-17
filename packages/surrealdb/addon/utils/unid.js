@@ -4,19 +4,19 @@ import test from './test';
 const persisted = test();
 
 export default function () {
-	if (persisted === false) {
-		return uniq(64);
-	}
+  if (persisted === false) {
+    return uniq(64);
+  }
 
-	if (persisted === true) {
-		let session = window.localStorage.getItem('session');
+  if (persisted === true) {
+    let session = window.localStorage.getItem('session');
 
-		if (session === null || session.length != 64) {
-			session = uniq(64);
-		}
+    if (session === null || session.length != 64) {
+      session = uniq(64);
+    }
 
-		window.localStorage.setItem('session', session);
+    window.localStorage.setItem('session', session);
 
-		return session;
-	}
+    return session;
+  }
 }
