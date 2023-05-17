@@ -1,13 +1,12 @@
 import md5 from '../utils/md5';
 
-export default function(table, options={}) {
-
+export default function (table, options = {}) {
 	let bits = [];
 
 	bits.push('SELECT');
 
 	if (options.field) {
-		bits.push( options.field.join(', ') );
+		bits.push(options.field.join(', '));
 	} else {
 		bits.push('*');
 	}
@@ -45,11 +44,10 @@ export default function(table, options={}) {
 	let sql = bits.join(' ');
 
 	if (options.param) {
-		Object.keys(options.param).forEach(k => {
+		Object.keys(options.param).forEach((k) => {
 			sql = sql.replace(`$${k}`, JSON.stringify(options.param[k]));
 		});
 	}
 
 	return md5(sql);
-
 }

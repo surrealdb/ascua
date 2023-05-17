@@ -1,11 +1,10 @@
 import Array from './array';
 
 export default class Cache {
-
 	#data = {};
 
 	get(model) {
-		return this.#data[model] = this.#data[model] || new Array();
+		return (this.#data[model] = this.#data[model] || new Array());
 	}
 
 	del(model) {
@@ -17,5 +16,4 @@ export default class Cache {
 			this.del(k);
 		}
 	}
-
 }

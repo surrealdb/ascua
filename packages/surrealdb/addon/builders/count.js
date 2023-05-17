@@ -1,5 +1,4 @@
-export default function(table, options={}) {
-
+export default function (table, options = {}) {
 	let bits = [];
 
 	let vars = options.param || {};
@@ -19,5 +18,4 @@ export default function(table, options={}) {
 	bits.push(`GROUP BY all`);
 
 	return { text: bits.join(' '), vars };
-
 }

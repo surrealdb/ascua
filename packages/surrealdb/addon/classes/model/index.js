@@ -9,13 +9,12 @@ import Diff from '../dmp/diff';
 import meta from '../meta';
 import json from '../../utils/json';
 
-export const RECORD = Symbol("RECORD");
-export const LOADED = Symbol("LOADED");
-export const LOADING = Symbol("LOADING");
-export const DELETED = Symbol("DELETED");
+export const RECORD = Symbol('RECORD');
+export const LOADED = Symbol('LOADED');
+export const LOADING = Symbol('LOADING');
+export const DELETED = Symbol('DELETED');
 
 export default class Model {
-
 	// ------------------------------
 	// Static methods
 	// ------------------------------
@@ -58,7 +57,7 @@ export default class Model {
 	[RECORD] = {
 		@tracked data: {},
 		@tracked state: LOADED,
-	}
+	};
 
 	// The `tb` property can be used
 	// to retrieve the actual table
@@ -222,7 +221,6 @@ export default class Model {
 	 */
 
 	rollback() {
-
 		// Set state to LOADING
 		this[RECORD].state = LOADING;
 
@@ -239,7 +237,6 @@ export default class Model {
 
 		// Set state to LOADED
 		this[RECORD].state = LOADED;
-
 	}
 
 	/**
@@ -250,7 +247,6 @@ export default class Model {
 	 */
 
 	ingest(data) {
-
 		// Set state to LOADING
 		this[RECORD].state = LOADING;
 
@@ -278,7 +274,6 @@ export default class Model {
 		if (changes.length) {
 			this.autosave();
 		}
-
 	}
 
 	/**
@@ -338,5 +333,4 @@ export default class Model {
 			this[RECORD].state = DELETED;
 		}
 	}
-
 }

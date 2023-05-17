@@ -1,7 +1,7 @@
-export default function() {
+export default function () {
 	try {
-		if (!window.localStorage) throw "exception";
-		if (!window.sessionStorage) throw "exception";
+		if (!window.localStorage) throw 'exception';
+		if (!window.sessionStorage) throw 'exception';
 		localStorage.setItem('test', 'OK');
 		localStorage.removeItem('test');
 		return true;

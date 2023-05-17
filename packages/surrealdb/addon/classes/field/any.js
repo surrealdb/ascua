@@ -7,6 +7,6 @@ export default Property({
 		return Any(this[RECORD].data[key]);
 	},
 	set(key, value) {
-		return this[RECORD].data[key] = Any(value);
+		return (this[RECORD].data[key] = Any(value));
 	},
 });

@@ -19,7 +19,6 @@ const defaults = {
 };
 
 export default class Surreal extends Service {
-
 	@inject store;
 
 	// The localStorage proxy class
@@ -83,7 +82,6 @@ export default class Surreal extends Service {
 	// and connecting to the DB.
 
 	constructor() {
-
 		super(...arguments);
 
 		// Listen for changes to the local storage
@@ -91,7 +89,7 @@ export default class Surreal extends Service {
 		// if the token changes from another tab.
 
 		if (window && window.addEventListener) {
-			window.addEventListener('storage', e => {
+			window.addEventListener('storage', (e) => {
 				if (e.key === 'surreal') {
 					this.authenticate(e.newValue);
 				}
@@ -150,18 +148,16 @@ export default class Surreal extends Service {
 		// then it is a query response.
 
 		this.#db.on('notify', (e) => {
-
 			this.emit(e.action, e.result);
 
 			switch (e.action) {
-			case 'CREATE':
-				return this.store.inject(e.result);
-			case 'UPDATE':
-				return this.store.inject(e.result);
-			case 'DELETE':
-				return this.store.remove(e.result);
+				case 'CREATE':
+					return this.store.inject(e.result);
+				case 'UPDATE':
+					return this.store.inject(e.result);
+				case 'DELETE':
+					return this.store.remove(e.result);
 			}
-
 		});
 
 		// Get the configuration options
@@ -172,12 +168,12 @@ export default class Surreal extends Service {
 
 		assert(
 			'Set the `surreal.ns` property in your environment config as a string',
-			this.#config.ns !== undefined || this.#config.NS !== undefined,
+			this.#config.ns !== undefined || this.#config.NS !== undefined
 		);
 
 		assert(
 			'Set the `surreal.db` property in your environment config as a string',
-			this.#config.db !== undefined || this.#config.DB !== undefined,
+			this.#config.db !== undefined || this.#config.DB !== undefined
 		);
 
 		// Open the websocket for the first
@@ -191,7 +187,6 @@ export default class Surreal extends Service {
 		// attempt to reconnect on failure.
 
 		this.#db.connect(this.#config.url, this.#config);
-
 	}
 
 	// Tear down the Surreal service,
@@ -199,7 +194,6 @@ export default class Surreal extends Service {
 	// and close the WebSocket.
 
 	willDestroy() {
-
 		this.#db.close();
 
 		this.removeAllListeners();
@@ -207,7 +201,6 @@ export default class Surreal extends Service {
 		this.#db.removeAllListeners();
 
 		super.willDestroy(...arguments);
-
 	}
 
 	// --------------------------------------------------
@@ -369,5 +362,4 @@ export default class Surreal extends Service {
 			return Promise.resolve();
 		}
 	}
-
 }

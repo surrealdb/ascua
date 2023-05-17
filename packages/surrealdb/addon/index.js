@@ -5,11 +5,4 @@ import attempted from './decorators/attempted';
 import invalidated from './decorators/invalidated';
 import authenticated from './decorators/authenticated';
 
-export {
-	opened,
-	signout,
-	autosave,
-	attempted,
-	invalidated,
-	authenticated,
-}
+export { opened, signout, autosave, attempted, invalidated, authenticated };

@@ -1,8 +1,11 @@
 import Ember from 'ember';
 import { get, set } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-const { combine, updateTag, tagFor, tagMetaFor } = Ember.__loader.require('@glimmer/validator');
-const { CUSTOM_TAG_FOR, tagForObject, tagForProperty } = Ember.__loader.require('@ember/-internals/metal');
+const { combine, updateTag, tagFor, tagMetaFor } =
+	Ember.__loader.require('@glimmer/validator');
+const { CUSTOM_TAG_FOR, tagForObject, tagForProperty } = Ember.__loader.require(
+	'@ember/-internals/metal'
+);
 
 // https://github.com/emberjs/ember.js/blob/master/packages/%40ember/-internals/runtime/lib/mixins/-proxy.js
 
@@ -13,38 +16,36 @@ export function contentFor(proxy) {
 }
 
 export default class Remote {
-
 	static initiate(data) {
-
 		return new Proxy(new Remote(data), {
 			get(target, key) {
 				switch (true) {
-				case key in target && typeof target[key] === 'function':
-					return target[key].bind(target);
-				case typeof key === 'symbol':
-					return target[key];
-				case key in target:
-					return target[key];
-				case target.content && typeof target.content[key] === 'function':
-					return target.content[key].bind(target.content);
-				default:
-					target.setup();
-					return get(target, `content.${key}`);
+					case key in target && typeof target[key] === 'function':
+						return target[key].bind(target);
+					case typeof key === 'symbol':
+						return target[key];
+					case key in target:
+						return target[key];
+					case target.content &&
+						typeof target.content[key] === 'function':
+						return target.content[key].bind(target.content);
+					default:
+						target.setup();
+						return get(target, `content.${key}`);
 				}
 			},
 			set(target, key, val) {
 				switch (true) {
-				case key in target:
-					target[key] = val;
-					return true;
-				default:
-					target.setup();
-					set(target, `content.${key}`, val);
-					return true;
+					case key in target:
+						target[key] = val;
+						return true;
+					default:
+						target.setup();
+						set(target, `content.${key}`, val);
+						return true;
 				}
-			}
+			},
 		});
-
 	}
 
 	#id = undefined;
@@ -87,23 +88,27 @@ export default class Remote {
 
 	then() {
 		this.setup();
-		return Promise.resolve(this.#promise || this.#content).then(...arguments);
+		return Promise.resolve(this.#promise || this.#content).then(
+			...arguments
+		);
 	}
 
 	catch() {
 		this.setup();
-		return Promise.resolve(this.#promise || this.#content).catch(...arguments);
+		return Promise.resolve(this.#promise || this.#content).catch(
+			...arguments
+		);
 	}
 
 	finally() {
 		this.setup();
-		return Promise.resolve(this.#promise || this.#content).finally(...arguments);
+		return Promise.resolve(this.#promise || this.#content).finally(
+			...arguments
+		);
 	}
 
 	setup() {
-
 		if (this.#promise && this.#promise instanceof Function) {
-
 			this.#promise = this.#promise();
 
 			Promise.resolve(this.#promise).then(
@@ -114,11 +119,8 @@ export default class Remote {
 				(failure) => {
 					this.failure = failure;
 					throw failure;
-				},
+				}
 			);
-
 		}
-
 	}
-
 }

@@ -19,182 +19,247 @@ const json = (v) => {
 	} catch (e) {
 		return JSON.stringify(v);
 	}
-}
+};
 
-export default function(type) {
+export default function (type) {
 	return Property({
 		get(key) {
-
 			switch (type) {
-			case undefined:
-				return this[RECORD].data[key] = this[RECORD].data[key] || Array.create(this, Any);
-			case 'string':
-				return this[RECORD].data[key] = this[RECORD].data[key] || Array.create(this, String);
-			case 'number':
-				return this[RECORD].data[key] = this[RECORD].data[key] || Array.create(this, Number);
-			case 'boolean':
-				return this[RECORD].data[key] = this[RECORD].data[key] || Array.create(this, Boolean);
-			case 'datetime':
-				return this[RECORD].data[key] = this[RECORD].data[key] || Array.create(this, Datetime);
-			default:
+				case undefined:
+					return (this[RECORD].data[key] =
+						this[RECORD].data[key] || Array.create(this, Any));
+				case 'string':
+					return (this[RECORD].data[key] =
+						this[RECORD].data[key] || Array.create(this, String));
+				case 'number':
+					return (this[RECORD].data[key] =
+						this[RECORD].data[key] || Array.create(this, Number));
+				case 'boolean':
+					return (this[RECORD].data[key] =
+						this[RECORD].data[key] || Array.create(this, Boolean));
+				case 'datetime':
+					return (this[RECORD].data[key] =
+						this[RECORD].data[key] || Array.create(this, Datetime));
+				default:
+					let value = this[RECORD].data[key] || [];
 
-				let value = this[RECORD].data[key] || [];
+					try {
+						let model = this.store.lookup(type);
 
-				try {
+						if (model && model.class.prototype instanceof Field) {
+							return (this[RECORD].data[key] =
+								this[RECORD].data[key] ||
+								Array.create(
+									this,
+									(v) => {
+										return model.create({
+											...v,
+											parent: this,
+										});
+									},
+									...value
+								));
+						}
 
-					let model = this.store.lookup(type);
+						if (model && model.class.prototype instanceof Model) {
+							return (this[RECORD].data[key] =
+								this[RECORD].data[key] ||
+								Array.create(
+									this,
+									(v) => {
+										switch (true) {
+											case v === null:
+												return v;
+											case v === undefined:
+												return v;
+											case v instanceof Record:
+												return v;
+											case v instanceof Model:
+												return this.store.proxy({
+													id: v.id,
+													content: v,
+												});
+											case v instanceof Object:
+												return this.store.proxy({
+													id: v.id,
+													content:
+														this.store.inject(v),
+												});
+											default:
+												let cached = this.store.cached(
+													type,
+													v
+												);
+												if (cached) {
+													return this.store.proxy({
+														id: v,
+														content: cached,
+													});
+												} else {
+													return this.store.proxy({
+														id: v,
+														promise: () =>
+															this.store.select(
+																type,
+																v
+															),
+													});
+												}
+										}
+									},
+									...value
+								));
+						}
 
-					if (model && model.class.prototype instanceof Field) {
-						return this[RECORD].data[key] = this[RECORD].data[key] || Array.create(this, (v) => {
-							return model.create({ ...v, parent: this });
-						}, ...value);
+						assert(
+							'An embedded object must be of type Model or Field'
+						);
+					} catch (e) {
+						if (e instanceof DestroyedError) {
+							// ignore
+						} else {
+							throw e;
+						}
 					}
-
-					if (model && model.class.prototype instanceof Model) {
-						return this[RECORD].data[key] = this[RECORD].data[key] || Array.create(this, (v) => {
-							switch (true) {
-							case v === null:
-								return v;
-							case v === undefined:
-								return v;
-							case v instanceof Record:
-								return v;
-							case v instanceof Model:
-								return this.store.proxy({
-									id: v.id, content: v
-								});
-							case v instanceof Object:
-								return this.store.proxy({
-									id: v.id, content: this.store.inject(v)
-								});
-							default:
-								let cached = this.store.cached(type, v);
-								if (cached) {
-									return this.store.proxy({
-										id: v, content: cached,
-									});
-								} else {
-									return this.store.proxy({
-										id: v, promise: () => this.store.select(type, v)
-									});
-								}
-							}
-						}, ...value);
-					}
-
-					assert('An embedded object must be of type Model or Field');
-
-				} catch (e) {
-
-					if (e instanceof DestroyedError) {
-						// ignore
-					} else {
-						throw e;
-					}
-
-				}
-
 			}
-
 		},
-		set(key, value=[]) {
-
+		set(key, value = []) {
 			if (this[RECORD].data[key] !== undefined) {
-				value.forEach( (v, k) => {
+				value.forEach((v, k) => {
 					switch (true) {
 						case this[RECORD].data[key][k] === undefined: {
 							this[RECORD].data[key].pushObject(v);
 						}
 						case this[RECORD].data[key][k] !== undefined: {
 							switch (true) {
-							case this[RECORD].data[key][k] === null:
-								this[RECORD].data[key].replace(k, 1, [v]);
-								break;
-							case this[RECORD].data[key][k].constructor === Object:
-								this[RECORD].data[key].replace(k, 1, [v]);
-								break;
-							case json(this[RECORD].data[key][k]) !== json(v):
-								this[RECORD].data[key].replace(k, 1, [v]);
-								break;
+								case this[RECORD].data[key][k] === null:
+									this[RECORD].data[key].replace(k, 1, [v]);
+									break;
+								case this[RECORD].data[key][k].constructor ===
+									Object:
+									this[RECORD].data[key].replace(k, 1, [v]);
+									break;
+								case json(this[RECORD].data[key][k]) !==
+									json(v):
+									this[RECORD].data[key].replace(k, 1, [v]);
+									break;
 							}
 						}
 					}
 				});
-				for (let i=this[RECORD].data[key].length; i>value.length; i--) {
+				for (
+					let i = this[RECORD].data[key].length;
+					i > value.length;
+					i--
+				) {
 					this[RECORD].data[key].popObject();
 				}
 				return this[RECORD].data[key];
 			}
 
 			switch (type) {
-			case undefined:
-				return this[RECORD].data[key] = Array.create(this, Any, ...value);
-			case 'string':
-				return this[RECORD].data[key] = Array.create(this, String, ...value);
-			case 'number':
-				return this[RECORD].data[key] = Array.create(this, Number, ...value);
-			case 'boolean':
-				return this[RECORD].data[key] = Array.create(this, Boolean, ...value);
-			case 'datetime':
-				return this[RECORD].data[key] = Array.create(this, Datetime, ...value);
-			default:
+				case undefined:
+					return (this[RECORD].data[key] = Array.create(
+						this,
+						Any,
+						...value
+					));
+				case 'string':
+					return (this[RECORD].data[key] = Array.create(
+						this,
+						String,
+						...value
+					));
+				case 'number':
+					return (this[RECORD].data[key] = Array.create(
+						this,
+						Number,
+						...value
+					));
+				case 'boolean':
+					return (this[RECORD].data[key] = Array.create(
+						this,
+						Boolean,
+						...value
+					));
+				case 'datetime':
+					return (this[RECORD].data[key] = Array.create(
+						this,
+						Datetime,
+						...value
+					));
+				default:
+					try {
+						let model = this.store.lookup(type);
 
-				try {
+						if (model && model.class.prototype instanceof Field) {
+							return (this[RECORD].data[key] = Array.create(
+								this,
+								(v) => {
+									return model.create({ ...v, parent: this });
+								},
+								...value
+							));
+						}
 
-					let model = this.store.lookup(type);
+						if (model && model.class.prototype instanceof Model) {
+							return (this[RECORD].data[key] = Array.create(
+								this,
+								(v) => {
+									switch (true) {
+										case v === null:
+											return v;
+										case v === undefined:
+											return v;
+										case v instanceof Record:
+											return v;
+										case v instanceof Model:
+											return this.store.proxy({
+												id: v.id,
+												content: v,
+											});
+										case v instanceof Object:
+											return this.store.proxy({
+												id: v.id,
+												content: this.store.inject(v),
+											});
+										default:
+											let cached = this.store.cached(
+												type,
+												v
+											);
+											if (cached) {
+												return this.store.proxy({
+													id: v,
+													content: cached,
+												});
+											} else {
+												return this.store.proxy({
+													id: v,
+													promise: () =>
+														this.store.select(
+															type,
+															v
+														),
+												});
+											}
+									}
+								},
+								...value
+							));
+						}
 
-					if (model && model.class.prototype instanceof Field) {
-						return this[RECORD].data[key] = Array.create(this, (v) => {
-							return model.create({ ...v, parent: this });
-						}, ...value);
+						assert(
+							'An embedded object must be of type Model or Field'
+						);
+					} catch (e) {
+						if (e instanceof DestroyedError) {
+							// ignore
+						} else {
+							throw e;
+						}
 					}
-
-					if (model && model.class.prototype instanceof Model) {
-						return this[RECORD].data[key] = Array.create(this, (v) => {
-							switch (true) {
-							case v === null:
-								return v;
-							case v === undefined:
-								return v;
-							case v instanceof Record:
-								return v;
-							case v instanceof Model:
-								return this.store.proxy({
-									id: v.id, content: v
-								});
-							case v instanceof Object:
-								return this.store.proxy({
-									id: v.id, content: this.store.inject(v)
-								});
-							default:
-								let cached = this.store.cached(type, v);
-								if (cached) {
-									return this.store.proxy({
-										id: v, content: cached,
-									});
-								} else {
-									return this.store.proxy({
-										id: v, promise: () => this.store.select(type, v)
-									});
-								}
-							}
-						}, ...value);
-					}
-
-					assert('An embedded object must be of type Model or Field');
-
-				} catch (e) {
-
-					if (e instanceof DestroyedError) {
-						// ignore
-					} else {
-						throw e;
-					}
-
-				}
-
 			}
-
 		},
 	});
 }

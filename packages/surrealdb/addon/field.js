@@ -21,4 +21,4 @@ export {
 	record,
 	string,
 	readonly,
-}
+};

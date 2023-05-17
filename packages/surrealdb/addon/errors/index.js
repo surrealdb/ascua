@@ -11,7 +11,7 @@ export const TimerError = Database.TimerError;
 export class DestroyedError extends Error {
 	constructor() {
 		super();
-		this.name = "DestroyedError";
+		this.name = 'DestroyedError';
 	}
 }
 
@@ -24,4 +24,4 @@ export default {
 	IndexError: Database.IndexError,
 	TimerError: Database.TimerError,
 	DestroyedError: DestroyedError,
-}
+};

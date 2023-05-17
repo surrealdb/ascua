@@ -7,6 +7,6 @@ export default Property({
 		return Boolean(this[RECORD].data[key]);
 	},
 	set(key, value) {
-		return this[RECORD].data[key] = Boolean(value);
+		return (this[RECORD].data[key] = Boolean(value));
 	},
 });

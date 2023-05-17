@@ -1,5 +1,4 @@
-export default function(table, options={}) {
-
+export default function (table, options = {}) {
 	let bits = [];
 
 	let vars = options.param || {};
@@ -9,7 +8,7 @@ export default function(table, options={}) {
 	bits.push('SELECT');
 
 	if (options.field) {
-		bits.push( options.field.join(', ') );
+		bits.push(options.field.join(', '));
 	} else {
 		bits.push('*');
 	}
@@ -48,5 +47,4 @@ export default function(table, options={}) {
 	}
 
 	return { text: bits.join(' '), vars };
-
 }

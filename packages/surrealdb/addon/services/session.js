@@ -3,7 +3,6 @@ import { inject } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class Session extends Service {
-
 	#ok = null;
 
 	@inject store;
@@ -13,10 +12,9 @@ export default class Session extends Service {
 	@tracked model = {};
 
 	constructor() {
-
 		super(...arguments);
 
-		this.ready = new Promise(r => this.#ok = r);
+		this.ready = new Promise((r) => (this.#ok = r));
 
 		// Reset the model data when invalidated
 
@@ -33,7 +31,7 @@ export default class Session extends Service {
 		// Start a new promise object when invalidated
 
 		this.surreal.on('invalidated', () => {
-			this.ready = new Promise(r => this.#ok = r);
+			this.ready = new Promise((r) => (this.#ok = r));
 		});
 
 		// When authenticated
@@ -41,9 +39,7 @@ export default class Session extends Service {
 		this.surreal.on('authenticated', async () => {
 			let info = await this.surreal.info();
 			let sess = await this.store.inject(info);
-			this.#ok(this.model = sess);
+			this.#ok((this.model = sess));
 		});
-
 	}
-
 }

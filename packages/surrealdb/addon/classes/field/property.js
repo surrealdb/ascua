@@ -3,9 +3,8 @@ import { RECORD } from '../model';
 
 const json = (v) => JSON.stringify(v);
 
-export default function(obj) {
-	return function(target, key, desc) {
-
+export default function (obj) {
+	return function (target, key, desc) {
 		meta.set(target, key);
 
 		return {
@@ -16,7 +15,6 @@ export default function(obj) {
 				return obj.get.apply(this, [key]);
 			},
 			set(value) {
-
 				let old = json(this[RECORD].data[key]);
 				let val = obj.set.apply(this, [key, value]);
 				let now = json(val);
@@ -27,9 +25,7 @@ export default function(obj) {
 				}
 
 				return val;
-
 			},
-		}
-
-	}
+		};
+	};
 }

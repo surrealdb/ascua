@@ -7,7 +7,6 @@ import json from '../../utils/json';
 import { RECORD } from '../model';
 
 export default class Field {
-
 	// ------------------------------
 	// Static methods
 	// ------------------------------
@@ -27,7 +26,7 @@ export default class Field {
 	// The current underlying record state
 	[RECORD] = {
 		@tracked data: {},
-	}
+	};
 
 	// The `parent` property can be used
 	// to retrieve the underlying parent
@@ -91,5 +90,4 @@ export default class Field {
 	autosave() {
 		return this.#parent && this.#parent.autosave();
 	}
-
 }

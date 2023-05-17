@@ -1,7 +1,6 @@
 const func = (v) => v;
 
 export default class RecordArray extends Array {
-
 	static create(owner, type = func, ...values) {
 		let v = values.map(type);
 		let a = new this(...v);
@@ -14,34 +13,34 @@ export default class RecordArray extends Array {
 				let val = Reflect.set(...arguments);
 				if (owner) owner.autosave();
 				return val;
-			}
+			},
 		});
 	}
 
 	type = func;
 
 	addObject(value) {
-		return super.addObject( this.type(value) );
+		return super.addObject(this.type(value));
 	}
 
 	addObjects(values) {
-		return super.addObjects( [].concat(values).map(this.type) );
+		return super.addObjects([].concat(values).map(this.type));
 	}
 
 	pushObject(value) {
-		return super.pushObject( this.type(value) );
+		return super.pushObject(this.type(value));
 	}
 
 	pushObjects(values) {
-		return super.pushObjects( [].concat(values).map(this.type) );
+		return super.pushObjects([].concat(values).map(this.type));
 	}
 
 	setObjects(values) {
-		return super.setObjects( [].concat(values).map(this.type) );
+		return super.setObjects([].concat(values).map(this.type));
 	}
 
 	replace(idx, count, values) {
-		return super.replace(idx, count, [].concat(values).map(this.type) );
+		return super.replace(idx, count, [].concat(values).map(this.type));
 	}
 
 	then() {
@@ -55,5 +54,4 @@ export default class RecordArray extends Array {
 	finally() {
 		return Promise.all(this).finally(...arguments);
 	}
-
 }

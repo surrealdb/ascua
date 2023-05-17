@@ -4,9 +4,6 @@ import table from './table';
 export default {
 	count,
 	table,
-}
+};
 
-export {
-	count,
-	table,
-}
+export { count, table };

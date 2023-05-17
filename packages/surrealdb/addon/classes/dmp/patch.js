@@ -43,25 +43,18 @@ function delByPath(obj, path) {
 }
 
 export default class Patch {
-
-	constructor(old={}, ops=[]) {
-
+	constructor(old = {}, ops = []) {
 		this.obj = old;
 
 		this.pch(ops);
-
 	}
 
 	output() {
-
 		return this.obj;
-
 	}
 
-	pch(ops=[]) {
-
-		ops.forEach(v => {
-
+	pch(ops = []) {
+		ops.forEach((v) => {
 			let p = v.path.split('/').join('.').slice(1);
 
 			switch (v.op) {
@@ -83,9 +76,6 @@ export default class Patch {
 					return;
 				}
 			}
-
 		});
-
 	}
-
 }

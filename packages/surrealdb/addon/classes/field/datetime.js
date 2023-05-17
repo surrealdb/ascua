@@ -7,6 +7,6 @@ export default Property({
 		return Datetime(this[RECORD].data[key]);
 	},
 	set(key, value) {
-		return this[RECORD].data[key] = Datetime(value);
+		return (this[RECORD].data[key] = Datetime(value));
 	},
 });

@@ -7,6 +7,6 @@ export default Property({
 		return String(this[RECORD].data[key]);
 	},
 	set(key, value) {
-		return this[RECORD].data[key] = String(value);
+		return (this[RECORD].data[key] = String(value));
 	},
 });

@@ -2,22 +2,23 @@ import Route from '@ember/routing/route';
 import { assert } from '@ember/debug';
 import { inject } from '@ember/service';
 
-export default function(target) {
+export default function (target) {
 	assert(
 		'The @authenticated decorator can only be applied to a Route',
-		!target || (target && target.prototype instanceof Route),
+		!target || (target && target.prototype instanceof Route)
 	);
-	return target ? func(target) : (target) => {
-		assert(
-			'The @authenticated decorator can only be applied to a Route',
-			target && target.prototype instanceof Route,
-		);
-		return func(target)
-	};
+	return target
+		? func(target)
+		: (target) => {
+				assert(
+					'The @authenticated decorator can only be applied to a Route',
+					target && target.prototype instanceof Route
+				);
+				return func(target);
+		  };
 }
 
 function func(target) {
-
 	let enter = target.prototype.activate;
 
 	let leave = target.prototype.deactivate;
@@ -25,7 +26,6 @@ function func(target) {
 	let before = target.prototype.beforeModel;
 
 	target.reopen({
-
 		surreal: inject(),
 
 		session: inject(),
@@ -56,12 +56,10 @@ function func(target) {
 				return this.replaceWith(this.redirectIfInvalidated);
 			}
 			// Wait for session identification.
-			return this.session.ready.then( () => {
+			return this.session.ready.then(() => {
 				// Continue with original hook.
 				return before.apply(this, ...arguments);
 			});
 		},
-
 	});
-
 }

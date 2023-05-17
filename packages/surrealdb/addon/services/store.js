@@ -4,14 +4,13 @@ import { inject } from '@ember/service';
 import { getOwner } from '@ember/application';
 import { assert } from '@ember/debug';
 import Model from '@ascua/surrealdb/model';
-import count from "../builders/count";
-import table from "../builders/table";
-import hasher from "../builders/hasher";
+import count from '../builders/count';
+import table from '../builders/table';
+import hasher from '../builders/hasher';
 import Record from '../classes/types/record';
 import { DestroyedError } from '../errors';
 
 export default class Store extends Service {
-
 	@inject surreal;
 
 	#cache = new Cache(); // Record cache
@@ -27,11 +26,9 @@ export default class Store extends Service {
 	}
 
 	constructor() {
-
 		super(...arguments);
 
 		if (this.fastboot) {
-
 			if (this.fastboot.isFastBoot === true) {
 				this.fastboot.shoebox.put('surreal', this.#stash);
 			}
@@ -39,9 +36,7 @@ export default class Store extends Service {
 			if (this.fastboot.isFastBoot === false) {
 				this.#stash = this.fastboot.shoebox.retrieve('surreal') || {};
 			}
-
 		}
-
 	}
 
 	/**
@@ -89,8 +84,8 @@ export default class Store extends Service {
 				class: found.class,
 				create() {
 					return found.class.create(owner, ...arguments);
-				}
-			}
+				},
+			};
 		}
 	}
 
@@ -104,7 +99,7 @@ export default class Store extends Service {
 		if (this.#proxy[data.id]) {
 			return this.#proxy[data.id];
 		}
-		return this.#proxy[data.id] = Record.initiate(data);
+		return (this.#proxy[data.id] = Record.initiate(data));
 	}
 
 	/**
@@ -146,15 +141,15 @@ export default class Store extends Service {
 	 */
 
 	inject(items) {
-
-		let records = [].concat(items).map(item => {
-
+		let records = [].concat(items).map((item) => {
 			try {
-
 				let cached = this.cached(item.meta.tb, item.id);
 
 				if (cached === undefined) {
-					cached = this.lookup(item.meta.tb).create({ id: item.id, meta: item.meta });
+					cached = this.lookup(item.meta.tb).create({
+						id: item.id,
+						meta: item.meta,
+					});
 					this.#cache.get(item.meta.tb).addObject(cached);
 					cached.ingest(item);
 				} else {
@@ -162,21 +157,16 @@ export default class Store extends Service {
 				}
 
 				return cached;
-
 			} catch (e) {
-
 				if (e instanceof DestroyedError) {
 					// ignore
 				} else {
 					throw e;
 				}
-
 			}
-
 		});
 
 		return Array.isArray(items) ? records : records[0];
-
 	}
 
 	/**
@@ -188,17 +178,13 @@ export default class Store extends Service {
 	 */
 
 	remove(ids) {
-
-		return [].concat(ids).map(id => {
-
+		return [].concat(ids).map((id) => {
 			let model = id.split(':')[0];
 
 			this.cached(model, id).remove();
 
 			this.unload(model, id);
-
 		});
-
 	}
 
 	/**
@@ -214,23 +200,17 @@ export default class Store extends Service {
 	 */
 
 	unload(model, id) {
-
 		assert('The model type must be a string', typeof model === 'string');
 
 		if (id !== undefined) {
-
 			if (Array.isArray(id)) {
-				return this.#cache.get(model).remove( v => id.includes(v) );
+				return this.#cache.get(model).remove((v) => id.includes(v));
 			} else {
 				return this.#cache.get(model).removeBy('id', id);
 			}
-
 		} else {
-
 			return this.#cache.get(model).clear();
-
 		}
-
 	}
 
 	/**
@@ -246,23 +226,17 @@ export default class Store extends Service {
 	 */
 
 	cached(model, id) {
-
 		assert('The model type must be a string', typeof model === 'string');
 
 		if (id !== undefined) {
-
 			if (Array.isArray(id)) {
-				return this.#cache.get(model).filter( v => id.includes(v) );
+				return this.#cache.get(model).filter((v) => id.includes(v));
 			} else {
 				return this.#cache.get(model).findBy('id', id);
 			}
-
 		} else {
-
 			return this.#cache.get(model);
-
 		}
-
 	}
 
 	/**
@@ -280,31 +254,31 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the desired records.
 	 */
 
-	select(model, id, opts={}) {
-
+	select(model, id, opts = {}) {
 		assert('The model type must be a string', typeof model === 'string');
 
 		opts = Object.assign({}, { reload: false }, opts);
 
-		if (this.#stack[id||model] === undefined) {
-
+		if (this.#stack[id || model] === undefined) {
 			let cached = this.cached(model, id);
 
 			switch (true) {
-			case cached !== undefined && cached.length !== 0 && opts.reload !== true:
-				return cached;
-			case cached === undefined || cached.length === 0 || opts.reload === true:
-				this.#stack[id||model] = this.remote(model, id, opts);
-				return this.#stack[id||model].then(result => {
-					delete this.#stack[id||model];
-					return result;
-				});
+				case cached !== undefined &&
+					cached.length !== 0 &&
+					opts.reload !== true:
+					return cached;
+				case cached === undefined ||
+					cached.length === 0 ||
+					opts.reload === true:
+					this.#stack[id || model] = this.remote(model, id, opts);
+					return this.#stack[id || model].then((result) => {
+						delete this.#stack[id || model];
+						return result;
+					});
 			}
-
 		}
 
-		return this.#stack[id||model];
-
+		return this.#stack[id || model];
 	}
 
 	/**
@@ -321,20 +295,18 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the desired records.
 	 */
 
-	async remote(model, id, opts={}) {
-
+	async remote(model, id, opts = {}) {
 		assert('The model type must be a string', typeof model === 'string');
 
-		if (this.#stash[id||model] !== undefined) {
-			let server = await this.#stash[id||model];
-			delete this.#stash[id||model];
+		if (this.#stash[id || model] !== undefined) {
+			let server = await this.#stash[id || model];
+			delete this.#stash[id || model];
 			return this.inject(server);
 		} else {
 			let server = await this.surreal.select(model, id);
-			if (opts.shoebox) this.#stash[id||model] = server;
+			if (opts.shoebox) this.#stash[id || model] = server;
 			return this.inject(server);
 		}
-
 	}
 
 	/**
@@ -350,11 +322,9 @@ export default class Store extends Service {
 	 */
 
 	async create(model, id, data) {
-
 		assert('The model type must be a string', typeof model === 'string');
 
 		try {
-
 			if (arguments.length === 2) {
 				[id, data] = [undefined, id];
 			}
@@ -362,17 +332,13 @@ export default class Store extends Service {
 			let record = this.lookup(model).create(data);
 			let server = await this.surreal.create(model, id, record.json);
 			return this.inject(server);
-
 		} catch (e) {
-
 			if (e instanceof DestroyedError) {
 				// ignore
 			} else {
 				throw e;
 			}
-
 		}
-
 	}
 
 	/**
@@ -386,23 +352,20 @@ export default class Store extends Service {
 	 */
 
 	async modify(record, diff) {
-
-		assert('You must pass a record to be modified', record instanceof Model);
+		assert(
+			'You must pass a record to be modified',
+			record instanceof Model
+		);
 
 		try {
-
 			let server = await this.surreal.modify(record.tb, record.id, diff);
 			record.ingest(server);
 			return record;
-
 		} catch (e) {
-
 			record.rollback();
 
 			throw e;
-
 		}
-
 	}
 
 	/**
@@ -416,23 +379,21 @@ export default class Store extends Service {
 	 */
 
 	async update(record) {
-
 		assert('You must pass a record to be updated', record instanceof Model);
 
 		try {
-
-			let server = await this.surreal.change(record.tb, record.id, record.json);
+			let server = await this.surreal.change(
+				record.tb,
+				record.id,
+				record.json
+			);
 			record.ingest(server);
 			return record;
-
 		} catch (e) {
-
 			record.rollback();
 
 			throw e;
-
 		}
-
 	}
 
 	/**
@@ -446,22 +407,16 @@ export default class Store extends Service {
 	 */
 
 	async delete(record) {
-
 		assert('You must pass a record to be deleted', record instanceof Model);
 
 		try {
-
 			await this.surreal.delete(record.tb, record.id);
 			return this.unload(record.tb, record.id);
-
 		} catch (e) {
-
 			record.rollback();
 
 			throw e;
-
 		}
-
 	}
 
 	/**
@@ -477,8 +432,7 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the total number of records.
 	 */
 
-	async count(model, query={}) {
-
+	async count(model, query = {}) {
 		let { text, vars } = count(model, query);
 
 		let [json] = await this.surreal.query(text, vars);
@@ -487,8 +441,7 @@ export default class Store extends Service {
 
 		if (status !== 'OK') throw new Error(detail);
 
-		return result && result[0] && result[0].count || 0;
-
+		return (result && result[0] && result[0].count) || 0;
 	}
 
 	/**
@@ -504,8 +457,7 @@ export default class Store extends Service {
 	 * @returns {Promise} Promise object with the desired matching records.
 	 */
 
-	async search(model, query={}) {
-
+	async search(model, query = {}) {
 		let result;
 
 		let hash = hasher(model, query);
@@ -522,14 +474,15 @@ export default class Store extends Service {
 			result = json.result || [];
 		}
 
-		let records = [].concat(result).map(item => {
-
+		let records = [].concat(result).map((item) => {
 			try {
-
 				let cached = this.#cache.get(model).findBy('id', item.id);
 
 				if (cached === undefined) {
-					cached = this.lookup(model).create({ id: item.id, meta: item.meta });
+					cached = this.lookup(model).create({
+						id: item.id,
+						meta: item.meta,
+					});
 					this.#cache.get(model).addObject(cached);
 					cached.ingest(item);
 				} else {
@@ -537,21 +490,15 @@ export default class Store extends Service {
 				}
 
 				return cached;
-
 			} catch (e) {
-
 				if (e instanceof DestroyedError) {
 					// ignore
 				} else {
 					throw e;
 				}
-
 			}
-
 		});
 
 		return query.limit !== 1 ? records : records[0];
-
 	}
-
 }

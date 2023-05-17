@@ -3,16 +3,12 @@ import test from './test';
 
 const persisted = test();
 
-export default function() {
-
+export default function () {
 	if (persisted === false) {
-
 		return uniq(64);
-
 	}
 
 	if (persisted === true) {
-
 		let session = window.localStorage.getItem('session');
 
 		if (session === null || session.length != 64) {
@@ -22,7 +18,5 @@ export default function() {
 		window.localStorage.setItem('session', session);
 
 		return session;
-
 	}
-
 }

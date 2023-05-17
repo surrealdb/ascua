@@ -1,5 +1,4 @@
 export default class extends Array {
-
 	remove(callback, target) {
 		let arr = this.filter(callback, target);
 		return this.removeObjects(arr);
@@ -9,5 +8,4 @@ export default class extends Array {
 		let arr = this.filterBy(key, value);
 		return this.removeObjects(arr);
 	}
-
 }
