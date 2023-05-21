@@ -1,18 +1,18 @@
 import Metric from './base';
 import { assert } from '@ember/debug';
-import script from '@ascua/metrics/utils/google-tag-manager';
+import script from '@ascua/metrics/utils/gtag';
 
-const src = 'script[src*="gtm"]';
+const src = 'script[src*="gtag"]';
 
 export default class extends Metric {
 
-	name = 'google-tag-manager';
+	name = 'gtag';
 
 	init() {
 
 		super.init(...arguments);
 
-		if (window.gtm) return;
+		if (window.gtag) return;
 
 		if (!this.config.id) return;
 
@@ -25,7 +25,11 @@ export default class extends Metric {
 			break;
 		}
 
-		window.gtm = function() { window.dataLayer.push(arguments); };
+		window.gtag = function() { window.dataLayer.push(arguments); };
+
+		gtag('js', new Date());
+
+		gtag('config', 'G-J1NWM32T1V');
 
 	}
 
@@ -35,39 +39,35 @@ export default class extends Metric {
 			e.parentElement.removeChild(e);
 		});
 
-		delete window.gtm;
+		delete window.gtag;
 
 	}
 
 	clear() {
 
-		if (!window.gtm) return;
+		if (!window.gtag) return;
 
-		window.gtm({ 'event': 'clear' });
+		window.gtag({ 'event': 'clear' });
 
 	}
 
 	identify(id) {
 
-		if (!window.gtm) return;
+		if (!window.gtag) return;
 
 		assert(`You must pass an 'id' as the first argument to ${this.toString()}:identify()`, id);
 
-		window.gtm({ 'event': 'identify', 'userId': id });
+		window.gtag({ 'event': 'identify', 'userId': id });
 
 	}
 
 	trackEvent(name, data) {
 
-		if (!window.gtm) return;
+		if (!window.gtag) return;
 
 		assert(`You must pass a 'name' as the first argument to ${this.toString()}:trackEvent()`, name);
 
-		let event = Object.assign({}, data, {
-			event: name,
-		});
-
-		window.gtm(event);
+		window.gtag(name, data);
 
 	}
 

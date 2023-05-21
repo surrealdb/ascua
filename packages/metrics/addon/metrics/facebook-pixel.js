@@ -2,7 +2,7 @@ import Metric from './base';
 import { assert } from '@ember/debug';
 import script from '@ascua/metrics/utils/facebook-pixel';
 
-const src = 'script[src*="fbevents.js"]';
+const src = 'script[src*="facebook"]';
 
 export default class extends Metric {
 

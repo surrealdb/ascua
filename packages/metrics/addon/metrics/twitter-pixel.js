@@ -1,18 +1,18 @@
 import Metric from './base';
 import { assert } from '@ember/debug';
-import script from '@ascua/metrics/utils/google-tag-manager';
+import script from '@ascua/metrics/utils/twitter-pixel';
 
-const src = 'script[src*="gtm"]';
+const src = 'script[src*="twitter"]';
 
 export default class extends Metric {
 
-	name = 'google-tag-manager';
+	name = 'twitter-pixel';
 
 	init() {
 
 		super.init(...arguments);
 
-		if (window.gtm) return;
+		if (window.twq) return;
 
 		if (!this.config.id) return;
 
@@ -25,7 +25,7 @@ export default class extends Metric {
 			break;
 		}
 
-		window.gtm = function() { window.dataLayer.push(arguments); };
+		window.twq('config', this.config.id);
 
 	}
 
@@ -35,39 +35,44 @@ export default class extends Metric {
 			e.parentElement.removeChild(e);
 		});
 
-		delete window.gtm;
+		delete window.twq;
+		delete window._twq;
 
 	}
 
 	clear() {
 
-		if (!window.gtm) return;
+		if (!window.twq) return;
 
-		window.gtm({ 'event': 'clear' });
+		window.twq('config', this.config.id);
 
 	}
 
-	identify(id) {
+	identify(id, data) {
 
-		if (!window.gtm) return;
+		if (!window.twq) return;
 
 		assert(`You must pass an 'id' as the first argument to ${this.toString()}:identify()`, id);
 
-		window.gtm({ 'event': 'identify', 'userId': id });
+		window.twq('config', this.config.id, { external_id: id, ...data });
+
+	}
+
+	trackPage(data) {
+
+		if (!window.twq) return;
+
+		window.twq('event', 'PageView', data);
 
 	}
 
 	trackEvent(name, data) {
 
-		if (!window.gtm) return;
+		if (!window.twq) return;
 
 		assert(`You must pass a 'name' as the first argument to ${this.toString()}:trackEvent()`, name);
 
-		let event = Object.assign({}, data, {
-			event: name,
-		});
-
-		window.gtm(event);
+		window.twq('event', name, data);
 
 	}
 
