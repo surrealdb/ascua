@@ -12,7 +12,7 @@ export function original(config) {
 		t.setAttribute('data-base-url', 'https://eu.customerioforms.com');
 		t.setAttribute('data-use-array-params', 'true');
 		t.setAttribute('data-auto-track-page', 'false');
-		t.setAttribute('data-use-in-app', 'true');
+		t.setAttribute('data-use-in-app', 'false');
 		t.src = 'https://assets.customer.io/assets/track-eu.js';
 		s.parentNode.insertBefore(t, s);
 	})();
