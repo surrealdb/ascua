@@ -1,6 +1,8 @@
 import uniq from './uniq';
 import test from './test';
 
+import window from 'ember-window-mock';
+
 const persisted = test();
 
 export default function () {

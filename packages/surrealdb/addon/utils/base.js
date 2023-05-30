@@ -1,3 +1,5 @@
+import window from 'ember-window-mock';
+
 export default function (str) {
   var output = str.replace(/-/g, '+').replace(/_/g, '/');
 

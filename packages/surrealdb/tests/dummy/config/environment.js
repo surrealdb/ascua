@@ -16,6 +16,13 @@ module.exports = function (environment) {
         Date: false,
       },
     },
+    surreal: {
+      NS: 'test',
+      DB: 'test',
+      uri: 'http://127.0.0.1:8000',
+      user: 'root',
+      pass: 'root',
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance

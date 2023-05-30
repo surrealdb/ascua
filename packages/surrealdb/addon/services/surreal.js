@@ -31,7 +31,7 @@ export default class Surreal extends Service {
   // the Surreal database which
   // connects to the server.
 
-  #db = Database.Instance;
+  #db = null;
 
   // The full configuration info for
   // SurrealDB, including NS, DB,
@@ -96,75 +96,19 @@ export default class Surreal extends Service {
       });
     }
 
-    // Get the token so that it populates
-    // the jwt getter value, so that the
-    // token contents can be accessed.
-
-    this.token = this.#db.token = this.#ls.get('surreal');
-
-    // When the connection is closed we
-    // change the relevant properties
-    // stop live queries, and trigger.
-
-    this.#db.on('closed', () => {
-      this.opened = false;
-      this.attempted = false;
-      this.invalidated = false;
-      this.authenticated = false;
-      this.emit('closed');
-    });
-
-    // When the connection is opened we
-    // change the relevant properties
-    // open live queries, and trigger.
-
-    this.#db.on('opened', () => {
-      this.opened = true;
-      this.attempted = false;
-      this.invalidated = false;
-      this.authenticated = false;
-      this.emit('opened');
-    });
-
-    // When the connection is opened we
-    // always attempt to authenticate
-    // or mark as attempted if no token.
-
-    this.#db.on('opened', async () => {
-      let res = await this.wait();
-      this.attempted = true;
-      this.emit('attempted');
-      if (res instanceof Error) {
-        this.invalidated = true;
-        this.emit('invalidated');
-      } else {
-        this.authenticated = true;
-        this.emit('authenticated');
-      }
-    });
-
-    // When we receive a socket message
-    // we process it. If it has an ID
-    // then it is a query response.
-
-    this.#db.on('notify', (e) => {
-      this.emit(e.action, e.result);
-
-      switch (e.action) {
-        case 'CREATE':
-          return this.store.inject(e.result);
-        case 'UPDATE':
-          return this.store.inject(e.result);
-        case 'DELETE':
-          return this.store.remove(e.result);
-      }
-    });
-
     // Get the configuration options
     // which have been specified in the
     // app environment config file.
 
     this.#config = Object.assign({}, defaults, config.surreal);
+
+    this.#db = new Database(this.#config.url);
+
+    // Get the token so that it populates
+    // the jwt getter value, so that the
+    // token contents can be accessed.
+
+    this.token = this.#db.token = this.#ls.get('surreal');
 
     assert(
       'Set the `surreal.ns` property in your environment config as a string',
@@ -187,6 +131,8 @@ export default class Surreal extends Service {
     // attempt to reconnect on failure.
 
     this.#db.connect(this.#config.url, this.#config);
+
+    this.#db.use(this.#config.NS, this.#config.DB);
   }
 
   // Tear down the Surreal service,
@@ -207,20 +153,12 @@ export default class Surreal extends Service {
   // Direct methods
   // --------------------------------------------------
 
-  sync() {
-    return this.#db.sync(...arguments);
+  use() {
+    return this.#db.use(...arguments);
   }
 
   wait() {
     return this.#db.wait(...arguments);
-  }
-
-  live() {
-    return this.#db.live(...arguments);
-  }
-
-  kill() {
-    return this.#db.kill(...arguments);
   }
 
   info() {
@@ -301,6 +239,7 @@ export default class Surreal extends Service {
       this.emit('authenticated');
       return Promise.resolve();
     } catch (e) {
+      console.log(e);
       this.#ls.del('surreal');
       this.token = null;
       this.#db.token = null;

@@ -1,4 +1,5 @@
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+import window from 'ember-window-mock';
 
 const crypto = window.crypto || window.msCrypto;
 

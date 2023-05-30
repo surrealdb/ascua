@@ -1,3 +1,5 @@
+import window from 'ember-window-mock';
+
 export default function () {
   try {
     if (!window.localStorage) throw 'exception';
