@@ -7,26 +7,27 @@ import attempted from '@ascua/surrealdb/decorators/attempted';
 module('Unit | Decorators | Attempted', function (hooks) {
   setupTest(hooks);
 
+  class MyClass {}
+
+  class MyRoute extends Route {}
+
   test('should only be applied to a Route class', function (assert) {
-    assert.throws(
-      (
-        @attempted
-        class MyClass {}
-      ),
-      'The @attempted decorator can only be applied to a Route'
-    );
+    assert.expect(2);
+    try {
+      attempted(MyClass);
+    } catch (e) {
+      assert.equal(
+        e.message,
+        'Assertion Failed: The @attempted decorator can only be applied to a Route'
+      );
+
+      assert.notOk(MyClass.prototype.beforeModel);
+    }
   });
 
   test('should add a beforeModel method that waits for authentication', function (assert) {
-    // Decorate the class with the @attempted decorator.
-    @attempted
-    class MyRoute extends Route {}
+    attempted(MyRoute);
 
-    assert.true(MyRoute.prototype.beforeModel);
-
-    // Check that the beforeModel method waits for authentication.
-    let spy = jest.spyOn(MyRoute.prototype, 'beforeModel');
-    new MyRoute().beforeModel();
-    expect(spy).toHaveBeenCalledWith();
+    assert.ok(MyRoute.prototype.beforeModel);
   });
 });

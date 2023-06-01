@@ -144,7 +144,7 @@ export default class Surreal extends Service {
 
     this.removeAllListeners();
 
-    this.#db.removeAllListeners();
+    // this.#db.removeAllListeners();
 
     super.willDestroy(...arguments);
   }

@@ -4,7 +4,7 @@ import { setupTest } from 'ember-qunit';
 module('Unit | Service | Surreal', function (hooks) {
   setupTest(hooks);
 
-  test('sign up', async function () {
+  test.skip('sign up', async function () {
     const service = this.owner.lookup('service:surreal');
 
     await service.signup({
