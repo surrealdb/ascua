@@ -6,7 +6,6 @@ import { tracked } from '@glimmer/tracking';
 import { defer } from '@ascua/queue';
 import Patch from '../dmp/patch';
 import Diff from '../dmp/diff';
-import meta from '../meta';
 import json from '../../utils/json';
 
 export const RECORD = Symbol('RECORD');
@@ -35,9 +34,6 @@ export default class Model {
 
   #fake = false;
 
-  // Underlying meta data
-  #meta = undefined;
-
   // Current context object
   #ctx = undefined;
 
@@ -64,7 +60,7 @@ export default class Model {
   // that this record belongs to.
 
   get tb() {
-    return this.#meta.tb;
+    return this.#id.split(':')[0];
   }
 
   // The `id` property can be used
@@ -77,18 +73,6 @@ export default class Model {
 
   set id(value) {
     this.#id = value;
-  }
-
-  // The `meta` property stores the
-  // raw table and id of the record
-  // which is generated on the server.
-
-  get meta() {
-    return this.#meta;
-  }
-
-  set meta(value) {
-    this.#meta = value;
   }
 
   // The exists property allows us
