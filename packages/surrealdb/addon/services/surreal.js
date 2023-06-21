@@ -161,12 +161,20 @@ export default class Surreal extends Service {
     return this.#db.wait(...arguments);
   }
 
+  close() {
+    return this.#db.close(...arguments);
+  }
+
   info() {
     return this.#db.info(...arguments);
   }
 
   let() {
     return this.#db.let(...arguments);
+  }
+
+  unset() {
+    return this.#db.unset(...arguments);
   }
 
   query() {
@@ -185,12 +193,12 @@ export default class Surreal extends Service {
     return this.#db.update(...arguments);
   }
 
-  change() {
-    return this.#db.change(...arguments);
+  merge() {
+    return this.#db.merge(...arguments);
   }
 
-  modify() {
-    return this.#db.modify(...arguments);
+  patch() {
+    return this.#db.patch(...arguments);
   }
 
   delete() {
@@ -211,7 +219,6 @@ export default class Surreal extends Service {
       this.invalidated = false;
       this.authenticated = true;
       this.emit('attempted');
-      this.emit('authenticated');
       return Promise.resolve();
     } catch (e) {
       this.#ls.del('surreal');
@@ -236,7 +243,6 @@ export default class Surreal extends Service {
       this.invalidated = false;
       this.authenticated = true;
       this.emit('attempted');
-      this.emit('authenticated');
       return Promise.resolve();
     } catch (e) {
       console.log(e);
@@ -287,7 +293,6 @@ export default class Surreal extends Service {
       this.invalidated = false;
       this.authenticated = true;
       this.emit('attempted');
-      this.emit('authenticated');
       return Promise.resolve();
     } catch (e) {
       this.#ls.del('surreal');
