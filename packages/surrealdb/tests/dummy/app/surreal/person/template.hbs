@@ -1,0 +1,9 @@
+<div>
+  <label for="user-question">Person name:</label>
+  <Input
+    id="add-person"
+    @type="text"
+    @value={{this.model.name}}
+  />
+   <button type="button" {{on "click" (fn this.updatePerson this.model)}}>Update Person</button>
+</div>

@@ -3,15 +3,16 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-export default class SurrealController extends Controller {
+export default class SurrealIndexController extends Controller {
   @service surreal;
   @service store;
 
   @tracked data;
+  @tracked name = '';
 
   @action
   async loadData(model) {
-    this.data = await this.store.select(model, { reload: true });
+    this.model = await this.store.select(model, { reload: true });
   }
 
   @action
@@ -24,6 +25,10 @@ export default class SurrealController extends Controller {
 
   @action
   async addPerson() {
+    if (!this.name) {
+      return;
+    }
+
     await this.store.create('person', {
       id: `person:${this.name}`,
       name: this.name,
@@ -35,5 +40,10 @@ export default class SurrealController extends Controller {
   @action
   async deletePerson(item) {
     await this.store.delete(item);
+  }
+
+  @action
+  async closeConnection() {
+    await this.surreal.close();
   }
 }
