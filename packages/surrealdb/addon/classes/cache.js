@@ -1,10 +1,10 @@
-import Array from './array';
+import { TrackedArray, TrackedObject } from 'tracked-built-ins';
 
 export default class Cache {
-  #data = {};
+  #data = new TrackedObject({});
 
   get(model) {
-    return (this.#data[model] = this.#data[model] || new Array());
+    return (this.#data[model] = this.#data[model] || new TrackedArray([]));
   }
 
   del(model) {
