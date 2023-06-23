@@ -10,4 +10,6 @@ Router.map(function () {
   this.route('surreal', function () {
     this.route('person', { path: '/:person_id' });
   });
+  this.route('signup');
+  this.route('signin');
 });

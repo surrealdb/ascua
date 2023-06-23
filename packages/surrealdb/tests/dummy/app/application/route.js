@@ -1,11 +1,15 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { action } from '@ember/object';
+import Storage from '@ascua/surrealdb/classes/storage';
 
 export default class ApplicationRoute extends Route {
-  // @service surreal;
-  // @action
-  // async closeDBConnection() {
-  //   await this.surreal.close();
-  // }
+  @service surreal;
+  #ls = new Storage();
+
+  async beforeModel() {
+    this.token = this.#ls.get('surreal');
+    if (this.token && !this.surreal.authenticated) {
+      await this.surreal.authenticate(this.token);
+    }
+  }
 }

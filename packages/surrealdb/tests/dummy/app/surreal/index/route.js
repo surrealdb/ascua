@@ -1,15 +1,14 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { authenticated } from '@ascua/surrealdb';
 
-export default class SurrealIndexRoute extends Route {
+export default
+@authenticated
+class SurrealIndexRoute extends Route {
   @service store;
-  @service surreal;
 
   async beforeModel() {
-    await this.surreal.signin({
-      user: 'root',
-      pass: 'root',
-    });
+    //
   }
 
   async model() {
