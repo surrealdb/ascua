@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 
 export default class ApplicationController extends Controller {
   @service surreal;
+  @service router;
 
   @action
   async signout() {
