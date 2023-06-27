@@ -21,7 +21,7 @@ clean:
 	@echo "Clean..."
 	find packages -mindepth 2 -maxdepth 2 -type d -name 'tmp' -exec rm -rf "{}" \;
 	rm -rf node_modules
-	npx lerna clean --yes
+	npx lerna@4.0.0 clean --yes
 
 .PHONY: setup
 setup:
@@ -36,12 +36,12 @@ serve:
 .PHONY: version
 version:
 	@echo "Version..."
-	npx lerna version --no-push --force-publish
+	npx lerna@4.0.0 version --no-push --force-publish
 
 .PHONY: publish
 publish:
 	@echo "Publish..."
-	npx lerna publish from-package
+	npx lerna@4.0.0 publish from-package
 
 .PHONY: deploy
 deploy:
