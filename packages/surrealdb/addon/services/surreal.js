@@ -132,7 +132,7 @@ export default class Surreal extends Service {
 
     this.#db.connect(this.#config.url, this.#config);
 
-    this.#db.use(this.#config.NS, this.#config.DB);
+    this.#db.use({ ns: this.#config.NS, db: this.#config.DB });
   }
 
   // Tear down the Surreal service,
