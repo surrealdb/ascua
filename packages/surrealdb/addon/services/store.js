@@ -281,10 +281,11 @@ export default class Store extends Service {
           this.#stack[thing] = this.remote(thing, opts);
           return this.#stack[thing].then((result) => {
             delete this.#stack[thing];
-            if (Array.isArray(result)) {
-              return cached;
+
+            if (id) {
+              return result[0];
             } else {
-              return result;
+              return cached;
             }
           });
       }
