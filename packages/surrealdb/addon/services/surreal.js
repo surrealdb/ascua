@@ -244,9 +244,9 @@ export default class Surreal extends Service {
       this.invalidated = false;
       this.authenticated = true;
       this.emit('attempted');
+      this.emit('authenticated');
       return Promise.resolve();
     } catch (e) {
-      console.log(e);
       this.#ls.del('surreal');
       this.token = null;
       this.#db.token = null;
