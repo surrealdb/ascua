@@ -9,9 +9,9 @@ export default class ApplicationController extends Controller {
   @action
   async signout() {
     try {
-      await this.surreal.invalidate();
-
-      this.router.transitionTo('signin');
+      this.surreal.invalidate().then(() => {
+        return this.router.replaceWith('signin');
+      });
     } catch (e) {
       // Signin failed
     }

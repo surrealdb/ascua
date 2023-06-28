@@ -8,12 +8,24 @@ export default class ApplicationRoute extends Route {
 
   #ls = new Storage();
 
-  async beforeModel() {
+  beforeModel(transition) {
     this.token = this.#ls.get('surreal');
-    if (this.token && !this.surreal.authenticated) {
-      await this.surreal.authenticate(this.token);
 
-      return this.router.transitionTo('surreal');
+    let person_id = transition.to.params.person_id;
+
+    if (this.token && !this.surreal.authenticated) {
+      return this.surreal
+        .authenticate(this.token)
+        .then(() => {
+          if (person_id) {
+            this.router.transitionTo('surreal.person', person_id);
+          } else {
+            this.router.transitionTo('surreal');
+          }
+        })
+        .catch(() => {
+          this.router.transitionTo('signin');
+        });
     }
 
     this.router.transitionTo('signin');

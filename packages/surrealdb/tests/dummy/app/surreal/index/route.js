@@ -7,10 +7,6 @@ export default
 class SurrealIndexRoute extends Route {
   @service store;
 
-  async beforeModel() {
-    //
-  }
-
   async model() {
     return await this.store.select('person');
   }
