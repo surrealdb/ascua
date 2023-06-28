@@ -8,7 +8,7 @@ export default class Cache {
   }
 
   del(model) {
-    this.#data[model].clear();
+    this.#data[model] = [];
   }
 
   clear() {
