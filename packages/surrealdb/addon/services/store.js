@@ -390,7 +390,7 @@ export default class Store extends Service {
     //
 
     try {
-      let server = await this.surreal.update(thing, record.json);
+      let [server] = await this.surreal.update(thing, record.json);
       record.ingest(server);
       return record;
     } catch (e) {
