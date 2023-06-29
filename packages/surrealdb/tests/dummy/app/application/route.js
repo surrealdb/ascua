@@ -1,8 +1,11 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { attempted } from '@ascua/surrealdb';
 import Storage from '@ascua/surrealdb/classes/storage';
 
-export default class ApplicationRoute extends Route {
+export default
+@attempted
+class ApplicationRoute extends Route {
   @service surreal;
   @service router;
 
@@ -11,7 +14,7 @@ export default class ApplicationRoute extends Route {
   beforeModel(transition) {
     this.token = this.#ls.get('surreal');
 
-    let person_id = transition.to.params.person_id;
+    let person_id = transition?.to?.params?.person_id;
 
     if (this.token && !this.surreal.authenticated) {
       return this.surreal

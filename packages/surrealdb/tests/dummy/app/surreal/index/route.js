@@ -5,6 +5,7 @@ import { authenticated } from '@ascua/surrealdb';
 export default
 @authenticated
 class SurrealIndexRoute extends Route {
+  redirectIfInvalidated = 'signin';
   @service store;
 
   async model() {

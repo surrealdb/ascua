@@ -5,6 +5,8 @@ import { authenticated } from '@ascua/surrealdb';
 export default
 @authenticated
 class SurrealPersonRoute extends Route {
+  redirectIfInvalidated = 'signin';
+
   @service store;
   @service surreal;
 
