@@ -26,8 +26,8 @@ function func(target) {
   let before = target.prototype.beforeModel;
 
   target.reopen({
+    router: inject(),
     surreal: inject(),
-
     session: inject(),
 
     redirectIfInvalidated: 'signin',
@@ -45,7 +45,7 @@ function func(target) {
     },
 
     invalidate() {
-      this.transitionTo(this.redirectIfInvalidated);
+      this.router.transitionTo(this.redirectIfInvalidated);
     },
 
     beforeModel(transition) {

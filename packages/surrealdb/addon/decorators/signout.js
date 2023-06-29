@@ -20,8 +20,8 @@ export default function (target) {
 
 function func(target) {
   target.reopen({
+    router: inject(),
     store: inject(),
-
     surreal: inject(),
 
     redirectAfterSignout: 'signin',
@@ -37,7 +37,7 @@ function func(target) {
       // Reset the data store.
       this.store.reset();
       // Redirect to the specified route.
-      return this.transitionTo(this.redirectAfterSignout);
+      return this.router.transitionTo(this.redirectAfterSignout);
     },
   });
 }
