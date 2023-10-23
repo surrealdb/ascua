@@ -38,8 +38,8 @@ export default class SurrealIndexController extends Controller {
   }
 
   @action
-  async deletePerson(item) {
-    await this.store.delete(item);
+  async deletePerson(person) {
+    await person.delete();
   }
 
   @action
