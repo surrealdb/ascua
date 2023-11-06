@@ -19,8 +19,8 @@
     "@ascua/service": "file:../service",
     "broccoli-caching-writer": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
-    "ember-cli-babel": "^7.26.6",
-    "ember-cli-htmlbars": "^5.7.1"
+    "ember-cli-babel": "^8.2.0",
+    "ember-cli-htmlbars": "^6.3.0"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
