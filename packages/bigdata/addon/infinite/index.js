@@ -1,4 +1,3 @@
-import Item from './item';
 import context from '@ascua/context';
 import { tracked } from '@glimmer/tracking';
 

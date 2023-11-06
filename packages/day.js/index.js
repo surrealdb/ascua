@@ -10,6 +10,10 @@ module.exports = {
 
 	included(app) {
 
+		this.opts = app.options.dayjs || {
+			locales: ['en-gb'],
+		};
+
 		this._super.included.apply(this, ...arguments);
 
 		app.import('node_modules/dayjs/dayjs.min.js');
@@ -29,10 +33,6 @@ module.exports = {
 		app.import('vendor/dayjs.js', {
 			exports: { moment: ['default'] }
 		});
-
-		this.opts = this.project.config(app.env).dayjs || {
-			locales: ['en-gb'],
-		};
 
 		if (this.opts.locales) {
 			[].concat(this.opts.locales).forEach(l => {

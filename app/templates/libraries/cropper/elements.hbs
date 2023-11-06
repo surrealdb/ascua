@@ -21,7 +21,7 @@
 <p>To call methods on the Cropper instance, use the <code>onReady</code> action argument. The first argument in the event is the Cropper instance.</p>
 
 <Example @name="demo-libraries-cropperjs-elements-cropper-ready.hbs" class="nopad">
-	<Ascua::Cropper @src={{root-url "/img/crop.jpg"}} @onReady={{console}} />
+	<Ascua::Cropper @src={{root-url "/img/crop.jpg"}} @onReady={{(console)}} />
 </Example>
 
 <h3>Detecting changes</h3>
@@ -29,5 +29,5 @@
 <p>To subscribe to changes to the crop dimensions and image zoom levels, use the <code>onCrop</code>, and <code>onZoom</code> arguments.</p>
 
 <Example @name="demo-libraries-cropperjs-elements-cropper-events.hbs" class="nopad">
-	<Ascua::Cropper @src={{root-url "/img/crop.jpg"}} @onCrop={{console}} @onZoom={{console}} />
+	<Ascua::Cropper @src={{root-url "/img/crop.jpg"}} @onCrop={{(console)}} @onZoom={{(console)}} />
 </Example>

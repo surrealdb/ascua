@@ -1,7 +1,7 @@
 'use strict';
 
 const fastboot = {
-	using: [{ transformation: 'fastboot'}]
+	using: [{ transformation: 'fastboot' }]
 };
 
 module.exports = {

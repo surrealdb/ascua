@@ -7,7 +7,7 @@ const viewport = Viewport.Instance;
 export default setModifierManager(
 	() => ({
 
-		capabilities: capabilities('3.13', { disableAutoTracking: true }),
+		capabilities: capabilities('3.22', { disableAutoTracking: true }),
 
 		createModifier() {
 			return { element: null };
@@ -23,7 +23,7 @@ export default setModifierManager(
 				viewport.observe(
 					element,
 					() => fn(element, rest, args.named),
-					() => {},
+					() => { },
 				);
 			} else {
 				fn(element, rest, args.named);
@@ -31,7 +31,7 @@ export default setModifierManager(
 
 		},
 
-		updateModifier() {},
+		updateModifier() { },
 
 		destroyModifier({ element }) {
 			if (enabled()) {
@@ -40,5 +40,5 @@ export default setModifierManager(
 		}
 
 	}),
-	class DidEnterViewportModifier {}
+	class DidEnterViewportModifier { }
 );

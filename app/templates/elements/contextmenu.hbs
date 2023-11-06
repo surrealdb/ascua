@@ -28,13 +28,13 @@
 
 <Example @name="demo-elements-contextmenu.hbs" @hide={{true}}>
 
-	<Ascua::Contextmenu::Item @click={{console}} @label="Do something special" />
+	<Ascua::Contextmenu::Item @click={{(console)}} @label="Do something special" />
 
 	<Ascua::Contextmenu::Item @type="separator" />
 
-	<Ascua::Contextmenu::Item @click={{history-back}} @label="Back" />
-	<Ascua::Contextmenu::Item @click={{history-forward}} @label="Forward" />
-	<Ascua::Contextmenu::Item @click={{reload}} @label="Reload Page" @role="reload" />
+	<Ascua::Contextmenu::Item @click={{(history-back)}} @label="Back" />
+	<Ascua::Contextmenu::Item @click={{(history-forward)}} @label="Forward" />
+	<Ascua::Contextmenu::Item @click={{(reload)}} @label="Reload Page" @role="reload" />
 
 	<Ascua::Contextmenu::Item @type="separator" />
 

@@ -1,7 +1,7 @@
 'use strict';
 
 const fastboot = {
-	using: [{ transformation: 'fastboot'}]
+	using: [{ transformation: 'fastboot' }]
 };
 
 module.exports = {
@@ -10,9 +10,9 @@ module.exports = {
 
 	included(app) {
 
-		this._super.included.apply(this, ...arguments);
+		this.opts = app.options.codemirror || {};
 
-		this.opts = this.project.config(app.env).codemirror || {};
+		this._super.included.apply(this, ...arguments);
 
 		app.import('node_modules/codemirror/lib/codemirror.js', fastboot);
 		app.import('node_modules/codemirror/lib/codemirror.css');

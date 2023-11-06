@@ -1,13 +1,13 @@
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
 
 	let ENV = {
 
 		environment,
 		rootURL: '/',
-		locationType: 'auto',
 		modulePrefix: 'ascua',
+		locationType: 'history',
 
 		surreal: {
 			ns: 'test',
@@ -29,7 +29,7 @@ module.exports = function(environment) {
 			includeComments: true,
 			includeBrackets: true,
 			includeWhitespace: true,
-			modes: ["htmlmixed", "css",  "sass",  "javascript",  "markdown",  "handlebars"],
+			modes: ["htmlmixed", "css", "sass", "javascript", "markdown", "handlebars"],
 			themes: ["base16-dark", "base16-light", "bespin", "dracula", "eclipse"],
 		},
 

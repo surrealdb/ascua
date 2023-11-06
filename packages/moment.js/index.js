@@ -10,6 +10,10 @@ module.exports = {
 
 	included(app) {
 
+		this.opts = app.options.momentjs || {
+			locales: ['en-gb'],
+		};
+
 		this._super.included.apply(this, ...arguments);
 
 		app.import('node_modules/moment/moment.js');
@@ -22,10 +26,6 @@ module.exports = {
 		app.import('vendor/moment.js', {
 			exports: { moment: ['default'] }
 		});
-
-		this.opts = this.project.config(app.env).moment || {
-			locales: ['en-gb'],
-		};
 
 		if (this.opts.locales) {
 			[].concat(this.opts.locales).forEach(l => {

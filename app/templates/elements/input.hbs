@@ -13,7 +13,7 @@
 <p>The <code>Ascua::Input::Area</code> component augments the Ember <code>textarea</code> element and enables autosizing, and line limits.</p>
 
 <Example @name="demo-elements-input-area.hbs">
-	<Ascua::Input::Area @rows={{5}} @limit={{10}} @auto={{true}} @onChange={{console}} />
+	<Ascua::Input::Area @rows={{5}} @limit={{10}} @auto={{true}} @onChange={{(console)}} />
 </Example>
 
 <h2>Star</h2>
@@ -29,5 +29,5 @@
 <p>The <code>Ascua::Input::Text</code> component enables a simple one-way binding text box.</p>
 
 <Example @name="demo-elements-input-text.hbs">
-	<Ascua::Input::Text @value="Test" @onChange={{console}} />
+	<Ascua::Input::Text @value="Test" @onChange={{(console)}} />
 </Example>

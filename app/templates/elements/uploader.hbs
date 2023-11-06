@@ -14,7 +14,7 @@
 
 <Example @name="demo-elements-uploader-basic.hbs">
 	<div class="h-400">
-		<Ascua::Uploader @height="300" @onOpen={{console "File uploaded"}} />
+		<Ascua::Uploader @height="300" @onOpen={{(console "File uploaded")}} />
 	</div>
 </Example>
 
@@ -24,7 +24,7 @@
 
 <Example @name="demo-elements-uploader-block.hbs">
 	<div class="h-400">
-		<Ascua::Uploader @height="300" @onOpen={{console "File uploaded"}} as |d|>
+		<Ascua::Uploader @height="300" @onOpen={{(console "File uploaded")}} as |d|>
 			{{#if d.dropping}}
 				<br> Drop your files here.
 			{{else}}

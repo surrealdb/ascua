@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const Builder = require('electron-builder');
-const Notarizer = require('electron-notarize');
+const Notarizer = require('@electron/notarize');
 const Dmgerizer = require('electron-notarize-dmg');
 const Command = require('ember-cli/lib/commands/build');
 const { log } = require('builder-util');

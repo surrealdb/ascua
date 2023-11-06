@@ -13,9 +13,9 @@
 <p>To create a draggable item, surround your HTML with an <code>Ascua::Draggable</code> component. Any handlebars inside the <code>Ascua::Draggable</code> component will be made draggable.</p>
 
 <Example @name="demo-elements-dragdrop-draggable.hbs">
-	<Ascua::Draggable inline @onDrag={{console}} />
-	<Ascua::Draggable inline @onDrag={{console}} />
-	<Ascua::Draggable inline @onDrag={{console}} />
+	<Ascua::Draggable inline @onDrag={{(console)}} />
+	<Ascua::Draggable inline @onDrag={{(console)}} />
+	<Ascua::Draggable inline @onDrag={{(console)}} />
 </Example>
 
 <h2>Advanced</h2>
@@ -23,5 +23,5 @@
 <p>To create a droppable area, surround your HTML with an <code>Ascua::Droppable</code> component. Any handlebars inside the <code>Ascua::Droppable</code> component will be made droppable.</p>
 
 <Example @name="demo-elements-dragdrop-droppable.hbs">
-	<Ascua::Droppable @onDrop={{console}} />
+	<Ascua::Droppable @onDrop={{(console)}} />
 </Example>

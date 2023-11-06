@@ -1,8 +1,8 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
 
 function setup(state, owner, element, callback, debounce) {
-	let fn = function(element) {
-		state.timeout = setTimeout( () => callback(element), debounce);
+	let fn = function (element) {
+		state.timeout = setTimeout(() => callback(element), debounce);
 	};
 	owner.lookup('service:resize').setup(element, fn, { callOnAdd: false });
 	return fn;
@@ -16,7 +16,7 @@ function clear(state, owner, element, callback) {
 export default setModifierManager(
 	(owner) => ({
 
-		capabilities: capabilities('3.13', { disableAutoTracking: true }),
+		capabilities: capabilities('3.22', { disableAutoTracking: true }),
 
 		createModifier() {
 			return { element: null, timeout: null, callback: null };
@@ -37,5 +37,5 @@ export default setModifierManager(
 		},
 
 	}),
-	class DidResizeModifier {}
+	class DidResizeModifier { }
 );

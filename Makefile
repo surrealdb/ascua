@@ -48,7 +48,7 @@ clean:
 .PHONY: setup
 setup:
 	@echo "Setup..."
-	npx lerna bootstrap
+	npm install
 
 .PHONY: serve
 serve:
