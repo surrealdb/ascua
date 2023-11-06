@@ -22,6 +22,8 @@ function func(target) {
 
 		store: inject(),
 
+		router: inject(),
+
 		surreal: inject(),
 
 		redirectAfterSignout: 'signin',
@@ -37,7 +39,7 @@ function func(target) {
 			// Reset the data store.
 			this.store.reset();
 			// Redirect to the specified route.
-			return this.transitionTo(this.redirectAfterSignout);
+			return this.router.transitionTo(this.redirectAfterSignout);
 		},
 
 	});

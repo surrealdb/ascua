@@ -26,6 +26,8 @@ function func(target) {
 
 	target.reopen({
 
+		router: inject(),
+
 		surreal: inject(),
 
 		redirectIfAuthenticated: 'index',
@@ -46,14 +48,14 @@ function func(target) {
 			if (this.surreal.transition) {
 				this.surreal.transition.retry();
 			} else {
-				this.transitionTo(this.redirectIfAuthenticated);
+				this.router.transitionTo(this.redirectIfAuthenticated);
 			}
 		},
 
 		beforeModel(transition) {
 			// Redirect if connection is authenticated.
 			if (this.surreal.authenticated === true) {
-				return this.replaceWith(this.redirectIfAuthenticated);
+				return this.router.replaceWith(this.redirectIfAuthenticated);
 			}
 			// Continue with original hook.
 			return before.apply(this, ...arguments);

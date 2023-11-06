@@ -26,6 +26,8 @@ function func(target) {
 
 	target.reopen({
 
+		router: inject(),
+
 		surreal: inject(),
 
 		session: inject(),
@@ -45,7 +47,7 @@ function func(target) {
 		},
 
 		invalidate() {
-			this.transitionTo(this.redirectIfInvalidated);
+			this.router.transitionTo(this.redirectIfInvalidated);
 		},
 
 		beforeModel(transition) {
@@ -53,7 +55,7 @@ function func(target) {
 			this.surreal.transition = transition;
 			// Redirect if connection is invalidated.
 			if (this.surreal.invalidated === true) {
-				return this.replaceWith(this.redirectIfInvalidated);
+				return this.router.replaceWith(this.redirectIfInvalidated);
 			}
 			// Wait for session identification.
 			return this.session.ready.then( () => {
