@@ -17,11 +17,11 @@ module.exports = function (environment) {
       },
     },
     surreal: {
-      NS: 'test',
-      DB: 'test',
+      namespace: 'test',
+      database: 'test',
       uri: 'http://127.0.0.1:8000',
-      user: 'root',
-      pass: 'root',
+      username: 'root',
+      password: 'root',
     },
 
     APP: {

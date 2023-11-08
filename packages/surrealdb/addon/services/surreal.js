@@ -112,12 +112,13 @@ export default class Surreal extends Service {
 
     assert(
       'Set the `surreal.ns` property in your environment config as a string',
-      this.#config.ns !== undefined || this.#config.NS !== undefined
+      this.#config.namespace !== undefined ||
+        this.#config.NAMESPACE !== undefined
     );
 
     assert(
       'Set the `surreal.db` property in your environment config as a string',
-      this.#config.db !== undefined || this.#config.DB !== undefined
+      this.#config.database !== undefined || this.#config.DATABASE !== undefined
     );
 
     // Open the websocket for the first
@@ -132,7 +133,7 @@ export default class Surreal extends Service {
 
     this.#db.connect(this.#config.url, this.#config);
 
-    this.#db.use({ ns: this.#config.NS, db: this.#config.DB });
+    this.#db.use({ namespace: this.#config.NS, database: this.#config.DB });
   }
 
   // Tear down the Surreal service,
