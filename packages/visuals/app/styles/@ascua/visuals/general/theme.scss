@@ -1,19 +1,5 @@
-[hide], [responsive] {
+[hide] {
 	display:none;
-}
-
-[theme-light] {
-	display:block;
-	@media (prefers-color-scheme:dark) {
-		display:none;
-	}
-}
-
-[theme-dark] {
-	display:block;
-	@media (prefers-color-scheme:light) {
-		display:none;
-	}
 }
 
 // ------------------------------
