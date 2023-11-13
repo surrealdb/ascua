@@ -9,6 +9,7 @@ const Command = require('ember-cli/lib/commands/build');
 const { log } = require('builder-util');
 
 const APPLE_ID = process.env.APPLE_ID;
+const APPLE_TEAMID = process.env.APPLE_TEAMID;
 const APPLE_PASSWORD = process.env.APPLE_APP_SPECIFIC_PASSWORD;
 
 module.exports = Command.extend({
@@ -156,6 +157,7 @@ module.exports = Command.extend({
 										appBundleId: appId,
 										appPath: appPath,
 										appleId: APPLE_ID,
+										teamId: APPLE_TEAMID,
 										appleIdPassword: APPLE_PASSWORD,
 									});
 
@@ -183,6 +185,7 @@ module.exports = Command.extend({
 										appBundleId: appId,
 										dmgPath: dmgPath,
 										appleId: APPLE_ID,
+										teamId: APPLE_TEAMID,
 										appleIdPassword: APPLE_PASSWORD,
 									});
 
