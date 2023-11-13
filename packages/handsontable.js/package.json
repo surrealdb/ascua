@@ -1,6 +1,6 @@
 {
   "name": "@ascua/handsontable.js",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Small description for @ascua/handsontable.js goes here",
   "keywords": [
     "ember-addon"
