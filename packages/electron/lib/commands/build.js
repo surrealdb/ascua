@@ -9,7 +9,7 @@ const Command = require('ember-cli/lib/commands/build');
 const { log } = require('builder-util');
 
 const APPLE_ID = process.env.APPLE_ID;
-const APPLE_PASSWORD = process.env.APPLE_PASSWORD;
+const APPLE_PASSWORD = process.env.APPLE_APP_SPECIFIC_PASSWORD;
 
 module.exports = Command.extend({
 
@@ -86,7 +86,7 @@ module.exports = Command.extend({
 
 		const appId = this.project.pkg.build.appId;
 
-		return this._super(...arguments).then( () => {
+		return this._super(...arguments).then(() => {
 
 			const arch = {
 				x64: options.x64,
@@ -147,11 +147,12 @@ module.exports = Command.extend({
 
 								let appPath = path.join(params.appOutDir, `${params.packager.appInfo.productFilename}.app`);
 
-								if ( fs.existsSync(appPath) ) {
+								if (fs.existsSync(appPath)) {
 
 									log.info({ appId, appPath }, "notarizing");
 
 									return await Notarizer.notarize({
+										tool: 'notarytool',
 										appBundleId: appId,
 										appPath: appPath,
 										appleId: APPLE_ID,
@@ -171,13 +172,14 @@ module.exports = Command.extend({
 
 							if (APPLE_ID && APPLE_PASSWORD) {
 
-								let dmgPath = params.artifactPaths.find( p => p.endsWith(".dmg") );
+								let dmgPath = params.artifactPaths.find(p => p.endsWith(".dmg"));
 
-								if ( fs.existsSync(dmgPath) ) {
+								if (fs.existsSync(dmgPath)) {
 
 									log.info({ appId, dmgPath }, "notarizing");
 
 									return await Dmgerizer.notarize({
+										tool: 'notarytool',
 										appBundleId: appId,
 										dmgPath: dmgPath,
 										appleId: APPLE_ID,
