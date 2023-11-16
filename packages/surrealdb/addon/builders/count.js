@@ -9,7 +9,7 @@ export default function (table, options = {}) {
 
   bits.push('count(*) AS count');
 
-  bits.push('FROM table($tb)');
+  bits.push('FROM type::table($tb)');
 
   if (options.where && options.where.length) {
     bits.push(`WHERE ${options.where.join(' AND ')}`);
