@@ -54,7 +54,7 @@ function func(target) {
     beforeModel() {
       // Redirect if connection is authenticated.
       if (this.surreal.authenticated === true) {
-        return this.replaceWith(this.redirectIfAuthenticated);
+        return this.router.replaceWith(this.redirectIfAuthenticated);
       }
       // Continue with original hook.
       return before.apply(this, ...arguments);

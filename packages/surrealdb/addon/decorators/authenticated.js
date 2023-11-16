@@ -53,7 +53,7 @@ function func(target) {
       this.surreal.transition = transition;
       // Redirect if connection is invalidated.
       if (this.surreal.invalidated === true) {
-        return this.replaceWith(this.redirectIfInvalidated);
+        return this.router.replaceWith(this.redirectIfInvalidated);
       }
       // Wait for session identification.
       return this.session.ready.then(() => {
