@@ -9,4 +9,11 @@ export default class SurrealPersonController extends Controller {
   async updatePerson(item) {
     await this.store.update(item.id, item);
   }
+
+  @action
+  async modifyPerson(item) {
+    await this.store.modify(item, [
+      { op: 'replace', path: '/name', value: item.name },
+    ]);
+  }
 }

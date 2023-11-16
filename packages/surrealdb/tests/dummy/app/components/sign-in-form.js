@@ -13,9 +13,9 @@ export default class SignInForm extends Component {
   @action async signin() {
     try {
       await this.surreal.signin({
-        NS: config.surreal.NS,
-        DB: config.surreal.DB,
-        SC: 'account',
+        namespace: config.surreal.namespace,
+        database: config.surreal.database,
+        scope: 'account',
         email: this.email,
         pass: this.pass,
       });

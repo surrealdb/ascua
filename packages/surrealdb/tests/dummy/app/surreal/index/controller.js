@@ -9,6 +9,7 @@ export default class SurrealIndexController extends Controller {
 
   @tracked data;
   @tracked name = '';
+  @tracked searchName = '';
 
   @action
   async loadData(model) {
@@ -40,6 +41,13 @@ export default class SurrealIndexController extends Controller {
   @action
   async deletePerson(person) {
     await person.delete();
+  }
+
+  @action
+  async searchPerson() {
+    await this.store.search('person', {
+      where: [`name = "${this.searchName}"`],
+    });
   }
 
   @action
