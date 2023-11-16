@@ -133,7 +133,10 @@ export default class Surreal extends Service {
 
     this.#db.connect(this.#config.url, this.#config);
 
-    this.#db.use({ namespace: this.#config.NS, database: this.#config.DB });
+    this.#db.use({
+      namespace: this.#config.NAMESPACE,
+      database: this.#config.DATABASE,
+    });
   }
 
   // Tear down the Surreal service,
@@ -182,6 +185,10 @@ export default class Surreal extends Service {
     return this.#db.query(...arguments);
   }
 
+  query_raw() {
+    return this.#db.query_raw(...arguments);
+  }
+
   select() {
     return this.#db.select(...arguments);
   }
@@ -204,6 +211,14 @@ export default class Surreal extends Service {
 
   delete() {
     return this.#db.delete(...arguments);
+  }
+
+  live() {
+    return this.#db.live(...arguments);
+  }
+
+  listenLive() {
+    return this.#db.listenLive(...arguments);
   }
 
   // --------------------------------------------------

@@ -360,11 +360,11 @@ export default class Store extends Service {
    * @returns {Promise} Promise object with the updated record.
    */
 
-  async modify(record, diff) {
+  async modify(record, data) {
     assert('You must pass a record to be modified', record instanceof Model);
 
     try {
-      let server = await this.surreal.modify(record.tb, record.id, diff);
+      let [server] = await this.surreal.patch(record.id, data);
       record.ingest(server);
       return record;
     } catch (e) {
@@ -473,7 +473,7 @@ export default class Store extends Service {
       result = await this.#stash[hash];
       delete this.#stash[hash];
     } else {
-      let [json] = await this.surreal.query(text, vars);
+      let [json] = await this.surreal.query_raw(text, vars);
       if (json.status !== 'OK') throw new Error(json.detail);
       if (query.shoebox) this.#stash[hash] = json.result || [];
       result = json.result || [];
@@ -481,7 +481,9 @@ export default class Store extends Service {
 
     let records = [].concat(result).map((item) => {
       try {
-        let cached = this.#cache.get(model).findBy('id', item.id);
+        let cached = this.#cache.get(model).find((item) => {
+          return result[0].id === item.id;
+        });
 
         if (cached === undefined) {
           cached = this.lookup(model).create({
