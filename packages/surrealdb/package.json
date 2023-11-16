@@ -5,6 +5,7 @@
   "keywords": [
     "ember-addon"
   ],
+  "homepage": "https://abcum.github.io/ascua",
   "repository": {
     "type": "git",
     "url": "https://github.com/abcum/ascua.git"
@@ -86,11 +87,14 @@
     "stylelint-prettier": "^4.0.2",
     "webpack": "^5.89.0"
   },
-  "fastbootDependencies": [
-    "ws"
-  ],
   "peerDependencies": {
     "ember-source": ">= 4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "ember": {
+    "edition": "octane"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",
@@ -101,8 +105,7 @@
       "ws"
     ]
   },
-  "homepage": "https://abcum.github.io/ascua",
-  "publishConfig": {
-    "access": "public"
-  }
+  "fastbootDependencies": [
+    "ws"
+  ]
 }
