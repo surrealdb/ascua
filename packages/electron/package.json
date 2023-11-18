@@ -23,8 +23,8 @@
     "electron-builder": "^24.6.4",
     "electron-notarize-dmg": "^1.0.0",
     "electron-updater": "^6.1.4",
-    "ember-cli-babel": "^8.2.0",
-    "ember-cli-htmlbars": "^6.3.0"
+    "ember-cli-babel": "^7.26.6",
+    "ember-cli-htmlbars": "^5.7.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",

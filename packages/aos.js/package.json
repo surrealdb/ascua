@@ -18,8 +18,8 @@
     "@ascua/config": "file:../config",
     "@ascua/transform": "file:../transform",
     "aos": "^3.0.0-beta.6",
-    "ember-cli-babel": "^8.2.0",
-    "ember-cli-htmlbars": "^6.3.0"
+    "ember-cli-babel": "^7.26.6",
+    "ember-cli-htmlbars": "^5.7.1"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua",

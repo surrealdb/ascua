@@ -17,8 +17,8 @@
   "dependencies": {
     "@ascua/transform": "file:../transform",
     "@pdf-lib/fontkit": "^1.1.1",
-    "ember-cli-babel": "^8.2.0",
-    "ember-cli-htmlbars": "^6.3.0",
+    "ember-cli-babel": "^7.26.6",
+    "ember-cli-htmlbars": "^5.7.1",
     "pdf-lib": "^1.17.1"
   },
   "ember-addon": {

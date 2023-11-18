@@ -40,8 +40,6 @@ export default class extends Service {
 
 	constructor() {
 
-		return; // Temporarily disable contextmenu
-
 		super(...arguments);
 
 		if (enabled() === false) return;

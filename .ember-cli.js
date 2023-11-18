@@ -6,8 +6,10 @@ setEdition('octane');
 
 module.exports = {
   /**
-    Setting `isTypeScriptProject` to true will force the blueprint generators to generate TypeScript
-    rather than JavaScript by default, when a TypeScript version of a given blueprint is available.
+    Ember CLI sends analytics information by default. The data is completely
+    anonymous, but there are times when you might want to disable this behavior.
+
+    Setting `disableAnalytics` to true will prevent any data from being sent.
   */
-  "isTypeScriptProject": false
+  "disableAnalytics": false
 }
