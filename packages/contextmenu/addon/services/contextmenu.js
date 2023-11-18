@@ -51,18 +51,18 @@ export default class extends Service {
 		document.addEventListener('contextmenu', (e) => {
 			try {
 				switch (true) {
-				case e.target.isContentEditable:
-					this.prep(document.body, e, {}, 'application/menu/text');
-					this.show(document.body, e, {}, 'application/menu/text');
-					break;
-				case e.target.matches('input,textarea'):
-					this.prep(document.body, e, {}, 'application/menu/text');
-					this.show(document.body, e, {}, 'application/menu/text');
-					break;
-				default:
-					this.prep(document.body, e, {}, 'application/menu/main');
-					this.show(document.body, e, {}, 'application/menu/main');
-					break;
+					case e.target.isContentEditable:
+						this.prep(document.body, e, {}, 'application/menu/text');
+						this.show(document.body, e, {}, 'application/menu/text');
+						break;
+					case e.target.matches('input,textarea'):
+						this.prep(document.body, e, {}, 'application/menu/text');
+						this.show(document.body, e, {}, 'application/menu/text');
+						break;
+					default:
+						this.prep(document.body, e, {}, 'application/menu/main');
+						this.show(document.body, e, {}, 'application/menu/main');
+						break;
 				}
 			} catch (e) {
 				// Ignore
@@ -70,7 +70,7 @@ export default class extends Service {
 		});
 
 		document.addEventListener('mousedown', (e) => {
-			if ( !e.target.matches('context-menu-item') ) {
+			if (!e.target.matches('context-menu-item')) {
 				this.hide();
 			}
 		});
@@ -157,14 +157,14 @@ export default class extends Service {
 
 		this.load(name, model);
 
-		setTimeout( () => {
+		setTimeout(() => {
 
 			// Fetch remote variables
 			const window = Remote.getCurrentWindow();
 			const session = window.webContents.session;
 
 			// Build the menu from the template.
-			let menu = Remote.Menu.buildFromTemplate( this.items.map(list) );
+			let menu = Remote.Menu.buildFromTemplate(this.items.map(list));
 
 			// Check to see if there are dictionary suggestions
 			if (vars.dictionarySuggestions && vars.dictionarySuggestions.length > 0) {
