@@ -1,6 +1,6 @@
 {
   "name": "@ascua/events",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Small description for @ascua/events goes here",
   "keywords": [
     "ember-addon"
