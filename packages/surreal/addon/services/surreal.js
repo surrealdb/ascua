@@ -3,6 +3,7 @@ import Storage from '../classes/storage';
 import config from '@ascua/config';
 import unid from '../utils/unid';
 import Database from 'surreal';
+import { getOwner }  from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 import { inject } from '@ember/service';
 import { assert } from '@ember/debug';
@@ -78,6 +79,10 @@ export default class Surreal extends Service {
 		return JWT(this.token);
 	}
 
+	@computed() get fastboot() {
+		return getOwner(this).lookup('service:fastboot');
+	}
+
 	// Setup the Surreal service,
 	// listening for token changes
 	// and connecting to the DB.
@@ -98,11 +103,24 @@ export default class Surreal extends Service {
 			});
 		}
 
+		// If the client has presented a token
+		// in the form of a cookie, then we will
+		// use this for server-side authentication.
+
+		if (this.fastboot && this.fastboot.isFastBoot) {
+			let cookies = this.fastboot.request.cookies;
+			if (cookies && cookies.surreal) {
+				this.token = this.#db.token = cookies.surreal;
+			}
+		}
+
 		// Get the token so that it populates
 		// the jwt getter value, so that the
 		// token contents can be accessed.
 
-		this.token = this.#db.token = this.#ls.get('surreal');
+		if (this.token === null) {
+			this.token = this.#db.token = this.#ls.get('surreal');
+		}
 
 		// When the connection is closed we
 		// change the relevant properties
@@ -281,6 +299,12 @@ export default class Surreal extends Service {
 			this.authenticated = true;
 			this.emit('attempted');
 			this.emit('authenticated');
+			if (this.fastboot && this.fastboot.isFastBoot) {
+				let exp = JWT(t).exp;
+				let now = new Date().getTime() / 1000;
+				let hdrs = this.fastboot.response.headers;
+				hdrs.set('Set-Cookie', `surreal=${t}; path=/; SameSite=Strict; HttpOnly; Secure; Max-Age=${exp-now}`);
+			}
 			return Promise.resolve();
 		} catch (e) {
 			this.#ls.del('surreal');
@@ -291,6 +315,10 @@ export default class Surreal extends Service {
 			this.authenticated = false;
 			this.emit('attempted');
 			this.emit('invalidated');
+			if (this.fastboot && this.fastboot.isFastBoot) {
+				let hdrs = this.fastboot.response.headers;
+				hdrs.set('Set-Cookie', `surreal=null; path=/; SameSite=Strict; HttpOnly; Secure; Max-Age=0`);
+			}
 			return Promise.reject();
 		}
 	}
@@ -306,6 +334,12 @@ export default class Surreal extends Service {
 			this.authenticated = true;
 			this.emit('attempted');
 			this.emit('authenticated');
+			if (this.fastboot && this.fastboot.isFastBoot) {
+				let exp = JWT(t).exp;
+				let now = new Date().getTime() / 1000;
+				let hdrs = this.fastboot.response.headers;
+				hdrs.set('Set-Cookie', `surreal=${t}; path=/; SameSite=Strict; HttpOnly; Secure; Max-Age=${exp-now}`);
+			}
 			return Promise.resolve();
 		} catch (e) {
 			this.#ls.del('surreal');
@@ -316,6 +350,10 @@ export default class Surreal extends Service {
 			this.authenticated = false;
 			this.emit('attempted');
 			this.emit('invalidated');
+			if (this.fastboot && this.fastboot.isFastBoot) {
+				let hdrs = this.fastboot.response.headers;
+				hdrs.set('Set-Cookie', `surreal=null; path=/; SameSite=Strict; HttpOnly; Secure; Max-Age=0`);
+			}
 			return Promise.reject();
 		}
 	}
