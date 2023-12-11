@@ -9,7 +9,7 @@
   "license": "MIT",
   "author": {
     "name": "Tobie Morgan Hitchcock",
-    "url": "https://abcum.com"
+    "url": "https://surrealdb.com"
   },
   "dependencies": {
     "@electron/remote": "^2.0.12",

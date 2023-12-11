@@ -12,7 +12,7 @@
   "license": "MIT",
   "author": {
     "name": "Tobie Morgan Hitchcock",
-    "url": "https://abcum.com"
+    "url": "https://surrealdb.com"
   },
   "dependencies": {
     "broccoli-caching-writer": "^3.0.3",

@@ -12,7 +12,7 @@
   "license": "MIT",
   "author": {
     "name": "Tobie Morgan Hitchcock",
-    "url": "https://abcum.com"
+    "url": "https://surrealdb.com"
   },
   "dependencies": {
     "@ascua/clock": "file:../clock",
