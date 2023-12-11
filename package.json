@@ -128,6 +128,7 @@
     "@ascua/marked.js": "file:packages/marked.js",
     "@ascua/masonry": "file:packages/masonry",
     "@ascua/maths": "file:packages/maths",
+    "@ascua/mdfiles": "file:packages/mdfiles",
     "@ascua/metrics": "file:packages/metrics",
     "@ascua/minify": "file:packages/minify",
     "@ascua/modal": "file:packages/modal",
