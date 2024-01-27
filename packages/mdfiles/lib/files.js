@@ -27,7 +27,12 @@ module.exports = class Trees extends Plugin {
 		if (this.opts.type === 'addon') {
 
 			let output = this.opts.folders.reduce((list, folder) => {
-				list[folder.name] = path.join(this.opts.outputDir, folder.name);
+				list[folder.name] = path.join(
+					this.opts.rootURL,
+					this.opts.outputDir,
+					folder.name,
+					'index.json'
+				);
 				return list;
 			}, {});
 			let buffer = `export default ${JSON.stringify(output)}`;
@@ -42,7 +47,7 @@ module.exports = class Trees extends Plugin {
 				// Write the index.json file contents
 
 				let buffer = JSON.stringify(entries.map(v => {
-					return { name: v.name, attributes: v.attributes };
+					return { name: v.name, path: v.path, attributes: v.attributes };
 				}));
 				let folder = path.join(this.outputPath, this.opts.outputDir, name);
 				let file = path.join(folder, 'index.json');
@@ -74,7 +79,7 @@ module.exports = class Trees extends Plugin {
 
 			let fileExt = path.extname(file);
 			let fileName = file.replace(/\.[^/.]+$/, '');
-			let filePath = path.join(name, fileName);
+			let filePath = path.join(this.opts.rootURL, this.opts.outputDir, name, `${fileName}.json`);
 			let fullPath = path.join(dir, file);
 			let isDirectory = fs.lstatSync(path.join(dir, file)).isDirectory();
 
@@ -85,6 +90,7 @@ module.exports = class Trees extends Plugin {
 
 			let entry = {
 				name: fileName,
+				path: filePath,
 				body: content.body,
 				attributes: content.attributes,
 			};

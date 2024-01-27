@@ -43,6 +43,7 @@ module.exports = {
 			let files = new MarkdownFiles(folders.map(v => v.dir), {
 				type: 'addon',
 				folders: folders,
+				rootURL: this.conf.rootURL,
 				basePath: this.app.project.root,
 				outputDir: 'assets',
 			});
@@ -66,6 +67,7 @@ module.exports = {
 			let files = new MarkdownFiles(folders.map(v => v.dir), {
 				type: 'files',
 				folders: folders,
+				rootURL: this.conf.rootURL,
 				basePath: this.app.project.root,
 				outputDir: 'assets',
 			});
