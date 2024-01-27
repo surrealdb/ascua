@@ -1,6 +1,6 @@
 'use strict';
 
-const MarkdownResolver = require('broccoli-markdown-resolver');
+const MarkdownFiles = require('./lib/files.js');
 const Merger = require('broccoli-merge-trees');
 const path = require('path');
 const fs = require('fs');
@@ -25,27 +25,56 @@ module.exports = {
 
 	},
 
+	folders() {
+
+		return Object.keys(this.opts.folders).reduce((folders, name) => {
+			let dir = path.join(this.app.project.root, this.opts.folders[name]);
+			return fs.existsSync(dir) ? [...folders, { name, dir }] : [...folders];
+		}, []);
+
+	},
+
 	treeForAddon(tree) {
 
-		let folders = Object.keys(this.opts.folders).reduce((folders, key) => {
-			return [...folders, this.opts.folders[key]];
-		}, []);
+		let folders = this.folders();
 
-		let paths = folders.reduce((paths, folder) => {
-			let dirpath = path.join(this.app.project.root, folder);
-			return fs.existsSync(dirpath) ? [...paths, dirpath] : [...paths];
-		}, []);
+		if (folders.length > 0) {
 
-		if (paths.length > 0) {
-			let files = new MarkdownResolver(paths, {
+			let files = new MarkdownFiles(folders.map(v => v.dir), {
+				type: 'addon',
+				folders: folders,
 				basePath: this.app.project.root,
-				outputFile: 'files.js',
-				trimExtensions: true,
+				outputDir: 'assets',
 			});
+
 			tree = new Merger([tree, files]);
+
 		}
 
 		return this._super.treeForAddon.call(this, tree);
+
+	},
+
+	postprocessTree(type, tree) {
+
+		if (type !== 'all') return tree;
+
+		let folders = this.folders();
+
+		if (folders.length > 0) {
+
+			let files = new MarkdownFiles(folders.map(v => v.dir), {
+				type: 'files',
+				folders: folders,
+				basePath: this.app.project.root,
+				outputDir: 'assets',
+			});
+
+			tree = new Merger([tree, files]);
+
+		}
+
+		return tree;
 
 	},
 

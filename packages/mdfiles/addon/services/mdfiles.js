@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { trees } from '@ascua/mdfiles/files';
+import folders from '@ascua/mdfiles/files';
 import config from '@ascua/config';
 
 export default class extends Service {
@@ -8,10 +8,15 @@ export default class extends Service {
 		return config.mdfiles || {};
 	}
 
-	async folder(name) {
-		let tree = { name, path: this.config.folders[name] };
-		return trees[tree.path].map(file => {
-			return { ...file, path: file.path.replace(`${tree.path}/`, '') };
+	async folder(folder) {
+		return fetch(config.rootURL + folders[folder] + '/index.json').then(data => {
+			return data.json();
+		})
+	}
+
+	async file(folder, name) {
+		return fetch(config.rootURL + folders[folder] + `/${name}.json`).then(data => {
+			return data.json();
 		});
 	}
 
