@@ -17,7 +17,8 @@
   "dependencies": {
     "broccoli-merge-trees": "^4.2.0",
     "ember-cli-babel": "^7.26.6",
-    "ember-cli-htmlbars": "^5.7.1"
+    "ember-cli-htmlbars": "^5.7.1",
+    "front-matter": "^4.0.2"
   },
   "ember-addon": {
     "demoURL": "https://abcum.github.io/ascua"
