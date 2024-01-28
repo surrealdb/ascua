@@ -25,6 +25,9 @@
     "demoURL": "https://abcum.github.io/ascua"
   },
   "homepage": "https://abcum.github.io/ascua",
+  "peerDependencies": {
+    "ember-fetch": "^8.1.2"
+  },
   "publishConfig": {
     "access": "public"
   }
