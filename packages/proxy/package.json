@@ -1,6 +1,6 @@
 {
   "name": "@ascua/proxy",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Small description for @ascua/proxy goes here",
   "keywords": [
     "ember-addon"
