@@ -11,6 +11,11 @@ module.exports = {
 		// Don't store app config in meta tag
 		app.options.storeConfigInMeta = false;
 
+		// Ensure ember-fetch configuration is optimised
+		app.options['ember-fetch'] = app.options['ember-fetch'] || {};
+		app.options['ember-fetch'].preferNative = true;
+		app.options['ember-fetch'].alwaysIncludePolyfill = false;
+
 		// Ensure correct file types are converted
 		app.options.fingerprint = app.options.fingerprint || {};
 		app.options.fingerprint.exclude = app.options.fingerprint.exclude || [];
