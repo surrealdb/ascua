@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import folders from '@ascua/mdfiles/files';
 import config from '@ascua/config';
+import fetch from 'fetch';
 
 export default class extends Service {
 
