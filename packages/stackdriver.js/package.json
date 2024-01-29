@@ -1,6 +1,6 @@
 {
   "name": "@ascua/stackdriver.js",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Small description for @ascua/stackdriver.js goes here",
   "keywords": [
     "ember-addon"
