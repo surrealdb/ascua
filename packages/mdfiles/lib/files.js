@@ -3,6 +3,7 @@
 const Plugin = require('broccoli-caching-writer');
 const frontmatter = require('front-matter');
 const mkdirp = require('mkdirp');
+const crypto = require('crypto');
 const path = require('path');
 const fs = require('fs');
 
@@ -26,16 +27,23 @@ module.exports = class Trees extends Plugin {
 
 		if (this.opts.type === 'addon') {
 
-			let output = this.opts.folders.reduce((list, folder) => {
+			let content = this.opts.folders.reduce((list, folder) => {
+
+				let text = JSON.stringify(output[folder.name]);
+				let hash = crypto.createHash('md5').update(text).digest('hex').substring(0,6);
+
 				list[folder.name] = path.join(
 					this.opts.rootURL,
 					this.opts.outputDir,
 					folder.name,
-					'index.json'
+					`index-${hash}.json`
 				);
+
 				return list;
+
 			}, {});
-			let buffer = `export default ${JSON.stringify(output)}`;
+
+			let buffer = `export default ${JSON.stringify(content)}`;
 			fs.writeFileSync(path.join(this.outputPath, 'files.js'), buffer);
 
 		}
@@ -44,13 +52,16 @@ module.exports = class Trees extends Plugin {
 
 			for (const [name, entries] of Object.entries(output)) {
 
+				let text = JSON.stringify(entries);
+				let hash = crypto.createHash('md5').update(text).digest('hex').substring(0,6);
+
 				// Write the index.json file contents
 
 				let buffer = JSON.stringify(entries.map(v => {
 					return { name: v.name, path: v.path, attributes: v.attributes };
 				}));
 				let folder = path.join(this.outputPath, this.opts.outputDir, name);
-				let file = path.join(folder, 'index.json');
+				let file = path.join(folder, `index-${hash}.json`);
 				mkdirp.sync(folder);
 				fs.writeFileSync(file, buffer);
 
