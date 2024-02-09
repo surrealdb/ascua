@@ -17,15 +17,15 @@ export default class extends Metric {
 		if (!this.config.id) return;
 
 		switch (this.config.optimised) {
-		case true:
-			script.optimised(this.config);
-			break;
-		default:
-			script.original(this.config);
-			break;
+			case true:
+				script.optimised(this.config);
+				break;
+			default:
+				script.original(this.config);
+				break;
 		}
 
-		window.gtm = function() { window.dataLayer.push(arguments); };
+		window.gtm = function () { window.dataLayer.push(arguments); };
 
 	}
 

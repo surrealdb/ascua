@@ -1,5 +1,4 @@
 import Object from '@ember/object';
-import { assert } from '@ember/debug';
 
 export default class extends Object {
 
@@ -9,12 +8,12 @@ export default class extends Object {
 		return `metric:${this.name}`;
 	}
 
-	clear() {}
+	clear() { }
 
-	identify(/*id, data*/) {}
+	identify(/*id, data*/) { }
 
-	trackPage(/*data*/) {}
+	trackPage(/*data*/) { }
 
-	trackEvent(/*name, data*/) {}
+	trackEvent(/*name, data*/) { }
 
 }

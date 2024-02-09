@@ -17,12 +17,12 @@ export default class extends Metric {
 		if (!this.config.id) return;
 
 		switch (this.config.optimised) {
-		case true:
-			script.optimised(this.config);
-			break;
-		default:
-			script.original(this.config);
-			break;
+			case true:
+				script.optimised(this.config);
+				break;
+			default:
+				script.original(this.config);
+				break;
 		}
 
 		window.twq('config', this.config.id);
