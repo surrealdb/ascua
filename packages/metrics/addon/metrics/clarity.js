@@ -11,6 +11,8 @@ export default class extends Metric {
 
 		super.init(...arguments);
 
+		if (window.clarity) return;
+
 		if (!this.config.id) return;
 
 		switch (this.config.optimised) {

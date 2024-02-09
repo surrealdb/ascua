@@ -12,6 +12,10 @@ export function original(config) {
 
 export function optimised(config) {
 
+	/* eslint-disable */
+	window.clarity = function () { (window.clarity.q = window.clarity.q || []).push(arguments) };
+	/* eslint-enable */
+
 	if (document.readyState === 'complete') {
 
 		let script = document.createElement('script');
