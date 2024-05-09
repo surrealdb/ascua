@@ -1,11 +1,13 @@
 <app-masonry ...attributes>
 	<app-masonry-view {{on "scroll" this.didScroll}}>
 		<app-masonry-area {{did-insert this.didCreate}} {{did-update this.didChange @model @model.length}}>
-			{{#each @model as |item|}}
-				<Ascua::Masonry::Item @item={{item}} @reload={{this.reload}} @observer={{this.observer}}>
-					{{~yield item~}}
-				</Ascua::Masonry::Item>
-			{{/each}}
+			{{#if this.masonry}}
+				{{#each @model as |item|}}
+					<Ascua::Masonry::Item @item={{item}} @reload={{this.reload}} @observer={{this.observer}}>
+						{{~yield item~}}
+					</Ascua::Masonry::Item>
+				{{/each}}
+			{{/if}}
 		</app-masonry-area>
 	</app-masonry-view>
 </app-masonry>

@@ -1,11 +1,12 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { arg } from '@ascua/decorators';
 import Masonry from 'masonry.js';
 
 export default class extends Component {
 
-	masonry = undefined;
+	@tracked masonry = undefined;
 
 	observer = new MutationObserver(this.reload);
 
@@ -74,20 +75,22 @@ export default class extends Component {
 
 		if (!this.masonry) return;
 
-		for (let mutation of mutations) {
-			if (mutation.type == 'childList') {
-				[].forEach.call(mutation.addedNodes, child => {
-					if (child.tagName === "IMG") {
-						child.addEventListener('load', () => {
-							this.masonry.reloadItems();
-							this.masonry.layout();
-						});
-						child.addEventListener('error', () => {
-							this.masonry.reloadItems();
-							this.masonry.layout();
-						});
-					}
-				})
+		if (mutations) {
+			for (let mutation of mutations) {
+				if (mutation.type == 'childList') {
+					[].forEach.call(mutation.addedNodes, child => {
+						if (child.tagName === "IMG") {
+							child.addEventListener('load', () => {
+								this.masonry.reloadItems();
+								this.masonry.layout();
+							});
+							child.addEventListener('error', () => {
+								this.masonry.reloadItems();
+								this.masonry.layout();
+							});
+						}
+					})
+				}
 			}
 		}
 

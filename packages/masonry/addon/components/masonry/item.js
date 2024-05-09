@@ -10,6 +10,8 @@ export default class extends Component {
 			subtree: true,
 		});
 
+		this.args.reload();
+
 	}
 
 }
