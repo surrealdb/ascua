@@ -46,7 +46,12 @@ export default function(type) {
 
 					if (model && model.class.prototype instanceof Field) {
 						return this[RECORD].data[key] = this[RECORD].data[key] || Array.create(this, (v) => {
-							return model.create({ ...v, parent: this });
+							switch (true) {
+								case v instanceof Field:
+									return v;
+								default:
+									return model.create({ ...v, parent: this });
+							}
 						}, ...value);
 					}
 
