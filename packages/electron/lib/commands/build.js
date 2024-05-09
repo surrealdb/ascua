@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const Builder = require('electron-builder');
 const Notarizer = require('@electron/notarize');
-const Dmgerizer = require('electron-notarize-dmg');
 const Command = require('ember-cli/lib/commands/build');
 const { log } = require('builder-util');
 
@@ -181,10 +180,10 @@ module.exports = Command.extend({
 
 									log.info({ appId, dmgPath }, "notarizing");
 
-									return await Dmgerizer.notarize({
+									return await Notarizer.notarize({
 										tool: 'notarytool',
 										appBundleId: appId,
-										dmgPath: dmgPath,
+										appPath: dmgPath,
 										appleId: APPLE_ID,
 										teamId: APPLE_TEAMID,
 										appleIdPassword: APPLE_PASSWORD,

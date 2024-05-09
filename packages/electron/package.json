@@ -21,7 +21,6 @@
     "builder-util": "^24.8.1",
     "electron": "30.0.3",
     "electron-builder": "^24.13.3",
-    "electron-notarize-dmg": "^1.0.0",
     "electron-updater": "^6.1.8",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0"
