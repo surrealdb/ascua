@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { arg } from '@ascua/decorators';
 import Masonry from 'masonry.js';
@@ -8,7 +7,7 @@ export default class extends Component {
 
 	masonry = undefined;
 
-	@tracked observer = undefined;
+	observer = new MutationObserver(this.reload);
 
 	@arg columnWidth = undefined;
 	@arg fitWidth = false;
@@ -22,8 +21,6 @@ export default class extends Component {
 	@arg transitionDuration = 0;
 
 	@action didCreate(element) {
-
-		this.observer = new MutationObserver(this.reload);
 
 		this.masonry = new Masonry(element, {
 			itemSelector: 'app-masonry-item',
