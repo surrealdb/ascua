@@ -129,6 +129,7 @@ module.exports = Command.extend({
 						],
 					},
 					mac: {
+						notarize: false,
 						darkModeSupport: true,
 						hardenedRuntime: true,
 						icon: 'electron/mac/icon.png',
