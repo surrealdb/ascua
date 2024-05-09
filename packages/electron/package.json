@@ -17,12 +17,12 @@
   "dependencies": {
     "@ascua/config": "file:../config",
     "@ascua/service": "file:../service",
-    "@electron/notarize": "^2.1.0",
+    "@electron/notarize": "^2.3.0",
     "builder-util": "^24.8.1",
-    "electron": "27.0.3",
-    "electron-builder": "^24.6.4",
+    "electron": "30.0.3",
+    "electron-builder": "^24.13.3",
     "electron-notarize-dmg": "^1.0.0",
-    "electron-updater": "^6.1.4",
+    "electron-updater": "^6.1.8",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0"
   },

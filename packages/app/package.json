@@ -12,8 +12,8 @@
     "url": "https://surrealdb.com"
   },
   "dependencies": {
-    "@electron/remote": "^2.0.12",
-    "electron-updater": "6.1.4"
+    "@electron/remote": "^2.1.2",
+    "electron-updater": "6.1.8"
   },
   "publishConfig": {
     "access": "public"
