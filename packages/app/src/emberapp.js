@@ -2,8 +2,9 @@ const { app, protocol } = require('electron');
 const { join, dirname } = require('path');
 const fs = require('fs');
 
-const MAIN = process.env.EMBER_ELECTRON_LOCATION;
-const INDX = join('./index.html');
+const PATH = app.getAppPath();
+const BASE = join(PATH, 'dist');
+const INDX = join(BASE, 'index.html');
 
 protocol.registerSchemesAsPrivileged([
 	{ scheme: 'ember', privileges: { standard: true, secure: true } },
@@ -11,7 +12,7 @@ protocol.registerSchemesAsPrivileged([
 
 app.once('ready', () => {
 
-	protocol.handle('ember', (req, fn) => {
+	protocol.registerFileProtocol('ember', (req, fn) => {
 
 		const FILE = req.url.substr(12);
 		const FULL = join(BASE, FILE);
@@ -70,7 +71,7 @@ app.on('browser-window-created', (e, window) => {
 
 	window.webContents.on('did-fail-load', (e, int, text, url) => {
 		setTimeout( () => {
-			window.loadURL(MAIN || INDX);
+			window.loadURL(process.env.EMBER_ELECTRON_LOCATION || INDX);
 		}, 1000);
 	});
 
