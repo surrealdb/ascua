@@ -1,6 +1,6 @@
 {
   "name": "@ascua/codemirror.js",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Small description for @ascua/codemirror.js goes here",
   "keywords": [
     "ember-addon"
