@@ -3,9 +3,7 @@ const { join, dirname } = require('path');
 const fs = require('fs');
 
 const MAIN = process.env.EMBER_ELECTRON_LOCATION;
-const FOLD = dirname(require.main.filename);
-const BASE = join(FOLD, '..', 'dist');
-const INDX = join(BASE, 'index.html');
+const INDX = join('./index.html');
 
 protocol.registerSchemesAsPrivileged([
 	{ scheme: 'ember', privileges: { standard: true, secure: true } },
@@ -13,7 +11,7 @@ protocol.registerSchemesAsPrivileged([
 
 app.once('ready', () => {
 
-	protocol.registerFileProtocol('ember', (req, fn) => {
+	protocol.handle('ember', (req, fn) => {
 
 		const FILE = req.url.substr(12);
 		const FULL = join(BASE, FILE);
